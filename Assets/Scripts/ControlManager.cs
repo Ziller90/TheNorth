@@ -22,6 +22,6 @@ public class ControlManager : MonoBehaviour
     }
     private void Start()
     {
-        Debug.Log(Utils.SpeedConverter(5));
+        
     }
 }
