@@ -9,4 +9,14 @@ public class AnimationEvents : MonoBehaviour
     {
         meleeAttack.StopAttack();
     }
+
+    public void DisableRotation()
+    {
+        meleeAttack.DisableRotation();
+    }
+
+    public void AllowRotation()
+    {
+        meleeAttack.AllowRotation();
+    }
 }
