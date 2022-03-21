@@ -7,7 +7,7 @@ public class ButtonsManager : MonoBehaviour
     public MeleeAttack meleeAttack;
     public void AttackButton() 
     {
-        meleeAttack.StartCoroutine("Attack");
+        meleeAttack.Attack();
     }
     void Start()
     {

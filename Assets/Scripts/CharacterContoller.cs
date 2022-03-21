@@ -16,7 +16,9 @@ public class CharacterContoller : MonoBehaviour
     public float runSpeed; // km per hour
     public float walkSpeed; // km per hour
     public float rotationSpeed;
-    public bool isMeleeAttack;
+    public bool allowMoving;
+    public bool allowRotation;
+
 
     public ControlManager controlManager;
 
@@ -54,10 +56,13 @@ public class CharacterContoller : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isMeleeAttack == false)
+        if (allowMoving == true)
         {
             MoveForward();
         }
-        Rotate();
+        if (allowRotation == true)
+        {
+            Rotate();
+        }
     }
 }

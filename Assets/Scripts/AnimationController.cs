@@ -6,6 +6,8 @@ public class AnimationController : MonoBehaviour
 {
     public Animator humanAnimator;
     public CharacterContoller characterContoller;
+    public MeleeAttack meleeAttack;
+
 
     void Start()
     {
@@ -27,6 +29,6 @@ public class AnimationController : MonoBehaviour
             humanAnimator.SetInteger("MoveIndex", 3);
         }
 
-        humanAnimator.SetBool("Attack", characterContoller.isMeleeAttack);
+        humanAnimator.SetBool("Attack", meleeAttack.isAttack);
     }
 }
