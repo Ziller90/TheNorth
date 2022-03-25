@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class MobileButtonsManager : MonoBehaviour
 {
+    public MobileButton meleeAttackButton;
+    public MobileButton blockButton;
+    public MobileButton distantAttackButton;
     public ButtonsManager buttonsManager;
-    public void MobileAttackButton()
-    {
-        buttonsManager.AttackButton();
-    }
 
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        buttonsManager.isMeleeAttack = meleeAttackButton.isPressed;
+        buttonsManager.isDistantAttack = distantAttackButton.isPressed;
+        buttonsManager.isBlock = blockButton.isPressed;
     }
 }
