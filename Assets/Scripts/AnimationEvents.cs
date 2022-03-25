@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class AnimationEvents : MonoBehaviour
 {
-    public MeleeAttack meleeAttack;
+    public HumanoidBattleSystem battleSystem;
     public void AttackFinished()
     {
-        meleeAttack.StopAttack();
+        battleSystem.StopAttack();
     }
 
     public void DisableRotation()
     {
-        meleeAttack.DisableRotation();
+        battleSystem.DisableRotation();
     }
 
     public void AllowRotation()
     {
-        meleeAttack.AllowRotation();
+        battleSystem.AllowRotation();
     }
 }

@@ -19,9 +19,8 @@ public class CharacterContoller : MonoBehaviour
     public bool allowMoving;
     public bool allowRotation;
 
-
+    public Animator humanAnimator;
     public ControlManager controlManager;
-
     Transform transform;
 
     void Start()
@@ -64,5 +63,19 @@ public class CharacterContoller : MonoBehaviour
         {
             Rotate();
         }
+
+        if (movingState == MovingState.Idle)
+        {
+            humanAnimator.SetInteger("MoveIndex", 1);
+        }
+        if (movingState == MovingState.Walk)
+        {
+            humanAnimator.SetInteger("MoveIndex", 2);
+        }
+        if (movingState == MovingState.Run)
+        {
+            humanAnimator.SetInteger("MoveIndex", 3);
+        }
     }
+
 }

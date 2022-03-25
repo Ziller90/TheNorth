@@ -1,14 +1,14 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ButtonsManager : MonoBehaviour
 {
-    public MeleeAttack meleeAttack;
-    public void AttackButton() 
-    {
-        meleeAttack.Attack();
-    }
+    public bool isMeleeAttack;
+    public bool isDistantAttack;
+    public bool isBlock;
+
+    public HumanoidBattleSystem battleSystem;
     void Start()
     {
         
@@ -17,6 +17,7 @@ public class ButtonsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        battleSystem.isMeleeAttack = isMeleeAttack;
+        battleSystem.isBlock = isBlock;
     }
 }
