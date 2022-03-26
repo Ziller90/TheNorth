@@ -5,21 +5,30 @@ using UnityEngine;
 public class HumanoidBattleSystem : MonoBehaviour
 {
     public CharacterContoller characterContoller;
+    public ButtonsManager buttonsManager;
     public Animator humanAnimator;
     public bool isMeleeAttack;
     public bool isBlock;
     public bool isDistantAttack;
 
 
-    public void Attack()
-    {
-        characterContoller.allowMoving = false;
-        isMeleeAttack = true;
-    }
     public void StopAttack()
     {
-        characterContoller.allowMoving = true;
-        isMeleeAttack = false;
+        if (buttonsManager.isMeleeAttackButtonPressed == false)
+        {
+            isMeleeAttack = false;
+        }
+    }
+    public void DisableMoving()
+    {
+        characterContoller.allowMoving = false;
+    }
+    public void AllowMoving()
+    {
+        if (buttonsManager.isMeleeAttackButtonPressed == false) 
+        {
+            characterContoller.allowMoving = true;
+        }
     }
     public void DisableRotation()
     {
@@ -31,6 +40,17 @@ public class HumanoidBattleSystem : MonoBehaviour
     }
     public void Update()
     {
+        if (buttonsManager.isMeleeAttackButtonPressed)
+        {
+            isMeleeAttack = true;
+            DisableMoving();
+        }
+         humanAnimator.SetBool("Attack", isMeleeAttack);
+
+        if (buttonsManager.isBlockButtonPressed)
+        {
+            isBlock = true;
+        }
         humanAnimator.SetBool("Attack", isMeleeAttack);
     }
 }

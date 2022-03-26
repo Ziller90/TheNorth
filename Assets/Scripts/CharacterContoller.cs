@@ -17,6 +17,7 @@ public class CharacterContoller : MonoBehaviour
     public float walkSpeed; // km per hour
     public float rotationSpeed;
     public bool allowMoving;
+    public bool allowRunning;
     public bool allowRotation;
 
     public Animator humanAnimator;
@@ -31,18 +32,37 @@ public class CharacterContoller : MonoBehaviour
     {
         if (controlManager.GetSpeedModificator() > minModificatorToWalk && controlManager.GetSpeedModificator() < modificatorToRun)
         {
-            transform.position += transform.forward * Utils.SpeedConverter(walkSpeed);
-            movingState = MovingState.Walk;
+            Walk();
         }
         else if (controlManager.GetSpeedModificator() > modificatorToRun)
         {
-            transform.position += transform.forward * Utils.SpeedConverter(runSpeed);
-            movingState = MovingState.Run;
+            if (allowRunning)
+            {
+                Run();
+            }
+            else
+            {
+                Walk();
+            }
         }
         else
         {
-            movingState = MovingState.Idle;
+            Idle();
         }
+    }
+    public void Walk() 
+    {
+        transform.position += transform.forward * Utils.SpeedConverter(walkSpeed);
+        movingState = MovingState.Walk;
+    }
+    public void Run()
+    {
+        transform.position += transform.forward * Utils.SpeedConverter(runSpeed);
+        movingState = MovingState.Run;
+    }
+    public void Idle()
+    {
+        movingState = MovingState.Idle;
     }
     public void Rotate()
     {
@@ -58,6 +78,10 @@ public class CharacterContoller : MonoBehaviour
         if (allowMoving == true)
         {
             MoveForward();
+        }
+        else
+        {
+            Idle();
         }
         if (allowRotation == true)
         {

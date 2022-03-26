@@ -9,14 +9,20 @@ public class AnimationEvents : MonoBehaviour
     {
         battleSystem.StopAttack();
     }
-
     public void DisableRotation()
     {
         battleSystem.DisableRotation();
     }
-
     public void AllowRotation()
     {
         battleSystem.AllowRotation();
+    }
+    public void AllowMoving()
+    {
+        battleSystem.AllowMoving();
+    }
+    public void DisableMoving()
+    {
+        battleSystem.DisableMoving();
     }
 }

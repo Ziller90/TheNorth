@@ -668,6 +668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterContoller: {fileID: 824987132}
+  buttonsManager: {fileID: 1099258317}
   humanAnimator: {fileID: 1432919395512223309}
   isMeleeAttack: 0
   isBlock: 0
@@ -816,10 +817,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 213717ecb8f229940b4e35d12aa31f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMeleeAttack: 0
-  isDistantAttack: 0
-  isBlock: 0
-  battleSystem: {fileID: 824987133}
+  isMeleeAttackButtonPressed: 0
+  isDistantAttackButtonPressed: 0
+  isBlockButtonPressed: 0
 --- !u!1 &1180786273
 GameObject:
   m_ObjectHideFlags: 0
@@ -3496,7 +3496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2740db3077800c478aed7a8aeb3b618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleSystem: {fileID: 0}
+  battleSystem: {fileID: 824987133}
 --- !u!1 &1432919395521610735
 GameObject:
   m_ObjectHideFlags: 0

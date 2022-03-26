@@ -16,8 +16,8 @@ public class MobileButtonsManager : MonoBehaviour
 
     void Update()
     {
-        buttonsManager.isMeleeAttack = meleeAttackButton.isPressed;
-        buttonsManager.isDistantAttack = distantAttackButton.isPressed;
-        buttonsManager.isBlock = blockButton.isPressed;
+        buttonsManager.isMeleeAttackButtonPressed = meleeAttackButton.isPressed;
+        buttonsManager.isDistantAttackButtonPressed = distantAttackButton.isPressed;
+        buttonsManager.isBlockButtonPressed = blockButton.isPressed;
     }
 }
