@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class ButtonsManager : MonoBehaviour
 {
-    public bool isMeleeAttack;
-    public bool isDistantAttack;
-    public bool isBlock;
+    public bool isMeleeAttackButtonPressed;
+    public bool isDistantAttackButtonPressed;
+    public bool isBlockButtonPressed;
 
-    public HumanoidBattleSystem battleSystem;
     void Start()
     {
         
@@ -17,7 +16,6 @@ public class ButtonsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        battleSystem.isMeleeAttack = isMeleeAttack;
-        battleSystem.isBlock = isBlock;
+
     }
 }
