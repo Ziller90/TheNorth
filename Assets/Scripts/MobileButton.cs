@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 
 public class MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    public ButtonsManager buttonsManager;
     public bool isPressed;
 
     public void OnPointerDown(PointerEventData pointerEventData)

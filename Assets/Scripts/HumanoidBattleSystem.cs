@@ -11,7 +11,14 @@ public class HumanoidBattleSystem : MonoBehaviour
     public bool isBlock;
     public bool isDistantAttack;
 
-
+    public void DisableRunning()
+    {
+        characterContoller.allowRunning = false;
+    }
+    public void AllowRunning()
+    {
+        characterContoller.allowRunning = true;
+    }
     public void StopAttack()
     {
         if (buttonsManager.isMeleeAttackButtonPressed == false)
@@ -45,12 +52,21 @@ public class HumanoidBattleSystem : MonoBehaviour
             isMeleeAttack = true;
             DisableMoving();
         }
-         humanAnimator.SetBool("Attack", isMeleeAttack);
+        humanAnimator.SetBool("Attack", isMeleeAttack);
 
         if (buttonsManager.isBlockButtonPressed)
         {
             isBlock = true;
+            humanAnimator.SetBool("ShieldUp", true);
+            DisableRunning();
         }
-        humanAnimator.SetBool("Attack", isMeleeAttack);
+        else
+        {
+            isBlock = false;
+            humanAnimator.SetBool("ShieldUp", false);
+            AllowRunning();
+        }
+
+
     }
 }
