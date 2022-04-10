@@ -72,6 +72,11 @@ public class CharacterContoller : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, LookRotation, rotationSpeed);
         }
     }
+    public void LookAtPoint(Vector3 point)
+    {
+        point.y = transform.position.y;
+        transform.LookAt(point);
+    }
 
     void FixedUpdate()
     {
@@ -83,6 +88,7 @@ public class CharacterContoller : MonoBehaviour
         {
             Idle();
         }
+
         if (allowRotation == true)
         {
             Rotate();
@@ -101,5 +107,4 @@ public class CharacterContoller : MonoBehaviour
             humanAnimator.SetInteger("MoveIndex", 3);
         }
     }
-
 }

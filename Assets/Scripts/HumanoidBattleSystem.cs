@@ -5,12 +5,25 @@ using UnityEngine;
 public class HumanoidBattleSystem : MonoBehaviour
 {
     public CharacterContoller characterContoller;
+    public AutoAimController autoAim;
     public ButtonsManager buttonsManager;
     public Animator humanAnimator;
+    public ThrowingWeapon thrower;
+    public Vector3 autoAimTarget;
+
     public bool isMeleeAttack;
     public bool isBlock;
     public bool isDistantAttack;
 
+    public void ThrowWeapon()
+    {
+        thrower.Throw(autoAimTarget);
+    }
+    public void AutoAim()
+    {
+        autoAimTarget = autoAim.GetBestAim(gameObject.transform);
+        characterContoller.LookAtPoint(autoAimTarget);
+    }
     public void DisableRunning()
     {
         characterContoller.allowRunning = false;
@@ -24,6 +37,13 @@ public class HumanoidBattleSystem : MonoBehaviour
         if (buttonsManager.isMeleeAttackButtonPressed == false)
         {
             isMeleeAttack = false;
+        }
+    }
+    public void StopDistantAttack()
+    {
+        if (buttonsManager.isDistantAttackButtonPressed == false)
+        {
+            isDistantAttack = false;
         }
     }
     public void DisableMoving()
@@ -57,16 +77,21 @@ public class HumanoidBattleSystem : MonoBehaviour
         if (buttonsManager.isBlockButtonPressed)
         {
             isBlock = true;
-            humanAnimator.SetBool("ShieldUp", true);
             DisableRunning();
         }
         else
         {
             isBlock = false;
-            humanAnimator.SetBool("ShieldUp", false);
             AllowRunning();
         }
+        humanAnimator.SetBool("ShieldUp", isBlock);
 
-
+        if (buttonsManager.isDistantAttackButtonPressed)
+        {
+            isDistantAttack = true;
+            DisableMoving();
+            DisableRotation();
+        }
+        humanAnimator.SetBool("Throw", isDistantAttack);
     }
 }

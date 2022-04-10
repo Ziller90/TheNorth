@@ -5,9 +5,21 @@ using UnityEngine;
 public class AnimationEvents : MonoBehaviour
 {
     public HumanoidBattleSystem battleSystem;
+    public void AutoAim()
+    {
+        battleSystem.AutoAim();
+    }
+    public void Throwed()
+    {
+        battleSystem.ThrowWeapon();
+    }
     public void AttackFinished()
     {
         battleSystem.StopAttack();
+    }
+    public void DistantAttackFinished()
+    {
+        battleSystem.StopDistantAttack();
     }
     public void DisableRotation()
     {
