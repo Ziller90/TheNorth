@@ -384,7 +384,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Throw knife
+  m_Text: Throw
 --- !u!222 &93048710
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -526,8 +526,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 576723544}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 74.3, z: 0}
+  m_LocalRotation: {x: 0.4082179, y: -0.23456964, z: 0.10938163, w: 0.8754262}
+  m_LocalPosition: {x: 0, y: 74.381, z: -0.00116539}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -687,10 +687,13 @@ MonoBehaviour:
   buttonsManager: {fileID: 1099258317}
   humanAnimator: {fileID: 1432919395512223309}
   thrower: {fileID: 1143256361}
-  autoAimTarget: {x: 0, y: 0, z: 0}
+  weaponInHand: {fileID: 0}
+  distanceAttackTarget: {x: 0, y: 0, z: 0}
+  maxDistanceForAutoAim: 10
   isMeleeAttack: 0
   isBlock: 0
   isDistantAttack: 0
+  standartThrowDistance: 4
 --- !u!1 &853403238
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,10 +929,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPosition: {fileID: 1143256357}
-  upAngleInDegrees: 20
-  weaponPrefab: {fileID: 4331097976247685756, guid: 4892c716405cf094989515647f505bee, type: 3}
+  upAngleInDegrees: 15
+  weaponPrefab: {fileID: 5333266446663750833, guid: c39a3ba4ffc35104f9eea6eef53630ae, type: 3}
   rotationForce: 20
-  speedMod: 1
+  distanceToTarget: 11
+  defaultRotationSpeed: 6
 --- !u!1 &1180786273
 GameObject:
   m_ObjectHideFlags: 0
