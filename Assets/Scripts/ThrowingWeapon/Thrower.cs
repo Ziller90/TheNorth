@@ -2,26 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrowingWeapon : MonoBehaviour
+public class Thrower : MonoBehaviour
 {
     public Transform startPosition;
     public int upAngleInDegrees;
     public GameObject weaponPrefab;
     public float rotationForce;
-    public float speedMod;
+    public int distanceToTarget;
+    public int defaultRotationSpeed;
+    GameObject throwingWeapon;
 
     float g = Physics.gravity.y;
+    public void SetWeaponInHand(GameObject throwingWeapon)
+    {
+        this.throwingWeapon = throwingWeapon;
+    }
     public void Throw(Vector3 target)
     {
-
         Vector3 fromStartToTarget = target - transform.position;
         GameObject weapon = Instantiate(weaponPrefab, startPosition.position, startPosition.rotation);
+
+        distanceToTarget = (int)fromStartToTarget.magnitude;
 
         if (fromStartToTarget.magnitude <= 5)
         {
             upAngleInDegrees = 5;
         }
-        else if (fromStartToTarget.magnitude > 5 && fromStartToTarget.magnitude < 10 )
+        else if (fromStartToTarget.magnitude > 5 && fromStartToTarget.magnitude < 10)
         {
             upAngleInDegrees = 10;
         }
@@ -33,6 +40,7 @@ public class ThrowingWeapon : MonoBehaviour
         {
             upAngleInDegrees = 20;
         }
+
         Vector3 fromStartToTargetXZ = new Vector3(fromStartToTarget.x, 0, fromStartToTarget.z);
         transform.rotation = Quaternion.LookRotation(fromStartToTargetXZ, Vector3.up);
 
@@ -46,17 +54,8 @@ public class ThrowingWeapon : MonoBehaviour
         float v2 = (g * x*x) / (2 * (y - Mathf.Tan(AngleInRadians) * x) * Mathf.Pow(Mathf.Cos(AngleInRadians), 2) );
         float v = Mathf.Sqrt(Mathf.Abs(v2));
 
-        Vector3 throwingVelocity = startPosition.forward * v * speedMod;
+        Vector3 throwingVelocity = startPosition.forward * v;
 
         weapon.GetComponent<Rigidbody>().velocity = throwingVelocity;
-    }
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
     }
 }

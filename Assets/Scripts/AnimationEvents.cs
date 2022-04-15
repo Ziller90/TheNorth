@@ -7,7 +7,7 @@ public class AnimationEvents : MonoBehaviour
     public HumanoidBattleSystem battleSystem;
     public void AutoAim()
     {
-        battleSystem.AutoAim();
+        battleSystem.Aim();
     }
     public void Throwed()
     {
