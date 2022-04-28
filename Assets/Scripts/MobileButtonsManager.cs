@@ -9,6 +9,7 @@ public class MobileButtonsManager : MonoBehaviour
     public MobileButton distantAttackButton;
     public ButtonsManager buttonsManager;
 
+
     void Start()
     {
         
