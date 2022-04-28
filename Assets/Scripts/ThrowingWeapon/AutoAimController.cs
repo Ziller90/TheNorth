@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class AutoAimController : MonoBehaviour
 {
-    public List<Vector3> aimObjects;
+    public List<Transform> aimObjects;
     void Start()
     {
-        GlobalAims globalAims = LinksContainer.instance.globalAims;
-        aimObjects = globalAims.globalAimsList;
+        GlobalLists globalAims = LinksContainer.instance.globalLists;
+        aimObjects = globalAims.aimsOnLocation;
     }
     public bool HasAutoAimTarget(Transform throwPoint, float maxDistance)
     {
-        foreach (Vector3 aim in aimObjects)
+        foreach (Transform aim in aimObjects)
         {
-            if (Vector3.Distance(throwPoint.position, aim) <= maxDistance)
+            if (Vector3.Distance(throwPoint.position, aim.position) <= maxDistance)
             {
                 return true;
             }
@@ -25,15 +25,16 @@ public class AutoAimController : MonoBehaviour
     {
         Vector3 bestAim = throwPoint.forward;
         float minAngle = 180f;
-        foreach (Vector3 aim in aimObjects)
+        foreach (Transform aim in aimObjects)
         {
-            if (Vector3.Distance(throwPoint.position, aim) <= maxDistance) { 
-            float angle = Vector3.Angle(throwPoint.forward, (aim - throwPoint.position));
-            if (angle < minAngle)
+            if (Vector3.Distance(throwPoint.position, aim.position) <= maxDistance) 
             {
-                bestAim = aim;
-                minAngle = angle;
-            }
+                float angle = Vector3.Angle(throwPoint.forward, (aim.position - throwPoint.position));
+                if (angle < minAngle)
+                {
+                    bestAim = aim.position;
+                    minAngle = angle;
+                }
             }
         }
         return bestAim;

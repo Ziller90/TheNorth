@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlobalAims : MonoBehaviour
+public class PlayerInventory : MonoBehaviour
 {
-    public List<Vector3> globalAimsList;
+    // Start is called before the first frame update
     void Start()
     {
         

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LinksContainer : MonoBehaviour
 {
-    public GlobalAims globalAims;
+    public GlobalLists globalLists;
     public static LinksContainer instance;
     public void Awake()
     {

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class AimObject : MonoBehaviour
 {
-    GlobalAims globalAims;
+    GlobalLists globalAims;
     void Start()
     {
-        globalAims = LinksContainer.instance.globalAims;
-        globalAims.globalAimsList.Add(gameObject.transform.position);
+        globalAims = LinksContainer.instance.globalLists;
+        globalAims.aimsOnLocation.Add(gameObject.transform);
     } 
 
     // Update is called once per frame
