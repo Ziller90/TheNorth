@@ -22,4 +22,34 @@ public class Utils : MonoBehaviour
     {
         return (kmPerHour * 1000f / 3600f) / 50f;
     }
+    public static Transform GetNearest(Transform start, List<Transform> points)
+    {
+        Transform nearestPoint = null;
+        float bestDistance = 10000;
+        for (int i = 0; i < points.Count; i++)
+        {
+            float distance = Vector3.Distance(start.position, points[i].position);
+            if (distance < bestDistance)
+            {
+                nearestPoint = points[i];
+                bestDistance = distance;
+            }
+        }
+        return nearestPoint;
+    }
+    public static Vector3 GetNearest(Vector3 start, List<Vector3> points)
+    {
+        Vector3 nearestPoint = Vector3.zero;
+        float bestDistance = 10000;
+        for (int i = 0; i < points.Count; i++)
+        {
+            float distance = Vector3.Distance(start, points[i]);
+            if (distance < bestDistance)
+            {
+                nearestPoint = points[i];
+                bestDistance = distance;
+            }
+        }
+        return nearestPoint;
+    }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GlobalLists : MonoBehaviour
 {
-    public List<Transform> aimsOnLocation;
+    public List<Transform> creaturesOnLocation;
     public List<Transform> itemsOnLocation;
 
     public void AddToItemsOnLocation(Transform item)
