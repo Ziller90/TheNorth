@@ -403,6 +403,7 @@ GameObject:
   - component: {fileID: 6290720822351998997}
   - component: {fileID: 8409801926175647402}
   - component: {fileID: 6650009413227508926}
+  - component: {fileID: 3633117469234211769}
   m_Layer: 0
   m_Name: AI
   m_TagString: Untagged
@@ -437,10 +438,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creaturesOnLocation: []
-  currentEnemy: {fileID: 0}
   fractionMarker: {fileID: 1515117122742004678}
   fieldOfView: 180
-  minDistanceToSee: 20
+  maxDistanceToSee: 20
+  maxDistanceToHear: 4
   ThisCreature: {fileID: 1515117122742004680}
   viewPointOffset: 0.6
 --- !u!114 &1515117121205086065
@@ -459,6 +460,16 @@ MonoBehaviour:
   AIState: 0
   navigationManager: {fileID: 6650009413227508926}
   enemy: {fileID: 0}
+  distanceToAttack: 1.5
+  distanceToLastEnemyPosition: 1
+  hasPatrolRoute: 1
+  timeForEnemySearching: 0
+  searchEnemy: 0
+  searhingRouteGenerated: 0
+  routeManager: {fileID: 3633117469234211769}
+  searchingRadius: 0
+  DebugSphere: {fileID: 6149223491457573555, guid: 8ecd9d08e3864b046abe4270a3ea051a, type: 3}
+  currentEnemy: {fileID: 0}
 --- !u!114 &6290720822351998997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -500,10 +511,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathCorners: []
   target: {x: 0, y: 0, z: 0}
-  moveToTarget: 0
-  navigationAgent: {fileID: 3497310256938613400}
   controlManager: {fileID: 6290720822351998997}
   nextCorner: {x: 0, y: 0, z: 0}
+  thisCreature: {fileID: 1515117122742004672}
+  movingMode: 0
+--- !u!114 &3633117469234211769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515117121205086069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589b7684c8b378f40aa622272b95d7d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  patrolRoute: {fileID: 0}
+  patrolVectorRoute: []
+  currentRoute: []
+  nextCornerIndex: 0
+  navigationManager: {fileID: 6650009413227508926}
+  routeMovingMode: 0
+  ThisCreature: {fileID: 1515117122742004672}
+  distanceToNextCorner: 1
 --- !u!1 &1515117121239623652
 GameObject:
   m_ObjectHideFlags: 0
@@ -3116,7 +3147,6 @@ GameObject:
   - component: {fileID: 1515117122742004679}
   - component: {fileID: 1515117122742004678}
   - component: {fileID: 1515117122742004681}
-  - component: {fileID: 3497310256938613400}
   m_Layer: 0
   m_Name: Bandit
   m_TagString: Untagged
@@ -3169,8 +3199,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingState: 0
-  minModificatorToWalk: 0.2
-  modificatorToRun: 0.6
   runSpeed: 9
   walkSpeed: 4
   rotationSpeed: 7
@@ -3257,28 +3285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b091095fcc85849827dc40b0272bd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!195 &3497310256938613400
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1515117122742004680}
-  m_Enabled: 1
-  m_AgentTypeID: -334000983
-  m_Radius: 0.5
-  m_Speed: 2
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0.52
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &1515117122759182498
 GameObject:
   m_ObjectHideFlags: 0

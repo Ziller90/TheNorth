@@ -2,26 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MovingMode
+{
+    Run, 
+    Walk,
+    Stand
+}
 public class ControlManager : MonoBehaviour
 {
     Vector3 direction;
-    float speedModificator; 
+    MovingMode movingMode;
 
-    public void SetControl(Vector3 direction, float speedModificator)
+    public void SetControl(Vector3 direction, MovingMode movingMode)
     {
         this.direction = direction;
-        this.speedModificator = speedModificator;
+        this.movingMode = movingMode;
     }
     public Vector3 GetDirection()
     {
         return direction;
-    }
-    public float GetSpeedModificator()
+    } 
+    public MovingMode GetMovingMode()
     {
-        return speedModificator;
-    }
-    private void Start()
-    {
-        
+        return movingMode;
     }
 }

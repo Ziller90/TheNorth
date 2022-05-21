@@ -8,36 +8,43 @@ public class AINavigationManager : MonoBehaviour
 {
     public Vector3[] pathCorners;
     public Vector3 target;
-    public bool moveToTarget;
-    public NavMeshAgent navigationAgent;
     public ControlManager controlManager;
     public Vector3 nextCorner;
-    void Start()
-    {
-        
-    }
+    public Transform thisCreature;
+    public MovingMode movingMode;
 
-    public void MoveToTarget(Vector3 target)
+    public void MoveToTarget(Vector3 target, MovingMode movingMode)
     {
         this.target = target;
-        moveToTarget = true;
+        this.movingMode = movingMode;
     }
-
+    public void Stand()
+    {
+        target = Vector3.zero;
+        movingMode = MovingMode.Stand;
+    }
     void Update()
     {
-        if (moveToTarget)
+        if (movingMode != MovingMode.Stand)
         {
-            navigationAgent.destination = target;
-            pathCorners = navigationAgent.path.corners;
+            NavMeshPath newPath = new NavMeshPath();
+            NavMesh.CalculatePath(thisCreature.position, target, NavMesh.AllAreas, newPath);
+            pathCorners = newPath.corners;
             if (pathCorners.Length > 1)
             {
                 nextCorner = pathCorners[1];
-                controlManager.SetControl((nextCorner - navigationAgent.transform.position).normalized, 1f);
+                Vector3 newDirection = (nextCorner - thisCreature.transform.position).normalized;
+                newDirection = new Vector3(newDirection.x, 0, newDirection.z);
+                controlManager.SetControl(newDirection, movingMode);
             }
             else
             {
-                controlManager.SetControl(Vector3.zero, 0f);
+                controlManager.SetControl(Vector3.zero, MovingMode.Stand);
             }
         }
+        else
+        {
+            controlManager.SetControl(Vector3.zero, MovingMode.Stand);
+        } 
     }
 }

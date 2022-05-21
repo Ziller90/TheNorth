@@ -16,6 +16,9 @@ public class FixedJoystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IPo
     public float maxMagnitude;
     public float cameraAngleCorrector;
 
+    public float modificatorToWalk; // Minimal speed modificator value when character starts walking
+    public float modificatorToRun; // Minimal speed modificator value when character starts runing
+
     public ControlManager controlManager;
     public CameraFollowing camera;
 
@@ -37,7 +40,19 @@ public class FixedJoystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IPo
         horizontal = (handle.transform.localPosition.x / 100);
         direction = Utils.GetDirection(horizontal, vertical, cameraAngleCorrector);
         joystickMagnitude = direction.magnitude;
-        controlManager.SetControl(direction, joystickMagnitude);
+
+        if (joystickMagnitude > modificatorToWalk && joystickMagnitude < modificatorToRun)
+        {
+            controlManager.SetControl(direction, MovingMode.Walk);
+        }
+        else if (joystickMagnitude > modificatorToRun)
+        {
+            controlManager.SetControl(direction, MovingMode.Run);
+        }
+        else
+        {
+            controlManager.SetControl(direction, MovingMode.Stand);
+        }
     } 
     public void OnPointerUp(PointerEventData eventData)
     {
