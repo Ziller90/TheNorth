@@ -11,8 +11,6 @@ public enum MovingState
 public class CharacterContoller : MonoBehaviour
 {
     public MovingState movingState;
-    public float minModificatorToWalk; // Minimal modificator value when character starts walking
-    public float modificatorToRun; // Minimal modificator value when character starts runing
     public float runSpeed; // km per hour
     public float walkSpeed; // km per hour
     public float rotationSpeed;
@@ -30,11 +28,11 @@ public class CharacterContoller : MonoBehaviour
     }
     public void MoveForward()
     {
-        if (controlManager.GetSpeedModificator() > minModificatorToWalk && controlManager.GetSpeedModificator() < modificatorToRun)
+        if (controlManager.GetMovingMode() == MovingMode.Walk)
         {
             Walk();
         }
-        else if (controlManager.GetSpeedModificator() > modificatorToRun)
+        else if (controlManager.GetMovingMode() == MovingMode.Run)
         {
             if (allowRunning)
             {
@@ -66,7 +64,7 @@ public class CharacterContoller : MonoBehaviour
     }
     public void Rotate()
     {
-        if (controlManager.GetSpeedModificator() > minModificatorToWalk)
+        if (controlManager.GetMovingMode() == MovingMode.Walk || controlManager.GetMovingMode() == MovingMode.Run)
         {
             Quaternion LookRotation = Quaternion.LookRotation(controlManager.GetDirection());
             transform.rotation = Quaternion.RotateTowards(transform.rotation, LookRotation, rotationSpeed);

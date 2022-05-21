@@ -52,7 +52,15 @@ public class Keyboard : MonoBehaviour
         }
 
         direction = Utils.GetDirection(horizontal, vertical, camera.cameraYRotation);
-        controlManager.SetControl(direction, direction.magnitude);
+        if (direction.magnitude > 0)
+        {
+            controlManager.SetControl(direction, MovingMode.Run);
+        }
+        else
+        {
+            controlManager.SetControl(direction, MovingMode.Stand);
+        }
+
 
     }
 }
