@@ -1,5 +1,64 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3601609613231041798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3083513095653043370}
+  - component: {fileID: 3196910594722890031}
+  - component: {fileID: 2052125169429036259}
+  m_Layer: 0
+  m_Name: MeleeWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3083513095653043370
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3601609613231041798}
+  m_LocalRotation: {x: -0, y: 0.049925603, z: -0, w: 0.99875295}
+  m_LocalPosition: {x: -0.224, y: 0, z: 0.173}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7087786812071082886}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 5.723, z: 0}
+--- !u!65 &3196910594722890031
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3601609613231041798}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.45860243, y: 0.07048077, z: 0.1467363}
+  m_Center: {x: -0.019707032, y: 0.04815523, z: 0.02995292}
+--- !u!114 &2052125169429036259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3601609613231041798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e6ff9d4159baa0458d8c2d291f8e72b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDamage: 10
+  hostCreature: {fileID: 0}
 --- !u!1 &7087786812071082882
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,6 +90,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7087786812661730303}
+  - {fileID: 3083513095653043370}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -63,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 1bfb01e7f88ffcd42acdce609a119b22, type: 2}
-  inContainer: 0
+  inHand: 0
 --- !u!65 &7087786812071082883
 BoxCollider:
   m_ObjectHideFlags: 0
