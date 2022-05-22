@@ -16,6 +16,7 @@ public struct Coordinates
 public class Item : MonoBehaviour
 {
     public ItemData itemData;
+    public bool inHand;
     public Coordinates[] coordianatesInContainer; 
     public Coordinates[] points;
 
