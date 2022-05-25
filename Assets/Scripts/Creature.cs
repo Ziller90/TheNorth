@@ -11,6 +11,7 @@ public class Creature : MonoBehaviour
     public Behaviour[] components;
     public Health health;
     public Rigidbody rigidbody;
+    public GameObject HealthBar;
 
     void Start()
     {
@@ -23,6 +24,8 @@ public class Creature : MonoBehaviour
         globalLists.creaturesOnLocation.Remove(gameObject.transform);
         thisCreatureCollider.enabled = false;
         rigidbody.isKinematic = true;
+        Destroy(HealthBar);
+
         for (int i = 0; i < components.Length; i++)
         {
             components[i].enabled = false;
