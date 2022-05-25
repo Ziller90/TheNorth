@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraFollowing : MonoBehaviour
 {
     public float cameraYRotation;
-    public Transform objectToFollow;
+    public GameObject objectToFollow;
     public Vector3 standartOffset;
     public float zoom;
 
@@ -14,10 +14,9 @@ public class CameraFollowing : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         cameraYRotation = gameObject.transform.rotation.eulerAngles.y;
-        gameObject.transform.position = objectToFollow.position + standartOffset * zoom;
+        gameObject.transform.position = objectToFollow.transform.position + standartOffset * zoom;
     }
 }

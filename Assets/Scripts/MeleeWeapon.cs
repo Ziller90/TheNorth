@@ -6,6 +6,13 @@ public class MeleeWeapon : MonoBehaviour
 {
     public float baseDamage;
     public Transform hostCreature;
+    public bool isCuttingAnimation;
+    public FractionMarker thisCreatureFractionMarker;
+    
+    public void SetCuttingAnimation(bool isCutting)
+    {
+        isCuttingAnimation = isCutting;
+    }
     void Start()
     {
         
@@ -17,10 +24,13 @@ public class MeleeWeapon : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "HitBox")
+        if (isCuttingAnimation)
         {
-            if (other.gameObject.GetComponent<HitBox>().thisCreature != hostCreature)
-                other.gameObject.GetComponent<HitBox>().HitBoxGetDamage(baseDamage);
+            if (other.gameObject.tag == "HitBox")
+            {
+                if (other.gameObject.GetComponent<HitBox>().thisCreature != hostCreature && other.gameObject.GetComponent<HitBox>().thisCreature.GetComponent<FractionMarker>().creatureFraction != thisCreatureFractionMarker.creatureFraction)
+                    other.gameObject.GetComponent<HitBox>().HitBoxGetDamage(baseDamage);
+            }
         }
     }
 }
