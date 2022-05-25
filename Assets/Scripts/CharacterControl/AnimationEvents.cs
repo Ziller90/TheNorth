@@ -5,6 +5,15 @@ using UnityEngine;
 public class AnimationEvents : MonoBehaviour
 {
     public HumanoidBattleSystem battleSystem;
+    public MeleeWeapon characterMeleeWeapon;
+    public void SetCuttingAnimationTrue()
+    {
+        characterMeleeWeapon.SetCuttingAnimation(true);
+    }
+    public void SetCuttingAnimationFalse()
+    {
+        characterMeleeWeapon.SetCuttingAnimation(false);
+    }
     public void AutoAim()
     {
         battleSystem.Aim();

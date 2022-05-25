@@ -11,17 +11,18 @@ public class Health : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        dieEvent += DeliteCharacter;
     }
     public void GetDamage(float damage)
     {
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            Die();
+            dieEvent();
         }
     }
-    public void Die()
+    public void DeliteCharacter()
     {
-        dieEvent();
+        
     }
 }

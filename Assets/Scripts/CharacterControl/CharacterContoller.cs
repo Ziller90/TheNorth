@@ -20,11 +20,10 @@ public class CharacterContoller : MonoBehaviour
 
     public Animator humanAnimator;
     public ControlManager controlManager;
-    Transform transform;
 
     void Start()
     {
-        transform = gameObject.transform;
+        
     }
     public void MoveForward()
     {
@@ -78,6 +77,7 @@ public class CharacterContoller : MonoBehaviour
 
     void FixedUpdate()
     {
+        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
         if (allowMoving == true)
         {
             MoveForward();
