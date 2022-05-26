@@ -12,22 +12,35 @@ public class HumanoidBattleSystem : MonoBehaviour
     public GameObject weaponInHand;
     public Vector3 distanceAttackTarget;
     public float maxDistanceForAutoAim;
+    public GameObject throwingWeaponPrefab;
+    public GameObject throwingWeaponInHand;
+    public GameObject mainWeaponInHand;
+    public GameObject thisCreature;
 
     public bool isMeleeAttack;
     public bool isBlock;
     public bool isDistantAttack;
     public float standartThrowDistance;
 
-    
+    public void SetThrowingWeaponInHand()
+    {
+        mainWeaponInHand.SetActive(false);
+        throwingWeaponInHand.SetActive(true);
+    }
+    public void SetMainWeapon()
+    {
+        mainWeaponInHand.SetActive(true);
+    }
     public void ThrowWeapon()
     {
-        thrower.Throw(distanceAttackTarget);
+        throwingWeaponInHand.SetActive(false);
+        thrower.Throw(throwingWeaponPrefab, distanceAttackTarget);
     }
     public void Aim()
     {
-        if (autoAim.HasAutoAimTarget(gameObject.transform, maxDistanceForAutoAim))
+        if (autoAim.HasAutoAimTarget(thisCreature, gameObject.transform, maxDistanceForAutoAim))
         {
-            distanceAttackTarget = autoAim.GetBestAim(gameObject.transform, maxDistanceForAutoAim);
+            distanceAttackTarget = autoAim.GetBestAim(thisCreature, gameObject.transform, maxDistanceForAutoAim);
             characterContoller.LookAtPoint(distanceAttackTarget);
         }
         else

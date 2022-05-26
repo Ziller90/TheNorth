@@ -109,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 2672274272941176950}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.0331185, y: 1.5364329, z: 0.9875651}
+  m_LocalScale: {x: 2.03, y: 1.53, z: 0.98}
   m_Children:
   - {fileID: 2672274272641448274}
   - {fileID: 5757539357133792802}
@@ -140,11 +140,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2672274272941176950}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.05053377, y: 0.038726766, z: 0.09352642}
-  m_Center: {x: -0.014546908, y: -0.003431389, z: 0.5643234}
+  m_Size: {x: 0.06422636, y: 0.10596981, z: 0.1497591}
+  m_Center: {x: -0.0014395586, y: 0.0066208346, z: 0.7010482}
 --- !u!114 &1666063211017955772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +163,8 @@ MonoBehaviour:
   isSpear: 1
   isRotating: 0
   rotationSpeed: 0
+  thisCreature: {fileID: 0}
+  baseDamage: 10
 --- !u!1 &4948667808028966040
 GameObject:
   m_ObjectHideFlags: 0
