@@ -11,6 +11,8 @@ public class ThrowingWeapon : MonoBehaviour
     public bool isSpear;
     public bool isRotating;
     public float rotationSpeed;
+    public GameObject thisCreature;
+    public float baseDamage;
     Rigidbody rigidbody;
 
     float distanceToTarget;
@@ -44,10 +46,20 @@ public class ThrowingWeapon : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (stickIn)
+  
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        if (stickIn && other.gameObject.tag != "Creature")
         {
             rigidbody.isKinematic = true;
+            if (other.gameObject.GetComponent<HitBox>() != null)
+            {
+                other.gameObject.GetComponent<HitBox>().HitBoxGetDamage(baseDamage);
+                Destroy(gameObject);
+            }
         }
         isRotating = false;
+
     }
 }

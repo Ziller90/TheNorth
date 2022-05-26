@@ -6,6 +6,14 @@ public class AnimationEvents : MonoBehaviour
 {
     public HumanoidBattleSystem battleSystem;
     public MeleeWeapon characterMeleeWeapon;
+    public void SetThrowingWeaponInHand()
+    {
+        battleSystem.SetThrowingWeaponInHand();
+    }
+    public void SetMainWeapon()
+    {
+        battleSystem.SetMainWeapon();
+    }
     public void SetCuttingAnimationTrue()
     {
         characterMeleeWeapon.SetCuttingAnimation(true);

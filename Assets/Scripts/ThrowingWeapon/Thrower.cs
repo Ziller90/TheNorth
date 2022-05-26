@@ -4,23 +4,19 @@ using UnityEngine;
 
 public class Thrower : MonoBehaviour
 {
-    public Transform startPosition;
+    public Transform positionInHand;
+    public GameObject thisCreature;
     public int upAngleInDegrees;
-    public GameObject weaponPrefab;
     public float rotationForce;
     public int distanceToTarget;
     public int defaultRotationSpeed;
-    GameObject throwingWeapon;
+    GameObject thisThrowingWeapon;
 
     float g = Physics.gravity.y;
-    public void SetWeaponInHand(GameObject throwingWeapon)
+    public void Throw(GameObject throwingWeapon, Vector3 target)
     {
-        this.throwingWeapon = throwingWeapon;
-    }
-    public void Throw(Vector3 target)
-    {
+        thisThrowingWeapon = Instantiate(throwingWeapon, positionInHand.position, positionInHand.rotation);
         Vector3 fromStartToTarget = target - transform.position;
-        GameObject weapon = Instantiate(weaponPrefab, startPosition.position, startPosition.rotation);
 
         distanceToTarget = (int)fromStartToTarget.magnitude;
 
@@ -44,7 +40,7 @@ public class Thrower : MonoBehaviour
         Vector3 fromStartToTargetXZ = new Vector3(fromStartToTarget.x, 0, fromStartToTarget.z);
         transform.rotation = Quaternion.LookRotation(fromStartToTargetXZ, Vector3.up);
 
-        startPosition.eulerAngles = new Vector3(-upAngleInDegrees, startPosition.eulerAngles.y, startPosition.eulerAngles.z);
+        positionInHand.eulerAngles = new Vector3(-upAngleInDegrees, positionInHand.eulerAngles.y, positionInHand.eulerAngles.z);
 
         float x = fromStartToTargetXZ.magnitude;
         float y = fromStartToTarget.y;
@@ -54,8 +50,9 @@ public class Thrower : MonoBehaviour
         float v2 = (g * x*x) / (2 * (y - Mathf.Tan(AngleInRadians) * x) * Mathf.Pow(Mathf.Cos(AngleInRadians), 2) );
         float v = Mathf.Sqrt(Mathf.Abs(v2));
 
-        Vector3 throwingVelocity = startPosition.forward * v;
+        Vector3 throwingVelocity = positionInHand.forward * v;
 
-        weapon.GetComponent<Rigidbody>().velocity = throwingVelocity;
+        thisThrowingWeapon.GetComponent<Rigidbody>().velocity = throwingVelocity;
+        thisThrowingWeapon.GetComponent<ThrowingWeapon>().thisCreature = thisCreature;
     }
 }
