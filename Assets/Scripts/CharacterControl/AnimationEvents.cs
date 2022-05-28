@@ -6,9 +6,39 @@ public class AnimationEvents : MonoBehaviour
 {
     public HumanoidBattleSystem battleSystem;
     public MeleeWeapon characterMeleeWeapon;
+    public StepSounds stepSounds;
+    public MeleeWeaponSounds meleeWeaponSounds;
     public void SetThrowingWeaponInHand()
     {
         battleSystem.SetThrowingWeaponInHand();
+    }
+    public void MeleeWeaponAirCuttingSound()
+    {
+        meleeWeaponSounds.PlayAirCuttingSound();
+    }
+    public void WalkingStep1()
+    {
+        stepSounds.SetStepSound1();
+        stepSounds.isRunning = false;
+        stepSounds.PlaySound();
+    }
+    public void WalkingStep2()
+    {
+        stepSounds.SetStepSound2();
+        stepSounds.isRunning = false;
+        stepSounds.PlaySound();
+    }
+    public void RunStep1()
+    {
+        stepSounds.SetStepSound1();
+        stepSounds.isRunning = true;
+        stepSounds.PlaySound();
+    }
+    public void RunStep2()
+    {
+        stepSounds.SetStepSound2();
+        stepSounds.isRunning = true;
+        stepSounds.PlaySound();
     }
     public void SetMainWeapon()
     {
