@@ -8,6 +8,7 @@ public class MeleeWeapon : MonoBehaviour
     public Transform hostCreature;
     public bool isCuttingAnimation;
     public FractionMarker thisCreatureFractionMarker;
+    public MeleeWeaponSounds meleeWeaponSounds;
     
     public void SetCuttingAnimation(bool isCutting)
     {
@@ -26,6 +27,7 @@ public class MeleeWeapon : MonoBehaviour
     {
         if (isCuttingAnimation)
         {
+            meleeWeaponSounds.PlayHitSound();
             if (other.gameObject.tag == "HitBox")
             {
                 if (other.gameObject.GetComponent<HitBox>().thisCreature != hostCreature && other.gameObject.GetComponent<HitBox>().thisCreature.GetComponent<FractionMarker>().creatureFraction != thisCreatureFractionMarker.creatureFraction)
