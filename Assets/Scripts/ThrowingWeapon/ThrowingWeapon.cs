@@ -13,6 +13,7 @@ public class ThrowingWeapon : MonoBehaviour
     public float rotationSpeed;
     public GameObject thisCreature;
     public float baseDamage;
+    public AudioSource audioSource;
     Rigidbody rigidbody;
 
     float distanceToTarget;
@@ -53,6 +54,7 @@ public class ThrowingWeapon : MonoBehaviour
         if (stickIn && other.gameObject.tag != "Creature")
         {
             rigidbody.isKinematic = true;
+            audioSource.Play();
             if (other.gameObject.GetComponent<HitBox>() != null)
             {
                 other.gameObject.GetComponent<HitBox>().HitBoxGetDamage(baseDamage);
