@@ -18,11 +18,18 @@ public class ContainerGrid : MonoBehaviour
     public float gridRangeFactor;
 
     public Transform gridStartPosition;
-    public int nextCellDistance;
+    public Transform gridNextPosition;
+    public Transform ItemsCollection;
+    public float nextCellDistance;
 
     public Transform TrashCan;
     public float trashCanRange;
 
+    private void Awake()
+    {
+        nextCellDistance = Vector3.Distance(gridStartPosition.position, gridNextPosition.position);
+        Debug.Log(nextCellDistance);
+    }
     void Start()
     {
         LeftTopCorner = new Vector3(gridStartPosition.position.x - nextCellDistance * gridRangeFactor, gridStartPosition.position.y + nextCellDistance * gridRangeFactor, 0);
@@ -35,9 +42,9 @@ public class ContainerGrid : MonoBehaviour
     }
     public void ClearItemsIcons()
     {
-        for (int i = 0; i < gridStartPosition.childCount; i++)
+        for (int i = 0; i < ItemsCollection.childCount; i++)
         {
-            Destroy(gridStartPosition.GetChild(i).gameObject);
+            Destroy(ItemsCollection.GetChild(i).gameObject);
         }
     }
     public void InstantiateItemsIcons()
@@ -66,7 +73,7 @@ public class ContainerGrid : MonoBehaviour
                     break;
             }
 
-            GameObject newIcon = Instantiate(iconSize, instantiatePosition, Quaternion.identity, gridStartPosition);
+            GameObject newIcon = Instantiate(iconSize, instantiatePosition, Quaternion.identity, ItemsCollection);
             ItemIcon itemIcon = newIcon.GetComponent<ItemIcon>();
             itemIcon.item = container.itemsInContainer[i];
             itemIcon.container = container;
