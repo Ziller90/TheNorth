@@ -16,6 +16,14 @@ public class AnimationEvents : MonoBehaviour
     {
         meleeWeaponSounds.PlayAirCuttingSound();
     }
+    public void SetBlock()
+    {
+        battleSystem.shieldRaised = true;
+    }
+    public void RemoveBlock()
+    {
+        battleSystem.shieldRaised = false;
+    }
     public void WalkingStep1()
     {
         stepSounds.SetStepSound1();

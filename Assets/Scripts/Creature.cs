@@ -12,6 +12,7 @@ public class Creature : MonoBehaviour
     public Health health;
     public Rigidbody rigidbody;
     public GameObject HealthBar;
+    public AudioSource deathAudioSource;
 
     void Start()
     {
@@ -25,7 +26,7 @@ public class Creature : MonoBehaviour
         thisCreatureCollider.enabled = false;
         rigidbody.isKinematic = true;
         Destroy(HealthBar);
-
+        deathAudioSource.Play();
         for (int i = 0; i < components.Length; i++)
         {
             components[i].enabled = false;

@@ -7,8 +7,20 @@ public class HitBox : MonoBehaviour
     public Health health;
     public float hitBoxDamageModificator;
     public Transform thisCreature;
-    public void HitBoxGetDamage(float damage)
+    public HumanoidBattleSystem battleSystem;
+    public GameObject DebugPoint;
+    public void HitBoxGetDamage(float damage, Vector3 hitPoint)
     {
-        health.GetDamage(damage * hitBoxDamageModificator);
+        if (battleSystem.shieldRaised)
+        {
+            if (Vector3.Angle(-battleSystem.GetHitVector(hitPoint), thisCreature.forward) > battleSystem.shieldProtectionAngle / 2)
+            {
+                health.GetDamage(damage * hitBoxDamageModificator);
+            }
+        }
+        else
+        {
+            health.GetDamage(damage * hitBoxDamageModificator);
+        }
     }
 }

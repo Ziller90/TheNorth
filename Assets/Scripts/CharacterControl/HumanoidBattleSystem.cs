@@ -16,10 +16,12 @@ public class HumanoidBattleSystem : MonoBehaviour
     public GameObject throwingWeaponInHand;
     public GameObject mainWeaponInHand;
     public GameObject thisCreature;
+    public float shieldProtectionAngle;
 
     public bool isMeleeAttack;
     public bool isBlock;
     public bool isDistantAttack;
+    public bool shieldRaised;
     public float standartThrowDistance;
 
     public void SetThrowingWeaponInHand()
@@ -118,5 +120,9 @@ public class HumanoidBattleSystem : MonoBehaviour
             DisableRotation();
         }
         humanAnimator.SetBool("Throw", isDistantAttack);
+    }
+    public Vector3 GetHitVector(Vector3 hitPosition)
+    {
+        return transform.position - hitPosition;
     }
 }
