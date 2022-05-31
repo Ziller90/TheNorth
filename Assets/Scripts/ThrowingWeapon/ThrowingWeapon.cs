@@ -14,6 +14,7 @@ public class ThrowingWeapon : MonoBehaviour
     public GameObject thisCreature;
     public float baseDamage;
     public AudioSource audioSource;
+    public MeshRenderer spearRenderer;
     Rigidbody rigidbody;
 
     float distanceToTarget;
@@ -44,11 +45,6 @@ public class ThrowingWeapon : MonoBehaviour
         yield return new WaitForSeconds(timeToSelfDestroying);
         Destroy(gameObject);
     }
-
-    public void OnCollisionEnter(Collision collision)
-    {
-  
-    }
     public void OnTriggerEnter(Collider other)
     {
         if (stickIn && other.gameObject.tag != "Creature")
@@ -57,8 +53,10 @@ public class ThrowingWeapon : MonoBehaviour
             audioSource.Play();
             if (other.gameObject.GetComponent<HitBox>() != null)
             {
-                other.gameObject.GetComponent<HitBox>().HitBoxGetDamage(baseDamage);
-                Destroy(gameObject);
+                other.gameObject.GetComponent<HitBox>().HitBoxGetDamage(baseDamage, transform.position);
+                spearRenderer.enabled = false;
+                gameObject.GetComponent<Collider>().enabled = false;
+                Destroy(gameObject,1f);
             }
         }
         isRotating = false;
