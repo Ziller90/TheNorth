@@ -4,23 +4,13 @@ using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
-    public GameObject InventoryPanel;
+    public GameObject inventoryPanel;
     public void OpenInventory()
     {
-        InventoryPanel.SetActive(true);
+        inventoryPanel.SetActive(true);
     }
     public void CloseInventory()
     {
-        InventoryPanel.SetActive(false);
-    }
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        inventoryPanel.SetActive(false);
     }
 }

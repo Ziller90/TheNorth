@@ -10,21 +10,18 @@ public enum MovingState
 }
 public class CharacterContoller : MonoBehaviour
 {
-    public MovingState movingState;
-    public float runSpeed; // km per hour
-    public float walkSpeed; // km per hour
-    public float rotationSpeed;
-    public bool allowMoving;
-    public bool allowRunning;
-    public bool allowRotation;
+    [SerializeField] float runSpeed; // km per hour
+    [SerializeField] float walkSpeed; // km per hour
+    [SerializeField] float rotationSpeed;
+    [SerializeField] Animator humanAnimator;
+    [SerializeField] ControlManager controlManager;
 
-    public Animator humanAnimator;
-    public ControlManager controlManager;
+    [HideInInspector] public bool allowMoving;
+    [HideInInspector] public bool allowRunning;
+    [HideInInspector] public bool allowRotation;
 
-    void Start()
-    {
-        
-    }
+    MovingState movingState;
+
     public void MoveForward()
     {
         if (controlManager.GetMovingMode() == MovingMode.Walk)
@@ -65,8 +62,8 @@ public class CharacterContoller : MonoBehaviour
     {
         if (controlManager.GetMovingMode() == MovingMode.Walk || controlManager.GetMovingMode() == MovingMode.Run)
         {
-            Quaternion LookRotation = Quaternion.LookRotation(controlManager.GetDirection());
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, LookRotation, rotationSpeed);
+            Quaternion lookRotation = Quaternion.LookRotation(controlManager.GetDirection());
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, rotationSpeed);
         }
     }
     public void LookAtPoint(Vector3 point)

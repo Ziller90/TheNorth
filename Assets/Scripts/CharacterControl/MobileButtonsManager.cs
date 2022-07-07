@@ -9,12 +9,6 @@ public class MobileButtonsManager : MonoBehaviour
     public MobileButton distantAttackButton;
     public ActionManager buttonsManager;
 
-
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         buttonsManager.isMeleeAttackActing = meleeAttackButton.isPressed;

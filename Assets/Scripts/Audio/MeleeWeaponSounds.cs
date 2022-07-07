@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class MeleeWeaponSounds : MonoBehaviour
 {
-    public AudioClip[] MeleeWeaponAirCuttingSounds;
-    public AudioClip[] MeleeWeaponHitObjectSounds;
-    public AudioClip[] MeleeWeaponHitCharacterSounds;
+    [SerializeField] AudioClip[] MeleeWeaponAirCuttingSounds;
+    [SerializeField] AudioClip[] MeleeWeaponHitObjectSounds;
+    [SerializeField] AudioClip[] MeleeWeaponHitCharacterSounds;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] float timeBetweenHitSounds;
 
-    public AudioSource audioSource;
     bool alreadyPlayedHitSound;
-    public float timeBetweenHitSounds;
+    
     public void PlayAirCuttingSound()
     {
         int randomNumber = Random.Range(0, MeleeWeaponAirCuttingSounds.Length);

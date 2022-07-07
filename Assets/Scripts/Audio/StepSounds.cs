@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class StepSounds : MonoBehaviour
 {
-    public AudioClip stepSound1;
-    public AudioClip stepSound2;
-    public AudioSource stepsAudioSource;
-    public float runStepVolume;
-    public float walkingStepVolume;
+    [SerializeField] AudioClip stepSound1;
+    [SerializeField] AudioClip stepSound2;
+    [SerializeField] AudioSource stepsAudioSource;
+    [SerializeField] float runStepVolume;
+    [SerializeField] float walkingStepVolume;
 
     public bool isRunning;
 
@@ -23,17 +23,13 @@ public class StepSounds : MonoBehaviour
     public void PlaySound()
     {
         if (isRunning)
+        {
             stepsAudioSource.volume = runStepVolume;
-        if (!isRunning)
+        }
+        else
+        {
             stepsAudioSource.volume = walkingStepVolume;
+        }
         stepsAudioSource.Play();
-    }
-    void Start()
-    {
-        
-    }
-    void Update()
-    {
-        
     }
 }

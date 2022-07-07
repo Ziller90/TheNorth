@@ -4,17 +4,7 @@ using UnityEngine;
 
 public class ActionManager : MonoBehaviour
 {
-    public bool isMeleeAttackActing;
-    public bool isDistantAttackActing;
-    public bool isBlockActing;
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-
-    }
+   [HideInInspector] public bool isMeleeAttackActing;
+   [HideInInspector] public bool isDistantAttackActing;
+   [HideInInspector] public bool isBlockActing;
 }

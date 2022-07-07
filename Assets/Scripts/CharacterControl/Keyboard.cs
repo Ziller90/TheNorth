@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class Keyboard : MonoBehaviour
 {
-    public float vertical;
-    public float horizontal;
-    public Vector3 direction;
-    public CameraFollowing camera;
-    public ControlManager controlManager;
-    void Start()
-    {
-        
-    }
+    [SerializeField] CameraFollowing camera;
+    [SerializeField] ControlManager controlManager;
 
-    // Update is called once per frame
+    float vertical;
+    float horizontal;
+    Vector3 direction;
+
     void Update()
     {
         if (Input.GetKey(KeyCode.W) && (Input.GetKey(KeyCode.S)))
@@ -50,7 +46,6 @@ public class Keyboard : MonoBehaviour
         {
             horizontal = 0;
         }
-
         direction = Utils.GetDirection(horizontal, vertical, camera.cameraYRotation);
         if (direction.magnitude > 0)
         {
@@ -60,7 +55,5 @@ public class Keyboard : MonoBehaviour
         {
             controlManager.SetControl(direction, MovingMode.Stand);
         }
-
-
     }
 }

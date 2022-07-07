@@ -2,30 +2,22 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-
-
-
 public class FixedJoystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IPointerDownHandler
 {
-    public GameObject handle;
-    public float horizontal;
-    public float vertical;
-    public bool isDraged;
-    public float joystickMagnitude;
-    public Vector3 direction;
-    public float maxMagnitude;
-    public float cameraAngleCorrector;
-
-    public float modificatorToWalk; // Minimal speed modificator value when character starts walking
-    public float modificatorToRun; // Minimal speed modificator value when character starts runing
-
-    public ControlManager controlManager;
-    public CameraFollowing camera;
+    [SerializeField] GameObject handle;
+    [SerializeField] float horizontal;
+    [SerializeField] float vertical;
+    [SerializeField] ControlManager controlManager;
+    [SerializeField] CameraFollowing camera;
+    [SerializeField] float maxMagnitude;
+    [SerializeField] float modificatorToWalk; // Minimal speed modificator value when character starts walking
+    [SerializeField] float modificatorToRun; // Minimal speed modificator value when character starts runing
 
     GameObject handleBackground;
-    Vector2 touchPosition;
     Vector2 localPoint;
-
+    Vector3 direction;
+    float joystickMagnitude;
+    float cameraAngleCorrector;
     void Start()
     {
         handle = gameObject;
@@ -57,13 +49,10 @@ public class FixedJoystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IPo
     public void OnPointerUp(PointerEventData eventData)
     {
         handle.transform.localPosition = new Vector3(0, 0, 0);
-        isDraged = false;
     }
     public void OnPointerDown(PointerEventData eventData) { }
     public void OnDrag(PointerEventData eventData)
     {
-        isDraged = true;
-
         RectTransformUtility.ScreenPointToLocalPointInRectangle(handleBackground.GetComponent<Image>().rectTransform,
             eventData.position, eventData.pressEventCamera, out localPoint);
         handle.transform.localPosition = Vector2.ClampMagnitude(localPoint, maxMagnitude);

@@ -70,18 +70,15 @@ MonoBehaviour:
   sensors: {fileID: 9072715250495340881}
   AIState: 0
   navigationManager: {fileID: 7716307009308618700}
-  enemy: {fileID: 0}
   distanceToAttack: 1.5
   distanceToLastEnemyPosition: 1
   hasPatrolRoute: 1
-  timeForEnemySearching: 0
-  searchEnemy: 0
-  searhingRouteGenerated: 0
   routeManager: {fileID: 3008368578986757593}
-  searchingRadius: 0
-  DebugSphere: {fileID: 6149223491457573555, guid: 8ecd9d08e3864b046abe4270a3ea051a, type: 3}
-  currentEnemy: {fileID: 0}
+  debugPoint: {fileID: 6149223491457573555, guid: 8ecd9d08e3864b046abe4270a3ea051a, type: 3}
   actionManager: {fileID: 6151051151914364371}
+  searchingRadius: 15
+  enemySearchingTime: 30
+  searhingCornersNumber: 10
 --- !u!114 &393759022535881096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,12 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e74cf5266909b5449a8a9f931f93138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathCorners: []
-  target: {x: 0, y: 0, z: 0}
   controlManager: {fileID: 393759022535881096}
-  nextCorner: {x: 0, y: 0, z: 0}
   thisCreature: {fileID: 8467364967643463516}
-  movingMode: 0
 --- !u!114 &3008368578986757593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,12 +133,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolRoute: {fileID: 0}
-  patrolVectorRoute: []
-  currentRoute: []
-  nextCornerIndex: 0
   navigationManager: {fileID: 7716307009308618700}
   routeMovingMode: 0
-  ThisCreature: {fileID: 8467364967643463516}
+  thisCreature: {fileID: 8467364967643463516}
   distanceToNextCorner: 1
 --- !u!1001 &2404843527227370401
 PrefabInstance:
@@ -218,6 +208,10 @@ PrefabInstance:
       propertyPath: creatureFraction
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6115228454438917369, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 8467364967077075387}
     - target: {fileID: 6115228454438917370, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
       propertyPath: runSpeed
       value: 10
@@ -309,3 +303,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdf904cf4b9a0042ac66c06d9a19a13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8467364967077075387 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6115228453898793498, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
+  m_PrefabInstance: {fileID: 2404843527227370401}
+  m_PrefabAsset: {fileID: 0}

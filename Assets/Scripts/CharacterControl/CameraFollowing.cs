@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class CameraFollowing : MonoBehaviour
 {
-    public float cameraYRotation;
-    public GameObject objectToFollow;
-    public Vector3 standartOffset;
-    public float zoom;
-
-    void Start()
-    {
-
-    }
+    [HideInInspector] public float cameraYRotation;
+    [SerializeField] GameObject objectToFollow;
+    [SerializeField] Vector3 standartOffset;
+    [SerializeField] float zoom;
 
     void FixedUpdate()
     {
@@ -20,3 +15,5 @@ public class CameraFollowing : MonoBehaviour
         gameObject.transform.position = objectToFollow.transform.position + standartOffset * zoom;
     }
 }
+
+

@@ -15,7 +15,6 @@ public class Container : MonoBehaviour
     {
         isFilledCell = new bool[ySize, xSize];
     }
-
     public void AddNewItem(Item item)
     {
         Coordinates newPosition;
@@ -35,9 +34,9 @@ public class Container : MonoBehaviour
     }
     public void SetFilled(Coordinates startPosition, Item item)
     {
-        for (int o = 0; o < item.points.Length; o++)
+        foreach(Coordinates point in item.points)
         {
-            isFilledCell[startPosition.y + item.points[o].y, startPosition.x + item.points[o].x] = true;
+            isFilledCell[startPosition.y + point.y, startPosition.x + point.x] = true;
         }
         for (int i = 0; i < item.coordianatesInContainer.Length; i++)
         {
@@ -46,9 +45,9 @@ public class Container : MonoBehaviour
     }
     public void SetEmpty(Item item)
     {
-        for (int o = 0; o < item.coordianatesInContainer.Length; o++)
+        foreach (Coordinates point in item.coordianatesInContainer)
         {
-            isFilledCell[item.coordianatesInContainer[o].y, item.coordianatesInContainer[o].x] = false;
+            isFilledCell[point.y, point.x] = false;
         }
         for (int i = 0; i < item.coordianatesInContainer.Length; i++)
         {
@@ -59,9 +58,9 @@ public class Container : MonoBehaviour
     {
         try
         {
-            for (int o = 0; o < item.points.Length; o++)
+            foreach (Coordinates point in item.points)
             {
-                if (isFilledCell[start.y + item.points[o].y, start.x + item.points[o].x] == true)
+                if (isFilledCell[start.y + point.y, start.x + point.x] == true)
                 {
                     return false;
                 }

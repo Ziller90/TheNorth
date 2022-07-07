@@ -9,21 +9,21 @@ public class ItemData : ScriptableObject
 {
     public enum itemType
     {
-        meleeWeapon,
-        throwingWeapon,
-        bow,
-        usableItem,
-        nonusableItem
+        MeleeWeapon,
+        ThrowingWeapon,
+        Bow,
+        UsableItem,
+        NonusableItem
     }
     public enum sizeInInventory
     {
-        oneCell,
-        twoCells,
-        threeCells,
-        fourCells,
+        OneCell,
+        TwoCells,
+        ThreeCells,
+        FourCells,
     }
-    public string Name;
-    public string Description;
+    public string name;
+    public string description;
     public int itemID;
     public int cost;
     public itemType type;
