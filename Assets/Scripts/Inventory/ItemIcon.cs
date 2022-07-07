@@ -18,16 +18,16 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     {
         switch (item.itemData.size)
         {
-            case ItemData.sizeInInventory.oneCell:
+            case ItemData.sizeInInventory.OneCell:
                 offset = Vector3.zero;
                 break;
-            case ItemData.sizeInInventory.twoCells:
+            case ItemData.sizeInInventory.TwoCells:
                 offset = new Vector3(0, -grid.nextCellDistance / 2, 0);
                 break;
-            case ItemData.sizeInInventory.threeCells:
+            case ItemData.sizeInInventory.ThreeCells:
                 offset = new Vector3(0, -grid.nextCellDistance, 0);
                 break;
-            case ItemData.sizeInInventory.fourCells:
+            case ItemData.sizeInInventory.FourCells:
                 offset = new Vector3(grid.nextCellDistance / 2, -grid.nextCellDistance / 2, 0);
                 break;
         }
@@ -58,7 +58,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
         Vector3 pointerPosition = new Vector3(pointerEventData.position.x, pointerEventData.position.y, 0);
         Vector3 itemStartPointPosition = pointerPosition - offset;
 
-        if (Vector3.Distance(pointerPosition, grid.TrashCan.position) < grid.trashCanRange)
+        if (Vector3.Distance(pointerPosition, grid.trashCan.position) < grid.trashCanRange)
         {
             itemsCollector.Drop(item);
             Destroy(gameObject);
@@ -97,10 +97,10 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     }
     public bool CheckInRangeOfGrid(Vector3 position)
     {
-        if (position.x > grid.LeftTopCorner.x && 
-            position.x < grid.RightBottomCorner.x && 
-            position.y < grid.LeftTopCorner.y &&
-            position.y > grid.RightBottomCorner.y)
+        if (position.x > grid.leftTopCorner.x && 
+            position.x < grid.rightBottomCorner.x && 
+            position.y < grid.leftTopCorner.y &&
+            position.y > grid.rightBottomCorner.y)
         {
             return true;
         }

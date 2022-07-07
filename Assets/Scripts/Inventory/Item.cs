@@ -25,22 +25,22 @@ public class Item : MonoBehaviour
 
         switch (itemData.size)
         {
-            case ItemData.sizeInInventory.oneCell:
+            case ItemData.sizeInInventory.OneCell:
                 points = new Coordinates[1];
                 points[0] = new Coordinates(0, 0);
                 break;
-            case ItemData.sizeInInventory.twoCells:
+            case ItemData.sizeInInventory.TwoCells:
                 points = new Coordinates[2];
                 points[0] = new Coordinates(0, 0);
                 points[1] = new Coordinates(1, 0);
                 break;
-            case ItemData.sizeInInventory.threeCells:
+            case ItemData.sizeInInventory.ThreeCells:
                 points = new Coordinates[3];
                 points[0] = new Coordinates(0, 0);
                 points[1] = new Coordinates(1, 0);
                 points[2] = new Coordinates(2, 0);
                 break;
-            case ItemData.sizeInInventory.fourCells:
+            case ItemData.sizeInInventory.FourCells:
                 points = new Coordinates[4];
                 points[0] = new Coordinates(0, 0);
                 points[1] = new Coordinates(1, 0);

@@ -19,15 +19,15 @@ public class ItemsCollector : MonoBehaviour
     {
         bool ojectInRange = false;
         float minDistanceToItem = minDistance;
-        for (int i = 0; i < itemsOnLocation.Count; i++)
+        foreach (Transform item in itemsOnLocation)
         {
-            float distance = (Vector3.Distance(itemsOnLocation[i].position, gameObject.transform.position));
+            float distance = (Vector3.Distance(item.position, gameObject.transform.position));
             if (distance < minDistance)
             {
                 ojectInRange = true;
                 if (minDistanceToItem > distance)
                 {
-                    nearestItem = itemsOnLocation[i];
+                    nearestItem = item;
                     minDistanceToItem = distance;
                 }
             }

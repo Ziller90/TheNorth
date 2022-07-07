@@ -252,9 +252,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39040ef9c0b16b545817df2330956cbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vertical: 0
-  horizontal: 0
-  direction: {x: 0, y: 0, z: 0}
   camera: {fileID: 888760}
   controlManager: {fileID: 82711421}
 --- !u!4 &50793420
@@ -419,7 +416,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1606691858}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1612,7 +1609,7 @@ GameObject:
   - component: {fileID: 744077844}
   - component: {fileID: 744077843}
   m_Layer: 5
-  m_Name: Inventory (1)
+  m_Name: InventoryShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1630,7 +1627,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1606691858}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1838,7 +1835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc83c8bd5ef74304eadb7cd41d1af9c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InventoryPanel: {fileID: 1606691857}
+  inventoryPanel: {fileID: 1606691857}
 --- !u!1 &824987127 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6115228454438917361, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
@@ -2537,7 +2534,7 @@ RectTransform:
   - {fileID: 758307886}
   - {fileID: 326907995}
   m_Father: {fileID: 1606691858}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2556,22 +2553,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c90d862699495d64392affcee7b1dbcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridStartPosition: {fileID: 738139757}
+  nextCellDistance: 100
+  trashCan: {fileID: 1502384626}
+  trashCanRange: 50
+  leftTopCorner: {x: 0, y: 0, z: 0}
+  rightBottomCorner: {x: 0, y: 0, z: 0}
   container: {fileID: 1629821198}
   itemsCollector: {fileID: 1968911090}
-  IconSize1: {fileID: 5088409713870999629, guid: b08abe6d12d75754fafd8327ba7464e7, type: 3}
-  IconSize2: {fileID: 4390951434517908209, guid: 7050a623e88f41b4da87b938951c9742, type: 3}
-  IconSize3: {fileID: 4390951434517908209, guid: 6e81c76910960bd41bb91ec1cc26fcd8, type: 3}
-  IconSize4: {fileID: 4390951434517908209, guid: 289edf478bf9e324cb8277d65fc98618, type: 3}
-  canvasTransform: {fileID: 853403242}
-  LeftTopCorner: {x: 0, y: 0, z: 0}
-  RightBottomCorner: {x: 0, y: 0, z: 0}
+  iconSize1: {fileID: 5088409713870999629, guid: b08abe6d12d75754fafd8327ba7464e7, type: 3}
+  iconSize2: {fileID: 4390951434517908209, guid: 7050a623e88f41b4da87b938951c9742, type: 3}
+  iconSize3: {fileID: 4390951434517908209, guid: 6e81c76910960bd41bb91ec1cc26fcd8, type: 3}
+  iconSize4: {fileID: 4390951434517908209, guid: 289edf478bf9e324cb8277d65fc98618, type: 3}
   gridRangeFactor: 0.5
-  gridStartPosition: {fileID: 738139757}
   gridNextPosition: {fileID: 1543977682}
-  ItemsCollection: {fileID: 1353058544}
-  nextCellDistance: 100
-  TrashCan: {fileID: 1502384626}
-  trashCanRange: 50
+  itemsCollection: {fileID: 1353058544}
 --- !u!1 &1082084267
 GameObject:
   m_ObjectHideFlags: 0
@@ -3224,7 +3220,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1606691858}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3409,7 +3405,7 @@ RectTransform:
   m_Children:
   - {fileID: 980405198}
   m_Father: {fileID: 1606691858}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4049,15 +4045,11 @@ MonoBehaviour:
   handle: {fileID: 1476434602}
   horizontal: 0
   vertical: 0
-  isDraged: 0
-  joystickMagnitude: 0
-  direction: {x: 0, y: 0, z: 0}
-  maxMagnitude: 100
-  cameraAngleCorrector: 35
-  modificatorToWalk: 0.2
-  modificatorToRun: 0.6
   controlManager: {fileID: 82711421}
   camera: {fileID: 888760}
+  maxMagnitude: 100
+  modificatorToWalk: 0.2
+  modificatorToRun: 0.6
 --- !u!114 &1476434605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4108,7 +4100,7 @@ GameObject:
   - component: {fileID: 1502384628}
   - component: {fileID: 1502384627}
   m_Layer: 5
-  m_Name: DropButton
+  m_Name: TrashCan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4126,7 +4118,7 @@ RectTransform:
   m_LocalScale: {x: 1.2037311, y: 1.2037311, z: 1.2037311}
   m_Children: []
   m_Father: {fileID: 1606691858}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4734,7 +4726,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1888276979}
-  - {fileID: 1893727990}
   - {fileID: 1044761362}
   - {fileID: 1353058544}
   - {fileID: 1502384626}
@@ -5671,41 +5662,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1888276978}
   m_CullTransparentMesh: 1
---- !u!1 &1893727989
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1893727990}
-  m_Layer: 5
-  m_Name: InventoryView
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1893727990
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1893727989}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1606691858}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 168.00003}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1968911090 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6115228455581133812, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}

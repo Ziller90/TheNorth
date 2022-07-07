@@ -5,36 +5,33 @@ using UnityEngine.UI;
 
 public class ContainerGrid : MonoBehaviour
 {
-    public Container container;
-    public ItemsCollector itemsCollector;
-    public GameObject IconSize1;
-    public GameObject IconSize2;
-    public GameObject IconSize3;
-    public GameObject IconSize4;
-    public Transform canvasTransform;
-
-    public Vector3 LeftTopCorner;
-    public Vector3 RightBottomCorner;
-    public float gridRangeFactor;
-
     public Transform gridStartPosition;
-    public Transform gridNextPosition;
-    public Transform ItemsCollection;
     public float nextCellDistance;
-
-    public Transform TrashCan;
+    public Transform trashCan;
     public float trashCanRange;
+
+    [HideInInspector] public Vector3 leftTopCorner;
+    [HideInInspector] public Vector3 rightBottomCorner;
+
+    [SerializeField] Container container;
+    [SerializeField] ItemsCollector itemsCollector;
+    [SerializeField] GameObject iconSize1;
+    [SerializeField] GameObject iconSize2;
+    [SerializeField] GameObject iconSize3;
+    [SerializeField] GameObject iconSize4;
+    [SerializeField] float gridRangeFactor;
+    [SerializeField] Transform gridNextPosition;
+    [SerializeField] Transform itemsCollection;
 
     private void Awake()
     {
         nextCellDistance = Vector3.Distance(gridStartPosition.position, gridNextPosition.position);
-        Debug.Log(nextCellDistance);
     }
     void Start()
     {
-        LeftTopCorner = new Vector3(gridStartPosition.position.x - nextCellDistance * gridRangeFactor, gridStartPosition.position.y + nextCellDistance * gridRangeFactor, 0);
-        Vector3 LastPointVector = GetPointVector(new Coordinates(container.ySize - 1, container.xSize - 1));
-        RightBottomCorner = new Vector3(LastPointVector.x + nextCellDistance * gridRangeFactor, LastPointVector.y - nextCellDistance * gridRangeFactor, 0);
+        leftTopCorner = new Vector3(gridStartPosition.position.x - nextCellDistance * gridRangeFactor, gridStartPosition.position.y + nextCellDistance * gridRangeFactor, 0);
+        Vector3 lastPointVector = GetPointVector(new Coordinates(container.ySize - 1, container.xSize - 1));
+        rightBottomCorner = new Vector3(lastPointVector.x + nextCellDistance * gridRangeFactor, lastPointVector.y - nextCellDistance * gridRangeFactor, 0);
     }
     private void OnEnable()
     {
@@ -42,14 +39,13 @@ public class ContainerGrid : MonoBehaviour
     }
     public void ClearItemsIcons()
     {
-        for (int i = 0; i < ItemsCollection.childCount; i++)
+        for (int i = 0; i < itemsCollection.childCount; i++)
         {
-            Destroy(ItemsCollection.GetChild(i).gameObject);
+            Destroy(itemsCollection.GetChild(i).gameObject);
         }
     }
     public void InstantiateItemsIcons()
     {
-        Debug.Log("ContentRefreshed");
         ClearItemsIcons();
         for (int i = 0; i < container.itemsInContainer.Count; i++)
         {
@@ -59,21 +55,21 @@ public class ContainerGrid : MonoBehaviour
 
             switch (container.itemsInContainer[i].itemData.size)
             {
-                case ItemData.sizeInInventory.oneCell:
-                    iconSize = IconSize1;
+                case ItemData.sizeInInventory.OneCell:
+                    iconSize = iconSize1;
                     break;
-                case ItemData.sizeInInventory.twoCells:
-                    iconSize = IconSize2;
+                case ItemData.sizeInInventory.TwoCells:
+                    iconSize = iconSize2;
                     break;
-                case ItemData.sizeInInventory.threeCells:
-                    iconSize = IconSize3;
+                case ItemData.sizeInInventory.ThreeCells:
+                    iconSize = iconSize3;
                     break;
-                case ItemData.sizeInInventory.fourCells:
-                    iconSize = IconSize4;
+                case ItemData.sizeInInventory.FourCells:
+                    iconSize = iconSize4;
                     break;
             }
 
-            GameObject newIcon = Instantiate(iconSize, instantiatePosition, Quaternion.identity, ItemsCollection);
+            GameObject newIcon = Instantiate(iconSize, instantiatePosition, Quaternion.identity, itemsCollection);
             ItemIcon itemIcon = newIcon.GetComponent<ItemIcon>();
             itemIcon.item = container.itemsInContainer[i];
             itemIcon.container = container;

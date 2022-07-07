@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class AnimationEvents : MonoBehaviour
 {
-    public HumanoidBattleSystem battleSystem;
-    public MeleeWeapon characterMeleeWeapon;
-    public StepSounds stepSounds;
-    public MeleeWeaponSounds meleeWeaponSounds;
+    [SerializeField] HumanoidBattleSystem battleSystem;
+    [SerializeField] MeleeWeapon characterMeleeWeapon;
+    [SerializeField] StepSounds stepSounds;
+    [SerializeField] MeleeWeaponSounds meleeWeaponSounds;
+
     public void SetThrowingWeaponInHand()
     {
         battleSystem.SetThrowingWeaponInHand();
