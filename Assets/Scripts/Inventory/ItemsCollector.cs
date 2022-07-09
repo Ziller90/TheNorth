@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ItemsCollector : MonoBehaviour
 {
-    public List<Transform> itemsOnLocation;
-    public float minDistance;
-    public bool hasObjectInRange;
-    public Transform nearestItem;
-    public Container playerInventoryContainer;
-    public Transform itemsDropPosition;
+    [SerializeField] float pickUpRange;
+    [SerializeField] Container playerInventoryContainer;
+    [SerializeField] Transform itemsDropPosition;
 
+    List<Transform> itemsOnLocation;
+    bool hasObjectInRange;
+    Transform nearestItem;
     void Start()
     {
         itemsOnLocation = LinksContainer.instance.globalLists.itemsOnLocation;
@@ -18,11 +18,12 @@ public class ItemsCollector : MonoBehaviour
     void Update()
     {
         bool ojectInRange = false;
-        float minDistanceToItem = minDistance;
+        float minDistanceToItem = pickUpRange;
+
         foreach (Transform item in itemsOnLocation)
         {
             float distance = (Vector3.Distance(item.position, gameObject.transform.position));
-            if (distance < minDistance)
+            if (distance < pickUpRange)
             {
                 ojectInRange = true;
                 if (minDistanceToItem > distance)

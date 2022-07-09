@@ -4,16 +4,10 @@ using UnityEngine;
 
 public class LocationLoader : MonoBehaviour
 {
-    public List<GameObject> locationsList;
-    public int locationToLoadIndex;
+    [SerializeField] List<GameObject> locationsList;
+    [SerializeField] int locationToLoadIndex;
     void Start()
     {
         Instantiate(locationsList[locationToLoadIndex], gameObject.transform);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -16,15 +16,4 @@ public class GlobalLists : MonoBehaviour
         if (itemsOnLocation.Contains(item))
             itemsOnLocation.Remove(item);
     }
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
