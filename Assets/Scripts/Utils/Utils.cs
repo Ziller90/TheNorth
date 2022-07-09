@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Utils : MonoBehaviour
 {
-    public static Vector3 GetDirection(float Horizontal, float Vertical, float FixAngle)
+    public static Vector3 GetDirection(float horizontal, float vertical, float fixAngle)
     {
-        Quaternion FixQuaternion = Quaternion.Euler(0, FixAngle, 0);
-        Vector3 Direction = Vector3.ClampMagnitude(new Vector3(Horizontal, 0, Vertical), 1);
-        Direction = FixQuaternion * Direction;
-        return Direction;
+        Quaternion fixQuaternion = Quaternion.Euler(0, fixAngle, 0);
+        Vector3 direction = Vector3.ClampMagnitude(new Vector3(horizontal, 0, vertical), 1);
+        direction = fixQuaternion * direction;
+        return direction;
     }
-    public static float Round(float Number, int RoundIndex)
+    public static float round(float number, int roundIndex)
     {
-        float temp = Number * RoundIndex;
+        float temp = number * roundIndex;
         temp = (int)temp;
-        temp = temp / RoundIndex;
+        temp = temp / roundIndex;
         return (temp);
     }
     public static float SpeedConverter(float kmPerHour)

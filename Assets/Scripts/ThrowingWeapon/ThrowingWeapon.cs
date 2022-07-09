@@ -5,18 +5,19 @@ using UnityEngine;
 
 public class ThrowingWeapon : MonoBehaviour
 {
-    public bool selfDestroying;
-    public bool stickIn;
-    public float timeToSelfDestroying;
-    public bool isSpear;
-    public bool isRotating;
-    public float rotationSpeed;
-    public GameObject thisCreature;
-    public float baseDamage;
-    public AudioSource audioSource;
-    public MeshRenderer spearRenderer;
-    Rigidbody rigidbody;
+    [SerializeField] bool selfDestroying;
+    [SerializeField] bool stickIn;
+    [SerializeField] float timeToSelfDestroying;
+    [SerializeField] bool isSpear;
+    [SerializeField] bool isRotating;
+    [SerializeField] float rotationSpeed;
+    [SerializeField] float baseDamage;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] MeshRenderer spearRenderer;
 
+    public GameObject thisCreature;
+
+    Rigidbody rigidbody;
     float distanceToTarget;
 
     void Start()
@@ -27,7 +28,6 @@ public class ThrowingWeapon : MonoBehaviour
             StartCoroutine("Destroy");
         }
     }
-
     void Update()
     {
         if (isRotating)
@@ -39,7 +39,6 @@ public class ThrowingWeapon : MonoBehaviour
             transform.LookAt(transform.position + rigidbody.velocity);
         }
     }
-
     public IEnumerator Destroy()
     {
         yield return new WaitForSeconds(timeToSelfDestroying);
@@ -60,6 +59,5 @@ public class ThrowingWeapon : MonoBehaviour
             }
         }
         isRotating = false;
-
     }
 }

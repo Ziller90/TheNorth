@@ -4,21 +4,16 @@ using UnityEngine;
 
 public class Thrower : MonoBehaviour
 {
-    public Transform positionInHand;
-    public GameObject thisCreature;
-    public int upAngleInDegrees;
-    public float rotationForce;
-    public int distanceToTarget;
-    public int defaultRotationSpeed;
-    GameObject thisThrowingWeapon;
+    [SerializeField] Transform positionInHand;
+    [SerializeField] GameObject thisCreature;
 
+    int upAngleInDegrees;
+    GameObject thisThrowingWeapon;
     float g = Physics.gravity.y;
     public void Throw(GameObject throwingWeapon, Vector3 target)
     {
         thisThrowingWeapon = Instantiate(throwingWeapon, positionInHand.position, positionInHand.rotation);
         Vector3 fromStartToTarget = target - transform.position;
-
-        distanceToTarget = (int)fromStartToTarget.magnitude;
 
         if (fromStartToTarget.magnitude <= 5)
         {
@@ -45,9 +40,9 @@ public class Thrower : MonoBehaviour
         float x = fromStartToTargetXZ.magnitude;
         float y = fromStartToTarget.y;
 
-        float AngleInRadians = upAngleInDegrees * Mathf.PI / 180;
+        float angleInRadians = upAngleInDegrees * Mathf.PI / 180;
 
-        float v2 = (g * x*x) / (2 * (y - Mathf.Tan(AngleInRadians) * x) * Mathf.Pow(Mathf.Cos(AngleInRadians), 2) );
+        float v2 = (g * x*x) / (2 * (y - Mathf.Tan(angleInRadians) * x) * Mathf.Pow(Mathf.Cos(angleInRadians), 2) );
         float v = Mathf.Sqrt(Mathf.Abs(v2));
 
         Vector3 throwingVelocity = positionInHand.forward * v;

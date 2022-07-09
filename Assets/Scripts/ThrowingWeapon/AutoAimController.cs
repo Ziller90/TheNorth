@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AutoAimController : MonoBehaviour
 {
-    public List<Transform> aimObjects;
+    List<Transform> aimObjects;
     void Start()
     {
         GlobalLists globalAims = LinksContainer.instance.globalLists;

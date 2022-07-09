@@ -477,7 +477,7 @@ GameObject:
   - component: {fileID: 107691056}
   - component: {fileID: 107691055}
   m_Layer: 5
-  m_Name: Text
+  m_Name: YouAreDead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1761,7 +1761,7 @@ GameObject:
   m_Component:
   - component: {fileID: 780836221}
   m_Layer: 5
-  m_Name: HealthBarContainer
+  m_Name: HealthBarsContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2406,7 +2406,7 @@ GameObject:
   - component: {fileID: 980405200}
   - component: {fileID: 980405199}
   m_Layer: 5
-  m_Name: X
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4325,7 +4325,7 @@ GameObject:
   - component: {fileID: 1552312090}
   - component: {fileID: 1552312089}
   m_Layer: 5
-  m_Name: RestartText
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5927,6 +5927,10 @@ PrefabInstance:
       propertyPath: DebugPoint
       value: 
       objectReference: {fileID: 6149223491457573555, guid: 8ecd9d08e3864b046abe4270a3ea051a, type: 3}
+    - target: {fileID: 6115228455581133812, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
+      propertyPath: pickUpRange
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6115228455719113997, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
       propertyPath: DebugPoint
       value: 

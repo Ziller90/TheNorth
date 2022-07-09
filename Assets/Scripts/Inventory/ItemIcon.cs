@@ -7,12 +7,13 @@ using UnityEngine.EventSystems;
 
 public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPointerUpHandler
 {
-    public Item item;
-    public Container container;
-    public ItemsCollector itemsCollector;
-    public ContainerGrid grid;
-    public Coordinates oldStartCoordinates;
-    public Vector3 oldPosition;
+    [HideInInspector] public Item item;
+    [HideInInspector] public Container container;
+    [HideInInspector] public ItemsCollector itemsCollector;
+    [HideInInspector] public ContainerGrid grid;
+
+    Coordinates oldStartCoordinates;
+    Vector3 oldPosition;
     Vector3 offset;
     void Start()
     {
@@ -45,13 +46,9 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     }
     public void OnPointerDown(PointerEventData pointerEventData)
     {
-        Debug.Log("Coordinates in container " + item.coordianatesInContainer[0].y + " " + item.coordianatesInContainer[0].x);
-        Debug.Log("Old coordinates in container " + oldStartCoordinates.y + " " + oldStartCoordinates.x);
         oldStartCoordinates = item.coordianatesInContainer[0];
         oldPosition = gameObject.transform.position;
         container.SetEmpty(item);
-        Debug.Log("Coordinates in container " + item.coordianatesInContainer[0].y + " " + item.coordianatesInContainer[0].x);
-        Debug.Log("Old coordinates in container " + oldStartCoordinates.y + " " + oldStartCoordinates.x);
     }
     public void OnPointerUp(PointerEventData pointerEventData)
     {
@@ -82,8 +79,6 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
                 ReturnToOldPosition();
             }
         }
-        Debug.Log("Coordinates in container " + item.coordianatesInContainer[0].y + " " + item.coordianatesInContainer[0].x);
-        Debug.Log("Old coordinates in container " + oldStartCoordinates.y + " " + oldStartCoordinates.x);
     }
     public void SetNewItemPosition(Coordinates newStartPoint)
     {
@@ -109,7 +104,6 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
             return false;
         }
     }
-
     public void OnDrag(PointerEventData pointerEventData)
     {
         gameObject.transform.position = new Vector3(pointerEventData.position.x, pointerEventData.position.y,0) - offset;
