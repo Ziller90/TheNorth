@@ -16,3 +16,4 @@ public class MobileButtonsManager : MonoBehaviour
         buttonsManager.isBlockActing = blockButton.isPressed;
     }
 }
+
