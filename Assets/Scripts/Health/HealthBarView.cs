@@ -11,8 +11,8 @@ public class HealthBarView : MonoBehaviour
     [SerializeField] RawImage barLine;
     [SerializeField] float Speed;
 
-    public float barFillness;
-    public float newBarFillness;
+    float barFillness = 1;
+    float newBarFillness = 1;
 
     public void SetBarFillness(float newBarFillness)
     {
