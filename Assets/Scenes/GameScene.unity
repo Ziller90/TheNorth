@@ -631,7 +631,7 @@ MonoBehaviour:
   - {fileID: 746199878580276533, guid: 382d2bb3fd0dac44694e2f5737cc46c8, type: 3}
   - {fileID: 746199878580276533, guid: c56492ff4448208458c529e8f555f0a6, type: 3}
   - {fileID: 746199878580276533, guid: 68e9ccad122439745bdb2025ae5525ab, type: 3}
-  locationToLoadIndex: 2
+  locationToLoadIndex: 1
 --- !u!4 &554902164
 Transform:
   m_ObjectHideFlags: 0
@@ -2673,7 +2673,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3380745121464893052, guid: 337c4eb377c4dad4488e5260b0e59fb8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3380745121464893055, guid: 337c4eb377c4dad4488e5260b0e59fb8, type: 3}
       propertyPath: m_Pivot.x
@@ -2764,11 +2764,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1629821198}
     - target: {fileID: 3380745121993415038, guid: 337c4eb377c4dad4488e5260b0e59fb8, type: 3}
+      propertyPath: iconTemplate
+      value: 
+      objectReference: {fileID: 5088409713870999629, guid: b08abe6d12d75754fafd8327ba7464e7, type: 3}
+    - target: {fileID: 3380745121993415038, guid: 337c4eb377c4dad4488e5260b0e59fb8, type: 3}
       propertyPath: itemsCollector
       value: 
       objectReference: {fileID: 1968911090}
+    - target: {fileID: 3380745121993415038, guid: 337c4eb377c4dad4488e5260b0e59fb8, type: 3}
+      propertyPath: itemsCollection
+      value: 
+      objectReference: {fileID: 3380745122769048174}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 337c4eb377c4dad4488e5260b0e59fb8, type: 3}
+--- !u!224 &3380745122769048174 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 851449982048279662, guid: 337c4eb377c4dad4488e5260b0e59fb8, type: 3}
+  m_PrefabInstance: {fileID: 3380745122769048173}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6115228454152378630
 PrefabInstance:
   m_ObjectHideFlags: 0
