@@ -11,6 +11,10 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     [HideInInspector] public Container container;
     [HideInInspector] public ItemsCollector itemsCollector;
     [HideInInspector] public ContainerGrid grid;
+    [SerializeField] RectTransform background;
+    [SerializeField] RectTransform iconImage;
+    [SerializeField] RectTransform icon;
+    
 
     Coordinates oldStartCoordinates;
     Vector3 oldPosition;
@@ -23,15 +27,21 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
                 offset = Vector3.zero;
                 break;
             case ItemData.sizeInInventory.TwoCells:
-                offset = new Vector3(0, -grid.nextCellDistance / 2, 0);
+                offset = new Vector3(0, -grid.iconSideLength / 2, 0);
                 break;
             case ItemData.sizeInInventory.ThreeCells:
-                offset = new Vector3(0, -grid.nextCellDistance, 0);
+                offset = new Vector3(0, -grid.iconSideLength, 0);
                 break;
             case ItemData.sizeInInventory.FourCells:
-                offset = new Vector3(grid.nextCellDistance / 2, -grid.nextCellDistance / 2, 0);
+                offset = new Vector3(grid.iconSideLength / 2, -grid.iconSideLength / 2, 0);
                 break;
         }
+    }
+    public void SetNewIconTemplateSize(int x, int y, float iconSideLength)
+    {
+        background.sizeDelta = new Vector2(iconSideLength * x, iconSideLength * y);
+        iconImage.sizeDelta = new Vector2(iconSideLength * x, iconSideLength * y);
+        icon.sizeDelta = new Vector2(iconSideLength * x, iconSideLength * y);
     }
     public Coordinates GetCoordinates(Vector3 pointerPosition)
     {
@@ -40,8 +50,8 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
         Vector3 pointerRelativeToGrid = pointerPosition - grid.gridStartPosition.position;
         pointerRelativeToGrid.y = -pointerRelativeToGrid.y;
 
-        coordinates.x = Mathf.RoundToInt(pointerRelativeToGrid.x /grid.nextCellDistance);
-        coordinates.y = Mathf.RoundToInt(pointerRelativeToGrid.y / grid.nextCellDistance);
+        coordinates.x = Mathf.RoundToInt(pointerRelativeToGrid.x /grid.iconSideLength);
+        coordinates.y = Mathf.RoundToInt(pointerRelativeToGrid.y / grid.iconSideLength);
         return coordinates;
     }
     public void OnPointerDown(PointerEventData pointerEventData)
@@ -55,29 +65,21 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
         Vector3 pointerPosition = new Vector3(pointerEventData.position.x, pointerEventData.position.y, 0);
         Vector3 itemStartPointPosition = pointerPosition - offset;
 
-        if (Vector3.Distance(pointerPosition, grid.trashCan.position) < grid.trashCanRange)
+        if (CheckInRangeOfGrid(itemStartPointPosition))
         {
-            itemsCollector.Drop(item);
-            Destroy(gameObject);
-        }
-        else
-        {
-            if (CheckInRangeOfGrid(itemStartPointPosition))
+            Coordinates newStartPoint = GetCoordinates(itemStartPointPosition);
+            if (container.CheckAllPoints(newStartPoint, item))
             {
-                Coordinates newStartPoint = GetCoordinates(itemStartPointPosition);
-                if (container.CheckAllPoints(newStartPoint, item))
-                {
-                    SetNewItemPosition(newStartPoint);
-                }
-                else
-                {
-                    ReturnToOldPosition();
-                }
+                SetNewItemPosition(newStartPoint);
             }
             else
             {
                 ReturnToOldPosition();
             }
+        }
+        else
+        {
+            ReturnToOldPosition();
         }
     }
     public void SetNewItemPosition(Coordinates newStartPoint)
