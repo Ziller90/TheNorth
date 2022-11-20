@@ -6,13 +6,16 @@ using UnityEngine.UI;
 public class ContainerGrid : MonoBehaviour
 {
     public Transform gridStartPosition;
-    public float iconSideLength;
+    public float squareSideLength;
+    public float iconSizeModificator;
+
 
     [HideInInspector] public Vector3 leftTopCorner;
     [HideInInspector] public Vector3 rightBottomCorner;
 
     [SerializeField] Container container;
     [SerializeField] ItemsCollector itemsCollector;
+    [SerializeField] DescriptionShower descriptionShower;
     [SerializeField] GameObject iconTemplate;
     [SerializeField] float gridRangeFactor;
     [SerializeField] Transform gridNextPosition;
@@ -20,13 +23,13 @@ public class ContainerGrid : MonoBehaviour
 
     private void Awake()
     {
-        iconSideLength = Vector3.Distance(gridStartPosition.position, gridNextPosition.position);
+        squareSideLength = Vector3.Distance(gridStartPosition.position, gridNextPosition.position);
     }
     void Start()
     {
-        leftTopCorner = new Vector3(gridStartPosition.position.x - iconSideLength * gridRangeFactor, gridStartPosition.position.y + iconSideLength * gridRangeFactor, 0);
+        leftTopCorner = new Vector3(gridStartPosition.position.x - squareSideLength * gridRangeFactor, gridStartPosition.position.y + squareSideLength * gridRangeFactor, 0);
         Vector3 lastPointVector = GetPointVector(new Coordinates(container.ySize - 1, container.xSize - 1));
-        rightBottomCorner = new Vector3(lastPointVector.x + iconSideLength * gridRangeFactor, lastPointVector.y - iconSideLength * gridRangeFactor, 0);
+        rightBottomCorner = new Vector3(lastPointVector.x + squareSideLength * gridRangeFactor, lastPointVector.y - squareSideLength * gridRangeFactor, 0);
     }
     private void OnEnable()
     {
@@ -41,7 +44,7 @@ public class ContainerGrid : MonoBehaviour
     }
     Vector3 GetCorrectionVector(int xIconSize, int yIconSize)
     {
-        return new Vector3((xIconSize - 1) * iconSideLength * 0.5f, (yIconSize - 1) * iconSideLength * 0.5f);
+        return new Vector3((xIconSize - 1) * squareSideLength * 0.5f, (yIconSize - 1) * squareSideLength * 0.5f);
     }
     public void InstantiateItemsIcons()
     {
@@ -49,39 +52,35 @@ public class ContainerGrid : MonoBehaviour
         for (int i = 0; i < container.itemsInContainer.Count; i++)
         {
             Sprite iconImage = container.itemsInContainer[i].itemData.icon;
-            Vector3 instantiatePosition = new Vector3(gridStartPosition.position.x + container.itemsInContainer[i].coordianatesInContainer[0].x * iconSideLength, gridStartPosition.position.y - container.itemsInContainer[i].coordianatesInContainer[0].y * iconSideLength);
+            Vector3 instantiatePosition = new Vector3(gridStartPosition.position.x + container.itemsInContainer[i].coordianatesInContainer[0].x * squareSideLength, gridStartPosition.position.y - container.itemsInContainer[i].coordianatesInContainer[0].y * squareSideLength);
             GameObject newIcon = Instantiate(iconTemplate, instantiatePosition, Quaternion.identity, itemsCollection);
             ItemIcon itemIcon = newIcon.GetComponent<ItemIcon>();
-            Vector3 correctionVector = new Vector3();
+
             switch (container.itemsInContainer[i].itemData.size)
             {
                 case ItemData.sizeInInventory.OneCell:
-                    itemIcon.SetNewIconTemplateSize(1, 1, iconSideLength);
-                    correctionVector = GetCorrectionVector(1, 1);
+                    itemIcon.SetNewIconTemplate(1, 1, squareSideLength, iconSizeModificator);
                     break;
                 case ItemData.sizeInInventory.TwoCells:
-                    itemIcon.SetNewIconTemplateSize(1, 2, iconSideLength);
-                    correctionVector = GetCorrectionVector(1, 2);
+                    itemIcon.SetNewIconTemplate(1, 2, squareSideLength, iconSizeModificator);
                     break;
                 case ItemData.sizeInInventory.ThreeCells:
-                    itemIcon.SetNewIconTemplateSize(1, 3, iconSideLength);
-                    correctionVector = GetCorrectionVector(1, 3);
+                    itemIcon.SetNewIconTemplate(1, 3, squareSideLength, iconSizeModificator);
                     break;
                 case ItemData.sizeInInventory.FourCells:
-                    itemIcon.SetNewIconTemplateSize(2, 2, iconSideLength);
-                    correctionVector = GetCorrectionVector(2, 2);
+                    itemIcon.SetNewIconTemplate(2, 2, squareSideLength, iconSizeModificator);
                     break;
             }
             itemIcon.item = container.itemsInContainer[i];
             itemIcon.container = container;
             itemIcon.grid = this;
+            itemIcon.descriptionShower = descriptionShower;
             itemIcon.itemsCollector = itemsCollector;
             newIcon.transform.GetChild(1).gameObject.GetComponent<Image>().sprite = iconImage;
-            newIcon.transform.position += correctionVector;
         }
     }
     public Vector3 GetPointVector(Coordinates coordinates)
     {
-       return new Vector3(gridStartPosition.position.x + coordinates.x * iconSideLength, gridStartPosition.position.y - coordinates.y * iconSideLength);
+       return new Vector3(gridStartPosition.position.x + coordinates.x * squareSideLength, gridStartPosition.position.y - coordinates.y * squareSideLength);
     }
 }
