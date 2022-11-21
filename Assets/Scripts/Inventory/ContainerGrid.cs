@@ -18,12 +18,12 @@ public class ContainerGrid : MonoBehaviour
     [SerializeField] DescriptionShower descriptionShower;
     [SerializeField] GameObject iconTemplate;
     [SerializeField] float gridRangeFactor;
-    [SerializeField] Transform gridNextPosition;
     [SerializeField] Transform itemsCollection;
+    [SerializeField] GridLayoutGroup gridLayoutGroup;
 
     private void Awake()
     {
-        squareSideLength = Vector3.Distance(gridStartPosition.position, gridNextPosition.position);
+        squareSideLength = gridLayoutGroup.cellSize.x + gridLayoutGroup.spacing.x;
     }
     void Start()
     {
