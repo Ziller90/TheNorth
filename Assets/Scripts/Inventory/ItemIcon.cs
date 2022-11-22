@@ -53,7 +53,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     {
         Coordinates coordinates = new Coordinates(0, 0);
 
-        Vector3 pointerRelativeToGrid = pointerPosition - grid.gridStartPosition.position;
+        Vector3 pointerRelativeToGrid = pointerPosition - grid.startPosition.position;
         pointerRelativeToGrid.y = -pointerRelativeToGrid.y;
 
         coordinates.x = Mathf.RoundToInt(pointerRelativeToGrid.x /grid.squareSideLength);
@@ -69,7 +69,8 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     }
     public void OnPointerUp(PointerEventData pointerEventData)
     {
-        Vector3 pointerPosition = new Vector3(pointerEventData.position.x, pointerEventData.position.y, 0);
+
+        Vector3 pointerPosition =  new Vector3(pointerEventData.position.x, pointerEventData.position.y, 0);
         Vector3 itemStartPointPosition = pointerPosition - offset;
 
         if (CheckInRangeOfGrid(itemStartPointPosition))
