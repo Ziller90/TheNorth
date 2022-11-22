@@ -8,7 +8,7 @@ public class InventoryUI : MonoBehaviour
     public GameObject mobileIngameInterface;
     public void Start()
     {
-        CloseInventory();
+       
     }
     public void OpenInventory()
     {
