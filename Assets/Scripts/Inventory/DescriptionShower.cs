@@ -14,6 +14,9 @@ public class DescriptionShower : MonoBehaviour
     public Button equipButton;
     public Button throwButton;
 
+    public ItemIcon selectedItem;
+
+    public ItemsCollector itemsCollector;
     void Start()
     {
         DisableBottomPanel();
@@ -27,6 +30,11 @@ public class DescriptionShower : MonoBehaviour
         descriptionText.text = itemIcon.item.itemData.description;
         bottomPanelItemIcon.sprite = itemIcon.item.itemData.icon;
     }
+    public void SetSelectedItemIcon(ItemIcon itemIcon)
+    {
+        selectedItem = itemIcon;
+        ShowDescription(itemIcon);
+    }
     public void DisableBottomPanel()
     {
         DisabledBottomPanel.SetActive(true);
@@ -38,8 +46,7 @@ public class DescriptionShower : MonoBehaviour
     }
     public void ThrowItem()
     {
-
+        Destroy(selectedItem.gameObject);
+        itemsCollector.Drop(selectedItem.item);
     }
-
-
 }

@@ -2711,6 +2711,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 814717072}
     m_Modifications:
+    - target: {fileID: 716353560290658868, guid: 337c4eb377c4dad4488e5260b0e59fb8, type: 3}
+      propertyPath: itemsCollector
+      value: 
+      objectReference: {fileID: 1968911090}
     - target: {fileID: 3380745121464893052, guid: 337c4eb377c4dad4488e5260b0e59fb8, type: 3}
       propertyPath: m_Name
       value: InventoryPanel
