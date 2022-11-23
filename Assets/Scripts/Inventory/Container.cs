@@ -31,6 +31,7 @@ public class Container : MonoBehaviour
     public void RemoveItem(Item item)
     {
         itemsInContainer.Remove(item);
+        SetEmpty(item);
     }
     public void SetFilled(Coordinates startPosition, Item item)
     {

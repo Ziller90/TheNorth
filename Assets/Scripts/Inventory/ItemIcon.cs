@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 
 
@@ -15,8 +16,9 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     [SerializeField] RectTransform background;
     [SerializeField] RectTransform iconImage;
     [SerializeField] RectTransform icon;
-    
+    [SerializeField] Button button;
 
+    bool isSelected;
     Coordinates oldStartCoordinates;
     Vector3 oldPosition;
     Vector3 offset;
@@ -29,23 +31,23 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
                 offset = Vector3.zero;
                 break;
             case ItemData.sizeInInventory.TwoCells:
-                offset = new Vector3(0, -grid.squareSideLength / 2, 0);
+                offset = new Vector3(0, -grid.distanceBeetweenSquaresCenters / 2, 0);
                 break;
             case ItemData.sizeInInventory.ThreeCells:
-                offset = new Vector3(0, -grid.squareSideLength, 0);
+                offset = new Vector3(0, -grid.distanceBeetweenSquaresCenters, 0);
                 break;
             case ItemData.sizeInInventory.FourCells:
-                offset = new Vector3(grid.squareSideLength / 2, -grid.squareSideLength / 2, 0);
+                offset = new Vector3(grid.distanceBeetweenSquaresCenters / 2, -grid.distanceBeetweenSquaresCenters / 2, 0);
                 break;
         }
     }
-    public void SetNewIconTemplate(int x, int y, float squareSideLength, float iconSizeModificator)
+    public void SetNewIconTemplate(int x, int y, float squareSideLength, float distanceBetweenSquares, float iconSizeModificator)
     {
-        background.sizeDelta = new Vector2(squareSideLength * x, squareSideLength * y);
-        iconImage.sizeDelta = new Vector2(squareSideLength * x * iconSizeModificator, squareSideLength * y * iconSizeModificator);
+        background.sizeDelta = new Vector2(squareSideLength * x + ((x - 1) * distanceBetweenSquares), squareSideLength * y + ((y - 1) * distanceBetweenSquares));
+        iconImage.sizeDelta = new Vector2((squareSideLength * x + ((x - 1) * distanceBetweenSquares))  * iconSizeModificator, (squareSideLength * y + ((y - 1) * distanceBetweenSquares)) * iconSizeModificator);
         icon.sizeDelta = new Vector2(squareSideLength * x, squareSideLength * y);
 
-        Vector3 correctionVector = new Vector3(squareSideLength * 0.5f * (x - 1), -(squareSideLength * 0.5f * (y - 1)), 0);
+        Vector3 correctionVector = new Vector3((squareSideLength + distanceBetweenSquares) * 0.5f * (x - 1), -((squareSideLength + distanceBetweenSquares) * 0.5f * (y - 1)), 0);
         background.position += correctionVector;
         iconImage.position += correctionVector;
     }
@@ -56,8 +58,8 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
         Vector3 pointerRelativeToGrid = pointerPosition - grid.startPosition.position;
         pointerRelativeToGrid.y = -pointerRelativeToGrid.y;
 
-        coordinates.x = Mathf.RoundToInt(pointerRelativeToGrid.x /grid.squareSideLength);
-        coordinates.y = Mathf.RoundToInt(pointerRelativeToGrid.y / grid.squareSideLength);
+        coordinates.x = Mathf.RoundToInt(pointerRelativeToGrid.x /grid.distanceBeetweenSquaresCenters);
+        coordinates.y = Mathf.RoundToInt(pointerRelativeToGrid.y / grid.distanceBeetweenSquaresCenters);
         return coordinates;
     }
     public void OnPointerDown(PointerEventData pointerEventData)
@@ -65,11 +67,13 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
         oldStartCoordinates = item.coordianatesInContainer[0];
         oldPosition = gameObject.transform.position;
         container.SetEmpty(item);
-        descriptionShower.ShowDescription(this);
+        descriptionShower.SetSelectedItemIcon(this);
+        isSelected = true;
+        background.gameObject.SetActive(false);
+
     }
     public void OnPointerUp(PointerEventData pointerEventData)
     {
-
         Vector3 pointerPosition =  new Vector3(pointerEventData.position.x, pointerEventData.position.y, 0);
         Vector3 itemStartPointPosition = pointerPosition - offset;
 
@@ -89,6 +93,8 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
         {
             ReturnToOldPosition();
         }
+        background.gameObject.SetActive(true);
+
     }
     public void SetNewItemPosition(Coordinates newStartPoint)
     {
