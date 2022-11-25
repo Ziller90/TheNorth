@@ -6,8 +6,16 @@ public class LocationLoader : MonoBehaviour
 {
     [SerializeField] List<GameObject> locationsList;
     [SerializeField] int locationToLoadIndex;
+    [SerializeField] bool loadLocationFromGlobalMap;
     void Start()
     {
-        Instantiate(locationsList[locationToLoadIndex], gameObject.transform);
+        if (loadLocationFromGlobalMap)
+        {
+            Instantiate(locationsList[GlobalMap.LocationToLoad], gameObject.transform);
+        }
+        else
+        {
+            Instantiate(locationsList[locationToLoadIndex], gameObject.transform);
+        }
     }
 }
