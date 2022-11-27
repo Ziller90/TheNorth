@@ -3150,6 +3150,8 @@ MonoBehaviour:
   DisabledBottomPanel: {fileID: 5205338196943818548}
   equipButton: {fileID: 139342361053372254}
   throwButton: {fileID: 1703080749905916044}
+  selectedItem: {fileID: 0}
+  itemsCollector: {fileID: 0}
 --- !u!1 &3380745121495948284
 GameObject:
   m_ObjectHideFlags: 0
@@ -3671,7 +3673,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c90d862699495d64392affcee7b1dbcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridStartPosition: {fileID: 3380745122340113408}
+  startPosition: {fileID: 0}
+  nextPosition: {fileID: 0}
+  distanceBeetweenSquaresCenters: 0
+  distanceBeetweenSquares: 0
   squareSideLength: 0
   iconSizeModificator: 0
   leftTopCorner: {x: 0, y: 0, z: 0}
@@ -3682,7 +3687,6 @@ MonoBehaviour:
   iconTemplate: {fileID: 5088409713870999629, guid: b08abe6d12d75754fafd8327ba7464e7, type: 3}
   gridRangeFactor: 0.5
   itemsCollection: {fileID: 6682819449806851069}
-  gridLayoutGroup: {fileID: 0}
 --- !u!1 &3380745122053459979
 GameObject:
   m_ObjectHideFlags: 0
@@ -6643,14 +6647,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9811321, g: 0.8555455, b: 0.6516198, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ef0315b62aa406e47b91a45905bad762, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dd462f675f135224c9fbb0d412f16cf9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
