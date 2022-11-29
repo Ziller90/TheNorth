@@ -12,4 +12,8 @@ public class GlobalMap : MonoBehaviour
         locationToLoad = locationIndex;
         SceneManager.LoadScene("GameScene");
     }
+    public void LoadLobbySceneWithLocation(int locationIndex)
+    {
+        SceneManager.LoadScene("LobbyScene");
+    }
 }
