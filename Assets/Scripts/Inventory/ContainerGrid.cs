@@ -14,19 +14,25 @@ public class ContainerGrid : MonoBehaviour
 
     public float iconSizeModificator;
 
-
     [HideInInspector] public Vector3 leftTopCorner;
     [HideInInspector] public Vector3 rightBottomCorner;
 
     [SerializeField] Container container;
-    [SerializeField] ItemsCollector itemsCollector;
     [SerializeField] DescriptionShower descriptionShower;
     [SerializeField] GameObject iconTemplate;
     [SerializeField] float gridRangeFactor;
     [SerializeField] Transform itemsCollection;
 
+    ItemsCollector itemsCollector;
+
+    void SetLinksToPlayerComponents()
+    {
+        itemsCollector = Links.instance.playerCharacter.GetComponentInChildren<ItemsCollector>();
+        container = Links.instance.playerCharacter.GetComponentInChildren<Container>();
+    }
     private void OnEnable()
     {
+        SetLinksToPlayerComponents();
         squareSideLength = startPosition.gameObject.GetComponent<RectTransform>().rect.width;
         distanceBeetweenSquaresCenters = Vector3.Distance(startPosition.position, nextPosition.position);
         distanceBeetweenSquares = distanceBeetweenSquaresCenters - squareSideLength;
@@ -34,7 +40,6 @@ public class ContainerGrid : MonoBehaviour
         leftTopCorner = new Vector3(startPosition.position.x - distanceBeetweenSquaresCenters * gridRangeFactor, startPosition.position.y + distanceBeetweenSquaresCenters * gridRangeFactor, 0);
         Vector3 lastPointVector = GetPointVector(new Coordinates(container.ySize - 1, container.xSize - 1));
         rightBottomCorner = new Vector3(lastPointVector.x + distanceBeetweenSquaresCenters * gridRangeFactor, lastPointVector.y - distanceBeetweenSquaresCenters * gridRangeFactor, 0);
-        //Debug.Log("squareSideLength - " + distanceBeetweenSquaresCenters + " leftTopCorner - " + leftTopCorner + " rightBottomCorner - " + rightBottomCorner + " gridStartPosition - " + startPosition);
         InstantiateItemsIcons();
     }
     public void ClearItemsIcons()

@@ -21,7 +21,7 @@ public class Item : MonoBehaviour
 
     void Start()
     {
-        LinksContainer.instance.globalLists.AddToItemsOnLocation(gameObject.transform);
+        Links.instance.globalLists.AddToItemsOnLocation(gameObject.transform);
 
         switch (itemData.size)
         {

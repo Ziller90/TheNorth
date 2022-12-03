@@ -91,7 +91,6 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            Debug.Log("We load the 'GameScene' ");
             PhotonNetwork.LoadLevel("GameScene");
         }
     }

@@ -24,6 +24,10 @@ public class HumanoidBattleSystem : MonoBehaviour
     bool isBlock;
     bool isDistantAttack;
 
+    public void SetActionManager(ActionManager actionManager)
+    {
+        this.actionManager = actionManager;
+    }
     public void SetThrowingWeaponInHand()
     {
         mainWeaponInHand.SetActive(false);
@@ -92,6 +96,7 @@ public class HumanoidBattleSystem : MonoBehaviour
     {
         characterContoller.allowRotation = true;
     }
+
     public void Update()
     {
         if (actionManager.isMeleeAttackActing)

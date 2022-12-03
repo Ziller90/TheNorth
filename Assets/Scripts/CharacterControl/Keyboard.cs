@@ -6,12 +6,41 @@ public class Keyboard : MonoBehaviour
 {
     [SerializeField] CameraFollowing camera;
     [SerializeField] ControlManager controlManager;
+    [SerializeField] ActionManager actionManager;
 
     float vertical;
     float horizontal;
     Vector3 direction;
 
     void Update()
+    {
+        MovePlayer();
+        ListenKeyboardButtons();
+    }
+    public void ListenKeyboardButtons()
+    {
+        if (Input.GetKeyDown("I"))
+        {
+            actionManager.OpenInventoryPressed();
+        }
+        if (Input.GetKeyDown("E"))
+        {
+            actionManager.PickUpItemPressed();
+        }
+        if (Input.GetMouseButton(0))
+        {
+            actionManager.MeleeAttackHold();
+        }
+        if (Input.GetKey("Q"))
+        {
+            actionManager.DistanceAttackHold();
+        }
+        if (Input.GetMouseButton(1))
+        {
+            actionManager.BlockHold();
+        }
+    }
+    public void MovePlayer()
     {
         if (Input.GetKey(KeyCode.W) && (Input.GetKey(KeyCode.S)))
         {
@@ -21,7 +50,7 @@ public class Keyboard : MonoBehaviour
         {
             vertical = 1;
         }
-        else if  (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
         {
             vertical = -1;
         }

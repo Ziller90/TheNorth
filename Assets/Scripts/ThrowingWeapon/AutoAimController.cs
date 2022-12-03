@@ -7,7 +7,7 @@ public class AutoAimController : MonoBehaviour
     List<Transform> aimObjects;
     void Start()
     {
-        GlobalLists globalAims = LinksContainer.instance.globalLists;
+        GlobalLists globalAims = Links.instance.globalLists;
         aimObjects = globalAims.creaturesOnLocation;
     }
     public bool HasAutoAimTarget(GameObject thisCreature, Transform throwPoint, float maxDistance)
