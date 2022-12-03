@@ -16,9 +16,12 @@ public class DescriptionShower : MonoBehaviour
 
     public ItemIcon selectedItem;
 
-    public ItemsCollector itemsCollector;
+    ItemsCollector itemsCollector;
     void Start()
     {
+        Links.instance.sceneInitializer.sceneInitialized += () => 
+        itemsCollector = Links.instance.playerCharacter.GetComponentInChildren<ItemsCollector>();
+
         DisableBottomPanel();
         equipButton.onClick.AddListener(EquipItem);
         throwButton.onClick.AddListener(ThrowItem);

@@ -7,13 +7,13 @@ using UnityEngine.SceneManagement;
 public class DeathScreen : MonoBehaviour
 {
     [SerializeField] GameObject deathScreen;
-    [SerializeField] Health mainCharacterHealth;
     [SerializeField] float fadeInSpeed;
     [SerializeField] CanvasGroup deathScreenGroup;
 
     void Start()
     {
-        mainCharacterHealth.dieEvent += ActivateDeathScreen;
+        Links.instance.sceneInitializer.sceneInitialized += () => 
+        Links.instance.playerCharacter.GetComponentInChildren<Health>().dieEvent += ActivateDeathScreen;
     }
     public void ActivateDeathScreen()
     {

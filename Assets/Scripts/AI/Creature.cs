@@ -18,7 +18,7 @@ public class Creature : MonoBehaviour
 
     void Start()
     {
-        globalLists = LinksContainer.instance.globalLists;
+        globalLists = Links.instance.globalLists;
         globalLists.creaturesOnLocation.Add(gameObject.transform);
         health.dieEvent += Die;
     } 

@@ -14,8 +14,8 @@ public class HealthBar : MonoBehaviour
     Camera camera;
     void Start()
     {
-        camera = LinksContainer.instance.mainCamera;
-        healthBar = Instantiate(healthBarPrefab, LinksContainer.instance.healthBarsContainer);
+        camera = Links.instance.mainCamera.GetComponent<Camera>();
+        healthBar = Instantiate(healthBarPrefab, Links.instance.healthBarsContainer);
         healthBarView = healthBar.GetComponent<HealthBarView>();
     }
     void FixedUpdate()

@@ -14,6 +14,10 @@ public class CameraFollowing : MonoBehaviour
         cameraYRotation = gameObject.transform.rotation.eulerAngles.y;
         gameObject.transform.position = objectToFollow.transform.position + standartOffset * zoom;
     }
+    public void SetObjectToFollow(GameObject objectToFollow)
+    {
+        this.objectToFollow = objectToFollow;
+    }
 }
 
 

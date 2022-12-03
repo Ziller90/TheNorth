@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GlobalMap : MonoBehaviour
+public class GameSceneLauncher : MonoBehaviour
 {
     static int locationToLoad;
     public static int LocationToLoad => locationToLoad;
@@ -14,6 +14,7 @@ public class GlobalMap : MonoBehaviour
     }
     public void LoadLobbySceneWithLocation(int locationIndex)
     {
+        locationToLoad = locationIndex;
         SceneManager.LoadScene("LobbyScene");
     }
 }

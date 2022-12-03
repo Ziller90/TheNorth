@@ -22,6 +22,10 @@ public class CharacterContoller : MonoBehaviour
 
     MovingState movingState;
 
+    public void SetControlManager(ControlManager controlManager)
+    {
+        this.controlManager = controlManager;
+    }
     public void MoveForward()
     {
         if (controlManager.GetMovingMode() == MovingMode.Walk)

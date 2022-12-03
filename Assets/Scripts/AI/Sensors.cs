@@ -14,7 +14,7 @@ public class Sensors : MonoBehaviour
     List<Transform> creaturesOnLocation;
     void Start()
     {
-        creaturesOnLocation = LinksContainer.instance.globalLists.creaturesOnLocation;
+        creaturesOnLocation = Links.instance.globalLists.creaturesOnLocation;
     }
     bool NoWallsOnVisionLine(Vector3 enemyPosition)
     {

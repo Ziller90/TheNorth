@@ -13,7 +13,7 @@ public class ItemsCollector : MonoBehaviour
     Transform nearestItem;
     void Start()
     {
-        itemsOnLocation = LinksContainer.instance.globalLists.itemsOnLocation;
+        itemsOnLocation = Links.instance.globalLists.itemsOnLocation;
     }
     void Update()
     {
@@ -44,7 +44,7 @@ public class ItemsCollector : MonoBehaviour
         if (hasObjectInRange)
         {
             playerInventoryContainer.AddNewItem(nearestItem.gameObject.GetComponent<Item>());
-            LinksContainer.instance.globalLists.RemoveFromItemsOnLocation(nearestItem);
+            Links.instance.globalLists.RemoveFromItemsOnLocation(nearestItem);
             nearestItem.transform.position = new Vector3(-1000, -1000, -1000);
             nearestItem.GetComponent<Rigidbody>().isKinematic = true;
         }
@@ -52,7 +52,7 @@ public class ItemsCollector : MonoBehaviour
     public void Drop(Item item)
     {
         playerInventoryContainer.RemoveItem(item);
-        LinksContainer.instance.globalLists.AddToItemsOnLocation(item.transform);
+        Links.instance.globalLists.AddToItemsOnLocation(item.transform);
         item.transform.position = itemsDropPosition.position;
         item.GetComponent<Rigidbody>().isKinematic = false;
     }

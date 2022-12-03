@@ -101,7 +101,6 @@ public class Container : MonoBehaviour
             }
             str += "\n";
         }
-        Debug.Log(str);
     }
 
 }

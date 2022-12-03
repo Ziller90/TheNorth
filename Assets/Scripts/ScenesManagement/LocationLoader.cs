@@ -7,15 +7,17 @@ public class LocationLoader : MonoBehaviour
     [SerializeField] List<GameObject> locationsList;
     [SerializeField] int locationToLoadIndex;
     [SerializeField] bool loadLocationFromGlobalMap;
-    void Start()
+    public void LoadLocation()
     {
+        GameObject location;
         if (loadLocationFromGlobalMap)
         {
-            Instantiate(locationsList[GlobalMap.LocationToLoad], gameObject.transform);
+            location = Instantiate(locationsList[GameSceneLauncher.LocationToLoad], gameObject.transform);
         }
         else
         {
-            Instantiate(locationsList[locationToLoadIndex], gameObject.transform);
+            location = Instantiate(locationsList[locationToLoadIndex], gameObject.transform);
         }
+        Links.instance.locationSettings = location.GetComponent<LocationSettings>();
     }
 }
