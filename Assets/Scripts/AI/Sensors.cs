@@ -32,6 +32,7 @@ public class Sensors : MonoBehaviour
     public Transform GetNearestEnemy()
     {
         List<Transform> noticedEnemies = new List<Transform>();
+        Debug.Log(" creaturesOnLocation = " + creaturesOnLocation.Count);
         foreach (Transform creature in creaturesOnLocation)
         {
             if (creature.GetComponent<FractionMarker>().creatureFraction != fractionMarker.creatureFraction && creature != ThisCreature.transform)
@@ -50,7 +51,7 @@ public class Sensors : MonoBehaviour
                 }
             }
         }
-        if (noticedEnemies != null)
+        if (noticedEnemies.Count != 0)
         {
             return Utils.GetNearest(transform, noticedEnemies);
         }

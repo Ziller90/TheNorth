@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
+using Photon.Realtime;
 public enum MovingState
 {
     Idle,
@@ -78,32 +79,35 @@ public class CharacterContoller : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
-        if (allowMoving == true)
+        if (GameSceneLauncher.LocationToLoadGameType == GameType.Singleplayer || (GameSceneLauncher.LocationToLoadGameType == GameType.DeathMatch && Links.instance.playerCharacter.GetComponent<PhotonView>().IsMine))
         {
-            MoveForward();
-        }
-        else
-        {
-            Idle();
-        }
+            transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+            if (allowMoving == true)
+            {
+                MoveForward();
+            }
+            else
+            {
+                Idle();
+            }
 
-        if (allowRotation == true)
-        {
-            Rotate();
-        }
+            if (allowRotation == true)
+            {
+                Rotate();
+            }
 
-        if (movingState == MovingState.Idle)
-        {
-            humanAnimator.SetInteger("MoveIndex", 1);
-        }
-        if (movingState == MovingState.Walk)
-        {
-            humanAnimator.SetInteger("MoveIndex", 2);
-        }
-        if (movingState == MovingState.Run)
-        {
-            humanAnimator.SetInteger("MoveIndex", 3);
+            if (movingState == MovingState.Idle)
+            {
+                humanAnimator.SetInteger("MoveIndex", 1);
+            }
+            if (movingState == MovingState.Walk)
+            {
+                humanAnimator.SetInteger("MoveIndex", 2);
+            }
+            if (movingState == MovingState.Run)
+            {
+                humanAnimator.SetInteger("MoveIndex", 3);
+            }
         }
     }
 }

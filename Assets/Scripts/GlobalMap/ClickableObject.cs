@@ -6,10 +6,10 @@ using UnityEngine.Events;
 
 public class ClickableObject : MonoBehaviour
 {
-    public UnityEvent OnClick;
+    [SerializeField] UltEvents.UltEvent OnClickEvent;
     public void ClickOnObject()
     {
-        OnClick.Invoke();
+        OnClickEvent?.Invoke();
     }
 }
 
