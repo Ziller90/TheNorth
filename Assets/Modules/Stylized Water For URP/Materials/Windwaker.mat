@@ -12,7 +12,6 @@ Material:
   m_ValidKeywords:
   - INTERSECTION_EFFECTS_ON
   - SURFACE_FOAM_ON
-  - WORLD_SPACE_UV_ON
   m_InvalidKeywords:
   - FOAM_SHADOWS_ON
   - WATER_LIGHTING_ON
@@ -52,32 +51,32 @@ Material:
     - SURFACE_FOAM: 1
     - WORLD_SPACE_UV: 1
     - _IntersectionFoamBlend: 1
-    - _IntersectionFoamDepth: 0.72
-    - _IntersectionFoamScale: 0.28
-    - _IntersectionWaterBlend: 0
+    - _IntersectionFoamDepth: 0.73
+    - _IntersectionFoamScale: 0.19
+    - _IntersectionWaterBlend: 0.84
     - _QueueControl: 1
     - _QueueOffset: 0
     - _RefractionStrength: 0.102
     - _ShoreBlend: 0
     - _ShoreDepth: 3
     - _ShoreFade: 0
-    - _SurfaceFoamBlend: 1
+    - _SurfaceFoamBlend: 0.879
     - _WaterColorDepth: 2.59
     - _WaterColorHorizonDistance: 20
     m_Colors:
     - _IntersectionFoamColor: {r: 1, g: 1, b: 1, a: 1}
-    - _IntersectionFoamMovement: {r: 0, g: 0, b: 0, a: 0}
+    - _IntersectionFoamMovement: {r: 0, g: 0.12, b: 0, a: 0}
     - _IntersectionFoamSampling: {r: 1, g: 0, b: 0, a: 0}
     - _NormalsMovement: {r: 0.024, g: 1.81, b: 0, a: 0}
     - _ShoreColor: {r: 0.07123971, g: 1, b: 0, a: 0}
     - _SurfaceFoamColor1: {r: 1, g: 1, b: 1, a: 0.3215686}
     - _SurfaceFoamColor2: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 0.7294118}
-    - _SurfaceFoamMovement: {r: 0.257, g: 0, b: 0.208, a: 0}
-    - _SurfaceFoamSampling: {r: 0.553, g: 0.2, b: 0, a: 0}
-    - _SurfaceFoamTilingAndOffset: {r: 0, g: -1, b: 2, a: 0.2}
-    - _WaterColorDeep: {r: 0.20473477, g: 0.50025207, b: 0.6698113, a: 1}
-    - _WaterColorHorizon: {r: 0.040370174, g: 0.25313064, b: 0.7924528, a: 1}
-    - _WaterColorShallow: {r: 0.3401388, g: 0.70474464, b: 0.9150943, a: 1}
+    - _SurfaceFoamMovement: {r: 0.257, g: 0, b: 0.13, a: 0}
+    - _SurfaceFoamSampling: {r: 0.015, g: 0.27, b: 0, a: 0}
+    - _SurfaceFoamTilingAndOffset: {r: 0, g: -1, b: 0.15, a: 0}
+    - _WaterColorDeep: {r: 0, g: 0.4484568, b: 0.6981132, a: 1}
+    - _WaterColorHorizon: {r: 0, g: 0.21889754, b: 0.764151, a: 1}
+    - _WaterColorShallow: {r: 0, g: 0.6363635, b: 1, a: 1}
     - _WaveColor: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 0}
     - _WaveDirections: {r: 0.114, g: 0.64, b: 1, a: 0.33}
     - _WaveVisuals: {r: 0.093, g: 17.9, b: 2.61, a: 0}
