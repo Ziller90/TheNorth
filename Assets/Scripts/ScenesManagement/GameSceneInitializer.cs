@@ -34,17 +34,26 @@ public class GameSceneInitializer : MonoBehaviourPunCallbacks
         if (GameSceneLauncher.LocationToLoadGameType == GameType.Singleplayer)
         {
             playerCharacter = Instantiate(Humanoid, Links.instance.locationSettings.GetRandomSpawnPoint().position, Quaternion.identity);
+            SetHumanoidAsMainCharacter(playerCharacter);
         }
         else if (GameSceneLauncher.LocationToLoadGameType == GameType.DeathMatch)
         {
-            GameObject newPlayer = PhotonNetwork.Instantiate(MultiplayerHumanoid.name, Links.instance.locationSettings.GetRandomSpawnPoint().position, Quaternion.identity, 0);
             Debug.Log("Your ID in room is" + PhotonNetwork.LocalPlayer.ActorNumber);
+
+            playerCharacter = PhotonNetwork.Instantiate(MultiplayerHumanoid.name, Links.instance.locationSettings.GetRandomSpawnPoint().position, Quaternion.identity, 0);
+            if (playerCharacter.GetComponent<PhotonView>().IsMine)
+            {
+                SetHumanoidAsMainCharacter(playerCharacter);
+            }
         }
-        Links.instance.mainCamera.GetComponent<CameraFollowing>().SetObjectToFollow(playerCharacter);
-        playerCharacter.GetComponent<CharacterContoller>().SetControlManager(playerControlManager);
-        playerCharacter.GetComponent<HumanoidBattleSystem>().SetActionManager(playerActionManager);
-        playerCharacter.GetComponentInChildren<ItemsCollector>().SetActionManager(playerActionManager);
-        Links.instance.playerCharacter = playerCharacter;
+    }
+    public void SetHumanoidAsMainCharacter(GameObject humanoid)
+    {
+        Links.instance.mainCamera.GetComponent<CameraFollowing>().SetObjectToFollow(humanoid);
+        humanoid.GetComponent<CharacterContoller>().SetControlManager(playerControlManager);
+        humanoid.GetComponent<HumanoidBattleSystem>().SetActionManager(playerActionManager);
+        humanoid.GetComponentInChildren<ItemsCollector>().SetActionManager(playerActionManager);
+        Links.instance.playerCharacter = humanoid;
     }
     public void LeaveRoom()
     {
