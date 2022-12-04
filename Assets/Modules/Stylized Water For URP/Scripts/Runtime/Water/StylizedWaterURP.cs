@@ -273,8 +273,8 @@ namespace StylizedWater
                 enableSurfaceFoam = (material.IsKeywordEnabled("SURFACE_FOAM_ON")) ? true : false;
                 #endregion
 
-                if (material.IsKeywordEnabled("WORLD_SPACE_UV_ON")) waterUVs = WaterUVs.World;
-                else waterUVs = WaterUVs.Local;
+                //if (material.IsKeywordEnabled("WORLD_SPACE_UV_ON")) waterUVs = WaterUVs.World;
+                //else waterUVs = WaterUVs.Local;
             }
 
             if (material.shader.name == shaderName)
