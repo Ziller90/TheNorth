@@ -8,12 +8,18 @@ public class ItemsCollector : MonoBehaviour
     [SerializeField] Container playerInventoryContainer;
     [SerializeField] Transform itemsDropPosition;
 
+    [SerializeField] ActionManager actionManager;
     List<Transform> itemsOnLocation;
     bool hasObjectInRange;
     Transform nearestItem;
     void Start()
     {
+        actionManager.OnPickUpItemPressed += AddItemToContainer;
         itemsOnLocation = Links.instance.globalLists.itemsOnLocation;
+    }
+    public void SetActionManager(ActionManager actionManager)
+    {
+        this.actionManager = actionManager;
     }
     void Update()
     {
@@ -41,6 +47,7 @@ public class ItemsCollector : MonoBehaviour
     }
     public void AddItemToContainer() 
     {
+        Debug.Log("Item added to container");
         if (hasObjectInRange)
         {
             playerInventoryContainer.AddNewItem(nearestItem.gameObject.GetComponent<Item>());

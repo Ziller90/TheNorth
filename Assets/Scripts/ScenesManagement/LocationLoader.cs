@@ -19,5 +19,6 @@ public class LocationLoader : MonoBehaviour
             location = Instantiate(locationsList[locationToLoadIndex], gameObject.transform);
         }
         Links.instance.locationSettings = location.GetComponent<LocationSettings>();
+        Debug.Log("I set location settings. they are " + Links.instance.locationSettings);
     }
 }

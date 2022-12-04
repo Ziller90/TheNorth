@@ -1,17 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 
 public class Keyboard : MonoBehaviour
 {
-    [SerializeField] CameraFollowing camera;
-    [SerializeField] ControlManager controlManager;
-    [SerializeField] ActionManager actionManager;
+    CameraFollowing camera;
+    ControlManager controlManager;
+    ActionManager actionManager;
+
+    public UnityEvent openInventory;
 
     float vertical;
     float horizontal;
     Vector3 direction;
 
+    private void Start()
+    {
+        actionManager = Links.instance.playerActionManager;
+        controlManager = Links.instance.playerControlManager;
+        camera = Links.instance.mainCamera.GetComponent<CameraFollowing>();
+    }
     void Update()
     {
         MovePlayer();
@@ -19,25 +29,38 @@ public class Keyboard : MonoBehaviour
     }
     public void ListenKeyboardButtons()
     {
-        if (Input.GetKeyDown("I"))
+        if (Input.GetKeyDown(KeyCode.I))
         {
-            actionManager.OpenInventoryPressed();
+            openInventory?.Invoke();
         }
-        if (Input.GetKeyDown("E"))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             actionManager.PickUpItemPressed();
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            actionManager.MeleeAttackHold();
+            actionManager.MeleeAttackPressed();
+        }        
+        if (Input.GetMouseButtonUp(0))
+        {
+            actionManager.MeleeAttackReleased();
         }
-        if (Input.GetKey("Q"))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            actionManager.DistanceAttackHold();
+            actionManager.DistanceAttackPressed();
         }
-        if (Input.GetMouseButton(1))
+        if (Input.GetKeyUp(KeyCode.Q))
         {
-            actionManager.BlockHold();
+            actionManager.DistanceAttackReleased();
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            actionManager.BlockPressed();
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
+            actionManager.BlockReleased();
         }
     }
     public void MovePlayer()
