@@ -287,9 +287,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39040ef9c0b16b545817df2330956cbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 888760}
-  controlManager: {fileID: 82711421}
-  actionManager: {fileID: 1099258317}
+  openInventory:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 814717073}
+        m_TargetAssemblyTypeName: InventoryUI, Assembly-CSharp
+        m_MethodName: OpenInventory
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &50793420
 Transform:
   m_ObjectHideFlags: 0
@@ -663,8 +675,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Humanoid: {fileID: 6115228454438917361, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
-  playerActionManager: {fileID: 1099258317}
-  playerControlManager: {fileID: 82711421}
 --- !u!4 &427277089
 Transform:
   m_ObjectHideFlags: 0
@@ -883,6 +893,54 @@ RectTransform:
   m_AnchoredPosition: {x: -729.6699, y: -316.66998}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &687819452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 687819453}
+  - component: {fileID: 687819454}
+  m_Layer: 0
+  m_Name: ControlTypeSettings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &687819453
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687819452}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.1651073, y: 1.6503235, z: -0.07441986}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &687819454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687819452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9031c4ca121aca48addab459f0fb5d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyboardControl: {fileID: 50793418}
+  MobileIngameInterface: {fileID: 2014161637}
+  useManuallySetControlType: 1
+  manuallySetControlType: 0
 --- !u!1 &780836220
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,6 +1185,8 @@ MonoBehaviour:
   sceneInitializer: {fileID: 427277088}
   playerCharacter: {fileID: 0}
   locationLoader: {fileID: 554902163}
+  playerActionManager: {fileID: 1099258317}
+  playerControlManager: {fileID: 82711421}
 --- !u!4 &920258809
 Transform:
   m_ObjectHideFlags: 0
@@ -1340,19 +1400,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d5de01c133bd24ca44a7a681ee92f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPressed: 0
   OnPressed:
-    m_PersistentCalls:
-      m_Calls: []
-  OnReleased:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHold:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1099258317}
         m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
-        m_MethodName: BlockHold
+        m_MethodName: BlockPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnReleased:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1099258317}
+        m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
+        m_MethodName: BlockReleased
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1416,10 +1484,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdb1a85c4bce70d46a13258b87dacccc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeAttackButton: {fileID: 1666475985}
-  blockButton: {fileID: 1180786278}
-  distantAttackButton: {fileID: 1570979454}
-  buttonsManager: {fileID: 1099258317}
 --- !u!1 &1374383085
 GameObject:
   m_ObjectHideFlags: 0
@@ -1472,7 +1536,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d5de01c133bd24ca44a7a681ee92f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPressed: 0
   OnPressed:
     m_PersistentCalls:
       m_Calls:
@@ -1503,9 +1566,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnHold:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1374383088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2128,7 +2188,6 @@ GameObject:
   - component: {fileID: 1567217573}
   - component: {fileID: 1567217572}
   - component: {fileID: 1567217571}
-  - component: {fileID: 1567217570}
   m_Layer: 5
   m_Name: InventoryButton
   m_TagString: Untagged
@@ -2156,40 +2215,6 @@ RectTransform:
   m_AnchoredPosition: {x: -835, y: 408.6975}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &1567217570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1567217568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59d5de01c133bd24ca44a7a681ee92f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPressed: 0
-  OnPressed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1099258317}
-        m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
-        m_MethodName: OpenInventoryPressed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnReleased:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHold:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1567217571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2237,18 +2262,6 @@ MonoBehaviour:
       - m_Target: {fileID: 814717073}
         m_TargetAssemblyTypeName: InventoryUI, Assembly-CSharp
         m_MethodName: OpenInventory
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Container, Assembly-CSharp
-        m_MethodName: DebugInventory
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2348,19 +2361,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d5de01c133bd24ca44a7a681ee92f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPressed: 0
   OnPressed:
-    m_PersistentCalls:
-      m_Calls: []
-  OnReleased:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHold:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1099258317}
         m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
-        m_MethodName: DistanceAttackHold
+        m_MethodName: DistanceAttackPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnReleased:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1099258317}
+        m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
+        m_MethodName: DistanceAttackReleased
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2666,19 +2687,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d5de01c133bd24ca44a7a681ee92f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPressed: 0
   OnPressed:
-    m_PersistentCalls:
-      m_Calls: []
-  OnReleased:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHold:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1099258317}
         m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
-        m_MethodName: MeleeAttackHold
+        m_MethodName: MeleeAttackPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnReleased:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1099258317}
+        m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
+        m_MethodName: MeleeAttackReleased
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
