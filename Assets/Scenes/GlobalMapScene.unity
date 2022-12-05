@@ -842,7 +842,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnClickEvent:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 2015492136}
+      _MethodName: LoadGameSceneWithLocation
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 2
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
 --- !u!64 &162597629
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6188,7 +6199,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2015492135}
   - component: {fileID: 2015492136}
-  - component: {fileID: 2015492137}
   m_Layer: 0
   m_Name: GlobalMapManager
   m_TagString: Untagged
@@ -6221,18 +6231,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68ed71ff86b9997479447440dd73a5b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2015492137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2015492133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 388dd3e115c547248b126c94f304b5c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2042672850
