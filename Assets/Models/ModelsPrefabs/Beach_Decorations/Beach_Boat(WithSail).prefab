@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4796043497157526725}
   - component: {fileID: 8440066429069986656}
   - component: {fileID: 5964407455008587690}
-  - component: {fileID: 397024607826288225}
   - component: {fileID: 7257249922941684209}
   m_Layer: 0
   m_Name: Beach_Boat(WithSail)
@@ -85,19 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &397024607826288225
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5315699512475770495}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 8.036931, y: 5.706682, z: 2.1013756}
-  m_Center: {x: -0.24549568, y: 2.77845, z: 0.007445872}
 --- !u!64 &7257249922941684209
 MeshCollider:
   m_ObjectHideFlags: 0
