@@ -23,6 +23,10 @@ public class FixedJoystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IPo
         handle = gameObject;
         handleBackground = handle.transform.parent.gameObject;
     }
+    public void SetControlManager(ControlManager controlManager)
+    {
+        this.controlManager = controlManager;
+    }
 
     void Update()
     {
