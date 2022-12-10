@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,9 +16,15 @@ public class Keyboard : MonoBehaviour
 
     private void Start()
     {
-        actionManager = Links.instance.playerActionManager;
-        controlManager = Links.instance.playerControlManager;
         camera = Links.instance.mainCamera.GetComponent<CameraFollowing>();
+    }
+    public void SetActionManager(ActionManager actionManager)
+    {
+        this.actionManager = actionManager;
+    }
+    public void SetControlManager(ControlManager controlManager)
+    {
+        this.controlManager = controlManager;
     }
     void Update()
     {
@@ -35,32 +39,33 @@ public class Keyboard : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            actionManager.PickUpItemPressed();
+            actionManager.OnOpenInventoryPressed();
         }
         if (Input.GetMouseButtonDown(0))
         {
-            actionManager.MeleeAttackPressed();
-        }        
+            actionManager.isMeleeAttackActing = true;
+        }
         if (Input.GetMouseButtonUp(0))
         {
-            actionManager.MeleeAttackReleased();
+            actionManager.isMeleeAttackActing = false;
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            actionManager.DistanceAttackPressed();
+            actionManager.isDistantAttackActing = true;
         }
         if (Input.GetKeyUp(KeyCode.Q))
         {
-            actionManager.DistanceAttackReleased();
+            actionManager.isDistantAttackActing = false;
         }
 
         if (Input.GetMouseButtonDown(1))
         {
-            actionManager.BlockPressed();
+            actionManager.isBlockActing = true;
         }
         if (Input.GetMouseButtonUp(1))
         {
-            actionManager.BlockReleased();
+            actionManager.isBlockActing = false;
+
         }
     }
     public void MovePlayer()

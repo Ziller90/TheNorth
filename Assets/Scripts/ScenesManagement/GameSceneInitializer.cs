@@ -12,14 +12,10 @@ public class GameSceneInitializer : MonoBehaviourPunCallbacks
     [SerializeField] GameObject Humanoid;
     [SerializeField] GameObject MultiplayerHumanoid;
 
-    ControlManager playerControlManager;
-    ActionManager playerActionManager;
     public UnityAction sceneInitialized;
 
     public void Start()
     {
-        playerActionManager = Links.instance.playerActionManager;
-        playerControlManager = Links.instance.playerControlManager;
         InitializeScene();
     }
     public void InitializeScene()
@@ -34,7 +30,7 @@ public class GameSceneInitializer : MonoBehaviourPunCallbacks
         if (GameSceneLauncher.LocationToLoadGameType == GameType.Singleplayer)
         {
             playerCharacter = Instantiate(Humanoid, Links.instance.locationSettings.GetRandomSpawnPoint().position, Quaternion.identity);
-            SetHumanoidAsMainCharacter(playerCharacter);
+            SetMainCharacter(playerCharacter);
         }
         else if (GameSceneLauncher.LocationToLoadGameType == GameType.DeathMatch)
         {
@@ -43,17 +39,22 @@ public class GameSceneInitializer : MonoBehaviourPunCallbacks
             playerCharacter = PhotonNetwork.Instantiate(MultiplayerHumanoid.name, Links.instance.locationSettings.GetRandomSpawnPoint().position, Quaternion.identity, 0);
             if (playerCharacter.GetComponent<PhotonView>().IsMine)
             {
-                SetHumanoidAsMainCharacter(playerCharacter);
+                SetMainCharacter(playerCharacter);
             }
         }
     }
-    public void SetHumanoidAsMainCharacter(GameObject humanoid)
+    public void SetMainCharacter(GameObject character)
     {
-        Links.instance.mainCamera.GetComponent<CameraFollowing>().SetObjectToFollow(humanoid);
-        humanoid.GetComponent<CharacterContoller>().SetControlManager(playerControlManager);
-        humanoid.GetComponent<HumanoidBattleSystem>().SetActionManager(playerActionManager);
-        humanoid.GetComponentInChildren<ItemsCollector>().SetActionManager(playerActionManager);
-        Links.instance.playerCharacter = humanoid;
+        Links.instance.mainCamera.GetComponent<CameraFollowing>().SetObjectToFollow(character);
+
+        ActionManager characterActionManager = character.GetComponentInChildren<ActionManager>();
+        ControlManager characterControlManager = character.GetComponentInChildren<ControlManager>();
+
+        Links.instance.fixedJoystick.SetControlManager(characterControlManager);
+        Links.instance.keyboard.SetControlManager(characterControlManager);
+        Links.instance.keyboard.SetActionManager(characterActionManager);
+        Links.instance.mobileButtonsManager.SetActionManager(characterActionManager);
+        Links.instance.playerCharacter = character;
     }
     public void LeaveRoom()
     {

@@ -309,52 +309,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 50793418}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &82711420
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 82711422}
-  - component: {fileID: 82711421}
-  m_Layer: 0
-  m_Name: PlayerControlManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &82711421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 82711420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45144f12134c96949b5eead509ca4b32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &82711422
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 82711420}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -52.4358, y: -87.21724, z: 91.49289}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -567,7 +523,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &340197527
 GameObject:
@@ -645,6 +601,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 340197527}
   m_CullTransparentMesh: 1
+--- !u!1 &354176948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 354176950}
+  - component: {fileID: 354176949}
+  m_Layer: 0
+  m_Name: MobileButtonsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &354176949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354176948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb8e55b2985879b42954cad177a42239, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &354176950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354176948}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 286.302, y: 433.97232, z: -498.10675}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &427277087
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47691a74f354e9c4f9eb7f361124029d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Humanoid: {fileID: 6115228454438917361, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
+  Humanoid: {fileID: 6439854897359320461, guid: 0b40d15945e8c2544a14fc74aa2aebd1, type: 3}
   MultiplayerHumanoid: {fileID: 8093515946563986235, guid: 136bbbe3260ffea429a42ac10e03438b, type: 3}
 --- !u!4 &427277089
 Transform:
@@ -689,7 +689,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &554902162
 GameObject:
@@ -740,7 +740,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &576723544
 GameObject:
@@ -924,7 +924,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &687819454
 MonoBehaviour:
@@ -1186,8 +1186,9 @@ MonoBehaviour:
   sceneInitializer: {fileID: 427277088}
   playerCharacter: {fileID: 0}
   locationLoader: {fileID: 554902163}
-  playerActionManager: {fileID: 1099258317}
-  playerControlManager: {fileID: 82711421}
+  keyboard: {fileID: 50793419}
+  fixedJoystick: {fileID: 1476434604}
+  mobileButtonsManager: {fileID: 354176949}
 --- !u!4 &920258809
 Transform:
   m_ObjectHideFlags: 0
@@ -1201,55 +1202,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1099258315
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1099258316}
-  - component: {fileID: 1099258317}
-  m_Layer: 0
-  m_Name: PlayerActionsManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1099258316
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1099258315}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1339.6754, y: 300.96332, z: -232.29333}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1099258317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1099258315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 213717ecb8f229940b4e35d12aa31f6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isMeleeAttackActing: 0
-  isDistantAttackActing: 0
-  isBlockActing: 0
 --- !u!224 &1102740319 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7410352327466596763, guid: 337c4eb377c4dad4488e5260b0e59fb8, type: 3}
@@ -1404,8 +1358,8 @@ MonoBehaviour:
   OnPressed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1099258317}
-        m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
+      - m_Target: {fileID: 354176949}
+        m_TargetAssemblyTypeName: MobileButtonsManager, Assembly-CSharp
         m_MethodName: BlockPressed
         m_Mode: 1
         m_Arguments:
@@ -1419,8 +1373,8 @@ MonoBehaviour:
   OnReleased:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1099258317}
-        m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
+      - m_Target: {fileID: 354176949}
+        m_TargetAssemblyTypeName: MobileButtonsManager, Assembly-CSharp
         m_MethodName: BlockReleased
         m_Mode: 1
         m_Arguments:
@@ -1440,7 +1394,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1228862738}
-  - component: {fileID: 1228862739}
   m_Layer: 5
   m_Name: MobileButtonsManager
   m_TagString: Untagged
@@ -1473,18 +1426,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1228862739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1228862737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdb1a85c4bce70d46a13258b87dacccc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1374383085
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,8 +1481,8 @@ MonoBehaviour:
   OnPressed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1099258317}
-        m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
+      - m_Target: {fileID: 354176949}
+        m_TargetAssemblyTypeName: MobileButtonsManager, Assembly-CSharp
         m_MethodName: PickUpItemPressed
         m_Mode: 1
         m_Arguments:
@@ -1555,7 +1496,7 @@ MonoBehaviour:
   OnReleased:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1099258315}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: 
         m_Mode: 1
@@ -1998,7 +1939,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1476434602
 GameObject:
@@ -2054,7 +1995,7 @@ MonoBehaviour:
   handle: {fileID: 1476434602}
   horizontal: 0
   vertical: 0
-  controlManager: {fileID: 82711421}
+  controlManager: {fileID: 0}
   camera: {fileID: 888760}
   maxMagnitude: 100
   modificatorToWalk: 0.2
@@ -2365,8 +2306,8 @@ MonoBehaviour:
   OnPressed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1099258317}
-        m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
+      - m_Target: {fileID: 354176949}
+        m_TargetAssemblyTypeName: MobileButtonsManager, Assembly-CSharp
         m_MethodName: DistanceAttackPressed
         m_Mode: 1
         m_Arguments:
@@ -2380,8 +2321,8 @@ MonoBehaviour:
   OnReleased:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1099258317}
-        m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
+      - m_Target: {fileID: 354176949}
+        m_TargetAssemblyTypeName: MobileButtonsManager, Assembly-CSharp
         m_MethodName: DistanceAttackReleased
         m_Mode: 1
         m_Arguments:
@@ -2540,7 +2481,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1666475980
 GameObject:
@@ -2691,8 +2632,8 @@ MonoBehaviour:
   OnPressed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1099258317}
-        m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
+      - m_Target: {fileID: 354176949}
+        m_TargetAssemblyTypeName: MobileButtonsManager, Assembly-CSharp
         m_MethodName: MeleeAttackPressed
         m_Mode: 1
         m_Arguments:
@@ -2706,8 +2647,8 @@ MonoBehaviour:
   OnReleased:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1099258317}
-        m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
+      - m_Target: {fileID: 354176949}
+        m_TargetAssemblyTypeName: MobileButtonsManager, Assembly-CSharp
         m_MethodName: MeleeAttackReleased
         m_Mode: 1
         m_Arguments:

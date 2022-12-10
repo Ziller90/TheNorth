@@ -15,8 +15,9 @@ public class Links : MonoBehaviour
     public GameSceneInitializer sceneInitializer;
     public GameObject playerCharacter;
     public LocationLoader locationLoader;
-    public ActionManager playerActionManager;
-    public ControlManager playerControlManager;
+    public Keyboard keyboard;
+    public FixedJoystick fixedJoystick;
+    public MobileButtonsManager mobileButtonsManager;
 
     public void Awake()
     {
