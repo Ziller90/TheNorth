@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class HitBox : MonoBehaviour
+public class HitBox : MonoBehaviourPun
 {
     [SerializeField] Health health;
     [SerializeField] float hitBoxDamageModificator;
@@ -16,12 +18,26 @@ public class HitBox : MonoBehaviour
         {
             if (Vector3.Angle(-battleSystem.GetHitVector(hitPoint), thisCreature.forward) > battleSystem.shieldProtectionAngle / 2)
             {
-                health.GetDamage(damage * hitBoxDamageModificator);
+                if (GameSceneLauncher.LocationToLoadGameType == GameType.DeathMatch && PhotonNetwork.IsMasterClient)
+                {
+                    health.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, damage);
+                }
+                else if (GameSceneLauncher.LocationToLoadGameType == GameType.Singleplayer)
+                {
+                    health.GetDamage(damage);
+                }
             }
         }
         else
         {
-            health.GetDamage(damage * hitBoxDamageModificator);
+            if (GameSceneLauncher.LocationToLoadGameType == GameType.DeathMatch && PhotonNetwork.IsMasterClient)
+            {
+                health.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, damage);
+            }
+            else if (GameSceneLauncher.LocationToLoadGameType == GameType.Singleplayer)
+            {
+                health.GetDamage(damage);
+            }
         }
     }
 }

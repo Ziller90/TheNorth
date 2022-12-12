@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
+
 
 public enum MovingMode
 {
@@ -10,8 +13,8 @@ public enum MovingMode
 }
 public class ControlManager : MonoBehaviour
 {
-    Vector3 direction;
-    MovingMode movingMode;
+    Vector3 direction = new Vector3(0,0,0);
+    MovingMode movingMode = MovingMode.Stand;
 
     public void SetControl(Vector3 direction, MovingMode movingMode)
     {
