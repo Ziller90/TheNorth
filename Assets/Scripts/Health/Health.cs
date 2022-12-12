@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class Health : MonoBehaviour
+public class Health : MonoBehaviourPun
 {
     [SerializeField] float maxHealth;
     float currentHealth;
@@ -15,6 +17,7 @@ public class Health : MonoBehaviour
     {
         currentHealth = maxHealth;
     }
+    [PunRPC]
     public void GetDamage(float damage)
     {
         currentHealth -= damage;

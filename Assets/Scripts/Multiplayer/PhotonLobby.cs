@@ -31,9 +31,16 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         startGameButton.onClick.AddListener(GoToGameScene);
         leaveLobby.onClick.AddListener(LeaveLobby);
 
+        PhotonNetwork.SendRate = 60;
+        PhotonNetwork.SerializationRate = 60;
+
+        Connect();
+        PhotonNetwork.GameVersion = gameVersion;
+    }
+    public void Connect()
+    {
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.ConnectToRegion(region);
-        PhotonNetwork.GameVersion = gameVersion;
     }
     public void JoinRoomByName()
     {
@@ -69,6 +76,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public override void OnDisconnected(DisconnectCause cause)
     {
         Debug.Log("You are disconnected!");
+        Debug.Log(cause.ToString());
     }
     public override void OnCreatedRoom()
     {
