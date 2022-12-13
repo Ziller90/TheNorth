@@ -10,6 +10,7 @@ public class ReplaceGameObjects : ScriptableWizard
 {
     public bool copyValues = true;
     public GameObject useGameObject;
+    public GameObject parentPrefab;
     public List<GameObject> Replaces;
 
     [MenuItem("Custom/Replace GameObjects")]
@@ -26,11 +27,13 @@ public class ReplaceGameObjects : ScriptableWizard
         {
             GameObject newObject;
             newObject = (GameObject)PrefabUtility.InstantiatePrefab(useGameObject);
+            newObject.transform.SetParent(newObject.transform);
+            Debug.Log(newObject.transform.position);
             newObject.transform.position = t.transform.position;
             newObject.transform.rotation = t.transform.rotation;
             newObject.transform.localScale = t.transform.localScale;
 
-            DestroyImmediate(t.gameObject);
+            //DestroyImmediate(t.gameObject);
         }
 
     }
