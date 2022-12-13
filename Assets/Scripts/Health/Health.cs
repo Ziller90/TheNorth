@@ -8,7 +8,7 @@ using Photon.Realtime;
 public class Health : MonoBehaviourPun
 {
     [SerializeField] float maxHealth;
-    float currentHealth;
+    [SerializeField] float currentHealth;
     public float CurrentHealth => currentHealth;
     public float MaxHealth => maxHealth;
 

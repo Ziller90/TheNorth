@@ -20,9 +20,22 @@ public class DeathScreen : MonoBehaviour
         deathScreen.SetActive(true);
         StartCoroutine("FadeIn");
     }
+    public void DeactivateDeathScreen()
+    {
+        deathScreen.SetActive(false);
+        deathScreenGroup.alpha = 0;
+    }
     public void RestartGame()
     {
-        SceneManager.LoadScene(0);
+        if (GameSceneLauncher.LocationToLoadGameType == GameType.Singleplayer)
+        {
+            SceneManager.LoadScene(0);
+        }
+        else if (GameSceneLauncher.LocationToLoadGameType == GameType.DeathMatch)
+        {
+            DeactivateDeathScreen();
+            Links.instance.sceneInitializer.CreatePlayerCharacter();
+        }
     }
     IEnumerator FadeIn()
     {

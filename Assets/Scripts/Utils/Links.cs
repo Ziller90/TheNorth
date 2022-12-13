@@ -18,6 +18,7 @@ public class Links : MonoBehaviour
     public Keyboard keyboard;
     public FixedJoystick fixedJoystick;
     public MobileButtonsManager mobileButtonsManager;
+    public DeathScreen deathScreen;
 
     public void Awake()
     {

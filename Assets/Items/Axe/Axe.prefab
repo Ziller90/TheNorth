@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: -0, y: 0.049925603, z: -0, w: 0.99875295}
   m_LocalPosition: {x: -0.224, y: 0, z: 0.173}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7087786812071082886}
   m_RootOrder: 1
@@ -43,8 +44,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.45860243, y: 0.07048077, z: 0.1467363}
-  m_Center: {x: -0.019707032, y: 0.04815523, z: 0.02995292}
+  m_Size: {x: 0.56315607, y: 0.18311071, z: 0.34984988}
+  m_Center: {x: 0.032569766, y: 0.041816145, z: 0.054362636}
 --- !u!114 &2052125169429036259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,7 +58,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6ff9d4159baa0458d8c2d291f8e72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 10
+  thisCreatureFractionMarker: {fileID: 0}
+  meleeWeaponSounds: {fileID: 0}
+  thisCreatureHealth: {fileID: 0}
+  baseDamage: 5
   hostCreature: {fileID: 0}
 --- !u!1 &7087786812071082882
 GameObject:
@@ -88,6 +92,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7087786812661730303}
   - {fileID: 3083513095653043370}
@@ -123,7 +128,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 1bfb01e7f88ffcd42acdce609a119b22, type: 2}
-  inHand: 0
 --- !u!65 &7087786812071082883
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -165,6 +169,7 @@ Transform:
   m_LocalRotation: {x: -0.12393916, y: -0.21457146, z: 0.7071374, w: 0.66223484}
   m_LocalPosition: {x: 0.10978192, y: 0.045194358, z: 0.032954782}
   m_LocalScale: {x: 0.010000007, y: 0.010000005, z: 0.010000002}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7087786812071082886}
   m_RootOrder: 0
@@ -188,6 +193,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

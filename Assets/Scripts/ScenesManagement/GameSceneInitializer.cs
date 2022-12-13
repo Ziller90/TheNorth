@@ -55,6 +55,7 @@ public class GameSceneInitializer : MonoBehaviourPunCallbacks
         Links.instance.keyboard.SetActionManager(characterActionManager);
         Links.instance.mobileButtonsManager.SetActionManager(characterActionManager);
         Links.instance.playerCharacter = character;
+        character.GetComponentInChildren<Health>().dieEvent += Links.instance.deathScreen.ActivateDeathScreen;
     }
     public void LeaveRoom()
     {
