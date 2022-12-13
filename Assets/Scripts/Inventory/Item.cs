@@ -19,7 +19,7 @@ public class Item : MonoBehaviour
     public Coordinates[] coordianatesInContainer; 
     public Coordinates[] points;
 
-    void Start()
+    void OnEnable()
     {
         Links.instance.globalLists.AddToItemsOnLocation(gameObject.transform);
 

@@ -22,6 +22,10 @@ public class GameSceneInitializer : MonoBehaviourPunCallbacks
     {
         Links.instance.locationLoader.LoadLocation();
         CreatePlayerCharacter();
+        if (GameSceneLauncher.LocationToLoadGameType == GameType.DeathMatch && PhotonNetwork.IsMasterClient)
+        {
+            InstantiatePhotonItemsOnLocation();
+        }
         sceneInitialized?.Invoke();
     }
     public void CreatePlayerCharacter()
@@ -56,6 +60,15 @@ public class GameSceneInitializer : MonoBehaviourPunCallbacks
         Links.instance.mobileButtonsManager.SetActionManager(characterActionManager);
         Links.instance.playerCharacter = character;
         character.GetComponentInChildren<Health>().dieEvent += Links.instance.deathScreen.ActivateDeathScreen;
+    }
+    public void InstantiatePhotonItemsOnLocation()
+    {
+        Debug.Log("Number of items on location" + Links.instance.globalLists.itemsOnLocation.Count);
+        foreach(Transform itemTransfrom in Links.instance.globalLists.itemsOnLocation)
+        {
+            PhotonNetwork.Instantiate(itemTransfrom.gameObject.GetComponent<Item>().itemData.prefab.name, itemTransfrom.position, itemTransfrom.rotation);
+            Destroy(itemTransfrom.gameObject);
+        }
     }
     public void LeaveRoom()
     {
