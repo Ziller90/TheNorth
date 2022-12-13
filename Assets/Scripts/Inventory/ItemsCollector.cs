@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class ItemsCollector : MonoBehaviour
 {
@@ -47,7 +49,10 @@ public class ItemsCollector : MonoBehaviour
     }
     public void AddItemToContainer() 
     {
-        Debug.Log("Item added to container");
+        if (GameSceneLauncher.LocationToLoadGameType == GameType.DeathMatch)
+        {
+            nearestItem.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.LocalPlayer);
+        }
         if (hasObjectInRange)
         {
             playerInventoryContainer.AddNewItem(nearestItem.gameObject.GetComponent<Item>());

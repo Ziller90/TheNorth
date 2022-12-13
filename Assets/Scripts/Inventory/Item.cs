@@ -19,10 +19,10 @@ public class Item : MonoBehaviour
     public Coordinates[] coordianatesInContainer; 
     public Coordinates[] points;
 
-    void OnEnable()
+    void OnEnable() => Links.instance.globalLists.AddToItemsOnLocation(gameObject.transform);
+    void OnDisable() => Links.instance.globalLists.RemoveFromItemsOnLocation(gameObject.transform);
+    private void Start()
     {
-        Links.instance.globalLists.AddToItemsOnLocation(gameObject.transform);
-
         switch (itemData.size)
         {
             case ItemData.sizeInInventory.OneCell:
