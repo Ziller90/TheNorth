@@ -22,7 +22,7 @@ public class GameSceneInitializer : MonoBehaviourPunCallbacks
     {
         Links.instance.locationLoader.LoadLocation();
         CreatePlayerCharacter();
-        if (GameSceneLauncher.LocationToLoadGameType == GameType.DeathMatch && PhotonNetwork.IsMasterClient)
+        if (GameSceneLauncher.LocationToLoadGameType == GameType.DeathMatch)
         {
             InstantiatePhotonItemsOnLocation();
         }
@@ -63,11 +63,14 @@ public class GameSceneInitializer : MonoBehaviourPunCallbacks
     }
     public void InstantiatePhotonItemsOnLocation()
     {
-        Debug.Log("Number of items on location" + Links.instance.globalLists.itemsOnLocation.Count);
-        foreach(Transform itemTransfrom in Links.instance.globalLists.itemsOnLocation)
+        List<Transform> items = Links.instance.globalLists.itemsOnLocation;
+        for (int i = 0; i < Links.instance.globalLists.itemsOnLocation.Count; i++)
         {
-            PhotonNetwork.Instantiate(itemTransfrom.gameObject.GetComponent<Item>().itemData.prefab.name, itemTransfrom.position, itemTransfrom.rotation);
-            Destroy(itemTransfrom.gameObject);
+            if (PhotonNetwork.IsMasterClient)
+            {
+               PhotonView newObject = PhotonNetwork.Instantiate("ItemsPrefabs/" + items[0].gameObject.GetComponent<Item>().itemData.prefab.name, items[0].position, items[0].rotation).GetComponent<PhotonView>();
+            }
+            Destroy(Links.instance.globalLists.itemsOnLocation[0].gameObject);
         }
     }
     public void LeaveRoom()
