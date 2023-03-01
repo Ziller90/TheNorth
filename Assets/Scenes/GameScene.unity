@@ -202,7 +202,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888756}
   m_LocalRotation: {x: 0.4030582, y: 0.272532, z: -0.12708373, w: 0.86436117}
-  m_LocalPosition: {x: -2.17, y: 6.15, z: -3.17}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -222,9 +222,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraYRotation: 0
+  startRotation: {x: 0.42660022, y: 0.33944434, z: -0.1767036, w: 0.819491}
+  startOffset: {x: -5, y: 10, z: -5}
   objectToFollow: {fileID: 0}
-  standartOffset: {x: -3.44, y: 6.15, z: -4.53}
-  zoom: 1.65
+  zoom: 1
+  follow: 1
 --- !u!114 &888761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,7 +572,7 @@ MonoBehaviour:
   - {fileID: 746199878580276533, guid: 68e9ccad122439745bdb2025ae5525ab, type: 3}
   - {fileID: 746199878580276533, guid: 82da40de7b462e74da6a73c50f8b861a, type: 3}
   locationToLoadIndex: 1
-  loadLocationFromGlobalMap: 1
+  loadLocationFromGlobalMap: 0
 --- !u!4 &554902164
 Transform:
   m_ObjectHideFlags: 0
