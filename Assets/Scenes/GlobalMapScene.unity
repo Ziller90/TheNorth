@@ -586,7 +586,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654847286}
   m_LocalRotation: {x: 0.34202015, y: -0, z: -0, w: 0.9396927}
-  m_LocalPosition: {x: 0, y: 13.819932, z: -16.469955}
+  m_LocalPosition: {x: 0.0000113248825, y: 14.773711, z: -22.85313}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -655,10 +655,9 @@ MonoBehaviour:
   startObservedObject: {fileID: 1681607820}
   zoom: 0.5
   rotationAngle: 0
-  TestRotationAngle: 0
-  TestObservedPoint: {x: 2, y: 5, z: 10}
   viewAngle: 40
-  observedPoint: {x: 0, y: 0, z: 0}
+  observedPoint: {x: 0.000011086464, y: 0.95377994, z: -6.383177}
+  cameraHeight: 0
   minDistanceToObservedPoint: 3
   maxDistanceToObservedPoint: 40
   zoomCameraSpeedModifier: 2
@@ -674,7 +673,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a53b2264e9dd9d43b6fba5d751c85d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraMovingSpeed: 0.02
+  cameraOneTouchMovingSpeed: 0.03
+  cameraTwoTouchesMovingSpeed: 0.005
   cameraZoomSpeed: 0.001
   cameraRotationSpeed: 0.08
 --- !u!114 &654847294
