@@ -11,10 +11,10 @@ public class RTSCameraPCControl : MonoBehaviour
         Move,
         Rotate
     }
-    [SerializeField] float cameraSwipeMovingSpeed;
-    [SerializeField] float cameraWASDMovingSpeed;
-    [SerializeField] float cameraZoomSpeed;
-    [SerializeField] float cameraRotationSpeed;
+    [SerializeField] float swipeMovingSpeed;
+    [SerializeField] float WASDMovingSpeed;
+    [SerializeField] float zoomSpeed;
+    [SerializeField] float rotationSpeed;
 
     Vector3 fixedScreenPoint;
     Vector3 fixedObservedPoint;
@@ -27,8 +27,13 @@ public class RTSCameraPCControl : MonoBehaviour
     }
     void Update()
     {
-        cameraManager.SetZoom(cameraManager.Zoom - Input.GetAxis("Mouse ScrollWheel") * cameraZoomSpeed);
+        cameraManager.SetZoom(cameraManager.Zoom - Input.GetAxis("Mouse ScrollWheel") * zoomSpeed);
+
         Quaternion cameraYRotation = Quaternion.Euler(0, gameObject.transform.eulerAngles.y, 0);
+
+        Vector3 WASDMoveVector = cameraYRotation * Utils.CalculateWASDVector() * WASDMovingSpeed;
+        if (WASDMoveVector.magnitude > 0)
+            cameraManager.SetObservedPoint(cameraManager.ObservedPoint + WASDMoveVector);
 
         if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse1)) && mode == ControlMode.None) 
         {
@@ -49,18 +54,14 @@ public class RTSCameraPCControl : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0) && mode == ControlMode.Move) 
         {
             Vector3 mouseDragVector = fixedScreenPoint - Input.mousePosition;
-            Vector3 swipeMoveVector = cameraYRotation * new Vector3(mouseDragVector.x, 0, mouseDragVector.y) * cameraSwipeMovingSpeed;
-            Debug.Log(" swipeMoveVector " +  swipeMoveVector);
+            Vector3 swipeMoveVector = cameraYRotation * new Vector3(mouseDragVector.x, 0, mouseDragVector.y) * swipeMovingSpeed;
             cameraManager.SetObservedPoint(fixedObservedPoint + swipeMoveVector);
         }
         if (Input.GetKey(KeyCode.Mouse1) && mode == ControlMode.Rotate)
         {
             Vector3 mouseDragVector = fixedScreenPoint - Input.mousePosition;
-            float rotationAngle = mouseDragVector.x * cameraRotationSpeed;
+            float rotationAngle = mouseDragVector.x * rotationSpeed;
             cameraManager.SetRotation(fixedCameraRotation + rotationAngle);
         }
-        Vector3 WASDMoveVector = cameraYRotation * Utils.CalculateWASDVector() * cameraWASDMovingSpeed;
-        if (WASDMoveVector.magnitude > 0)
-            cameraManager.SetObservedPoint(cameraManager.ObservedPoint + WASDMoveVector);
     }
 }

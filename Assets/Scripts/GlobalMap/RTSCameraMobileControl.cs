@@ -6,15 +6,20 @@ using UnityEngine;
 [RequireComponent(typeof(RTSCamera))]
 public class RTSCameraMobileControl : MonoBehaviour
 {
-    [SerializeField] float cameraMovingSpeed;
+    [SerializeField] float cameraOneTouchMovingSpeed;
+    [SerializeField] float cameraTwoTouchesMovingSpeed;
+
     [SerializeField] float cameraZoomSpeed;
     [SerializeField] float cameraRotationSpeed;
 
     Vector2 oldTouchPosition;
     Vector2 oldTwoTouchesVector;
+    Vector2 oldTwoTouchesMiddlePosition;
+    float oldZoomTouchesDistance;
+
     bool movingOnPreviousFrame = false;
     bool zoomingOnPreviousFrame = false;
-    float oldZoomTouchesDistance;
+
     RTSCamera cameraManager;
 
     void Start()
@@ -29,8 +34,10 @@ public class RTSCameraMobileControl : MonoBehaviour
             {
                 oldZoomTouchesDistance = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
                 oldTwoTouchesVector = Input.GetTouch(0).position - Input.GetTouch(1).position;
+                oldTwoTouchesMiddlePosition = Vector2.Lerp(Input.GetTouch(0).position, Input.GetTouch(1).position, 0.5f);
                 zoomingOnPreviousFrame = true;
             }
+            cameraManager.SetObservedPoint(cameraManager.ObservedPoint + GetMoveVectorByTwoTouches());
             cameraManager.SetRotation(cameraManager.RotationAngle + GetRotationAngle());
             cameraManager.SetZoom(cameraManager.Zoom + GetZoomModifier());
         }
@@ -38,6 +45,7 @@ public class RTSCameraMobileControl : MonoBehaviour
         {
             zoomingOnPreviousFrame = false;
         }
+
         if (Input.touchCount == 1)
         {
             if (!movingOnPreviousFrame)
@@ -52,11 +60,19 @@ public class RTSCameraMobileControl : MonoBehaviour
             movingOnPreviousFrame = false;
         }
     }
+    Vector3 GetMoveVectorByTwoTouches()
+    {
+        Vector2 newTwoTouchesMiddlePosition = Vector2.Lerp(Input.GetTouch(0).position, Input.GetTouch(1).position, 0.5f);
+        Vector2 twoTouchesMoveVector = oldTwoTouchesMiddlePosition - newTwoTouchesMiddlePosition;
+        Quaternion cameraYRotation = Quaternion.Euler(0, gameObject.transform.eulerAngles.y, 0);
+        oldTwoTouchesMiddlePosition = newTwoTouchesMiddlePosition;
+        return cameraYRotation * new Vector3(twoTouchesMoveVector.x, 0, twoTouchesMoveVector.y) * cameraTwoTouchesMovingSpeed;
+    }
     Vector3 GetMoveVectorByTouch()
     {
         Vector2 touchMove = oldTouchPosition - Input.GetTouch(0).position;
         Quaternion cameraYRotation = Quaternion.Euler(0, gameObject.transform.eulerAngles.y, 0);
-        Vector3 moveVector = cameraYRotation * new Vector3(touchMove.x, 0, touchMove.y) * cameraMovingSpeed;
+        Vector3 moveVector = cameraYRotation * new Vector3(touchMove.x, 0, touchMove.y) * cameraOneTouchMovingSpeed;
         oldTouchPosition = Input.GetTouch(0).position;
         return moveVector;
     }
