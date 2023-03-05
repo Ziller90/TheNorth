@@ -57,7 +57,6 @@ public class Keyboard : MonoBehaviour
         {
             actionManager.isDistantAttackActing = false;
         }
-
         if (Input.GetMouseButtonDown(1))
         {
             actionManager.isBlockActing = true;
@@ -70,40 +69,8 @@ public class Keyboard : MonoBehaviour
     }
     public void MovePlayer()
     {
-        if (Input.GetKey(KeyCode.W) && (Input.GetKey(KeyCode.S)))
-        {
-            vertical = 0;
-        }
-        else if (Input.GetKey(KeyCode.W))
-        {
-            vertical = 1;
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            vertical = -1;
-        }
-        else
-        {
-            vertical = 0;
-        }
-
-        if (Input.GetKey(KeyCode.A) && (Input.GetKey(KeyCode.D)))
-        {
-            horizontal = 0;
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            horizontal = 1;
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            horizontal = -1;
-        }
-        else
-        {
-            horizontal = 0;
-        }
-        direction = Utils.GetDirection(horizontal, vertical, camera.cameraYRotation);
+        Quaternion fixQuaternion = Quaternion.Euler(0, camera.cameraYRotation, 0);
+        direction = fixQuaternion * Utils.CalculateWASDVector();
         if (direction.magnitude > 0)
         {
             controlManager.SetControl(direction, MovingMode.Run);

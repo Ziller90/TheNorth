@@ -52,4 +52,44 @@ public class Utils : MonoBehaviour
         }
         return nearestPoint;
     }
+    public static Vector3 CalculateWASDVector()
+    {
+        float vertical;
+        float horizontal;
+
+        if (Input.GetKey(KeyCode.W) && (Input.GetKey(KeyCode.S)))
+        {
+            vertical = 0;
+        }
+        else if (Input.GetKey(KeyCode.W))
+        {
+            vertical = 1;
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            vertical = -1;
+        }
+        else
+        {
+            vertical = 0;
+        }
+
+        if (Input.GetKey(KeyCode.A) && (Input.GetKey(KeyCode.D)))
+        {
+            horizontal = 0;
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            horizontal = 1;
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            horizontal = -1;
+        }
+        else
+        {
+            horizontal = 0;
+        }
+        return Vector3.ClampMagnitude(new Vector3(horizontal, 0, vertical), 1);
+    }
 }
