@@ -10,7 +10,7 @@ public class RTSCameraMobileControl : MonoBehaviour
     [SerializeField] float cameraZoomSpeed;
     [SerializeField] float cameraRotationSpeed;
 
-    Touch oldTouch;
+    Vector2 oldTouchPosition;
     Vector2 oldTwoTouchesVector;
     bool movingOnPreviousFrame = false;
     bool zoomingOnPreviousFrame = false;
@@ -31,8 +31,8 @@ public class RTSCameraMobileControl : MonoBehaviour
                 oldTwoTouchesVector = Input.GetTouch(0).position - Input.GetTouch(1).position;
                 zoomingOnPreviousFrame = true;
             }
-            cameraManager.SetZoom(cameraManager.Zoom + GetZoomModifier());
             cameraManager.SetRotation(cameraManager.RotationAngle + GetRotationAngle());
+            cameraManager.SetZoom(cameraManager.Zoom + GetZoomModifier());
         }
         else
         {
@@ -42,22 +42,22 @@ public class RTSCameraMobileControl : MonoBehaviour
         {
             if (!movingOnPreviousFrame)
             {
-                oldTouch = Input.GetTouch(0);
+                oldTouchPosition = Input.GetTouch(0).position;
                 movingOnPreviousFrame = true;
             }
-            cameraManager.SetObservedPoint(cameraManager.ObservedPoint + GetMoveVectorByTouches());
+            cameraManager.SetObservedPoint(cameraManager.ObservedPoint + GetMoveVectorByTouch());
         }
         else
         {
             movingOnPreviousFrame = false;
         }
     }
-    Vector3 GetMoveVectorByTouches()
+    Vector3 GetMoveVectorByTouch()
     {
-        Vector2 touchMove = oldTouch.position - Input.GetTouch(0).position;
+        Vector2 touchMove = oldTouchPosition - Input.GetTouch(0).position;
         Quaternion cameraYRotation = Quaternion.Euler(0, gameObject.transform.eulerAngles.y, 0);
         Vector3 moveVector = cameraYRotation * new Vector3(touchMove.x, 0, touchMove.y) * cameraMovingSpeed;
-        oldTouch = Input.GetTouch(0);
+        oldTouchPosition = Input.GetTouch(0).position;
         return moveVector;
     }
     float GetRotationAngle()
