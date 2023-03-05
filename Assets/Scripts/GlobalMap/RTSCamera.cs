@@ -25,7 +25,7 @@ public class RTSCamera : MonoBehaviour
     public Vector3 ObservedPoint => observedPoint;
 
     Vector3 rotationPoint;
-    Vector3 realObservingPoint;
+    Vector3 observedPointWithHeight;
 
     public void Awake()
     {
@@ -40,15 +40,16 @@ public class RTSCamera : MonoBehaviour
     public void SetObservedPoint(Vector3 newObservedPoint)
     {
         observedPoint = SetPointInBox(newObservedPoint);
-        transform.position = observedPoint + Quaternion.Euler(-(90 - viewAngle), 0, 0) * Vector3.up;
+        observedPointWithHeight = GetObservedPointWithHeight(observedPoint);
+        transform.position = observedPointWithHeight + Quaternion.Euler(-(90 - viewAngle), 0, 0) * Vector3.up;
         transform.rotation = Quaternion.Euler(viewAngle, 0, transform.rotation.z);
         SetRotation(rotationAngle);
         SetZoom(zoom);
     }
-    Vector3 GetRealObservedPoint(Vector3 observedPoint)
+    Vector3 GetObservedPointWithHeight(Vector3 observedPoint)
     {
         RaycastHit hit;
-        bool hitObject = Physics.Raycast(transform.position, observedPoint - transform.position, out hit, 100000);
+        bool hitObject = Physics.Raycast(new Vector3(observedPoint.x, 50, observedPoint.z), new Vector3(0, -1, 0), out hit, 100000);
         if (hitObject)
         {
             return hit.point;
@@ -59,22 +60,22 @@ public class RTSCamera : MonoBehaviour
     {
         zoom = Mathf.Clamp01(zoom);
         this.zoom = zoom;
-        Vector3 observedPointToCamera = (transform.position - observedPoint).normalized;
-        Vector3 minZoomBoundingPoint = observedPoint + observedPointToCamera * minDistanceToObservedPoint;
-        Vector3 maxZoomBoundingPoint = observedPoint + observedPointToCamera * maxDistanceToObservedPoint;
+        Vector3 observedPointToCamera = (transform.position - observedPointWithHeight).normalized;
+        Vector3 minZoomBoundingPoint = observedPointWithHeight + observedPointToCamera * minDistanceToObservedPoint;
+        Vector3 maxZoomBoundingPoint = observedPointWithHeight + observedPointToCamera * maxDistanceToObservedPoint;
         transform.position = Vector3.Lerp(minZoomBoundingPoint, maxZoomBoundingPoint, zoom);
     }
     public void SetRotation(float angle)
     {
-        rotationPoint = GetRotatioinPoint(observedPoint);
+        rotationPoint = GetRotatioinPoint();
         float currentRotationAngle = GetCurrentRotationAngle();
         float difference = angle - currentRotationAngle;
         transform.RotateAround(rotationPoint, Vector3.up, -difference);
         rotationAngle = GetCurrentRotationAngle();
     }
-    Vector3 GetRotatioinPoint(Vector3 ObservedPoint)
+    Vector3 GetRotatioinPoint()
     {
-        return new Vector3(observedPoint.x, transform.position.y, observedPoint.z);
+        return new Vector3(observedPointWithHeight.x, transform.position.y, observedPointWithHeight.z);
     }
     public float GetCurrentRotationAngle()
     {
@@ -98,6 +99,8 @@ public class RTSCamera : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(observedPoint, 0.5f);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(observedPointWithHeight, 0.5f);
         Gizmos.DrawRay(transform.position, observedPoint - transform.position);
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(rotationPoint, 0.5f);
