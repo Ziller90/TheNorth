@@ -8,20 +8,22 @@ using UnityEngine.UIElements;
 
 public class RTSCamera : MonoBehaviour
 {
-    [SerializeField] BoxCollider cameraBordersBox;
+    [SerializeField] BoxCollider bordersBox;
     [SerializeField] GameObject startObservedObject;
 
     [SerializeField] float zoom;
+    [SerializeField] float zoomSpeedModifier;
     [SerializeField] float rotationAngle;
     [SerializeField] float viewAngle;
     [SerializeField] Vector3 observedPoint;
 
     [SerializeField] float minDistanceToObservedPoint;
     [SerializeField] float maxDistanceToObservedPoint;
-    [SerializeField] float zoomCameraSpeedModifier;
+
     public float Zoom => zoom;
     public float RotationAngle => rotationAngle;
     public Vector3 ObservedPoint => observedPoint;
+    public float ZoomCameraSpeedModifier => zoomSpeedModifier;
 
     Vector3 rotationPoint;
     Vector3 observedPointWithHeight;
@@ -82,8 +84,8 @@ public class RTSCamera : MonoBehaviour
     }
     Vector3 SetPointInBox(Vector3 point)
     {
-        float Xborder = cameraBordersBox.center.x + cameraBordersBox.size.x / 2;
-        float Zborder = cameraBordersBox.center.z + cameraBordersBox.size.z / 2;
+        float Xborder = bordersBox.center.x + bordersBox.size.x / 2;
+        float Zborder = bordersBox.center.z + bordersBox.size.z / 2;
 
         float ClampedX = Mathf.Clamp(point.x, -Xborder, Xborder);
         float ClampedZ = Mathf.Clamp(point.z, -Zborder, Zborder);
