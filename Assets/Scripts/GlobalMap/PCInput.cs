@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RTSCameraPCControl : MonoBehaviour
+public class PCInput : MonoBehaviour
 {
     enum ControlMode
     {
@@ -16,6 +16,11 @@ public class RTSCameraPCControl : MonoBehaviour
     [SerializeField] float zoomSpeed;
     [SerializeField] float rotationSpeed;
 
+    [SerializeField] float minClickDistanceForClick;
+    
+    ScreenClicksManager screenClicksManager;
+    bool clickRequested;
+    Vector2 startClickPosition;
     Vector3 fixedScreenPoint;
     Vector3 fixedObservedPoint;
     float fixedCameraRotation;
@@ -23,7 +28,8 @@ public class RTSCameraPCControl : MonoBehaviour
     ControlMode mode = ControlMode.None;
     void Start()
     {
-        cameraManager = gameObject.GetComponent<RTSCamera>();
+        cameraManager = GetComponent<RTSCamera>();
+        screenClicksManager = GetComponent<ScreenClicksManager>();
     }
     void Update()
     {
@@ -32,6 +38,7 @@ public class RTSCameraPCControl : MonoBehaviour
         Quaternion cameraYRotation = Quaternion.Euler(0, gameObject.transform.eulerAngles.y, 0);
 
         Vector3 WASDMoveVector = cameraYRotation * Utils.CalculateWASDVector() * WASDMovingSpeed;
+        WASDMoveVector *= (cameraManager.Zoom + 1) * cameraManager.ZoomCameraSpeedModifier;
         if (WASDMoveVector.magnitude > 0)
             cameraManager.SetObservedPoint(cameraManager.ObservedPoint + WASDMoveVector);
 
@@ -55,6 +62,7 @@ public class RTSCameraPCControl : MonoBehaviour
         {
             Vector3 mouseDragVector = fixedScreenPoint - Input.mousePosition;
             Vector3 swipeMoveVector = cameraYRotation * new Vector3(mouseDragVector.x, 0, mouseDragVector.y) * swipeMovingSpeed;
+            swipeMoveVector *= (cameraManager.Zoom + 1) * cameraManager.ZoomCameraSpeedModifier;
             cameraManager.SetObservedPoint(fixedObservedPoint + swipeMoveVector);
         }
         if (Input.GetKey(KeyCode.Mouse1) && mode == ControlMode.Rotate)
@@ -62,6 +70,19 @@ public class RTSCameraPCControl : MonoBehaviour
             Vector3 mouseDragVector = fixedScreenPoint - Input.mousePosition;
             float rotationAngle = mouseDragVector.x * rotationSpeed;
             cameraManager.SetRotation(fixedCameraRotation + rotationAngle);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            clickRequested = true;
+            startClickPosition = Input.mousePosition;
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse0) && clickRequested == true)
+        {
+            float clickDistance = Vector2.Distance(startClickPosition, Input.mousePosition);
+            if (clickDistance < minClickDistanceForClick)
+                screenClicksManager.ScreenClick(Input.mousePosition);
+            clickRequested = false;
         }
     }
 }
