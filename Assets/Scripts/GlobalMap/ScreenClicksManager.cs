@@ -5,12 +5,14 @@ using UnityEngine;
 public class ScreenClicksManager : MonoBehaviour
 {
     [SerializeField] Camera mainCamera;
-    public delegate void ScreenClickDelegate(Vector2 clickPosition);
-    public event ScreenClickDelegate screenClickEvent;
-
     public void ScreenClick(Vector2 clickPosition)
     {
-        screenClickEvent(clickPosition);
+        var clickedObject = GetClickedObject(clickPosition);
+        if (clickedObject != null && clickedObject.GetComponent<ClickableObject>() != null)
+        {
+            var clickedPosition = GetClickPositionInWorld(clickPosition);
+            clickedObject.GetComponent<ClickableObject>().ClickOnObject(clickedPosition);
+        }
     }
     public GameObject GetClickedObject(Vector2 screenClickPosition)
     {
