@@ -20,6 +20,9 @@ public class RTSCamera : MonoBehaviour
     [SerializeField] float minDistanceToObservedPoint;
     [SerializeField] float maxDistanceToObservedPoint;
 
+    [SerializeField] float minZoomeViewAngle;
+    [SerializeField] float maxZoomeViewAngle;
+
     public float Zoom => zoom;
     public float RotationAngle => rotationAngle;
     public Vector3 ObservedPoint => observedPoint;
@@ -99,10 +102,14 @@ public class RTSCamera : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(observedPoint, 0.5f);
+        Gizmos.DrawSphere(observedPoint, 0.1f);
         Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(observedPointWithHeight, 0.5f);
+        Gizmos.DrawSphere(observedPointWithHeight, 0.1f);
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(rotationPoint, 0.5f);
+        Gizmos.DrawSphere(rotationPoint, 0.1f);
+    }
+    public void Update()
+    {
+        SetViewAngle(Mathf.Lerp(minZoomeViewAngle, maxZoomeViewAngle, zoom));
     }
 }

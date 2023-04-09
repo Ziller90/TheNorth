@@ -109,10 +109,10 @@ NavMeshProjectSettings:
       m_Flags: 0
   - serializedVersion: 2
     agentTypeID: 1479372276
-    agentRadius: 0.2
-    agentHeight: 2
-    agentSlope: 60
-    agentClimb: 0.7
+    agentRadius: 0.3
+    agentHeight: 1.8
+    agentSlope: 30
+    agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -128,4 +128,4 @@ NavMeshProjectSettings:
   m_SettingNames:
   - Humanoid
   - StandartHuman
-  - GlobalMapCharacter
+  - GlobalMapSquad
