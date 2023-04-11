@@ -10,20 +10,14 @@ public enum GameType
 }
 public class GameSceneLauncher : MonoBehaviour
 {
-    static int locationToLoad;
+    static GameObject locationToLoad;
     static GameType locationToLoadGameType;
     public static GameType LocationToLoadGameType => locationToLoadGameType;
-    public static int LocationToLoad => locationToLoad;
-    public void LoadGameSceneWithLocation(int locationIndex)
+    public static GameObject LocationToLoad => locationToLoad;
+    public void LoadGameSceneWithLocation(GameObject locationPrefab)
     {
         locationToLoadGameType = GameType.Singleplayer;
-        locationToLoad = locationIndex;
+        locationToLoad = locationPrefab;
         SceneManager.LoadScene("GameScene");
-    }
-    public void LoadLobbySceneWithLocation(int locationIndex, GameType gameType)
-    {
-        locationToLoadGameType = gameType;
-        locationToLoad = locationIndex;
-        SceneManager.LoadScene("LobbyScene");
     }
 }

@@ -5,9 +5,11 @@ using UnityEngine;
 public class Location : MonoBehaviour
 {
     ClickableObject clickableObject;
-    [SerializeField] string name;
+    [SerializeField] GameObject presentedLocationPrefab;
+    public string Name => presentedLocationPrefab.GetComponent<LocationSettings>().Name;
+    public string Description => presentedLocationPrefab.GetComponent<LocationSettings>().Description;
+    public GameObject PresentedLocation => presentedLocationPrefab;
 
-    public string Name => name;
     private void Awake()
     {
         clickableObject = GetComponent<ClickableObject>();
