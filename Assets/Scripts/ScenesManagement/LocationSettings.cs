@@ -8,6 +8,8 @@ public class LocationSettings : MonoBehaviour
     [SerializeField] string locationName;
     [SerializeField] string locationDescription;
 
+    public string Name => locationName;
+    public string Description => locationDescription;
     void Start()
     {
         Links.instance.locationSettings = this;

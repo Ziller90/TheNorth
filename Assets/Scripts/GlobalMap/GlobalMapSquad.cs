@@ -15,8 +15,7 @@ public class GlobalMapSquad : MonoBehaviour
     Vector3[] pathCorners;
     Vector3 nextCorner;
     Vector3 target = Vector3.zero;
-
-    [SerializeField] GameObject targetLocation;
+    GameObject targetLocation;
 
     public void MoveToPosition(Vector3 target)
     {
@@ -49,7 +48,7 @@ public class GlobalMapSquad : MonoBehaviour
                     var locationRadius = targetLocation.GetComponent<CapsuleCollider>().radius;
                     if (distanceToLocation - locationRadius < maxDistanceToLocation)
                     {
-                        Debug.Log("Get to location " + targetLocation.name);
+                        GlobalMapLinks.instance.gameSceneLauncher.LoadGameSceneWithLocation(targetLocation.GetComponent<Location>().PresentedLocation);
                         targetLocation = null;
                         target = Vector3.zero;
                     }
@@ -57,14 +56,14 @@ public class GlobalMapSquad : MonoBehaviour
                 return;
             }
         }
-        SquadAnimator.SetInteger("MoveIndex", 1);
+        SquadAnimator.SetInteger("StateIndex", 0);
     }
     public void Move(Vector3 direction)
     {
         transform.position += transform.forward * movingSpeed;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, rotationSpeed);
-        SquadAnimator.SetInteger("MoveIndex", 3);
+        SquadAnimator.SetInteger("StateIndex", 1);
     }
     private void OnDrawGizmos()
     {

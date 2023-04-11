@@ -95,10 +95,6 @@ public class RTSCamera : MonoBehaviour
 
         return new Vector3(ClampedX, point.y, ClampedZ);
     }
-    private void OnValidate()
-    {
-        SetViewAngle(viewAngle);
-    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

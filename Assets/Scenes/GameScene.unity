@@ -276,7 +276,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &50793419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,13 +566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d89129e72bd53f4f929a5f517c0b310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locationsList:
-  - {fileID: 746199878580276533, guid: 382d2bb3fd0dac44694e2f5737cc46c8, type: 3}
-  - {fileID: 746199878580276533, guid: c56492ff4448208458c529e8f555f0a6, type: 3}
-  - {fileID: 746199878580276533, guid: 68e9ccad122439745bdb2025ae5525ab, type: 3}
-  - {fileID: 746199878580276533, guid: 82da40de7b462e74da6a73c50f8b861a, type: 3}
-  locationToLoadIndex: 1
-  loadLocationFromGlobalMap: 0
+  testLocationToLoad: {fileID: 746199878580276533, guid: 68e9ccad122439745bdb2025ae5525ab, type: 3}
 --- !u!4 &554902164
 Transform:
   m_ObjectHideFlags: 0
@@ -786,8 +780,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyboardControl: {fileID: 50793418}
   MobileIngameInterface: {fileID: 2014161637}
-  useManuallySetControlType: 1
-  manuallySetControlType: 0
+  globalConfig: {fileID: 11400000, guid: deae6e50ef4fa4441a7078fb63aa152e, type: 2}
 --- !u!1 &780836220
 GameObject:
   m_ObjectHideFlags: 0

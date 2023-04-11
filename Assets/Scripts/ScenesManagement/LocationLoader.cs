@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class LocationLoader : MonoBehaviour
 {
-    [SerializeField] List<GameObject> locationsList;
-    [SerializeField] int locationToLoadIndex;
-    [SerializeField] bool loadLocationFromGlobalMap;
+    [SerializeField] GameObject testLocationToLoad;
     public void LoadLocation()
     {
         GameObject location;
-        if (loadLocationFromGlobalMap)
+        if (GameSceneLauncher.LocationToLoad != null)
         {
-            location = Instantiate(locationsList[GameSceneLauncher.LocationToLoad], gameObject.transform);
+            location = Instantiate(GameSceneLauncher.LocationToLoad, gameObject.transform);
+        }
+        else if (testLocationToLoad != null)
+        {
+            location = Instantiate(testLocationToLoad, gameObject.transform);
         }
         else
         {
-            location = Instantiate(locationsList[locationToLoadIndex], gameObject.transform);
+            Debug.LogError("Error: No location to Load!");
+            return;
         }
         Links.instance.locationSettings = location.GetComponent<LocationSettings>();
     }
