@@ -69,7 +69,7 @@ public class Keyboard : MonoBehaviour
     }
     public void MovePlayer()
     {
-        Quaternion fixQuaternion = Quaternion.Euler(0, camera.cameraYRotation, 0);
+        Quaternion fixQuaternion = Quaternion.Euler(0, camera.CameraYRotation, 0);
         direction = fixQuaternion * Utils.CalculateWASDVector();
         if (direction.magnitude > 0)
         {

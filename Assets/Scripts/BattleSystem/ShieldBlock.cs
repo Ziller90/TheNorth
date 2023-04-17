@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class ShieldBlock : MonoBehaviour
 {
-    [HideInInspector] public bool isBlocking;
+    [SerializeField] bool isBlocking;
+    public bool IsBlocking => isBlocking;
 }

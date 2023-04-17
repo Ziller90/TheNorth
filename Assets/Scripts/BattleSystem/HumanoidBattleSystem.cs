@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class HumanoidBattleSystem : MonoBehaviour
 {
-    public float shieldProtectionAngle;
-    [HideInInspector] public bool shieldRaised;
-
+    [SerializeField] float shieldProtectionAngle;
     [SerializeField] CharacterContoller characterContoller;
     [SerializeField] AutoAimController autoAim;
     [SerializeField] ActionManager actionManager;
@@ -23,7 +21,13 @@ public class HumanoidBattleSystem : MonoBehaviour
     bool isMeleeAttack;
     bool isBlock;
     bool isDistantAttack;
-
+    bool shieldRaised;
+    public bool ShieldRaised => shieldRaised;
+    public float ShieldProtectionAngle => shieldProtectionAngle;
+    public void SetShieldRaised(bool isRaised)
+    {
+        shieldRaised = isRaised;
+    }
     public void SetActionManager(ActionManager actionManager)
     {
         this.actionManager = actionManager;
