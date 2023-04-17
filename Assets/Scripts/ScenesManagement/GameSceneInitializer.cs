@@ -2,12 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using Photon.Pun;
-using Photon.Realtime;
 using UnityEngine.SceneManagement;
-
-
-public class GameSceneInitializer : MonoBehaviourPunCallbacks
+public class GameSceneInitializer : MonoBehaviour
 {
     [SerializeField] GameObject Humanoid;
     [SerializeField] GameObject MultiplayerHumanoid;
@@ -22,30 +18,13 @@ public class GameSceneInitializer : MonoBehaviourPunCallbacks
     {
         Links.instance.locationLoader.LoadLocation();
         CreatePlayerCharacter();
-        if (GameSceneLauncher.LocationToLoadGameType == GameType.DeathMatch)
-        {
-            InstantiatePhotonItemsOnLocation();
-        }
         sceneInitialized?.Invoke();
     }
     public void CreatePlayerCharacter()
     {
         GameObject playerCharacter = new GameObject();
-        if (GameSceneLauncher.LocationToLoadGameType == GameType.Singleplayer)
-        {
-            playerCharacter = Instantiate(Humanoid, Links.instance.locationSettings.GetRandomSpawnPoint().position, Quaternion.identity);
-            SetMainCharacter(playerCharacter);
-        }
-        else if (GameSceneLauncher.LocationToLoadGameType == GameType.DeathMatch)
-        {
-            Debug.Log("Your ID in room is" + PhotonNetwork.LocalPlayer.ActorNumber);
-
-            playerCharacter = PhotonNetwork.Instantiate(MultiplayerHumanoid.name, Links.instance.locationSettings.GetRandomSpawnPoint().position, Quaternion.identity, 0);
-            if (playerCharacter.GetComponent<PhotonView>().IsMine)
-            {
-                SetMainCharacter(playerCharacter);
-            }
-        }
+        playerCharacter = Instantiate(Humanoid, Links.instance.locationSettings.GetRandomSpawnPoint().position, Quaternion.identity);
+        SetMainCharacter(playerCharacter);
     }
     public void SetMainCharacter(GameObject character)
     {
@@ -60,40 +39,5 @@ public class GameSceneInitializer : MonoBehaviourPunCallbacks
         Links.instance.mobileButtonsManager.SetActionManager(characterActionManager);
         Links.instance.playerCharacter = character;
         character.GetComponentInChildren<Health>().dieEvent += Links.instance.deathScreen.ActivateDeathScreen;
-    }
-    public void InstantiatePhotonItemsOnLocation()
-    {
-        List<Transform> items = Links.instance.globalLists.itemsOnLocation;
-        for (int i = 0; i < Links.instance.globalLists.itemsOnLocation.Count; i++)
-        {
-            if (PhotonNetwork.IsMasterClient)
-            {
-               PhotonView newObject = PhotonNetwork.Instantiate("ItemsPrefabs/" + items[0].gameObject.GetComponent<Item>().itemData.prefab.name, items[0].position, items[0].rotation).GetComponent<PhotonView>();
-            }
-            Destroy(Links.instance.globalLists.itemsOnLocation[0].gameObject);
-        }
-    }
-    public void LeaveRoom()
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            PhotonNetwork.LoadLevel("LobbyScene");
-        }
-        else
-        {
-            SceneManager.LoadScene("GlobalMapScene");
-        }
-        PhotonNetwork.LeaveRoom();
-    }
-    public override void OnPlayerEnteredRoom(Player other)
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            Debug.Log(other.NickName + " entered the room " + PhotonNetwork.CurrentRoom);
-        }
-    }
-    public override void OnPlayerLeftRoom(Player other)
-    {
-        Debug.Log(other.NickName + " left the room " + PhotonNetwork.CurrentRoom);
     }
 }
