@@ -37,7 +37,7 @@ public class MeleeWeapon : MonoBehaviour
             }
             else if (other.gameObject.tag == "HitBox")
             {
-                if (other.gameObject.GetComponent<HitBox>().thisCreature != hostCreature)
+                if (other.gameObject.GetComponent<HitBox>().ThisCreature != hostCreature)
                 {
                     meleeWeaponSounds.PlayHitCharacterSound();
                     other.gameObject.GetComponent<HitBox>().HitBoxGetDamage(baseDamage, hostCreature.position);
