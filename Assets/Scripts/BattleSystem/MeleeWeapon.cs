@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class MeleeWeapon : MonoBehaviour
 {
-    public FractionMarker thisCreatureFractionMarker;
-    public MeleeWeaponSounds meleeWeaponSounds;
-    public Health thisCreatureHealth;
-
+    [SerializeField] MeleeWeaponSounds meleeWeaponSounds;
+    [SerializeField] Health thisCreatureHealth;
     [SerializeField] float baseDamage;
     [SerializeField] Transform hostCreature;
 
@@ -31,7 +29,7 @@ public class MeleeWeapon : MonoBehaviour
         {
             if (other.gameObject.tag == "Shield")
             {
-                if (other.gameObject.GetComponent<ShieldBlock>().isBlocking == true)
+                if (other.gameObject.GetComponent<ShieldBlock>().IsBlocking == true)
                 {
                     isCuttingAnimation = false;
                     meleeWeaponSounds.PlayHitObjectSound();

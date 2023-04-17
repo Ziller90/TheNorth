@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Creature : MonoBehaviour
 {
-    
     [SerializeField] GameObject thisCreature;
     [SerializeField] GameObject thisCreatureModel;
     [SerializeField] Collider thisCreatureCollider;

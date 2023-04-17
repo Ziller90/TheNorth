@@ -30,7 +30,7 @@ public class FixedJoystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IPo
 
     void Update()
     {
-        cameraAngleCorrector = camera.cameraYRotation;
+        cameraAngleCorrector = camera.CameraYRotation;
 
         vertical = handle.transform.localPosition.y / 100;
         horizontal = (handle.transform.localPosition.x / 100);

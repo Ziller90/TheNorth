@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class CameraFollowing : MonoBehaviour
 {
-    [HideInInspector] public float cameraYRotation;
+    [SerializeField] float cameraYRotation;
     [SerializeField] Quaternion startRotation;
     [SerializeField] Vector3 startOffset;
     [SerializeField] GameObject objectToFollow;
     [SerializeField] float zoom;
     [SerializeField] bool follow;
+    public float CameraYRotation => cameraYRotation;
 
     void FixedUpdate()
     {

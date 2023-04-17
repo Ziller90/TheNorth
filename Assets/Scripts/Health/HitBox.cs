@@ -14,9 +14,9 @@ public class HitBox : MonoBehaviourPun
     public Transform thisCreature;
     public void HitBoxGetDamage(float damage, Vector3 hitPoint)
     {
-        if (battleSystem.shieldRaised)
+        if (battleSystem.ShieldRaised)
         {
-            if (Vector3.Angle(-battleSystem.GetHitVector(hitPoint), thisCreature.forward) > battleSystem.shieldProtectionAngle / 2)
+            if (Vector3.Angle(-battleSystem.GetHitVector(hitPoint), thisCreature.forward) > battleSystem.ShieldProtectionAngle / 2)
             {
                 if (GameSceneLauncher.LocationToLoadGameType == GameType.DeathMatch && PhotonNetwork.IsMasterClient)
                 {

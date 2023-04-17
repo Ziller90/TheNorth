@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FractionMarker : MonoBehaviour
+public class FactionMarker : MonoBehaviour
 {
-    public enum Fractions
+    public enum Factions
     {
         Player,
         Bandit,
         Woolf
     }
-    public Fractions creatureFraction;
+    public Factions creatureFaction;
 }

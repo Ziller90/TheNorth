@@ -19,11 +19,11 @@ public class AnimationEvents : MonoBehaviour
     }
     public void SetBlock()
     {
-        battleSystem.shieldRaised = true;
+        battleSystem.SetShieldRaised(true);
     }
     public void RemoveBlock()
     {
-        battleSystem.shieldRaised = false;
+        battleSystem.SetShieldRaised(false);
     }
     public void WalkingStep1()
     {
