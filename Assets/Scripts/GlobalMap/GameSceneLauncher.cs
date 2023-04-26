@@ -11,12 +11,9 @@ public enum GameType
 public class GameSceneLauncher : MonoBehaviour
 {
     static GameObject locationToLoad;
-    static GameType locationToLoadGameType;
-    public static GameType LocationToLoadGameType => locationToLoadGameType;
     public static GameObject LocationToLoad => locationToLoad;
     public void LoadGameSceneWithLocation(GameObject locationPrefab)
     {
-        locationToLoadGameType = GameType.Singleplayer;
         locationToLoad = locationPrefab;
         SceneManager.LoadScene("GameScene");
     }

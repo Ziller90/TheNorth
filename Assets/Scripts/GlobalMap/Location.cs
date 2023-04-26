@@ -26,5 +26,4 @@ public class Location : MonoBehaviour
     {
         GlobalMapLinks.instance.playerSquad.MoveToLocation(gameObject);
     }
-
 }

@@ -27,15 +27,7 @@ public class DeathScreen : MonoBehaviour
     }
     public void RestartGame()
     {
-        if (GameSceneLauncher.LocationToLoadGameType == GameType.Singleplayer)
-        {
-            SceneManager.LoadScene(0);
-        }
-        else if (GameSceneLauncher.LocationToLoadGameType == GameType.DeathMatch)
-        {
-            DeactivateDeathScreen();
-            Links.instance.sceneInitializer.CreatePlayerCharacter();
-        }
+        SceneManager.LoadScene(0);
     }
     IEnumerator FadeIn()
     {
