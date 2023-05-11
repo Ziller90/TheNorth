@@ -520,8 +520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47691a74f354e9c4f9eb7f361124029d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Humanoid: {fileID: 6439854897359320461, guid: 0b40d15945e8c2544a14fc74aa2aebd1, type: 3}
-  MultiplayerHumanoid: {fileID: 8093515946563986235, guid: 136bbbe3260ffea429a42ac10e03438b, type: 3}
+  player: {fileID: 6439854897359320461, guid: 0b40d15945e8c2544a14fc74aa2aebd1, type: 3}
 --- !u!4 &427277089
 Transform:
   m_ObjectHideFlags: 0

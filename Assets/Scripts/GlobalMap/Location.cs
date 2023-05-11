@@ -6,8 +6,8 @@ public class Location : MonoBehaviour
 {
     ClickableObject clickableObject;
     [SerializeField] GameObject presentedLocationPrefab;
-    public string Name => presentedLocationPrefab.GetComponent<LocationSettings>().Name;
-    public string Description => presentedLocationPrefab.GetComponent<LocationSettings>().Description;
+    public string Name => presentedLocationPrefab.GetComponent<LocationManager>().Name;
+    public string Description => presentedLocationPrefab.GetComponent<LocationManager>().Description;
     public GameObject PresentedLocation => presentedLocationPrefab;
 
     private void Awake()

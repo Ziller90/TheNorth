@@ -20,6 +20,7 @@ public class CharacterContoller : MonoBehaviour
     [HideInInspector] public bool allowRotation;
 
     MovingState movingState;
+    public MovingState CharacterMovingState => movingState;
 
     public void SetControlManager(ControlManager controlManager)
     {
