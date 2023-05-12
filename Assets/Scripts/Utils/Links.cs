@@ -11,7 +11,7 @@ public class Links : MonoBehaviour
     public GlobalLists globalLists;
     public GameObject mainCamera;
     public Transform healthBarsContainer;
-    public LocationSettings locationSettings;
+    public LocationManager locationSettings;
     public GameSceneInitializer sceneInitializer;
     public GameObject playerCharacter;
     public LocationLoader locationLoader;

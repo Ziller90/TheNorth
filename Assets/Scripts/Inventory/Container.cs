@@ -35,31 +35,31 @@ public class Container : MonoBehaviour
     }
     public void SetFilled(Coordinates startPosition, Item item)
     {
-        foreach(Coordinates point in item.points)
+        foreach(Coordinates point in item.Points)
         {
             isFilledCell[startPosition.y + point.y, startPosition.x + point.x] = true;
         }
-        for (int i = 0; i < item.coordianatesInContainer.Length; i++)
+        for (int i = 0; i < item.CoordianatesInContainer.Length; i++)
         {
-            item.coordianatesInContainer[i] = new Coordinates(startPosition.y + item.points[i].y, startPosition.x + item.points[i].x);
+            item.CoordianatesInContainer[i] = new Coordinates(startPosition.y + item.Points[i].y, startPosition.x + item.Points[i].x);
         }
     }
     public void SetEmpty(Item item)
     {
-        foreach (Coordinates point in item.coordianatesInContainer)
+        foreach (Coordinates point in item.CoordianatesInContainer)
         {
             isFilledCell[point.y, point.x] = false;
         }
-        for (int i = 0; i < item.coordianatesInContainer.Length; i++)
+        for (int i = 0; i < item.CoordianatesInContainer.Length; i++)
         {
-            item.coordianatesInContainer[i] = new Coordinates(0,0);
+            item.CoordianatesInContainer[i] = new Coordinates(0,0);
         }
     }
     public bool CheckAllPoints(Coordinates start, Item item)
     {
         try
         {
-            foreach (Coordinates point in item.points)
+            foreach (Coordinates point in item.Points)
             {
                 if (isFilledCell[start.y + point.y, start.x + point.x] == true)
                 {
