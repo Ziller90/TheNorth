@@ -30017,6 +30017,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GlobalMap (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0baa5ef5abf0002489fbb6348fe564d9, type: 3}
+      propertyPath: m_TagString
+      value: GlobalMapTerrainPart
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0baa5ef5abf0002489fbb6348fe564d9, type: 3}
 --- !u!4 &7454408246366654499 stripped
@@ -30043,6 +30047,30 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8806875664736863641, guid: 0baa5ef5abf0002489fbb6348fe564d9, type: 3}
+--- !u!114 &2538457680752264043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7798176692259588761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187d6715b9af9604b9f32fc6cf1d1507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &929140834565292583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7798176692259588761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8578ef514ffa25c46a935098345df151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7188752307629417617
 PrefabInstance:
   m_ObjectHideFlags: 0
