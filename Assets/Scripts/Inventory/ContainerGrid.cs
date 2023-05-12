@@ -58,12 +58,12 @@ public class ContainerGrid : MonoBehaviour
         ClearItemsIcons();
         for (int i = 0; i < container.itemsInContainer.Count; i++)
         {
-            Sprite iconImage = container.itemsInContainer[i].itemData.icon;
-            Vector3 instantiatePosition = new Vector3(startPosition.position.x + container.itemsInContainer[i].coordianatesInContainer[0].x * distanceBeetweenSquaresCenters, startPosition.position.y - container.itemsInContainer[i].coordianatesInContainer[0].y * distanceBeetweenSquaresCenters);
+            Sprite iconImage = container.itemsInContainer[i].ItemData.icon;
+            Vector3 instantiatePosition = new Vector3(startPosition.position.x + container.itemsInContainer[i].CoordianatesInContainer[0].x * distanceBeetweenSquaresCenters, startPosition.position.y - container.itemsInContainer[i].CoordianatesInContainer[0].y * distanceBeetweenSquaresCenters);
             GameObject newIcon = Instantiate(iconTemplate, instantiatePosition, Quaternion.identity, itemsCollection);
             ItemIcon itemIcon = newIcon.GetComponent<ItemIcon>();
 
-            switch (container.itemsInContainer[i].itemData.size)
+            switch (container.itemsInContainer[i].ItemData.size)
             {
                 case ItemData.sizeInInventory.OneCell:
                     itemIcon.SetNewIconTemplate(1, 1, squareSideLength, distanceBeetweenSquares, iconSizeModificator);

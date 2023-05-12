@@ -53,12 +53,14 @@ public class ItemsCollector : MonoBehaviour
             Links.instance.globalLists.RemoveFromItemsOnLocation(nearestItem);
             nearestItem.transform.position = new Vector3(-1000, -1000, -1000);
             nearestItem.GetComponent<Rigidbody>().isKinematic = true;
+            nearestItem.GetComponent<Item>().InInventory = true;
         }
     }
     public void Drop(Item item)
     {
         playerInventoryContainer.RemoveItem(item);
         Links.instance.globalLists.AddToItemsOnLocation(item.transform);
+        item.InInventory = false;
         item.transform.position = itemsDropPosition.position;
         item.GetComponent<Rigidbody>().isKinematic = false;
     }
