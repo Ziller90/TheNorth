@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Sensors : MonoBehaviour
 {
-    [SerializeField] FactionMarker fractionMarker;
+    [SerializeField] FactionMarker factionMarker;
     [SerializeField] int fieldOfView;
     [SerializeField] float maxDistanceToSee;
     [SerializeField] float maxDistanceToHear;
@@ -34,7 +34,7 @@ public class Sensors : MonoBehaviour
         List<Transform> noticedEnemies = new List<Transform>();
         foreach (Transform creature in creaturesOnLocation)
         {
-            if (creature.GetComponent<FactionMarker>().creatureFaction != fractionMarker.creatureFaction && creature != ThisCreature.transform)
+            if (creature.GetComponent<FactionMarker>().creatureFaction != factionMarker.creatureFaction && creature != ThisCreature.transform)
             {
                 Vector3 fromGameObjectToEnemy = creature.position - transform.position;
                 float distanceToEnemy = Vector3.Distance(transform.position, creature.position);

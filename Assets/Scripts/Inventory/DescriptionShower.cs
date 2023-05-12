@@ -30,8 +30,8 @@ public class DescriptionShower : MonoBehaviour
     {
         DisabledBottomPanel.SetActive(false);
         BottomPanel.SetActive(true);
-        descriptionText.text = itemIcon.item.itemData.description;
-        bottomPanelItemIcon.sprite = itemIcon.item.itemData.icon;
+        descriptionText.text = itemIcon.item.ItemData.description;
+        bottomPanelItemIcon.sprite = itemIcon.item.ItemData.icon;
     }
     public void SetSelectedItemIcon(ItemIcon itemIcon)
     {

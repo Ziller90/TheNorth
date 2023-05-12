@@ -5,8 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 public class GameSceneInitializer : MonoBehaviour
 {
-    [SerializeField] GameObject Humanoid;
-    [SerializeField] GameObject MultiplayerHumanoid;
+    [SerializeField] GameObject player;
 
     public UnityAction sceneInitialized;
 
@@ -22,8 +21,8 @@ public class GameSceneInitializer : MonoBehaviour
     }
     public void CreatePlayerCharacter()
     {
-        GameObject playerCharacter = new GameObject();
-        playerCharacter = Instantiate(Humanoid, Links.instance.locationSettings.GetRandomSpawnPoint().position, Quaternion.identity);
+        GameObject playerCharacter;
+        playerCharacter = Instantiate(player, Links.instance.locationSettings.GetRandomSpawnPoint().position, Quaternion.identity);
         SetMainCharacter(playerCharacter);
     }
     public void SetMainCharacter(GameObject character)

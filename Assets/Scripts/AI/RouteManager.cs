@@ -15,8 +15,11 @@ public class RouteManager : MonoBehaviour
     Vector3[] currentRouteCorners;
     void Start()
     {
-        patrolRouteCorners = patrolRoute.GetCorners();
-        currentRouteCorners = patrolRouteCorners;
+        if (patrolRoute)
+        {
+            patrolRouteCorners = patrolRoute.GetCorners();
+            currentRouteCorners = patrolRouteCorners;
+        }
     }
     public void SetNewRoute(Vector3[] newRoute, int StartCorner)
     {
