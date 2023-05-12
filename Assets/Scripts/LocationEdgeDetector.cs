@@ -20,7 +20,6 @@ public class LocationEdgeDetector : MonoBehaviour
     }
     private void OnTriggerExit(Collider collider)
     {
-        Debug.Log("OutTriggered " + collider.gameObject.name);
         if (collider.transform.gameObject.GetComponent<LocationEdgeFog>() && characterInFog)
         {
             characterInFog = false;

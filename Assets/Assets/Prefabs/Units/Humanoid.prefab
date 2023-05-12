@@ -4501,9 +4501,9 @@ GameObject:
   - component: {fileID: 6115228454438917370}
   - component: {fileID: 6115228454438917371}
   - component: {fileID: 6115228454438917375}
-  - component: {fileID: 6115228454438917368}
   - component: {fileID: 6115228454438917369}
   - component: {fileID: 6115228454438917894}
+  - component: {fileID: 2931067886913855964}
   m_Layer: 0
   m_Name: Humanoid
   m_TagString: Creature
@@ -4597,7 +4597,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shieldProtectionAngle: 120
-  shieldRaised: 0
   characterContoller: {fileID: 6115228454438917370}
   autoAim: {fileID: 6115228454438917375}
   actionManager: {fileID: 0}
@@ -4621,19 +4620,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2282418e8ef94b94793d3f99de68de3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6115228454438917368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6115228454438917361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbdf904cf4b9a0042ac66c06d9a19a13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  creatureFraction: 0
 --- !u!114 &6115228454438917369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4671,6 +4657,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
+--- !u!114 &2931067886913855964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6115228454438917361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 269cdbeb529004f4a83ac6957fd81028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creatureFaction: 0
 --- !u!1 &6115228454590202541
 GameObject:
   m_ObjectHideFlags: 0
@@ -6006,7 +6006,7 @@ PrefabInstance:
     - target: {fileID: 2052125169429036259, guid: 4ad4417217fdfef44b8f79d97b36d3eb, type: 3}
       propertyPath: thisCreatureFractionMarker
       value: 
-      objectReference: {fileID: 6115228454438917368}
+      objectReference: {fileID: 0}
     - target: {fileID: 7087786812071082880, guid: 4ad4417217fdfef44b8f79d97b36d3eb, type: 3}
       propertyPath: inHand
       value: 1

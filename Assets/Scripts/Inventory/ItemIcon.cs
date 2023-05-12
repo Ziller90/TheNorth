@@ -24,8 +24,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     Vector3 offset;
     void Start()
     {
-        Debug.Log(item.itemData.description);
-        switch (item.itemData.size)
+        switch (item.ItemData.size)
         {
             case ItemData.sizeInInventory.OneCell:
                 offset = Vector3.zero;
@@ -64,7 +63,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     }
     public void OnPointerDown(PointerEventData pointerEventData)
     {
-        oldStartCoordinates = item.coordianatesInContainer[0];
+        oldStartCoordinates = item.CoordianatesInContainer[0];
         oldPosition = gameObject.transform.position;
         container.SetEmpty(item);
         descriptionShower.SetSelectedItemIcon(this);

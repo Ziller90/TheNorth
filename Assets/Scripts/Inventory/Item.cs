@@ -15,12 +15,26 @@ public struct Coordinates
 }
 public class Item : MonoBehaviour
 {
-    public ItemData itemData;
-    public Coordinates[] coordianatesInContainer; 
-    public Coordinates[] points;
+    [SerializeField] ItemData itemData;
+    [SerializeField] Coordinates[] coordianatesInContainer;
+    [SerializeField] Coordinates[] points;
+    [SerializeField] bool inInventory;
 
-    void OnEnable() => Links.instance.globalLists.AddToItemsOnLocation(gameObject.transform);
-    void OnDisable() => Links.instance.globalLists.RemoveFromItemsOnLocation(gameObject.transform);
+    public ItemData ItemData => itemData;
+    public Coordinates[] CoordianatesInContainer => coordianatesInContainer;
+    public Coordinates[] Points => points;
+    public bool InInventory { get => inInventory; set => inInventory = value; }
+
+    void OnEnable()
+    {
+        if (!inInventory)
+            Links.instance.globalLists.AddToItemsOnLocation(gameObject.transform);
+    }
+    void OnDisable()
+    {
+        if (!inInventory)
+            Links.instance.globalLists.RemoveFromItemsOnLocation(gameObject.transform);
+    }
     private void Start()
     {
         switch (itemData.size)
