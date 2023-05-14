@@ -7,10 +7,10 @@ public class InventorySlot : MonoBehaviour
     ItemIcon itemIconInSlot;
     RectTransform slotTransform;
 
-    float slotColliderSize;
+    [SerializeField] float slotColliderSize;
     public bool IsEmpty => itemIconInSlot == null;
     public ItemIcon ItemIcon => itemIconInSlot;
-    public float SlotColliderSize { get => slotColliderSize; set => slotColliderSize = value; }
+    //public float SlotColliderSize { get => slotColliderSize; set => slotColliderSize = value; }
 
     public UnityEvent<ItemIcon, InventorySlot> iconInsertedEvent;
     public UnityEvent<ItemIcon, InventorySlot> iconRemovedEvent;
@@ -35,17 +35,18 @@ public class InventorySlot : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         itemIconInSlot = icon;
-        itemIconInSlot.GetComponent<RectTransform>().anchoredPosition = slotTransform.anchoredPosition;
+        itemIconInSlot.GetComponent<RectTransform>().position = slotTransform.position;
+        icon.transform.parent = slotTransform;
     }
     public bool IsPositionInSlot(Vector2 position)
     {
-        Rect slotRect = new Rect(slotTransform.rect);
-        slotRect.center = slotTransform.anchoredPosition;
-        slotRect.width = SlotColliderSize;
-        slotRect.height = SlotColliderSize;
-
-        return slotRect.Contains(position);
+        float distanceToSlotCentre = Vector2.Distance(position, slotTransform.position);
+        Debug.Log(distanceToSlotCentre);
+        if (distanceToSlotCentre < slotColliderSize) 
+            return true;
+        return false;
     }
+
     public void Destroy()
     {
         if (itemIconInSlot)

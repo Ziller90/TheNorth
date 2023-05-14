@@ -9,6 +9,10 @@ public class AnimationEvents : MonoBehaviour
     [SerializeField] StepSounds stepSounds;
     [SerializeField] MeleeWeaponSounds meleeWeaponSounds;
 
+    public void SetMeleeWeapon(MeleeWeapon characterMeleeWeapon)
+    {
+        this.characterMeleeWeapon = characterMeleeWeapon;
+    }
     public void SetThrowingWeaponInHand()
     {
         battleSystem.SetThrowingWeaponInHand();

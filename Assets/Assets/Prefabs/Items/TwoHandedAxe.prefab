@@ -106,7 +106,7 @@ Transform:
   m_GameObject: {fileID: 2105301957469062122}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.77019, y: 0.77019, z: 0.77019}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1023232713239520675}
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meleeWeaponSounds: {fileID: 0}
   thisCreatureHealth: {fileID: 0}
-  baseDamage: 0
+  baseDamage: 30
   hostCreature: {fileID: 0}
 --- !u!65 &1839699812244845453
 BoxCollider:

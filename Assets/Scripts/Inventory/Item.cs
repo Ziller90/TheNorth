@@ -8,11 +8,13 @@ public class Item : MonoBehaviour
     [SerializeField] ItemData itemData;
     [SerializeField] bool inInventory;
 
+    Collider[] itemColliders;
     public ItemData ItemData => itemData;
-    public bool InInventory { get => inInventory; set => inInventory = value; }
 
     void OnEnable()
     {
+        itemColliders = GetComponents<Collider>();
+
         if (!inInventory)
             Links.instance.globalLists.AddToItemsOnLocation(gameObject.transform);
     }
@@ -20,5 +22,13 @@ public class Item : MonoBehaviour
     {
         if (!inInventory)
             Links.instance.globalLists.RemoveFromItemsOnLocation(gameObject.transform);
+    }
+    public void SetItemState(bool isInInventory)
+    {
+        inInventory = isInInventory;
+        foreach (var collider in itemColliders)
+        {
+            collider.isTrigger = isInInventory;
+        }
     }
 }

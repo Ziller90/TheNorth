@@ -10,12 +10,16 @@ public class MeleeWeapon : MonoBehaviour
     [SerializeField] Transform hostCreature;
 
     bool isCuttingAnimation;
-    public void Start()
+    public void SetMeleeWeapon(Creature weaponHolder)
     {
+        thisCreatureHealth = weaponHolder.GetComponentInChildren<Health>();
+        meleeWeaponSounds = weaponHolder.GetComponentInChildren<MeleeWeaponSounds>();
+        hostCreature = weaponHolder.transform;
+
         if (thisCreatureHealth != null)
-            thisCreatureHealth.dieEvent += Dead;
+            thisCreatureHealth.dieEvent += StopCuttingAnimation;
     }
-    public void Dead()
+    public void StopCuttingAnimation()
     {
         isCuttingAnimation = false;
     }
