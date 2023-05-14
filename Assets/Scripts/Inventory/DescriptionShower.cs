@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class DescriptionShower : MonoBehaviour
 {
@@ -14,12 +15,11 @@ public class DescriptionShower : MonoBehaviour
     public Button equipButton;
     public Button throwButton;
 
-    public ItemIcon selectedItem;
+    public ItemIcon selectedIcon;
 
     ItemsCollector itemsCollector;
     void Start()
     {
-        Links.instance.sceneInitializer.sceneInitialized += () => 
         itemsCollector = Links.instance.playerCharacter.GetComponentInChildren<ItemsCollector>();
 
         DisableBottomPanel();
@@ -30,12 +30,12 @@ public class DescriptionShower : MonoBehaviour
     {
         DisabledBottomPanel.SetActive(false);
         BottomPanel.SetActive(true);
-        descriptionText.text = itemIcon.item.ItemData.description;
-        bottomPanelItemIcon.sprite = itemIcon.item.ItemData.icon;
+        descriptionText.text = itemIcon.Item.ItemData.Description;
+        bottomPanelItemIcon.sprite = itemIcon.Item.ItemData.Icon;
     }
     public void SetSelectedItemIcon(ItemIcon itemIcon)
     {
-        selectedItem = itemIcon;
+        selectedIcon = itemIcon;
         ShowDescription(itemIcon);
     }
     public void DisableBottomPanel()
@@ -49,7 +49,7 @@ public class DescriptionShower : MonoBehaviour
     }
     public void ThrowItem()
     {
-        Destroy(selectedItem.gameObject);
-        itemsCollector.Drop(selectedItem.item);
+        selectedIcon.DestroyItemIcon();
+        itemsCollector.Drop(selectedIcon.Item);
     }
 }

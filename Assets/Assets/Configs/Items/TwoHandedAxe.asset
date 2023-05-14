@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad3201cdc2a38a41a5deca7727a87c9, type: 3}
+  m_Name: TwoHandedAxe
+  m_EditorClassIdentifier: 
+  name: Two handed axe
+  description: It will crush heads of your enemies
+  cost: 180
+  type: 0
+  size: 0
+  icon: {fileID: 21300000, guid: fbd8bcd5e1bf0604a91562541c272f8c, type: 3}
+  prefab: {fileID: 1023232713239520684, guid: a82057f1c8a5a09429c04e083b33d8c5, type: 3}
