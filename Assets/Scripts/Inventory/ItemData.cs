@@ -7,27 +7,15 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "New Item Data", menuName = "Item Data", order = 51)]
 public class ItemData : ScriptableObject
 {
-    public enum itemType
-    {
-        MeleeWeapon,
-        ThrowingWeapon,
-        Bow,
-        UsableItem,
-        NonusableItem
-    }
-    public enum sizeInInventory
-    {
-        OneCell,
-        TwoCells,
-        ThreeCells,
-        FourCells,
-    }
-    public string name;
-    public string description;
-    public int itemID;
-    public int cost;
-    public itemType type;
-    public sizeInInventory size;
-    public Sprite icon;
-    public GameObject prefab;
+    [SerializeField] string itemName;
+    [SerializeField] string description;
+    [SerializeField] int cost;
+    [SerializeField] Sprite icon;
+    [SerializeField] GameObject prefab;
+
+    public string Name => itemName;
+    public string Description => description;
+    public int Cost => cost;
+    public Sprite Icon => icon;
+    public GameObject Prefab => prefab;
 }

@@ -47,7 +47,7 @@ public class ItemsCollector : MonoBehaviour
     }
     public void AddItemToContainer() 
     {
-        if (hasObjectInRange)
+        if (hasObjectInRange && playerInventoryContainer.HasFreeSpace)
         {
             playerInventoryContainer.AddNewItem(nearestItem.gameObject.GetComponent<Item>());
             Links.instance.globalLists.RemoveFromItemsOnLocation(nearestItem);
@@ -58,7 +58,6 @@ public class ItemsCollector : MonoBehaviour
     }
     public void Drop(Item item)
     {
-        playerInventoryContainer.RemoveItem(item);
         Links.instance.globalLists.AddToItemsOnLocation(item.transform);
         item.InInventory = false;
         item.transform.position = itemsDropPosition.position;
