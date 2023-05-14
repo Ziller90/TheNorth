@@ -89,4 +89,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6810d9fdab080554fb6cb2c8e20dd2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotColliderSize: 130
+  slotColliderSize: 30
+  iconInsertedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  iconRemovedEvent:
+    m_PersistentCalls:
+      m_Calls: []

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad3201cdc2a38a41a5deca7727a87c9, type: 3}
+  m_Name: TwoHandedWarHammer
+  m_EditorClassIdentifier: 
+  itemName: Two handed war hammer
+  description: Do you hear the sound of Death?
+  cost: 250
+  icon: {fileID: 21300000, guid: fbd8bcd5e1bf0604a91562541c272f8c, type: 3}
+  prefab: {fileID: 7087786812071082882, guid: 7d49bf3d73b7ba04ab3d7011866ac908, type: 3}

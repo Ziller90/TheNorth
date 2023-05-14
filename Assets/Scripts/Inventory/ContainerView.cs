@@ -26,10 +26,35 @@ public class ContainerView : MonoBehaviour
     public Transform InventoryRoot => inventoryRoot;
     public Transform IconsContainer => iconsContainer;
 
+    public void Start()
+    {
+        rightHandSlot.iconInsertedEvent.AddListener((ItemIcon icon, InventorySlot slot)
+            => equipment.SetItemInRightHand(icon.Item));
+
+        rightHandSlot.iconRemovedEvent.AddListener((ItemIcon icon, InventorySlot slot)
+            => equipment.RemoveItemFromRightHand());
+
+        leftHandSlot.iconInsertedEvent.AddListener((ItemIcon icon, InventorySlot slot)
+            => equipment.SetItemInLeftHand(icon.Item));
+
+        leftHandSlot.iconRemovedEvent.AddListener((ItemIcon icon, InventorySlot slot)
+            => equipment.RemoveItemFromLeftHand());
+    }
+
     private void OnEnable()
     {
         container = Links.instance.playerCharacter.GetComponentInChildren<Container>();
         equipment = Links.instance.playerCharacter.GetComponentInChildren<Equipment>();
+
+        for (int i = 0; i < equipment.QuickAccessItems.Length; i++)
+        {
+            quickAccessSlots[i].iconInsertedEvent.AddListener((ItemIcon icon, InventorySlot slot)
+                => equipment.SetItemInQuickAccessSlot(icon.Item, i));
+
+            quickAccessSlots[i].iconRemovedEvent.AddListener((ItemIcon icon, InventorySlot slot)
+                => equipment.RemoveItemFromQuickAccessSlot(i));
+        }
+
         DrawInventory();
     }
 
@@ -37,7 +62,6 @@ public class ContainerView : MonoBehaviour
     {
         ClearInventory();
         DrawInventorySlots();
-        FillEquipmentSlots();
     }
 
     public void ClearInventory()
@@ -76,7 +100,6 @@ public class ContainerView : MonoBehaviour
         for (int i = 0; i < container.MaxItemsNumber; i++)
         {
             var slot = Instantiate(inventorySlotPrefab, slotsGrid.transform).GetComponent<InventorySlot>();
-            slot.SlotColliderSize = slotsGrid.cellSize.x + slotsGrid.spacing.x;
 
             var item = container.GetItem(i);
             if (item)
@@ -88,27 +111,6 @@ public class ContainerView : MonoBehaviour
             slot.iconInsertedEvent.AddListener(AddItemToContainer);
             slot.iconRemovedEvent.AddListener(RemoveItemFromContainer);
             inventorySlots.Add(slot);
-        }
-    }
-    void FillEquipmentSlots()
-    {
-        if (equipment.RightHandItem) 
-        {
-            var rightHandIcon = Instantiate(iconTemplatePrefab, iconsContainer).GetComponent<ItemIcon>();
-            rightHandIcon.SetItem(equipment.RightHandItem, rightHandSlot, this);
-        }
-        if (equipment.LeftHandItem)
-        {
-            var leftHandIcon = Instantiate(iconTemplatePrefab, iconsContainer).GetComponent<ItemIcon>();
-            leftHandIcon.SetItem(equipment.LeftHandItem, leftHandSlot, this);
-        }
-        for(int i = 0; i < equipment.QuickAccessItems.Length; i++)
-        {
-            if (equipment.QuickAccessItems[i])
-            {
-                var quickAccessIcon = Instantiate(iconTemplatePrefab, iconsContainer).GetComponent<ItemIcon>();
-                quickAccessIcon.SetItem(equipment.QuickAccessItems[i], quickAccessSlots[i], this);
-            }
         }
     }
 
@@ -132,12 +134,5 @@ public class ContainerView : MonoBehaviour
             return leftHandSlot;
 
         return null;
-    }
-    private void Update()
-    {
-        foreach(var slot in inventorySlots)
-        {
-            Debug.Log(slot.name + " " + slot.GetComponent<RectTransform>().position);
-        }
     }
 }

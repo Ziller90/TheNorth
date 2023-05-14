@@ -39,7 +39,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     public void OnPointerUp(PointerEventData pointerEventData)
     {
         gameObject.transform.parent = containerView.IconsContainer;
-        var newSlot = containerView.GetSlot(gameObject.GetComponent<RectTransform>().anchoredPosition);
+        var newSlot = containerView.GetSlot(gameObject.GetComponent<RectTransform>().position);
         if (newSlot)
         {
             if (newSlot.IsEmpty)
@@ -50,6 +50,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
             else
             {
                 newSlot.ItemIcon.MoveToSlot(slot);
+                newSlot.RemoveIcon();
                 MoveToSlot(newSlot);
             }
         }
@@ -61,8 +62,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     }
     public void OnDrag(PointerEventData pointerEventData)
     {
-        gameObject.transform.position = new Vector3(pointerEventData.position.x, pointerEventData.position.y,1);
-        Debug.Log(gameObject.GetComponent<RectTransform>().position);
+        gameObject.transform.position = new Vector3(pointerEventData.position.x, pointerEventData.position.y,0);
     }
     public void MoveToSlot(InventorySlot newSlot)
     {
