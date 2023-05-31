@@ -11,7 +11,7 @@ public class Sensors : MonoBehaviour
     [SerializeField] GameObject ThisCreature;
     [SerializeField] float viewPointOffset;
 
-    List<Transform> creaturesOnLocation;
+    List<Transform> creaturesOnLocation = new List<Transform>();
     void Start()
     {
         creaturesOnLocation = Links.instance.globalLists.creaturesOnLocation;

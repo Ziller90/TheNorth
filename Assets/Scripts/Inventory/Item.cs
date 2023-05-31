@@ -14,7 +14,7 @@ public class Item : MonoBehaviour
     void OnEnable()
     {
         itemColliders = GetComponents<Collider>();
-
+        SetItemState(inInventory);
         if (!inInventory)
             Links.instance.globalLists.AddToItemsOnLocation(gameObject.transform);
     }
