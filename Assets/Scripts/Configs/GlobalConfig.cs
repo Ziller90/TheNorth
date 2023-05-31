@@ -13,31 +13,39 @@ public enum ControlType
 public class GlobalConfig : ScriptableObject
 {
     [SerializeField] ControlType manuallySelectedControlType;
+    [SerializeField] bool allowAutoControlTypeSelect;
     ControlType currentControlType;
     public ControlType CurrentControlType => currentControlType;
     public void SetControlType()
     {
-        if (Application.platform == RuntimePlatform.Android)
+        if (allowAutoControlTypeSelect)
         {
-            currentControlType = ControlType.Mobile;
+            if (Application.platform == RuntimePlatform.Android)
+            {
+                currentControlType = ControlType.Mobile;
+            }
+            if (Application.platform == RuntimePlatform.IPhonePlayer)
+            {
+                currentControlType = ControlType.Mobile;
+            }
+            if (Application.platform == RuntimePlatform.WindowsPlayer)
+            {
+                currentControlType = ControlType.PC;
+            }
+            if (Application.platform == RuntimePlatform.OSXPlayer)
+            {
+                currentControlType = ControlType.PC;
+            }
+            if (Application.platform == RuntimePlatform.OSXEditor)
+            {
+                currentControlType = manuallySelectedControlType;
+            }
+            if (Application.platform == RuntimePlatform.WindowsEditor)
+            {
+                currentControlType = manuallySelectedControlType;
+            }
         }
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            currentControlType = ControlType.Mobile;
-        }
-        if (Application.platform == RuntimePlatform.WindowsPlayer)
-        {
-            currentControlType = ControlType.PC;
-        }
-        if (Application.platform == RuntimePlatform.OSXPlayer)
-        {
-            currentControlType = ControlType.PC;
-        }        
-        if (Application.platform == RuntimePlatform.OSXEditor)
-        {
-            currentControlType = manuallySelectedControlType;
-        }
-        if (Application.platform == RuntimePlatform.WindowsEditor)
+        else
         {
             currentControlType = manuallySelectedControlType;
         }

@@ -209,7 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meleeWeaponSounds: {fileID: 0}
   thisCreatureHealth: {fileID: 0}
-  baseDamage: 30
+  baseDamage: 15
   hostCreature: {fileID: 0}
 --- !u!65 &1839699812244845453
 BoxCollider:
@@ -222,5 +222,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.13455781, y: 0.46499938, z: 0.52269554}
-  m_Center: {x: 0.0026225597, y: 0.031470686, z: -0.06031871}
+  m_Size: {x: 0.24998648, y: 0.72150755, z: 0.52269554}
+  m_Center: {x: 0.00048499554, y: -0.3618418, z: -0.06031871}

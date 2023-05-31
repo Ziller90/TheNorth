@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class Equipment : MonoBehaviour
@@ -53,6 +52,7 @@ public class Equipment : MonoBehaviour
     }
     public void RemoveItemFromLeftHand()
     {
+        leftHandItem.transform.position = new Vector3(-1000, -1000, -1000);
         leftHandItem = null;
     }
     public void RemoveItemFromQuickAccessSlot(int index)
