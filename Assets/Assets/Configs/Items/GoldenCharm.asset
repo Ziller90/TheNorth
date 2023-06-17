@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad3201cdc2a38a41a5deca7727a87c9, type: 3}
   m_Name: GoldenCharm
   m_EditorClassIdentifier: 
-  name: Golden charm
+  itemName: Golden Charm
   description: Some golden charm founded in forest
-  itemID: 2
   cost: 20
-  type: 3
-  size: 0
   icon: {fileID: 21300000, guid: be268f2a18f49ad4196744250633f1f5, type: 3}
   prefab: {fileID: 1619787410760024564, guid: 8cb419fca0fe3774ea7b54b895bca43d, type: 3}
+  itemUsingType: 0
