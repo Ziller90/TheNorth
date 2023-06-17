@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad3201cdc2a38a41a5deca7727a87c9, type: 3}
   m_Name: FlyAgaricPotionData
   m_EditorClassIdentifier: 
-  name: Fly agaric potion
-  description: Fly agaric potion for courage and enthusiasm!
-  itemID: 4
+  itemName: Fly Agaric Potion
+  description: '"Fly agaric potion for courage and enthusiasm!"'
   cost: 40
-  type: 3
-  size: 0
   icon: {fileID: 21300000, guid: 9119a7df01d855144acee2cc5135c218, type: 3}
   prefab: {fileID: 8347591099599403271, guid: bfe3c8b4143bf8343924aba0a94da744, type: 3}
+  itemUsingType: 256

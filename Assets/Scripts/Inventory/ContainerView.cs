@@ -7,7 +7,7 @@ public class ContainerView : MonoBehaviour
 {
     Container container;
     Equipment equipment;
-    [SerializeField] DescriptionShower descriptionShower;
+    [SerializeField] ItemsManager itemsManager;
     [SerializeField] List<InventorySlot> inventorySlots = new List<InventorySlot>();
     [SerializeField] Transform iconsContainer;
     [SerializeField] GridLayoutGroup slotsGrid;
@@ -20,7 +20,7 @@ public class ContainerView : MonoBehaviour
 
     [SerializeField] InventorySlot[] quickAccessSlots;
 
-    public DescriptionShower DescriptionShower => descriptionShower;
+    public ItemsManager ItemsManager => itemsManager;
     public Container Container => container;
     public GridLayoutGroup GridLayoutGroup => slotsGrid;
     public Transform InventoryRoot => inventoryRoot;
@@ -62,6 +62,7 @@ public class ContainerView : MonoBehaviour
     {
         ClearInventory();
         DrawInventorySlots();
+        itemsManager.RemoveSelectedItem();
     }
 
     public void ClearInventory()
@@ -105,7 +106,7 @@ public class ContainerView : MonoBehaviour
             if (item)
             {
                 var newIcon = Instantiate(iconTemplatePrefab, iconsContainer).GetComponent<ItemIcon>();
-                newIcon.SetItem(item, slot, this);
+                newIcon.SetItem(item, slot, this, itemsManager);
                 slot.InsertIcon(newIcon, true);
             }
             slot.iconInsertedEvent.AddListener(AddItemToContainer);
@@ -134,5 +135,34 @@ public class ContainerView : MonoBehaviour
             return leftHandSlot;
 
         return null;
+    }
+    public void RequestItemMoving(ItemIcon itemIcon)
+    {
+        var newSlot = GetSlot(itemIcon.GetComponent<RectTransform>().position);
+        if (newSlot)
+        {
+            bool changingItemSlot = newSlot != itemIcon.Slot;
+            if (changingItemSlot)
+                itemsManager.RemoveSelectedItem();
+
+            if (newSlot.IsEmpty)
+            {
+                itemIcon.Slot.RemoveIcon();
+                itemIcon.MoveToSlot(newSlot);
+            }
+            else
+            {
+                newSlot.ItemIcon.MoveToSlot(itemIcon.Slot);
+                newSlot.RemoveIcon();
+                itemIcon.MoveToSlot(newSlot);
+            }
+
+            if (changingItemSlot)
+                itemsManager.SetSelectedItemIcon(itemIcon);
+        }
+        else
+        {
+            itemIcon.Slot.InsertIcon(itemIcon, false);
+        }
     }
 }

@@ -92,4 +92,13 @@ public class Utils : MonoBehaviour
         }
         return Vector3.ClampMagnitude(new Vector3(horizontal, 0, vertical), 1);
     }
+    public static bool isInRhombus(Vector2 position, Vector2 rhombusCenter, float rhombusWidth, float rhombusHeight)
+    {
+        Vector2 pointVector = position - rhombusCenter;
+        if (Mathf.Abs(pointVector.x) / (rhombusWidth / 2) + Mathf.Abs(pointVector.y) / (rhombusHeight / 2) <= 1)
+        {
+            return true;
+        }
+        return false;
+    }
 }

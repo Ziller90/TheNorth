@@ -477,7 +477,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654847286}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a53b2264e9dd9d43b6fba5d751c85d2, type: 3}
   m_Name: 
@@ -494,7 +494,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654847286}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 570b8a7328e58954cb402649091c9d2c, type: 3}
   m_Name: 
@@ -753,7 +753,7 @@ PrefabInstance:
     - target: {fileID: 7671029400638795453, guid: 2114c808b6d20304ba7f2523fe731746, type: 3}
       propertyPath: presentedLocationPrefab
       value: 
-      objectReference: {fileID: 746199878580276533, guid: c56492ff4448208458c529e8f555f0a6, type: 3}
+      objectReference: {fileID: 746199878580276533, guid: ffddd479ccd7b9b4fb8db2e6e4c719db, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
