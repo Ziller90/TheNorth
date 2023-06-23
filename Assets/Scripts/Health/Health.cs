@@ -19,8 +19,12 @@ public class Health : MonoBehaviour
     {
         currentHealth -= damage;
         if (currentHealth <= 0)
-        {
             dieEvent();
-        }
+    }
+    public void Heal(float hp)
+    {
+        currentHealth += hp;
+        if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
     }
 }

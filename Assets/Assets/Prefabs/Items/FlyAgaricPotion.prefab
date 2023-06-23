@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 8688368697823585214}
   - component: {fileID: 6886806159882751655}
   - component: {fileID: 5933468909579369482}
+  - component: {fileID: 6175709817351055439}
   m_Layer: 0
   m_Name: FlyAgaricPotion
   m_TagString: Untagged
@@ -211,9 +212,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8347591099599403271}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.6650009, y: 0.738178, z: 0.6357651}
   m_Center: {x: 0.0029335022, y: 0.5296904, z: -0.15647507}
 --- !u!54 &6886806159882751655
@@ -223,10 +232,21 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8347591099599403271}
-  serializedVersion: 2
+  serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -246,6 +266,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: cf3b556c07da4ee4cb3834ccd967a464, type: 2}
   inInventory: 0
+--- !u!114 &6175709817351055439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8347591099599403271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae2e3401e4285f643982b7b6366ff4e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderers:
+  - {fileID: 4618920416085922457}
+  - {fileID: 2083596026047443593}
+  - {fileID: 7855857155093128844}
+  isInteractable: 1
 --- !u!1 &8400783121168643634
 GameObject:
   m_ObjectHideFlags: 0

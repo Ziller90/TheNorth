@@ -20,6 +20,6 @@ public class MobileButtonsManager : MonoBehaviour
 
     public void PickUpItemPressed()
     {
-        actionManager.OnPickUpItemPressed();
+        actionManager.OnInteractPressed();
     }
 }
