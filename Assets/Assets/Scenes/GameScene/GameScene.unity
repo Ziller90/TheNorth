@@ -1051,6 +1051,7 @@ MonoBehaviour:
   fixedJoystick: {fileID: 1476434604}
   mobileButtonsManager: {fileID: 354176949}
   deathScreen: {fileID: 853403243}
+  globalConfig: {fileID: 11400000, guid: deae6e50ef4fa4441a7078fb63aa152e, type: 2}
 --- !u!4 &920258809
 Transform:
   m_ObjectHideFlags: 0
@@ -2110,7 +2111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creaturesOnLocation: []
-  itemsOnLocation: []
+  interactablesOnLocation: []
 --- !u!4 &1629276084
 Transform:
   m_ObjectHideFlags: 0

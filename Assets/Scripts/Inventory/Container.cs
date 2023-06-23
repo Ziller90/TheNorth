@@ -40,8 +40,8 @@ public class Container : MonoBehaviour
     {
         return itemsInContainer[index];
     }
-    public void RemoveItem(Item item, int index)
-    {
+    public void RemoveItemAtIndex(int index)
+    {   
         itemsInContainer[index] = null;
         itemsNumber--;
     }

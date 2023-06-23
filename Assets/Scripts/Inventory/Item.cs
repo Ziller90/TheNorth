@@ -7,25 +7,23 @@ public class Item : MonoBehaviour
 {
     [SerializeField] ItemData itemData;
     [SerializeField] bool inInventory;
-
+    Rigidbody rgdody;
     Collider[] itemColliders;
+    Interactable interactable;
     public ItemData ItemData => itemData;
 
     void OnEnable()
     {
+        interactable = GetComponent<Interactable>();
+        rgdody = GetComponent<Rigidbody>();
         itemColliders = GetComponents<Collider>();
-        SetItemState(inInventory);
-        if (!inInventory)
-            Links.instance.globalLists.AddToItemsOnLocation(gameObject.transform);
+        SetItemInInventory(inInventory);
     }
-    void OnDisable()
+    public void SetItemInInventory(bool isInInventory)
     {
-        if (!inInventory)
-            Links.instance.globalLists.RemoveFromItemsOnLocation(gameObject.transform);
-    }
-    public void SetItemState(bool isInInventory)
-    {
+        interactable.IsInteractable = !isInInventory;
         inInventory = isInInventory;
+        rgdody.isKinematic = inInventory;
         foreach (var collider in itemColliders)
         {
             collider.isTrigger = isInInventory;

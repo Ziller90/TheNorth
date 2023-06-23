@@ -17,12 +17,14 @@ public class ItemsManager : MonoBehaviour
 
     ItemDescriptionPanel descriptionPanel;
     ItemIcon selectedIcon;
-    ItemsCollector itemsCollector;
+    InteractablesLocator itemsCollector;
+    Creature player;
     void Start()
     {
-        itemsCollector = Links.instance.playerCharacter.GetComponentInChildren<ItemsCollector>();
+        itemsCollector = Links.instance.playerCharacter.GetComponentInChildren<InteractablesLocator>();
+        player = Links.instance.playerCharacter.GetComponent<Creature>();
     }
-    public void RemoveSelectedItem()
+    public void RemoveSelection()
     {
         if (selectedIcon)
             selectedIcon.Slot.Deselect();
@@ -43,7 +45,7 @@ public class ItemsManager : MonoBehaviour
         if (descriptionPanel)
             Destroy(descriptionPanel.gameObject);
     }
-    public void SetSelectedItemIcon(ItemIcon itemIcon)
+    public void SetSelectedIcon(ItemIcon itemIcon)
     {
         if (selectedIcon)
             selectedIcon.Slot.Deselect();
@@ -65,22 +67,30 @@ public class ItemsManager : MonoBehaviour
     public void UseItem()
     {
         var itemIcon = selectedIcon;
-        if (selectedIcon.Item.ItemData.ItemUsingType == ItemUsingType.RightHand)
-        {
-            RemoveSelectedItem();
+
+        if (itemIcon.Item.ItemData.ItemUsingType == ItemUsingType.RightHand)
             itemIcon.MoveToSlot(rightHandSlot);
-        }
-        if (selectedIcon.Item.ItemData.ItemUsingType == ItemUsingType.LeftHand)
+        if (itemIcon.Item.ItemData.ItemUsingType == ItemUsingType.LeftHand)
+            itemIcon.MoveToSlot(leftandSlot);
+        if (itemIcon.Item.ItemData.ItemUsingType == ItemUsingType.ActiveUsable)
         {
-            selectedIcon.MoveToSlot(leftandSlot);
-            RemoveSelectedItem();
+            var itemUsing = itemIcon.Item.GetComponent<ItemUsing>();
+            itemUsing.UseItem(player);
+
         }
+
     }
     public void ThrowItem()
     {
         itemsCollector.Drop(selectedIcon.Item);
         selectedIcon.DestroyItemIcon();
-        RemoveSelectedItem();
+        RemoveSelection();
+    }
+    public void ThrowItem(Item item)
+    {
+        itemsCollector.Drop(item);
+        selectedIcon.DestroyItemIcon();
+        RemoveSelection();
     }
     IEnumerator WaitForDescription(ItemIcon itemIcon)
     {

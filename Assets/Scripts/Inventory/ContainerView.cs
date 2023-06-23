@@ -62,7 +62,7 @@ public class ContainerView : MonoBehaviour
     {
         ClearInventory();
         DrawInventorySlots();
-        itemsManager.RemoveSelectedItem();
+        itemsManager.RemoveSelection();
     }
 
     public void ClearInventory()
@@ -91,7 +91,7 @@ public class ContainerView : MonoBehaviour
         {
             if (inventorySlots[i] == slot)
             {
-                container.RemoveItem(icon.Item, i);
+                container.RemoveItemAtIndex(i);
             }
         }
     }
@@ -135,34 +135,5 @@ public class ContainerView : MonoBehaviour
             return leftHandSlot;
 
         return null;
-    }
-    public void RequestItemMoving(ItemIcon itemIcon)
-    {
-        var newSlot = GetSlot(itemIcon.GetComponent<RectTransform>().position);
-        if (newSlot)
-        {
-            bool changingItemSlot = newSlot != itemIcon.Slot;
-            if (changingItemSlot)
-                itemsManager.RemoveSelectedItem();
-
-            if (newSlot.IsEmpty)
-            {
-                itemIcon.Slot.RemoveIcon();
-                itemIcon.MoveToSlot(newSlot);
-            }
-            else
-            {
-                newSlot.ItemIcon.MoveToSlot(itemIcon.Slot);
-                newSlot.RemoveIcon();
-                itemIcon.MoveToSlot(newSlot);
-            }
-
-            if (changingItemSlot)
-                itemsManager.SetSelectedItemIcon(itemIcon);
-        }
-        else
-        {
-            itemIcon.Slot.InsertIcon(itemIcon, false);
-        }
     }
 }

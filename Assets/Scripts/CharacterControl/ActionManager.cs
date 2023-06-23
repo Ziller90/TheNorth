@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class ActionManager : MonoBehaviour
 {
     public UnityAction OnOpenInventoryPressed;
-    public UnityAction OnPickUpItemPressed;
+    public UnityAction OnInteractPressed;
 
     public bool isMeleeAttackActing;
     public bool isDistantAttackActing;

@@ -5,15 +5,15 @@ using UnityEngine;
 public class GlobalLists : MonoBehaviour
 {
     public List<Transform> creaturesOnLocation;
-    public List<Transform> itemsOnLocation;
+    public List<Interactable> interactablesOnLocation;
 
-    public void AddToItemsOnLocation(Transform item)
+    public void AddInteractableOnLocation(Interactable item)
     {
-        itemsOnLocation.Add(item);
+        interactablesOnLocation.Add(item);
     }
-    public void RemoveFromItemsOnLocation(Transform item)
+    public void RemoveInteractableOnLocation(Interactable item)
     {
-        if (itemsOnLocation.Contains(item))
-            itemsOnLocation.Remove(item);
+        if (interactablesOnLocation.Contains(item))
+            interactablesOnLocation.Remove(item);
     }
 }

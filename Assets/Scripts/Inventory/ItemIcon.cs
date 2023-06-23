@@ -42,7 +42,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     {
         gameObject.transform.parent = containerView.InventoryRoot;
         gameObject.transform.SetSiblingIndex(gameObject.transform.parent.childCount - 1);
-        itemsManager.SetSelectedItemIcon(this);
+        itemsManager.SetSelectedIcon(this);
         holdPressed = true;
     }
     public void OnPointerUp(PointerEventData pointerEventData)
@@ -50,32 +50,9 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
         itemsManager.DestroyDescriptionPanel();
         slot.DestroyIconFootprint();
         gameObject.transform.parent = containerView.IconsContainer;
+
         var newSlot = containerView.GetSlot(gameObject.GetComponent<RectTransform>().position);
-        if (newSlot)
-        {
-            bool changingItemSlot = newSlot != slot;
-            if (changingItemSlot)
-                itemsManager.RemoveSelectedItem();
-
-            if (newSlot.IsEmpty)
-            {
-                slot.RemoveIcon();
-                MoveToSlot(newSlot);
-            }
-            else
-            {
-                newSlot.ItemIcon.MoveToSlot(slot);
-                newSlot.RemoveIcon();
-                MoveToSlot(newSlot);
-            }
-
-            if (changingItemSlot)
-                itemsManager.SetSelectedItemIcon(this);
-        }
-        else
-        {
-            slot.InsertIcon(this, false);
-        }
+        MoveToSlot(newSlot);
 
         isDragged = false;
         holdPressed = false;
@@ -90,7 +67,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
         isDragged = true;
         gameObject.transform.position = new Vector3(pointerEventData.position.x, pointerEventData.position.y,0);
     }
-    public void MoveToSlot(InventorySlot newSlot)
+    public void SetSlot(InventorySlot newSlot)
     {
         newSlot.InsertIcon(this, false);
         slot = newSlot;
@@ -100,14 +77,31 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
         slot.RemoveIcon();
         Destroy(gameObject);
     }
-    public void SwapItemsInSlots(InventorySlot slot1, InventorySlot slot2)
+    public void MoveToSlot(InventorySlot newSlot)
     {
-        slot2.ItemIcon.MoveToSlot(slot1);
-        slot2.RemoveIcon();
-        MoveToSlot(slot2);
-    }
-    public void MoveItemInEmptySlot()
-    {
+        if (!newSlot)
+        {
+            slot.InsertIcon(this, false);
+            return;
+        }
 
+        bool isNewSlot = newSlot != slot;
+        if (isNewSlot)
+            itemsManager.RemoveSelection();
+
+        if (newSlot.IsEmpty)
+        {
+            slot.RemoveIcon();
+            SetSlot(newSlot);
+        }
+        else
+        {
+            newSlot.ItemIcon.SetSlot(slot);
+            newSlot.RemoveIcon();
+            SetSlot(newSlot);
+        }
+
+        if (isNewSlot)
+            itemsManager.SetSelectedIcon(this);
     }
 }
