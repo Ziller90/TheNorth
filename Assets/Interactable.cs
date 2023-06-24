@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
+enum HighlightState
+{
+    None = 0,
+    Highlighting = 1,
+    FadingOut = 2
+}
 public class Interactable : MonoBehaviour
 {
     [SerializeField] List<MeshRenderer> meshRenderers;
@@ -12,7 +18,7 @@ public class Interactable : MonoBehaviour
     AnimationCurve fadeOutCurve;
     Color32 highlightEmissionColor;
     Color32 defaultEmissionColor;
-
+    HighlightState currentState;
     float highlightSpeed;
     bool isHighlighted;
 
@@ -44,43 +50,55 @@ public class Interactable : MonoBehaviour
     }
     public void SetHighlighted(bool highlight)
     {
-        if (highlight && !isHighlighted)
+        if (currentState == HighlightState.None && highlight)
         {
             isHighlighted = true;
+            currentState = HighlightState.Highlighting;
             startTime = Time.time;
         }
-        else if (!highlight && isHighlighted)
+        if (currentState == HighlightState.FadingOut && highlight)
         {
-            StartCoroutine(DisableHighlighting());
+            isHighlighted = true;
+        }
+        if (currentState == HighlightState.Highlighting && !highlight)
+        {
+            isHighlighted = false;
+            fadeOutStartingPhase = currentPhase;
+            fadeOutStartTime = Time.time;
+            currentState = HighlightState.FadingOut;
+        }
+        if (currentState == HighlightState.FadingOut && !highlight)
+        {
+            isHighlighted = false;
         }
     }
+
     public void Update()
     {
-        if (isHighlighted)
-        {
-            if (fadeOutStartTime == 0)
-                currentPhase = GetPhase();
-            else
-                currentPhase = GetFadeOutPhase();
+        if (currentState == HighlightState.Highlighting)
+            currentPhase = GetPhase();
+        if (currentState == HighlightState.FadingOut)
+            currentPhase = GetFadeOutPhase();
+        if (currentState == HighlightState.None)
+            currentPhase = 0;
 
-            Color32 currentEmissionColor = Color.Lerp(defaultEmissionColor, highlightEmissionColor, currentPhase);
-            foreach (var renderer in meshRenderers)
-            {
-                renderer.material.SetColor("_EmissionColor", currentEmissionColor);
-            }
-        }
-    }
-    IEnumerator DisableHighlighting()
-    {
-        fadeOutStartingPhase = currentPhase;
-        fadeOutStartTime = Time.time;
-        while(currentPhase > 0.001f)
+        Color32 currentEmissionColor = Color.Lerp(defaultEmissionColor, highlightEmissionColor, currentPhase);
+        foreach (var renderer in meshRenderers)
         {
-            yield return new WaitForEndOfFrame();
+            renderer.material.SetColor("_EmissionColor", currentEmissionColor);
         }
-        fadeOutStartTime = 0;
-        currentPhase = 0;
-        isHighlighted = false;
+
+        if (currentState == HighlightState.FadingOut && currentPhase < 0.001f)
+        {
+            fadeOutStartTime = 0;
+            if (isHighlighted)
+            {
+                currentState = HighlightState.Highlighting;
+                startTime = Time.time;
+            }
+            else
+                currentState = HighlightState.None;
+        }
     }
     float GetPhase()
     {
