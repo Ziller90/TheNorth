@@ -7,14 +7,14 @@ using static UnityEditor.Progress;
 public class InteractablesLocator : MonoBehaviour
 {
     [SerializeField] float interactionRange;
-    [SerializeField] Container inventoryContainer;
-    [SerializeField] Transform itemsDropPosition;
-
     [SerializeField] ActionManager actionManager;
-    List<Interactable> interactablesOnLocation;
-    Interactable nearestInteractable = null;
+    HumanoidInventory inventory;
+
+    List<InteractableObject> interactablesOnLocation;
+    InteractableObject nearestInteractable = null;
     void Start()
     {
+        inventory = GetComponent<HumanoidInventory>();  
         actionManager.OnInteractPressed += Interact;
         interactablesOnLocation = Links.instance.globalLists.interactablesOnLocation;
     }
@@ -24,7 +24,7 @@ public class InteractablesLocator : MonoBehaviour
     }
     void Update()
     {
-        Interactable newNearestInteractable = null;
+        InteractableObject newNearestInteractable = null;
         float minDistance = 1000000;
         foreach (var interactable in interactablesOnLocation)
         {
@@ -53,11 +53,11 @@ public class InteractablesLocator : MonoBehaviour
     {
         if (nearestInteractable)
         {
-            if (nearestInteractable.GetComponent<Item>() && inventoryContainer.HasFreeSpace)
+            if (nearestInteractable.GetComponent<Item>())
             {
                 var item = nearestInteractable.GetComponent<Item>();
                 Links.instance.globalLists.RemoveInteractableOnLocation(nearestInteractable);
-                AddItemToContainer(item);
+                inventory.AddItem(item);
             }
             if (nearestInteractable.GetComponent<ContainerBody>())
             {
@@ -65,17 +65,5 @@ public class InteractablesLocator : MonoBehaviour
                 container.OpenContainer();
             }
         }
-    }
-    public void AddItemToContainer(Item item) 
-    {
-        inventoryContainer.AddNewItem(item);
-        item.transform.position = new Vector3(-1000, -1000, -1000);
-        item.SetItemInInventory(true);
-    }
-    public void Drop(Item item)
-    {
-        Links.instance.globalLists.AddInteractableOnLocation(item.GetComponent<Interactable>());
-        item.SetItemInInventory(false);
-        item.transform.position = itemsDropPosition.position;
     }
 }

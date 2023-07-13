@@ -1,16 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using System;
+using System.Linq;
 
 public class Container : MonoBehaviour
 {
     [SerializeField] int maxItemsNumber;
-    int itemsNumber = 0;
     [SerializeField] Item[] itemsInContainer;
     public int MaxItemsNumber => maxItemsNumber;
     public bool HasFreeSpace => GetFreeContainerIndex() == -1 ? false : true;
+
+    int itemsNumber = 0;
 
     public void Start()
     {
@@ -43,6 +41,20 @@ public class Container : MonoBehaviour
     public void RemoveItemAtIndex(int index)
     {   
         itemsInContainer[index] = null;
-        itemsNumber--;
+        itemsNumber--;  
+    }
+    public bool Contains(Item item)
+    {
+        return itemsInContainer.Contains(item);
+    }
+    public void Remove(Item item)
+    {
+        for (int i = 0; i < itemsNumber; i++)
+        {
+            if (itemsInContainer[i] == item)
+            {
+                RemoveItemAtIndex(i);
+            }
+        }
     }
 }

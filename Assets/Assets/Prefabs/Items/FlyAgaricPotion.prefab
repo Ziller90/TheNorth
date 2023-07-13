@@ -178,7 +178,8 @@ GameObject:
   - component: {fileID: 8688368697823585214}
   - component: {fileID: 6886806159882751655}
   - component: {fileID: 5933468909579369482}
-  - component: {fileID: 6175709817351055439}
+  - component: {fileID: 2109581562991277850}
+  - component: {fileID: -7281187992762518609}
   m_Layer: 0
   m_Name: FlyAgaricPotion
   m_TagString: Untagged
@@ -266,7 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: cf3b556c07da4ee4cb3834ccd967a464, type: 2}
   inInventory: 0
---- !u!114 &6175709817351055439
+--- !u!114 &2109581562991277850
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -275,14 +276,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 8347591099599403271}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae2e3401e4285f643982b7b6366ff4e8, type: 3}
+  m_Script: {fileID: 11500000, guid: fe879ece6df836547b9cddf476fed3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7281187992762518609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8347591099599403271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7c2fb465afd604285b36295fce11af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableObject: {fileID: 0}
   meshRenderers:
   - {fileID: 4618920416085922457}
   - {fileID: 2083596026047443593}
   - {fileID: 7855857155093128844}
-  isInteractable: 1
 --- !u!1 &8400783121168643634
 GameObject:
   m_ObjectHideFlags: 0

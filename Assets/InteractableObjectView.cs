@@ -1,6 +1,7 @@
 using Microsoft.Win32.SafeHandles;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -10,10 +11,11 @@ enum HighlightState
     Highlighting = 1,
     FadingOut = 2
 }
-public class Interactable : MonoBehaviour
+public class InteractableObjectView : MonoBehaviour
 {
     [SerializeField] List<MeshRenderer> meshRenderers;
-    [SerializeField] bool isInteractable = true;
+
+    InteractableObject interactableObject;
     AnimationCurve highlightCurve; 
     AnimationCurve fadeOutCurve;
     Color32 highlightEmissionColor;
@@ -21,16 +23,16 @@ public class Interactable : MonoBehaviour
     HighlightState currentState;
     float highlightSpeed;
     bool isHighlighted;
-
     float startTime;
     float currentPhase;
     float fadeOutStartTime = 0;
     float fadeOutSpeed;
     float fadeOutStartingPhase;
-    public bool IsInteractable { get; set; }
 
-    private void Start()
+    private void Awake()
     {
+        interactableObject = GetComponent<InteractableObject>();
+
         highlightCurve = Links.instance.globalConfig.HighlightCurve;
         fadeOutCurve = Links.instance.globalConfig.FadeOutCurve;
         highlightSpeed = Links.instance.globalConfig.HighlighSpeed;
@@ -40,13 +42,16 @@ public class Interactable : MonoBehaviour
     }
     void OnEnable()
     {
-        if (isInteractable)
-            Links.instance.globalLists.AddInteractableOnLocation(this);
+        interactableObject.updateSelectionStateEvent += SetHighlighted;
     }
     void OnDisable()
     {
-        if (isInteractable)
-            Links.instance.globalLists.RemoveInteractableOnLocation(this);
+        interactableObject.updateSelectionStateEvent -= SetHighlighted;
+    }
+    [ContextMenu("Find Object's MeshRenderers")]
+    public void FindObjectMeshRenderers()
+    {
+        meshRenderers = gameObject.GetComponentsInChildren<MeshRenderer>().ToList();
     }
     public void SetHighlighted(bool highlight)
     {
@@ -75,6 +80,11 @@ public class Interactable : MonoBehaviour
 
     public void Update()
     {
+        HighlightObject();
+    }
+
+    public void HighlightObject()
+    {
         if (currentState == HighlightState.Highlighting)
             currentPhase = GetPhase();
         if (currentState == HighlightState.FadingOut)
@@ -100,10 +110,12 @@ public class Interactable : MonoBehaviour
                 currentState = HighlightState.None;
         }
     }
+
     float GetPhase()
     {
         return highlightCurve.Evaluate((Time.time - startTime) * highlightSpeed);
     }
+
     float GetFadeOutPhase()
     {
         return (fadeOutCurve.Evaluate((Time.time - fadeOutStartTime) * fadeOutSpeed) * fadeOutStartingPhase);

@@ -3,23 +3,19 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class InventorySlot : MonoBehaviour
+public class Slot : MonoBehaviour
 {
     ItemIcon itemIconInSlot;
     RectTransform slotTransform;
-    bool selected;
-    public bool isSelected => selected;
     public bool IsEmpty => itemIconInSlot == null;
     public ItemIcon ItemIcon => itemIconInSlot;
 
-    public UnityEvent<ItemIcon, InventorySlot> iconInsertedEvent;
-    public UnityEvent<ItemIcon, InventorySlot> iconRemovedEvent;
+    public UnityEvent<ItemIcon, Slot> iconInsertedEvent;
+    public UnityEvent<ItemIcon, Slot> iconRemovedEvent;
 
     [SerializeField] bool slotIsRhombus;
-    [SerializeField] GameObject iconFootprintPrefab;
-    [SerializeField] GameObject selectionMarkerPrefab;
-    GameObject iconFootprint;
-    GameObject selectionMarker;
+    [SerializeField] Image iconShadow;
+    [SerializeField] Image selectionMarker;
     private void OnEnable()
     {
         slotTransform = GetComponent<RectTransform>();
@@ -36,10 +32,10 @@ public class InventorySlot : MonoBehaviour
         iconRemovedEvent?.Invoke(itemIconInSlot, this);
         itemIconInSlot = null;
     }
-    IEnumerator SetIconInSlotPosition(ItemIcon icon)
+    public IEnumerator SetIconInSlotPosition(ItemIcon icon)
     {
-        yield return new WaitForEndOfFrame();
         itemIconInSlot = icon;
+        yield return new WaitForEndOfFrame();
         itemIconInSlot.GetComponent<RectTransform>().position = slotTransform.position;
         icon.transform.parent = slotTransform;
     }
@@ -62,34 +58,30 @@ public class InventorySlot : MonoBehaviour
         return false;
     }
 
+    public void SetSlotSelection(bool isSelected)
+    {
+        if (isSelected)
+            selectionMarker.gameObject.SetActive(true);
+        if (!isSelected)
+            selectionMarker.gameObject.SetActive(false);
+    }
+    public void ShowItemShadow(ItemIcon itemIcon)
+    {
+        iconShadow.gameObject.SetActive(true);
+        iconShadow.sprite = itemIcon.Item.ItemData.Icon;
+    }
+    public void HideItemShadow()
+    {
+        iconShadow.gameObject.SetActive(false);
+    }
     public void Destroy()
+    {
+        DestroyItemIcon();
+        Destroy(gameObject);
+    }
+    public void DestroyItemIcon()
     {
         if (itemIconInSlot)
             Destroy(itemIconInSlot.gameObject);
-        Destroy(gameObject);
-    }
-    public void InstantiateIconFootprint()
-    {
-        iconFootprint = Instantiate(iconFootprintPrefab, gameObject.transform);
-        iconFootprint.GetComponent<RectTransform>().sizeDelta = gameObject.GetComponent<RectTransform>().sizeDelta;
-
-        iconFootprint.gameObject.GetComponent<Image>().sprite = itemIconInSlot.Item.ItemData.Icon;
-        iconFootprint.transform.SetSiblingIndex(0);
-    }
-    public void DestroyIconFootprint()
-    {
-        Destroy(iconFootprint);
-    }
-    public void Select()
-    {
-        selected = true;
-        selectionMarker = Instantiate(selectionMarkerPrefab, gameObject.transform);
-        selectionMarker.GetComponent<RectTransform>().sizeDelta = gameObject.GetComponent<RectTransform>().sizeDelta;
-        selectionMarker.transform.SetSiblingIndex(0);
-    }
-    public void Deselect()
-    {
-        selected = false;
-        Destroy(selectionMarker);
     }
 }
