@@ -163,7 +163,8 @@ GameObject:
   - component: {fileID: 3326262906666437443}
   - component: {fileID: 7430892709541178247}
   - component: {fileID: 8156922100725828353}
-  - component: {fileID: 1035395290477341631}
+  - component: {fileID: 6825266256748935649}
+  - component: {fileID: -3093022002046384805}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -249,7 +250,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8267548, y: 0.8081927, z: 0.09664603}
   m_Center: {x: -0.0030936885, y: 0.006187377, z: 0.07424859}
---- !u!114 &1035395290477341631
+--- !u!114 &6825266256748935649
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -258,11 +259,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 6331601498271844124}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae2e3401e4285f643982b7b6366ff4e8, type: 3}
+  m_Script: {fileID: 11500000, guid: fe879ece6df836547b9cddf476fed3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3093022002046384805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6331601498271844124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7c2fb465afd604285b36295fce11af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableObject: {fileID: 0}
   meshRenderers:
   - {fileID: 1658634556890635804}
-  isInteractable: 1
-  blinkingSpeed: 8
-  highlightDisablingSpeed: 12

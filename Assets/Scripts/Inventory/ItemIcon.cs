@@ -1,107 +1,94 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.TerrainTools;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-
-
 public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] Image icon;
-    [SerializeField] Image iconPrint;
-    [SerializeField] GameObject selectionMarker;
+    [SerializeField] float timeToShowDesctiption;
+    [SerializeField] ItemDescriptionPanel descriptionPanelPrefab;
 
+    ItemDescriptionPanel descriptionPanel;
+    ItemsViewManager itemsViewManager;
     Item item;
-    ContainerView containerView;
-    ItemsManager itemsManager;
-    InventorySlot slot;
-    bool isDragged = false;
-    bool holdPressed = false;
-
-    public bool IsDraggerd => isDragged;
-    public bool HoldPressed => holdPressed;
     public Item Item => item;
-    public InventorySlot Slot => slot;
+    bool isDragged = false;
+    bool isHold = false;
 
-    public void SetSelectionMarkerActive(bool active)
-    {
-        selectionMarker.SetActive(active);
-    }
-    public void SetItem(Item item, InventorySlot slot, ContainerView containerView, ItemsManager itemsManager)
+    public void SetItem(Item item, ItemsViewManager itemsViewManager)
     {
         this.item = item;
-        this.slot = slot;
-        this.containerView = containerView;
-        this.itemsManager = itemsManager;
+        this.itemsViewManager = itemsViewManager;
         icon.sprite = item.ItemData.Icon;
-        iconPrint.sprite = item.ItemData.Icon;
     }
     public void OnPointerDown(PointerEventData pointerEventData)
     {
-        gameObject.transform.parent = containerView.InventoryRoot;
-        gameObject.transform.SetSiblingIndex(gameObject.transform.parent.childCount - 1);
-        itemsManager.SetSelectedIcon(this);
-        holdPressed = true;
+        itemsViewManager.SetSelectedIcon(this);
+        transform.SetParent(itemsViewManager.CommonIconsContainer);
+        isHold = true;
+        StartCoroutine(WaitForDescription());
     }
     public void OnPointerUp(PointerEventData pointerEventData)
     {
-        itemsManager.DestroyDescriptionPanel();
-        slot.DestroyIconFootprint();
-        gameObject.transform.parent = containerView.IconsContainer;
+        var newSlot = itemsViewManager.GetSlotByPosition(transform.position);
+        MoveItemToSlot(newSlot);
 
-        var newSlot = containerView.GetSlot(gameObject.GetComponent<RectTransform>().position);
-        MoveToSlot(newSlot);
-
+        itemsViewManager.SetSelectedIcon(this);
         isDragged = false;
-        holdPressed = false;
+        isHold = false;
+        StopAllCoroutines();
+        DestroyDescriptionPanel();
     }
-    public void OnDrag(PointerEventData pointerEventData)
+    public void MoveItemToSlot(Slot newSlot)
     {
-        itemsManager.DestroyDescriptionPanel();
-        if (isDragged == false)
+        var currentSlot = itemsViewManager.GetItemIconSlot(this);
+        if (newSlot == null || newSlot == currentSlot)
         {
-            slot.InstantiateIconFootprint();
+            currentSlot.StartCoroutine(currentSlot.SetIconInSlotPosition(this));
         }
-        isDragged = true;
-        gameObject.transform.position = new Vector3(pointerEventData.position.x, pointerEventData.position.y,0);
-    }
-    public void SetSlot(InventorySlot newSlot)
-    {
-        newSlot.InsertIcon(this, false);
-        slot = newSlot;
-    }
-    public void DestroyItemIcon()
-    {
-        slot.RemoveIcon();
-        Destroy(gameObject);
-    }
-    public void MoveToSlot(InventorySlot newSlot)
-    {
-        if (!newSlot)
+        else if (newSlot.ItemIcon == null)
         {
-            slot.InsertIcon(this, false);
-            return;
-        }
-
-        bool isNewSlot = newSlot != slot;
-        if (isNewSlot)
-            itemsManager.RemoveSelection();
-
-        if (newSlot.IsEmpty)
-        {
-            slot.RemoveIcon();
-            SetSlot(newSlot);
+            currentSlot.RemoveIcon();
+            newSlot.InsertIcon(this, false);
         }
         else
         {
-            newSlot.ItemIcon.SetSlot(slot);
+            currentSlot.RemoveIcon();
+            currentSlot.InsertIcon(newSlot.ItemIcon, false);
             newSlot.RemoveIcon();
-            SetSlot(newSlot);
+            newSlot.InsertIcon(this, false);
         }
+    }
+    public void OnDrag(PointerEventData pointerEventData)
+    {
+        gameObject.transform.position = new Vector3(pointerEventData.position.x, pointerEventData.position.y,0);
+        if (!isDragged)
+        {
+            StopAllCoroutines();
+            DestroyDescriptionPanel();
+            isDragged = true;
+            isHold = false;
+        }
+    }
 
-        if (isNewSlot)
-            itemsManager.SetSelectedIcon(this);
+    IEnumerator WaitForDescription()
+    {
+        yield return new WaitForSeconds(timeToShowDesctiption);
+        if (isHold && !isDragged)
+        {
+            InstantiateDescriptionPanel(this);
+        }
+    }
+    public void InstantiateDescriptionPanel(ItemIcon itemIcon)
+    {
+        descriptionPanel = Instantiate(descriptionPanelPrefab, itemIcon.transform);
+        descriptionPanel.transform.position = itemIcon.transform.position + new Vector3(120, -120, 0);
+        descriptionPanel.SetItemData(itemIcon.Item.ItemData);
+    }
+    public void DestroyDescriptionPanel()
+    {
+        if (descriptionPanel)
+            Destroy(descriptionPanel.gameObject);
     }
 }

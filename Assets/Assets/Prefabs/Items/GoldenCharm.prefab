@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 7150556435093847502}
   - component: {fileID: 925523093865329303}
   - component: {fileID: 2021511657837039643}
-  - component: {fileID: 5319826194325194255}
+  - component: {fileID: -377236891569772194}
+  - component: {fileID: -7198445630376924598}
   m_Layer: 0
   m_Name: GoldenCharm
   m_TagString: Untagged
@@ -150,7 +151,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &5319826194325194255
+--- !u!114 &-377236891569772194
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,11 +160,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1619787410760024564}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae2e3401e4285f643982b7b6366ff4e8, type: 3}
+  m_Script: {fileID: 11500000, guid: fe879ece6df836547b9cddf476fed3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7198445630376924598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619787410760024564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7c2fb465afd604285b36295fce11af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableObject: {fileID: 0}
   meshRenderers:
   - {fileID: 1619787410760024566}
-  isInteractable: 1
-  blinkingSpeed: 8
-  highlightDisablingSpeed: 12
