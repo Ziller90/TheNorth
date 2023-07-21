@@ -232,10 +232,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 914, y: 544}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3380745121464893049
 CanvasRenderer:
@@ -349,6 +349,7 @@ MonoBehaviour:
   itemsViewManager: {fileID: 3939713163959957189}
   useButton: {fileID: 139342361053372254}
   throwButton: {fileID: 1703080749905916044}
+  moneyView: {fileID: 3056980963832522507}
 --- !u!1 &3380745121979320610
 GameObject:
   m_ObjectHideFlags: 0
@@ -1340,6 +1341,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5323265153580446324, guid: d0d6d2501ac906d40813af181ffd44d3, type: 3}
   m_PrefabInstance: {fileID: 6696225984343248877}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3056980963832522507 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8539200860148426982, guid: d0d6d2501ac906d40813af181ffd44d3, type: 3}
+  m_PrefabInstance: {fileID: 6696225984343248877}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da7788e17099cd438e5cb69bea4a6a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6767623189591397349
 PrefabInstance:
   m_ObjectHideFlags: 0

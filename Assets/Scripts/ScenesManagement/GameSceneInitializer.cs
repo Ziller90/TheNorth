@@ -7,9 +7,7 @@ public class GameSceneInitializer : MonoBehaviour
 {
     [SerializeField] GameObject player;
 
-    public UnityAction sceneInitialized;
-
-    public void Start()
+    public void Awake()
     {
         InitializeScene();
     }
@@ -17,7 +15,6 @@ public class GameSceneInitializer : MonoBehaviour
     {
         Links.instance.locationLoader.LoadLocation();
         CreatePlayerCharacter();
-        sceneInitialized?.Invoke();
     }
     public void CreatePlayerCharacter()
     {

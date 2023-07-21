@@ -12,6 +12,7 @@ public class InventoryView : MonoBehaviour
     [SerializeField] ItemsViewManager itemsViewManager;
     [SerializeField] Button useButton;
     [SerializeField] Button throwButton;
+    [SerializeField] MoneyView moneyView;
 
     HumanoidInventory inventory;
 
@@ -19,6 +20,7 @@ public class InventoryView : MonoBehaviour
     {
         inventory = Links.instance.playerCharacter.GetComponentInChildren<HumanoidInventory>();
         containerGridView.SetContainer(inventory.InventoryContainer, itemsViewManager);
+        moneyView.SetHumanoidInventory(inventory);
     }
     private void OnEnable()
     {
@@ -108,11 +110,11 @@ public class InventoryView : MonoBehaviour
     {
         var usingItem = itemsViewManager.SelectedItemIcon;
 
-        if (usingItem.Item.ItemData.ItemUsingType == ItemUsingType.RightHand)
+        if (usingItem.Item.ItemUsingType == ItemUsingType.RightHand)
             usingItem.MoveItemToSlot(rightHandSlot);
-        if (usingItem.Item.ItemData.ItemUsingType == ItemUsingType.LeftHand)
+        if (usingItem.Item.ItemUsingType == ItemUsingType.LeftHand)
             usingItem.MoveItemToSlot(leftHandSlot);
-        if (usingItem.Item.ItemData.ItemUsingType == ItemUsingType.ActiveUsable)
+        if (usingItem.Item.ItemUsingType == ItemUsingType.ActiveUsable)
             inventory.UseItem(usingItem.Item);
 
         itemsViewManager.RemoveSelection();

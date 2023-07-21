@@ -27,13 +27,11 @@ public class ItemData : ScriptableObject
     [SerializeField] string description;
     [SerializeField] int cost;
     [SerializeField] Sprite icon;
-    [SerializeField] GameObject prefab;
     [SerializeField] ItemUsingType itemUsingType;
-
+    [SerializeField] int maxStackSize;
     public string Name => itemName;
     public string Description => description;
     public int Cost => cost;
     public Sprite Icon => icon;
-    public GameObject Prefab => prefab;
     public ItemUsingType ItemUsingType => itemUsingType;
 }

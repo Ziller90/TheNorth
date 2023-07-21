@@ -31,7 +31,7 @@ public class InteractableObjectView : MonoBehaviour
 
     private void Awake()
     {
-        interactableObject = GetComponent<InteractableObject>();
+        interactableObject = transform.parent.GetComponent<InteractableObject>();
 
         highlightCurve = Links.instance.globalConfig.HighlightCurve;
         fadeOutCurve = Links.instance.globalConfig.FadeOutCurve;
