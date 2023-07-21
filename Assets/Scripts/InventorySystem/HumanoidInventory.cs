@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Rendering.Universal;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class HumanoidInventory : MonoBehaviour
 {
@@ -24,33 +25,55 @@ public class HumanoidInventory : MonoBehaviour
     public Item[] QuickAccessItems => quickAccessItems;
     public Container InventoryContainer => inventoryContainer;
 
+    int moneyAmount;
+    public int MoneyAmount => moneyAmount;
+
+    public Action moneyAmountUpdated;
+
+    public void AddMoney(int money)
+    {
+        moneyAmount += money;
+        moneyAmountUpdated?.Invoke();
+    }
+
+    public void RemoveMoney(int money)
+    {
+        moneyAmount -= money;
+        moneyAmountUpdated?.Invoke();
+    }
+
     public void Start()
     {
         inventoryContainer = GetComponent<Container>();
     }
+
     public void AddItem(Item item)
     {
-        if (item.ItemData.ItemUsingType == ItemUsingType.RightHand && rightHandItem == null)
+        if (item.ItemUsingType == ItemUsingType.RightHand && rightHandItem == null)
         {
             SetItemInRightHand(item);
-            item.SetItemInInventory(true);
+            SetItemInInventory(item);
         }
-
-        else if (item.ItemData.ItemUsingType == ItemUsingType.LeftHand && leftHandItem == null)
+        else if (item.ItemUsingType == ItemUsingType.LeftHand && leftHandItem == null)
         {
             SetItemInLeftHand(item);
-            item.SetItemInInventory(true);
+            SetItemInInventory(item);
         }
         else if (inventoryContainer.HasFreeSpace)
         {
             inventoryContainer.AddNewItem(item);
             item.transform.position = new Vector3(-1000, -1000, -1000);
-            item.SetItemInInventory(true);
+            SetItemInInventory(item);
         }
         else
         {
             Debug.LogError("Inventory is full!");
         }
+    }
+    public void SetItemInInventory(Item item)
+    {
+        item.SetItemInInventory(true);
+        item.GetComponent<InteractableObject>().SetInteractable(false);
     }
     public void DropItem(Item item)
     {
@@ -60,9 +83,10 @@ public class HumanoidInventory : MonoBehaviour
             RemoveItemFromLeftHand();   
         else if (inventoryContainer.Contains(item))
             inventoryContainer.Remove(item);
-        Links.instance.globalLists.AddInteractableOnLocation(item.GetComponent<InteractableObject>());
+        item.GetComponent<InteractableObject>().SetInteractable(true);
         item.SetItemInInventory(false);
         item.transform.position = itemsDropPosition.position;
+        item.transform.parent = null;
     }
     public void UseItem(Item item)
     {

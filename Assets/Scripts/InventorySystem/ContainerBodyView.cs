@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ContainerBody))]
 public class ContainerBodyView : MonoBehaviour
 {
     [SerializeField] Animator containerAnimator;
     ContainerBody containerBody;
     private void Start()
     {
-        containerBody = GetComponent<ContainerBody>();
+        containerBody = transform.parent.GetComponent<ContainerBody>();
         containerBody.containerOpened.AddListener(OpenContainer);
         containerBody.containerClosed.AddListener(CloseContainer);
     }

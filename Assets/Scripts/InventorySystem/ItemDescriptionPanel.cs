@@ -9,10 +9,10 @@ public class ItemDescriptionPanel : MonoBehaviour
     [SerializeField] TMP_Text itemDescription;
     [SerializeField] TMP_Text itemCost;
 
-    public void SetItemData(ItemData itemData)
+    public void SetItemData(Item item)
     {
-        itemName.text = itemData.Name;
-        itemDescription.text = itemData.Description;
-        itemCost.text = itemData.Cost.ToString();
+        itemName.text = item.Info.Name;
+        itemDescription.text = item.Info.Description;
+        itemCost.text = item.Info.Cost.ToString();
     }
 }

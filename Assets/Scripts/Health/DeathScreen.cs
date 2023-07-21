@@ -10,10 +10,15 @@ public class DeathScreen : MonoBehaviour
     [SerializeField] float fadeInSpeed;
     [SerializeField] CanvasGroup deathScreenGroup;
 
-    void Start()
+    void OnEnable()
     {
-        Links.instance.sceneInitializer.sceneInitialized += () => 
-        Links.instance.playerCharacter.GetComponentInChildren<Health>().dieEvent += ActivateDeathScreen;
+        if (Links.instance.playerCharacter)
+            Links.instance.playerCharacter.GetComponentInChildren<Health>().dieEvent += ActivateDeathScreen;
+    }
+    void OnDisable()
+    {
+        if (Links.instance.playerCharacter)
+            Links.instance.playerCharacter.GetComponentInChildren<Health>().dieEvent -= ActivateDeathScreen;
     }
     public void ActivateDeathScreen()
     {

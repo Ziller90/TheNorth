@@ -20,7 +20,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     {
         this.item = item;
         this.itemsViewManager = itemsViewManager;
-        icon.sprite = item.ItemData.Icon;
+        icon.sprite = item.Info.Icon;
     }
     public void OnPointerDown(PointerEventData pointerEventData)
     {
@@ -84,7 +84,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     {
         descriptionPanel = Instantiate(descriptionPanelPrefab, itemIcon.transform);
         descriptionPanel.transform.position = itemIcon.transform.position + new Vector3(120, -120, 0);
-        descriptionPanel.SetItemData(itemIcon.Item.ItemData);
+        descriptionPanel.SetItemData(itemIcon.Item);
     }
     public void DestroyDescriptionPanel()
     {

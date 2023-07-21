@@ -1,15 +1,32 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[Serializable]
+public class ItemInfo
+{
+    [SerializeField] string itemName;
+    [SerializeField] string description;
+    [SerializeField] int cost;
+    [SerializeField] Sprite icon;
+    public string Name => itemName;
+    public string Description => description;
+    public int Cost => cost;
+    public Sprite Icon => icon;
+}
 public class Item : MonoBehaviour
 {
-    [SerializeField] ItemData itemData;
+    [SerializeField] ItemInfo info;
+    [SerializeField] ItemUsingType itemUsingType;
+    [SerializeField] int maxStackSize;
     [SerializeField] bool inInventory;
+    public ItemUsingType ItemUsingType => itemUsingType;
+    public ItemInfo Info => info;
+
     Rigidbody rgbody;
     Collider[] itemColliders;
-    public ItemData ItemData => itemData;
 
     void OnEnable()
     {

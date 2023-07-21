@@ -68,7 +68,7 @@ public class Slot : MonoBehaviour
     public void ShowItemShadow(ItemIcon itemIcon)
     {
         iconShadow.gameObject.SetActive(true);
-        iconShadow.sprite = itemIcon.Item.ItemData.Icon;
+        iconShadow.sprite = itemIcon.Item.Info.Icon;
     }
     public void HideItemShadow()
     {

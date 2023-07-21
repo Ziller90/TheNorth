@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
-using static UnityEditor.Progress;
+using System;
 
 public class InteractablesLocator : MonoBehaviour
 {
@@ -12,6 +10,9 @@ public class InteractablesLocator : MonoBehaviour
 
     List<InteractableObject> interactablesOnLocation;
     InteractableObject nearestInteractable = null;
+
+    public delegate void ContainerOpened(ContainerBody containerBody);
+    public event ContainerOpened containerOpened;
     void Start()
     {
         inventory = GetComponent<HumanoidInventory>();  
@@ -54,16 +55,9 @@ public class InteractablesLocator : MonoBehaviour
         if (nearestInteractable)
         {
             if (nearestInteractable.GetComponent<Item>())
-            {
-                var item = nearestInteractable.GetComponent<Item>();
-                Links.instance.globalLists.RemoveInteractableOnLocation(nearestInteractable);
-                inventory.AddItem(item);
-            }
+                inventory.AddItem(nearestInteractable.GetComponent<Item>());
             if (nearestInteractable.GetComponent<ContainerBody>())
-            {
-                var container = nearestInteractable.GetComponent<ContainerBody>();
-                container.OpenContainer();
-            }
+                containerOpened(nearestInteractable.GetComponent<ContainerBody>());
         }
     }
 }

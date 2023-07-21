@@ -48,7 +48,7 @@ public class ItemsViewManager : MonoBehaviour
         selectedItemSlot = GetItemIconSlot(itemIcon);
         selectedItemSlot.SetSlotSelection(true);
         selectedItemSlot.ShowItemShadow(itemIcon);
-        selectedItemIconUpdated();
+        selectedItemIconUpdated?.Invoke();
     }
     public void RemoveSelection()
     {
@@ -59,7 +59,7 @@ public class ItemsViewManager : MonoBehaviour
             selectedItemIcon = null;
             selectedItemSlot = null;
         }
-        selectedItemIconUpdated();
+        selectedItemIconUpdated?.Invoke();
     }
 
     public Slot GetSlotByPosition(Vector2 itemPosition)

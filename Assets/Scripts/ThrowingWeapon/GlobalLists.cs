@@ -9,7 +9,8 @@ public class GlobalLists : MonoBehaviour
 
     public void AddInteractableOnLocation(InteractableObject item)
     {
-        interactablesOnLocation.Add(item);
+        if (!interactablesOnLocation.Contains(item))
+            interactablesOnLocation.Add(item);
     }
     public void RemoveInteractableOnLocation(InteractableObject item)
     {
