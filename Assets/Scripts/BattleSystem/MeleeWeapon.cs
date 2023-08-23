@@ -4,29 +4,28 @@ using UnityEngine;
 
 public class MeleeWeapon : MonoBehaviour
 {
-    [SerializeField] MeleeWeaponSounds meleeWeaponSounds;
-    [SerializeField] Health thisCreatureHealth;
     [SerializeField] float baseDamage;
-    [SerializeField] Transform hostCreature;
 
+    MeleeWeaponSounds meleeWeaponSounds;
+    Health thisCreatureHealth;
+    Transform hostCreature;
     bool isCuttingAnimation;
-    public void SetMeleeWeapon(Creature weaponHolder)
+
+    public void SetWeaponHolder(Creature weaponHolder)
     {
         thisCreatureHealth = weaponHolder.GetComponentInChildren<Health>();
         meleeWeaponSounds = weaponHolder.GetComponentInChildren<MeleeWeaponSounds>();
         hostCreature = weaponHolder.transform;
 
         if (thisCreatureHealth != null)
-            thisCreatureHealth.dieEvent += StopCuttingAnimation;
+            thisCreatureHealth.dieEvent += () => SetCuttingAnimation(false);
     }
-    public void StopCuttingAnimation()
-    {
-        isCuttingAnimation = false;
-    }
+
     public void SetCuttingAnimation(bool isCutting)
     {
         isCuttingAnimation = isCutting;
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (isCuttingAnimation)

@@ -36,7 +36,7 @@ public class PCInput : MonoBehaviour
 
         Quaternion cameraYRotation = Quaternion.Euler(0, gameObject.transform.eulerAngles.y, 0);
 
-        Vector3 WASDMoveVector = cameraYRotation * Utils.CalculateWASDVector() * WASDMovingSpeed;
+        Vector3 WASDMoveVector = cameraYRotation * ModelUtils.CalculateWASDVector() * WASDMovingSpeed;
         WASDMoveVector *= (cameraManager.Zoom + 1) * cameraManager.ZoomCameraSpeedModifier;
         if (WASDMoveVector.magnitude > 0)
             cameraManager.SetObservedPoint(cameraManager.ObservedPoint + WASDMoveVector);

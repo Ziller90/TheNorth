@@ -27,15 +27,15 @@ public class ContainerGridView : MonoBehaviour
     }
     public void DrawContainerSlots()
     {
-        for (int i = 0; i < container.MaxItemsNumber; i++)
+        for (int i = 0; i < container.MaxItemStacksNumber; i++)
         {
             var slot = Instantiate(slotPrefab, slotsGrid.transform);
 
-            var item = container.GetItem(i);
-            if (item)
+            var itemsStack = container.GetItemStack(i);
+            if (itemsStack != null && itemsStack.Item != null)
             {
                 var newIcon = Instantiate(itemIconPrefab, slot.transform);
-                newIcon.SetItem(item, itemsViewManager);
+                newIcon.SetItemStack(itemsStack, itemsViewManager);
                 slot.InsertIcon(newIcon, true);
             }
             slot.iconInsertedEvent.AddListener(AddItemToContainer);
@@ -51,7 +51,7 @@ public class ContainerGridView : MonoBehaviour
         {
             if (slots[i] == slot)
             {
-                container.AddItemInIndex(icon.Item, i);
+                container.AddItemsStackInIndex(icon.ItemStack, i);
             }
         }
     }
@@ -61,7 +61,7 @@ public class ContainerGridView : MonoBehaviour
         {
             if (slots[i] == slot)
             {
-                container.RemoveItemAtIndex(i);
+                container.RemoveItemStackAtIndex(i);
             }
         }
     }

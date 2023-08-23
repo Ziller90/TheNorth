@@ -8,7 +8,5 @@ public class HealingUsing : ItemUsing
     public override void UseItem(Creature userCreature)
     {
         userCreature.GetComponent<Health>().Heal(healthBonus);
-        if (destroyOnUse)
-            Destroy(gameObject);
     }
 }

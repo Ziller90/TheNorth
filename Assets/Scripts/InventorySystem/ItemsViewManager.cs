@@ -24,6 +24,7 @@ public class ItemsViewManager : MonoBehaviour
     {
         selectedItemSlot = null;
         selectedItemIcon = null;
+        RemoveSelection();
     }
     public void AddActiveSlot(Slot slot)
     {
@@ -43,6 +44,8 @@ public class ItemsViewManager : MonoBehaviour
 
     public void SetSelectedIcon(ItemIcon itemIcon)
     {
+        Debug.Log(itemIcon + "Set seleted");
+
         RemoveSelection();
         selectedItemIcon = itemIcon;
         selectedItemSlot = GetItemIconSlot(itemIcon);
@@ -52,6 +55,7 @@ public class ItemsViewManager : MonoBehaviour
     }
     public void RemoveSelection()
     {
+        Debug.Log(selectedItemSlot + "removed selection");
         if (selectedItemSlot)
         {
             selectedItemSlot.SetSlotSelection(false);
@@ -70,5 +74,61 @@ public class ItemsViewManager : MonoBehaviour
                 return slot;
         }
         return null;
+    }
+
+    public void MoveItemToSlot(ItemIcon itemIcon, Slot targetSlot)
+    {
+        var currentSlot = GetItemIconSlot(itemIcon);
+        if (targetSlot == null || targetSlot == currentSlot)
+        {
+            currentSlot.StartCoroutine(currentSlot.SetIconInSlotPosition(itemIcon));
+            SetSelectedIcon(itemIcon);
+        }
+        else if (targetSlot.ItemIcon == null)
+        {
+            currentSlot.RemoveIcon();
+            targetSlot.InsertIcon(itemIcon, false);
+            SetSelectedIcon(itemIcon);
+        }
+        else
+        {
+            var stack1 = currentSlot.ItemIcon.ItemStack;
+            var stack2 = targetSlot.ItemIcon.ItemStack;
+
+            if (ModelUtils.CanBeMerged(stack1, stack2))
+            {
+                MergeView(itemIcon, targetSlot.ItemIcon);
+                ModelUtils.Merge(stack1, stack2);
+            }
+            else
+                SwapItemIcons(currentSlot, targetSlot);
+        }
+    }
+    public void MergeView(ItemIcon itemIcon1, ItemIcon itemIcon2)
+    {
+        var stack1 = itemIcon1.ItemStack;
+        var stack2 = itemIcon2.ItemStack;
+        var slot1 = GetItemIconSlot(itemIcon1);
+        var slot2 = GetItemIconSlot(itemIcon2);
+        int MaxStackSize = stack1.Item.MaxStackSize;
+
+        if (stack1.ItemsNumber + stack2.ItemsNumber <= MaxStackSize)
+        {
+            SetSelectedIcon(slot2.ItemIcon);
+            slot1.DestroyItemIcon();
+        }
+        else if (stack1.ItemsNumber + stack2.ItemsNumber >= MaxStackSize)
+        {
+            slot1.StartCoroutine(slot1.SetIconInSlotPosition(itemIcon1));
+            SetSelectedIcon(slot2.ItemIcon);
+        }
+    }
+    public void SwapItemIcons(Slot slot1, Slot slot2)
+    {
+        var itemIcon1 = slot1.ItemIcon;
+        slot1.RemoveIcon();
+        slot1.InsertIcon(slot2.ItemIcon, false);
+        slot2.RemoveIcon();
+        slot2.InsertIcon(itemIcon1, false);
     }
 }

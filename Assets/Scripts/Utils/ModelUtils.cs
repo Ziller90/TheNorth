@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using System;
 
-public class Utils : MonoBehaviour
+public class ModelUtils : MonoBehaviour
 {
     public static Vector3 GetDirection(float horizontal, float vertical, float fixAngle)
     {
@@ -100,5 +102,87 @@ public class Utils : MonoBehaviour
             return true;
         }
         return false;
+    }
+    public static int GetFirstFreeSpaceIndex<T>(IEnumerable<T> objects) where T : class
+    {
+        for (int i = 0; i < objects.Count(); i++)
+        {
+            if (objects.ElementAt(i) == null) 
+                return i;
+        }
+        return -1;
+    }
+
+    public static bool AddItemStackToGroup(ItemStack newStack, ItemStack[] group)
+    {
+        bool merged = TryMerge(newStack, group);
+        if (merged)
+            return true;
+
+        bool added = TryAdd(newStack, group);
+        if (added)
+            return true;
+
+        return false;
+    }
+    public static int GetFirstFreeStackInGroupIndex(ItemStack[] group)
+    {
+        for (int i = 0; i < group.Length; i++)
+        {
+            if (group[i].Item == null)
+                return i;
+        }
+        return -1;
+    }
+    public static bool TryAdd(ItemStack newStack, ItemStack[] group)
+    {
+        int freeStackIndex = GetFirstFreeStackInGroupIndex(group);
+        if (freeStackIndex == -1)
+            return false;
+
+        group[freeStackIndex] = newStack;
+        return true;
+    }
+    public static bool CanBeMerged(ItemStack stack1, ItemStack stack2)
+    {
+        if (stack1.Item == stack2.Item
+                    && stack1.Item.MaxStackSize != 1
+                    && stack2.Item.MaxStackSize != 1
+                    && stack1.Item.MaxStackSize != stack1.ItemsNumber
+                    && stack2.Item.MaxStackSize != stack2.ItemsNumber)
+        {
+            return true;
+        }
+        return false;
+    }
+    public static bool TryMerge(ItemStack newStack, ItemStack[] group)
+    {
+        if (newStack.Item.MaxStackSize != 1)
+        {
+            foreach (var stack in group)
+            {
+                if (CanBeMerged(stack, newStack))
+                {
+                    Merge(newStack, stack);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public static void Merge(ItemStack stack1, ItemStack stack2)
+    {
+        int MaxStackSize = stack1.Item.MaxStackSize;
+        if (stack1.ItemsNumber + stack2.ItemsNumber <= MaxStackSize)
+        {
+            stack2.ItemsNumber = stack1.ItemsNumber + stack2.ItemsNumber;
+            stack1.ItemsNumber = 0;
+        }
+        else if (stack1.ItemsNumber + stack2.ItemsNumber >= MaxStackSize)
+        {
+            int deficient = MaxStackSize - stack2.ItemsNumber;
+            stack2.ItemsNumber = MaxStackSize;
+            stack1.ItemsNumber -= deficient;
+        }
     }
 }

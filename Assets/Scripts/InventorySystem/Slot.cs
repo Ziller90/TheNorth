@@ -52,7 +52,7 @@ public class Slot : MonoBehaviour
         else if (slotIsRhombus)
         {
             float rhombusSize = (corners[0] - corners[2]).magnitude;
-            if (Utils.isInRhombus(position, slotTransform.position, rhombusSize, rhombusSize))
+            if (ModelUtils.isInRhombus(position, slotTransform.position, rhombusSize, rhombusSize))
                 return true;
         }
         return false;
@@ -68,7 +68,7 @@ public class Slot : MonoBehaviour
     public void ShowItemShadow(ItemIcon itemIcon)
     {
         iconShadow.gameObject.SetActive(true);
-        iconShadow.sprite = itemIcon.Item.Info.Icon;
+        iconShadow.sprite = itemIcon.ItemStack.Item.Icon;
     }
     public void HideItemShadow()
     {

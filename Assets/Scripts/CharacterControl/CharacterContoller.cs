@@ -50,12 +50,12 @@ public class CharacterContoller : MonoBehaviour
     }
     public void Walk() 
     {
-        transform.position += transform.forward * Utils.SpeedConverter(walkSpeed);
+        transform.position += transform.forward * ModelUtils.SpeedConverter(walkSpeed);
         movingState = MovingState.Walk;
     }
     public void Run()
     {
-        transform.position += transform.forward * Utils.SpeedConverter(runSpeed);
+        transform.position += transform.forward * ModelUtils.SpeedConverter(runSpeed);
         movingState = MovingState.Run;
     }
     public void Idle()

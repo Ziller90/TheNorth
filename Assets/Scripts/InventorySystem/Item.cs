@@ -4,26 +4,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[Serializable]
-public class ItemInfo
+public enum ItemUsingType
 {
+    None = 0,
+    RightHand = 1,
+    LeftHand = 2,
+    BothHand = 4,
+    TwoHanded = 8,
+    Torso = 16,
+    Helmet = 32,
+    Trousers = 64,
+    Boots = 128,
+    ActiveUsable = 256,
+}
+
+public class Item : MonoBehaviour
+{
+    [SerializeField] int id;
     [SerializeField] string itemName;
     [SerializeField] string description;
     [SerializeField] int cost;
     [SerializeField] Sprite icon;
+    [SerializeField] int maxStackSize;
+    [SerializeField] ItemUsingType itemUsingType;
+    [SerializeField] bool equiped;
+    public int MaxStackSize => maxStackSize;
+    public int Id => id;
     public string Name => itemName;
     public string Description => description;
     public int Cost => cost;
     public Sprite Icon => icon;
-}
-public class Item : MonoBehaviour
-{
-    [SerializeField] ItemInfo info;
-    [SerializeField] ItemUsingType itemUsingType;
-    [SerializeField] int maxStackSize;
-    [SerializeField] bool inInventory;
     public ItemUsingType ItemUsingType => itemUsingType;
-    public ItemInfo Info => info;
 
     Rigidbody rgbody;
     Collider[] itemColliders;
@@ -32,15 +43,15 @@ public class Item : MonoBehaviour
     {
         rgbody = GetComponent<Rigidbody>();
         itemColliders = GetComponents<Collider>();
-        SetItemInInventory(inInventory);
+        SetItemEquiped(equiped);
     }
-    public void SetItemInInventory(bool isInInventory)
+    public void SetItemEquiped(bool isEquiped)
     {
-        inInventory = isInInventory;
-        rgbody.isKinematic = inInventory;
+        equiped = isEquiped;
+        rgbody.isKinematic = equiped;
         foreach (var collider in itemColliders)
         {
-            collider.isTrigger = isInInventory;
+            collider.isTrigger = isEquiped;
         }
     }
 }
