@@ -50,8 +50,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 166e53ce682bbd84fa1e7c79bffbd01e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: bd929274b20f58240a7021e52de00869, type: 2}
-  inInventory: 0
+  id: 5
+  itemName: Two-handed Axe
+  description: '-'
+  cost: 200
+  icon: {fileID: 21300000, guid: a3c6575ddf3131949bd7db7bbc5c1f05, type: 3}
+  maxStackSize: 1
+  itemUsingType: 1
+  equiped: 0
 --- !u!65 &5104327396753269823
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -112,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe879ece6df836547b9cddf476fed3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInteractable: 1
 --- !u!114 &472288444273180106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,9 +131,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a7c2fb465afd604285b36295fce11af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableObject: {fileID: 0}
   meshRenderers:
   - {fileID: 2105301957467014818}
+  interactableObject: {fileID: 3376163150080205506}
 --- !u!1 &2105301957469062122
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,10 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6ff9d4159baa0458d8c2d291f8e72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeWeaponSounds: {fileID: 0}
-  thisCreatureHealth: {fileID: 0}
   baseDamage: 15
-  hostCreature: {fileID: 0}
 --- !u!65 &1839699812244845453
 BoxCollider:
   m_ObjectHideFlags: 0

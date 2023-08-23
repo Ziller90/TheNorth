@@ -2,25 +2,60 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
+using System.Data;
+using System.Collections.Generic;
 
 public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] Image icon;
     [SerializeField] float timeToShowDesctiption;
     [SerializeField] ItemDescriptionPanel descriptionPanelPrefab;
+    [SerializeField] TMP_Text itemNumberText;
 
     ItemDescriptionPanel descriptionPanel;
     ItemsViewManager itemsViewManager;
-    Item item;
-    public Item Item => item;
+    ItemStack itemStack;
+
+    public ItemStack ItemStack => itemStack;
+
     bool isDragged = false;
     bool isHold = false;
 
-    public void SetItem(Item item, ItemsViewManager itemsViewManager)
+    void OnEnable()
     {
-        this.item = item;
+        if (itemStack != null)
+        {
+            itemStack.quantityUpdatedEvent -= OnItemsNumberUpdated;
+            itemStack.quantityUpdatedEvent += OnItemsNumberUpdated;
+
+            itemStack.deletedEvent -= OnItemStackDeleted;
+            itemStack.deletedEvent += OnItemStackDeleted;
+        }
+    }
+    void OnDisable()
+    {
+        itemStack.quantityUpdatedEvent -= OnItemsNumberUpdated;
+        itemStack.deletedEvent -= OnItemStackDeleted;
+    }
+    void OnItemsNumberUpdated()
+    {
+        itemNumberText.text = itemStack.ItemsNumber.ToString();
+    }
+    void OnItemStackDeleted()
+    {
+        var currentSlot = itemsViewManager.GetItemIconSlot(this);
+        currentSlot.DestroyItemIcon();
+    }
+    public void SetItemStack(ItemStack itemStack, ItemsViewManager itemsViewManager)
+    {
+        this.itemStack = itemStack;
         this.itemsViewManager = itemsViewManager;
-        icon.sprite = item.Info.Icon;
+        icon.sprite = itemStack.Item.Icon;
+
+        itemStack.quantityUpdatedEvent += OnItemsNumberUpdated;
+        itemStack.deletedEvent += OnItemStackDeleted;
+        OnItemsNumberUpdated();
     }
     public void OnPointerDown(PointerEventData pointerEventData)
     {
@@ -32,33 +67,12 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     public void OnPointerUp(PointerEventData pointerEventData)
     {
         var newSlot = itemsViewManager.GetSlotByPosition(transform.position);
-        MoveItemToSlot(newSlot);
+        itemsViewManager.MoveItemToSlot(this, newSlot);
 
-        itemsViewManager.SetSelectedIcon(this);
         isDragged = false;
         isHold = false;
         StopAllCoroutines();
         DestroyDescriptionPanel();
-    }
-    public void MoveItemToSlot(Slot newSlot)
-    {
-        var currentSlot = itemsViewManager.GetItemIconSlot(this);
-        if (newSlot == null || newSlot == currentSlot)
-        {
-            currentSlot.StartCoroutine(currentSlot.SetIconInSlotPosition(this));
-        }
-        else if (newSlot.ItemIcon == null)
-        {
-            currentSlot.RemoveIcon();
-            newSlot.InsertIcon(this, false);
-        }
-        else
-        {
-            currentSlot.RemoveIcon();
-            currentSlot.InsertIcon(newSlot.ItemIcon, false);
-            newSlot.RemoveIcon();
-            newSlot.InsertIcon(this, false);
-        }
     }
     public void OnDrag(PointerEventData pointerEventData)
     {
@@ -84,7 +98,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     {
         descriptionPanel = Instantiate(descriptionPanelPrefab, itemIcon.transform);
         descriptionPanel.transform.position = itemIcon.transform.position + new Vector3(120, -120, 0);
-        descriptionPanel.SetItemData(itemIcon.Item);
+        descriptionPanel.SetItemData(itemIcon.ItemStack.Item);
     }
     public void DestroyDescriptionPanel()
     {

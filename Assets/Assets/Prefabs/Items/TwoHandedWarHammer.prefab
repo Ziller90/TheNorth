@@ -45,10 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6ff9d4159baa0458d8c2d291f8e72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeWeaponSounds: {fileID: 0}
-  thisCreatureHealth: {fileID: 0}
   baseDamage: 20
-  hostCreature: {fileID: 0}
 --- !u!65 &4829776661185548555
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -231,8 +228,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 166e53ce682bbd84fa1e7c79bffbd01e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: acd0ed23fac004b4eac024d2dd0c3724, type: 2}
-  inInventory: 0
+  id: 6
+  itemName: Two-handed War Hammer
+  description: '-'
+  cost: 300
+  icon: {fileID: 21300000, guid: e7f3fe7969034c04bba50aa34f0b238d, type: 3}
+  maxStackSize: 1
+  itemUsingType: 1
+  equiped: 0
 --- !u!65 &7068807894482653443
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -287,6 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe879ece6df836547b9cddf476fed3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInteractable: 1
 --- !u!114 &8504188224219583549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,6 +303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a7c2fb465afd604285b36295fce11af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableObject: {fileID: 0}
   meshRenderers:
   - {fileID: 766755862121459586}
+  interactableObject: {fileID: 7357625434243092345}

@@ -77,51 +77,72 @@ public class InventoryView : MonoBehaviour
     {
         containerGridView.DrawContainerSlots();
 
-        InstantiateItemIcon(inventory.RightHandItem, rightHandSlot);
-        rightHandSlot.iconInsertedEvent.AddListener((ItemIcon icon, Slot slot) => inventory.SetItemInRightHand(icon.Item));
+        InstantiateItemIcon(inventory.RightHandItemStack, rightHandSlot);
+        rightHandSlot.iconInsertedEvent.AddListener((ItemIcon icon, Slot slot) => inventory.SetItemStackInRightHand(icon.ItemStack));
         rightHandSlot.iconRemovedEvent.AddListener((ItemIcon icon, Slot slot) => inventory.RemoveItemFromRightHand());
         itemsViewManager.AddActiveSlot(rightHandSlot);
 
-        InstantiateItemIcon(inventory.LeftHandItem, leftHandSlot);
-        leftHandSlot.iconInsertedEvent.AddListener((ItemIcon icon, Slot slot) => inventory.SetItemInLeftHand(icon.Item));
+        InstantiateItemIcon(inventory.LeftHandItemStack, leftHandSlot);
+        leftHandSlot.iconInsertedEvent.AddListener((ItemIcon icon, Slot slot) => inventory.SetItemStackInLeftHand(icon.ItemStack));
         leftHandSlot.iconRemovedEvent.AddListener((ItemIcon icon, Slot slot) => inventory.RemoveItemFromLeftHand());
         itemsViewManager.AddActiveSlot(leftHandSlot);
 
         for (int i = 0; i < quickAccessSlots.Length; i++)
         {
-            InstantiateItemIcon(inventory.QuickAccessItems[i], quickAccessSlots[i]);
-            quickAccessSlots[i].iconInsertedEvent.AddListener((ItemIcon icon, Slot slot) => inventory.SetItemInQuickAccessSlot(icon.Item, i));
-            quickAccessSlots[i].iconRemovedEvent.AddListener((ItemIcon icon, Slot slot) => inventory.RemoveItemFromQuickAccessSlot(i));
+            InstantiateItemIcon(inventory.QuickAccessItemStacks[i], quickAccessSlots[i]);
+            quickAccessSlots[i].iconInsertedEvent.AddListener(AddItemToAccessSlot);
+            quickAccessSlots[i].iconRemovedEvent.AddListener(RemoveItemFromAccessSlot);
             itemsViewManager.AddActiveSlot(quickAccessSlots[i]);
         }
     }
 
-    public void InstantiateItemIcon(Item item, Slot itemSlot)
+    public void AddItemToAccessSlot(ItemIcon icon, Slot slot)
     {
-        if (item)
+        for (int i = 0; i < quickAccessSlots.Length; i++)
+        {
+            if (quickAccessSlots[i] == slot)
+            {
+                inventory.SetItemInQuickAccessSlot(icon.ItemStack, i);
+            }
+        }
+    }
+    public void RemoveItemFromAccessSlot(ItemIcon icon, Slot slot)
+    {
+        for (int i = 0; i < quickAccessSlots.Length; i++)
+        {
+            if (quickAccessSlots[i] == slot)
+            {
+                inventory.RemoveItemFromQuickAccessSlot(i);
+            }
+        }
+    }
+
+    public void InstantiateItemIcon(ItemStack itemStack, Slot itemSlot)
+    {
+        if (itemStack != null && itemStack.Item != null)
         {
             var newIcon = Instantiate(itemIconPrefab, itemsViewManager.CommonIconsContainer);
-            newIcon.SetItem(item, itemsViewManager);
+            newIcon.SetItemStack(itemStack, itemsViewManager);
             itemSlot.InsertIcon(newIcon, true);
         }
     }
 
     public void UseSelectedItem()
     {
-        var usingItem = itemsViewManager.SelectedItemIcon;
+        var selectedItemIcon = itemsViewManager.SelectedItemIcon;
 
-        if (usingItem.Item.ItemUsingType == ItemUsingType.RightHand)
-            usingItem.MoveItemToSlot(rightHandSlot);
-        if (usingItem.Item.ItemUsingType == ItemUsingType.LeftHand)
-            usingItem.MoveItemToSlot(leftHandSlot);
-        if (usingItem.Item.ItemUsingType == ItemUsingType.ActiveUsable)
-            inventory.UseItem(usingItem.Item);
+        if (selectedItemIcon.ItemStack.Item.ItemUsingType == ItemUsingType.RightHand)
+            itemsViewManager.MoveItemToSlot(selectedItemIcon, rightHandSlot);
+        if (selectedItemIcon.ItemStack.Item.ItemUsingType == ItemUsingType.LeftHand)
+            itemsViewManager.MoveItemToSlot(selectedItemIcon, leftHandSlot);
+        if (selectedItemIcon.ItemStack.Item.ItemUsingType == ItemUsingType.ActiveUsable)
+            inventory.UseItem(selectedItemIcon.ItemStack);
 
         itemsViewManager.RemoveSelection();
     }
-    public void ThrowSelectedItem()
+    public void DropSelectedItem()
     {
-        inventory.DropItem(itemsViewManager.SelectedItemIcon.Item);
+        inventory.DropItemsStack(itemsViewManager.SelectedItemIcon.ItemStack);
         itemsViewManager.SelectedItemSlot.DestroyItemIcon();
         itemsViewManager.RemoveSelection();
     }

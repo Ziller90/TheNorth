@@ -34,7 +34,7 @@ public class FixedJoystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IPo
 
         vertical = handle.transform.localPosition.y / 100;
         horizontal = (handle.transform.localPosition.x / 100);
-        direction = Utils.GetDirection(horizontal, vertical, cameraAngleCorrector);
+        direction = ModelUtils.GetDirection(horizontal, vertical, cameraAngleCorrector);
         joystickMagnitude = direction.magnitude;
 
         if (joystickMagnitude > modificatorToWalk && joystickMagnitude < modificatorToRun)

@@ -1,35 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Rendering.Universal;
-using UnityEngine;
-using System.Linq;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using static UnityEditor.Progress;
 
 public class HumanoidInventory : MonoBehaviour
 {
     [SerializeField] AnimationEvents animationEvents;
     [SerializeField] Creature creature;
-    [SerializeField] Transform itemsDropPosition;
+    [SerializeField] Transform dropPosition;
 
-    [SerializeField] Transform rightHandItemKeeper;
-    [SerializeField] Transform leftHandItemKeeper;
+    [SerializeField] Transform rightHandKeeper;
+    [SerializeField] Transform leftHandKeeper;
 
-    [SerializeField] Item rightHandItem;
-    [SerializeField] Item leftHandItem;
-    [SerializeField] Item[] quickAccessItems = new Item[3];
+    [SerializeField] ItemStack rightHandItemStack;
+    [SerializeField] ItemStack leftHandItemStack;
+    [SerializeField] ItemStack[] quickAccessItemStacks = new ItemStack[3];
+
+    [SerializeField] Container dropSackPrefab;
 
     Container inventoryContainer;
+    Item rightHandItem;
+    Item leftHandItem;
 
-    public Item RightHandItem => rightHandItem;
-    public Item LeftHandItem => leftHandItem;
-    public Item[] QuickAccessItems => quickAccessItems;
+    public ItemStack RightHandItemStack => rightHandItemStack;
+    public ItemStack LeftHandItemStack => leftHandItemStack;
+    public ItemStack[] QuickAccessItemStacks => quickAccessItemStacks;
     public Container InventoryContainer => inventoryContainer;
-
-    int moneyAmount;
     public int MoneyAmount => moneyAmount;
 
     public Action moneyAmountUpdated;
 
+    int moneyAmount;
+ 
     public void AddMoney(int money)
     {
         moneyAmount += money;
@@ -49,89 +52,125 @@ public class HumanoidInventory : MonoBehaviour
 
     public void AddItem(Item item)
     {
-        if (item.ItemUsingType == ItemUsingType.RightHand && rightHandItem == null)
+        var itemPrefab = Links.instance.globalLists.GetItemById(item.Id);
+        ItemStack newItemStack;
+
+        if (itemPrefab != null)
         {
-            SetItemInRightHand(item);
-            SetItemInInventory(item);
-        }
-        else if (item.ItemUsingType == ItemUsingType.LeftHand && leftHandItem == null)
-        {
-            SetItemInLeftHand(item);
-            SetItemInInventory(item);
-        }
-        else if (inventoryContainer.HasFreeSpace)
-        {
-            inventoryContainer.AddNewItem(item);
-            item.transform.position = new Vector3(-1000, -1000, -1000);
-            SetItemInInventory(item);
+            newItemStack = new ItemStack(itemPrefab, 1);
         }
         else
         {
-            Debug.LogError("Inventory is full!");
+            Debug.LogError("No item with such ID");
+            return;
+        }
+
+        if (item.ItemUsingType == ItemUsingType.RightHand && rightHandItemStack == null)
+        {
+            RemoveItemFromWorld(item);
+            SetItemStackInRightHand(newItemStack);
+        }
+        else if (item.ItemUsingType == ItemUsingType.LeftHand && leftHandItemStack == null)
+        {
+            RemoveItemFromWorld(item);
+            SetItemStackInLeftHand(newItemStack);
+        }
+        else if (item.ItemUsingType == ItemUsingType.ActiveUsable)
+        {
+            bool addedToQuickAcessPanel = ModelUtils.AddItemStackToGroup(newItemStack, quickAccessItemStacks);
+            if (addedToQuickAcessPanel)
+                RemoveItemFromWorld(item);
+            else
+                AddItemToInventory(item, newItemStack);
+        }
+        else
+        {
+            AddItemToInventory(item, newItemStack);
         }
     }
-    public void SetItemInInventory(Item item)
+    public  void AddItemToInventory(Item item, ItemStack itemStack)
     {
-        item.SetItemInInventory(true);
+        bool added = ModelUtils.AddItemStackToGroup(itemStack, inventoryContainer.ItemsStacksInContainer);
+        if (added)
+            RemoveItemFromWorld(item);
+        else
+            Debug.LogError("Inventory is full");
+    }
+    
+    public void RemoveItemFromWorld(Item item)
+    {
+        item.GetComponent<InteractableObject>().SetInteractable(false);
+        Destroy(item.gameObject);
+    }
+    public void SetItemEquiped(Item item)
+    {
+        item.SetItemEquiped(true);
         item.GetComponent<InteractableObject>().SetInteractable(false);
     }
-    public void DropItem(Item item)
+    public void DropItemsStack(ItemStack itemsStack)
     {
-        if (rightHandItem == item)
+        if (rightHandItemStack == itemsStack)
             RemoveItemFromRightHand();
-        else if (leftHandItem == item)
-            RemoveItemFromLeftHand();   
-        else if (inventoryContainer.Contains(item))
-            inventoryContainer.Remove(item);
-        item.GetComponent<InteractableObject>().SetInteractable(true);
-        item.SetItemInInventory(false);
-        item.transform.position = itemsDropPosition.position;
-        item.transform.parent = null;
-    }
-    public void UseItem(Item item)
-    {
-        var itemUsing = item.GetComponent<ItemUsing>();
-        itemUsing.UseItem(creature);
-    }
-    public void SetItemInRightHand(Item item)
-    {
-        rightHandItem = item;
-        item.transform.SetParent(rightHandItemKeeper);
-        item.transform.position = rightHandItemKeeper.position;
-        item.transform.rotation = rightHandItemKeeper.rotation;
+        else if (leftHandItemStack == itemsStack)
+            RemoveItemFromLeftHand();
+        else if (inventoryContainer.Contains(itemsStack))
+            inventoryContainer.RemoveItemsStack(itemsStack);
 
-        var meleeWeapon = item.GetComponentInChildren<MeleeWeapon>();
+        var dropSack = Instantiate(dropSackPrefab, dropPosition.position, Quaternion.identity);
+        ModelUtils.AddItemStackToGroup(itemsStack, dropSack.ItemsStacksInContainer);
+    }
+    public void UseItem(ItemStack itemStack)
+    {
+        var itemUsing = itemStack.Item.GetComponent<ItemUsing>();
+        if (itemUsing)
+        {
+            itemUsing.UseItem(creature);
+            if (itemUsing.DestroyOnUse)
+                itemStack.ItemsNumber -= 1;
+        }
+    }
+    public void SetItemStackInRightHand(ItemStack itemsStack)
+    {
+        rightHandItemStack = itemsStack;
+        rightHandItem = Instantiate(rightHandItemStack.Item, rightHandKeeper);
+        rightHandItem.transform.rotation = rightHandKeeper.rotation;
+        SetItemEquiped(rightHandItem);
+
+        var meleeWeapon = rightHandItem.GetComponentInChildren<MeleeWeapon>();
         if (meleeWeapon)
         {
-            meleeWeapon.SetMeleeWeapon(creature);
+            meleeWeapon.SetWeaponHolder(creature);
             animationEvents.SetMeleeWeapon(meleeWeapon);
         }
     }
-    public void SetItemInLeftHand(Item item)
+    public void SetItemStackInLeftHand(ItemStack itemsStack)
     {
-        leftHandItem = item;
-        item.transform.SetParent(leftHandItemKeeper);
-        item.transform.position = leftHandItemKeeper.position;
-        item.transform.rotation = leftHandItemKeeper.rotation;
+        leftHandItemStack = itemsStack;
+        leftHandItem = Instantiate(itemsStack.Item, leftHandKeeper);
+        leftHandItem.transform.rotation = leftHandKeeper.rotation;
+        SetItemEquiped(leftHandItem);
+    }
 
-        var shield = item.GetComponentInChildren<MeleeWeapon>();
-    }
-    public void SetItemInQuickAccessSlot(Item item, int index)
-    {
-        quickAccessItems[index] = item;
-    }
     public void RemoveItemFromRightHand()
     {
-        rightHandItem.transform.position = new Vector3(-1000, -1000, -1000);
+        Destroy(rightHandItem.gameObject);
         rightHandItem = null;
+        rightHandItemStack = new ItemStack(null, 0);
     }
     public void RemoveItemFromLeftHand()
     {
-        leftHandItem.transform.position = new Vector3(-1000, -1000, -1000);
+        Destroy(leftHandItem.gameObject);
         leftHandItem = null;
+        leftHandItemStack = new ItemStack(null, 0);
     }
+
+    public void SetItemInQuickAccessSlot(ItemStack itemsStack, int index)
+    {
+        quickAccessItemStacks[index] = itemsStack;
+    }
+
     public void RemoveItemFromQuickAccessSlot(int index)
     {
-        quickAccessItems[index] = null;
+        quickAccessItemStacks[index] = new ItemStack(null, 0);
     }
 }

@@ -52,7 +52,7 @@ public class Sensors : MonoBehaviour
         }
         if (noticedEnemies.Count != 0)
         {
-            return Utils.GetNearest(transform, noticedEnemies);
+            return ModelUtils.GetNearest(transform, noticedEnemies);
         }
         return null;
     }

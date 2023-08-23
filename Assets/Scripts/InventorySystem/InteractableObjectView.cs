@@ -14,8 +14,8 @@ enum HighlightState
 public class InteractableObjectView : MonoBehaviour
 {
     [SerializeField] List<MeshRenderer> meshRenderers;
+    [SerializeField] InteractableObject interactableObject;
 
-    InteractableObject interactableObject;
     AnimationCurve highlightCurve; 
     AnimationCurve fadeOutCurve;
     Color32 highlightEmissionColor;
@@ -31,8 +31,6 @@ public class InteractableObjectView : MonoBehaviour
 
     private void Awake()
     {
-        interactableObject = transform.parent.GetComponent<InteractableObject>();
-
         highlightCurve = Links.instance.globalConfig.HighlightCurve;
         fadeOutCurve = Links.instance.globalConfig.FadeOutCurve;
         highlightSpeed = Links.instance.globalConfig.HighlighSpeed;

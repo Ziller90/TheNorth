@@ -11,8 +11,8 @@ public class ItemDescriptionPanel : MonoBehaviour
 
     public void SetItemData(Item item)
     {
-        itemName.text = item.Info.Name;
-        itemDescription.text = item.Info.Description;
-        itemCost.text = item.Info.Cost.ToString();
+        itemName.text = item.Name;
+        itemDescription.text = item.Description;
+        itemCost.text = item.Cost.ToString();
     }
 }

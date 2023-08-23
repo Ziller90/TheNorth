@@ -25,7 +25,7 @@ public class InteractableObject : MonoBehaviour
     }
     public void SetHighlighted(bool highlighted)
     {
-        updateSelectionStateEvent(highlighted);
+        updateSelectionStateEvent?.Invoke(highlighted);
     }
     void OnEnable()
     {

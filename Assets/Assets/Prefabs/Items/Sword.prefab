@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1944734885265781534}
   - component: {fileID: 1944734885267013610}
   - component: {fileID: 1944734885267687974}
+  - component: {fileID: 2169154278977868391}
   m_Layer: 0
   m_Name: SM_Wep_Sword_01
   m_TagString: Untagged
@@ -84,6 +85,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2169154278977868391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944734885265954960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7c2fb465afd604285b36295fce11af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderers:
+  - {fileID: 1944734885267687974}
+  interactableObject: {fileID: -2066988369578927645}
 --- !u!1 &3601609613231041798
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,10 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6ff9d4159baa0458d8c2d291f8e72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeWeaponSounds: {fileID: 0}
-  thisCreatureHealth: {fileID: 0}
   baseDamage: 10
-  hostCreature: {fileID: 0}
 --- !u!65 &395415330369611692
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -169,7 +182,6 @@ GameObject:
   - component: {fileID: 6759848368673478585}
   - component: {fileID: 6200276509977123665}
   - component: {fileID: -2066988369578927645}
-  - component: {fileID: -1085625595758792564}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -232,8 +244,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 166e53ce682bbd84fa1e7c79bffbd01e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: d208f510bebcc624aad608c52da2602c, type: 2}
-  inInventory: 0
+  id: 4
+  itemName: Sword
+  description: '-'
+  cost: 120
+  icon: {fileID: 21300000, guid: f1ad37d1a9aa1da4badb8efeb2168a68, type: 3}
+  maxStackSize: 1
+  itemUsingType: 1
+  equiped: 0
 --- !u!65 &3785722318620882532
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -309,18 +327,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe879ece6df836547b9cddf476fed3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-1085625595758792564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7087786812071082882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a7c2fb465afd604285b36295fce11af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactableObject: {fileID: 0}
-  meshRenderers:
-  - {fileID: 1944734885267687974}
+  isInteractable: 1

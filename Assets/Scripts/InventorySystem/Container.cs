@@ -1,35 +1,57 @@
 using UnityEngine;
 using System.Linq;
+using System.Collections.Generic;
+using System;
 
-
-public class Container : MonoBehaviour
+[Serializable]
+public class ItemStack
 {
-    [SerializeField] Item[] itemsInContainer;
-    public int MaxItemsNumber => itemsInContainer.Length;
-    public bool HasFreeSpace => GetFreeIndex() == -1 ? false : true;
+    [SerializeField] Item itemPrefab;
+    [SerializeField] int itemsNumber;
 
-    public void AddNewItem(Item item) => AddItemInIndex(item, GetFreeIndex());
-    public Item GetItem(int index) => itemsInContainer[index];
-    public void RemoveItemAtIndex(int index) => itemsInContainer[index] = null;
-    public bool Contains(Item item) => itemsInContainer.Contains(item);
-    public void AddItemInIndex(Item item, int index) => itemsInContainer[index] = item;
-
-    int GetFreeIndex()
+    public Item Item => itemPrefab;
+    public Action quantityUpdatedEvent;
+    public Action deletedEvent;
+    public int ItemsNumber
     {
-        for (int i = 0; i < MaxItemsNumber; i++)
+        get 
         {
-            if (itemsInContainer[i] == null)
-                return i;
+            return itemsNumber;
         }
-        return -1;
+        set 
+        { 
+            itemsNumber = value;
+            quantityUpdatedEvent?.Invoke();
+            if (itemsNumber <= 0)
+            {
+                deletedEvent?.Invoke();
+                itemPrefab = null;
+            }
+        }
     }
 
-    public void Remove(Item item)
+    public ItemStack(Item itemPrefab, int quantity)
     {
-        for (int i = 0; i < MaxItemsNumber; i++)
+        this.itemPrefab = itemPrefab;
+        this.itemsNumber = quantity;
+    }
+}
+public class Container : MonoBehaviour
+{
+    [SerializeField] ItemStack[] itemsStackInContainer;
+    public ItemStack[] ItemsStacksInContainer => itemsStackInContainer;
+    public int MaxItemStacksNumber => itemsStackInContainer.Length;
+    public ItemStack GetItemStack(int index) => itemsStackInContainer[index];
+    public void RemoveItemStackAtIndex(int index) => itemsStackInContainer[index] = new ItemStack(null, 0);
+    public bool Contains(ItemStack itemStack) => itemsStackInContainer.Contains(itemStack);
+    public void AddItemsStackInIndex(ItemStack itemStack, int index) => itemsStackInContainer[index] = itemStack;
+
+    public void RemoveItemsStack(ItemStack itemStack)
+    {
+        for (int i = 0; i < MaxItemStacksNumber; i++)
         {
-            if (itemsInContainer[i] == item)
-                RemoveItemAtIndex(i);
+            if (itemsStackInContainer[i] == itemStack)
+                RemoveItemStackAtIndex(i);
         }
     }
 }

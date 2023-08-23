@@ -119,12 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 296723b48e16c2e4790a38a893bc9320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  containerOpened:
-    m_PersistentCalls:
-      m_Calls: []
-  containerClosed:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &2803205373063058329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,37 +131,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e028e5d12fb74e43b6866a63d4e9a28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemsInContainer:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  itemsStackInContainer:
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
+  - itemPrefab: {fileID: 0}
+    itemsNumber: 0
 --- !u!114 &2476780937980530757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,3 +402,4 @@ MonoBehaviour:
   meshRenderers:
   - {fileID: 3691355276951203383}
   - {fileID: 3691355276951632423}
+  interactableObject: {fileID: 2476780937980530757}
