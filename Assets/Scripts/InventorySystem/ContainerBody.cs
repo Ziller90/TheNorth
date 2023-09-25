@@ -6,16 +6,16 @@ using System;
 
 public class ContainerBody : MonoBehaviour
 {
-    public Action containerOpened;
-    public Action containerClosed;
+    public Action containerOpenedEvent;
+    public Action containerClosedEvent;
 
     public void OpenContainer()
     {
-        containerOpened?.Invoke();
+        containerOpenedEvent?.Invoke();
     }
 
     public void CloseContainer()
     {
-        containerClosed?.Invoke();
+        containerClosedEvent?.Invoke();
     }
 }

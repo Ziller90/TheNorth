@@ -27,7 +27,7 @@ public class Item : MonoBehaviour
     [SerializeField] Sprite icon;
     [SerializeField] int maxStackSize;
     [SerializeField] ItemUsingType itemUsingType;
-    [SerializeField] bool equiped;
+    [SerializeField] bool equipedCached;
     public int MaxStackSize => maxStackSize;
     public int Id => id;
     public string Name => itemName;
@@ -43,12 +43,12 @@ public class Item : MonoBehaviour
     {
         rgbody = GetComponent<Rigidbody>();
         itemColliders = GetComponents<Collider>();
-        SetItemEquiped(equiped);
+        SetItemEquiped(equipedCached);
     }
     public void SetItemEquiped(bool isEquiped)
     {
-        equiped = isEquiped;
-        rgbody.isKinematic = equiped;
+        equipedCached = isEquiped;
+        rgbody.isKinematic = equipedCached;
         foreach (var collider in itemColliders)
         {
             collider.isTrigger = isEquiped;

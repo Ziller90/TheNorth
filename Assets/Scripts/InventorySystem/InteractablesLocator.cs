@@ -12,7 +12,7 @@ public class InteractablesLocator : MonoBehaviour
     InteractableObject nearestInteractable = null;
 
     public delegate void ContainerOpened(ContainerBody containerBody);
-    public event ContainerOpened containerOpened;
+    public event ContainerOpened containerOpenedEvent;
     void Start()
     {
         inventory = GetComponent<HumanoidInventory>();  
@@ -57,7 +57,7 @@ public class InteractablesLocator : MonoBehaviour
             if (nearestInteractable.GetComponent<Item>())
                 inventory.AddItem(nearestInteractable.GetComponent<Item>());
             if (nearestInteractable.GetComponent<ContainerBody>())
-                containerOpened(nearestInteractable.GetComponent<ContainerBody>());
+                containerOpenedEvent(nearestInteractable.GetComponent<ContainerBody>());
         }
     }
 }

@@ -6,7 +6,7 @@ public class InventoryUI : MonoBehaviour
 {
     [SerializeField] GameObject inventoryPanel;
     [SerializeField] GameObject openedContainerWindow;
-    [SerializeField] GameObject mobileIngameInterface;
+    [SerializeField] GameObject mobileBattleSystemInterface;
     [SerializeField] OpenedContainerView openedContainerView;
 
     InteractablesLocator playerInteractablesLocator;
@@ -15,21 +15,21 @@ public class InventoryUI : MonoBehaviour
     void OnEnable()
     {
         playerInteractablesLocator = Links.instance.playerCharacter.GetComponent<InteractablesLocator>();
-        playerInteractablesLocator.containerOpened += OpenContainer;
+        playerInteractablesLocator.containerOpenedEvent += OpenContainer;
     }
     void OnDisable()
     {
-        playerInteractablesLocator.containerOpened -= OpenContainer;
+        playerInteractablesLocator.containerOpenedEvent -= OpenContainer;
     }
     public void OpenInventory()
     {
         inventoryPanel.SetActive(true);
-        mobileIngameInterface.SetActive(false);
+        mobileBattleSystemInterface.SetActive(false);
     }
     public void CloseInventory()
     {
         inventoryPanel.SetActive(false);
-        mobileIngameInterface.SetActive(true);
+        mobileBattleSystemInterface.SetActive(true);
     }
     public void OpenContainer(ContainerBody containerBody)
     {
@@ -38,7 +38,7 @@ public class InventoryUI : MonoBehaviour
         openedContainerView.SetOpenedContainer(openedContainer.GetComponent<Container>());
         openedContainer.GetComponent<InteractableObject>().SetInteractable(false);
 
-        mobileIngameInterface.SetActive(false);
+        mobileBattleSystemInterface.SetActive(false);
         openedContainerWindow.SetActive(true);
     }
     public void CloseContainer()
@@ -46,6 +46,6 @@ public class InventoryUI : MonoBehaviour
         openedContainer.CloseContainer();
         openedContainer.GetComponent<InteractableObject>().SetInteractable(true);
         openedContainerWindow.SetActive(false);
-        mobileIngameInterface.SetActive(true);
+        mobileBattleSystemInterface.SetActive(true);
     }
 }

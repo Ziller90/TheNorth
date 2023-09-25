@@ -26,8 +26,8 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     {
         if (itemStack != null)
         {
-            itemStack.quantityUpdatedEvent -= OnItemsNumberUpdated;
-            itemStack.quantityUpdatedEvent += OnItemsNumberUpdated;
+            itemStack.itemsNumberUpdatedEvent -= OnItemsNumberUpdated;
+            itemStack.itemsNumberUpdatedEvent += OnItemsNumberUpdated;
 
             itemStack.deletedEvent -= OnItemStackDeleted;
             itemStack.deletedEvent += OnItemStackDeleted;
@@ -35,7 +35,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     }
     void OnDisable()
     {
-        itemStack.quantityUpdatedEvent -= OnItemsNumberUpdated;
+        itemStack.itemsNumberUpdatedEvent -= OnItemsNumberUpdated;
         itemStack.deletedEvent -= OnItemStackDeleted;
     }
     void OnItemsNumberUpdated()
@@ -53,7 +53,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
         this.itemsViewManager = itemsViewManager;
         icon.sprite = itemStack.Item.Icon;
 
-        itemStack.quantityUpdatedEvent += OnItemsNumberUpdated;
+        itemStack.itemsNumberUpdatedEvent += OnItemsNumberUpdated;
         itemStack.deletedEvent += OnItemStackDeleted;
         OnItemsNumberUpdated();
     }

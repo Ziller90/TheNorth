@@ -146,4 +146,8 @@ public class InventoryView : MonoBehaviour
         itemsViewManager.SelectedItemSlot.DestroyItemIcon();
         itemsViewManager.RemoveSelection();
     }
+    public void DivideSelectedItem()
+    {
+        itemsViewManager.DivideSelectedItem();
+    }
 }
