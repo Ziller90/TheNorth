@@ -8,18 +8,18 @@ public class InteractableObject : MonoBehaviour
     public delegate void UpdateSelectionState(bool state);
     public UpdateSelectionState updateSelectionStateEvent;
 
-    [SerializeField] bool isInteractable = true;
+    [SerializeField] bool isInteractableCached = true;
 
     public void SetInteractable(bool isInteractable)
     {
         if (isInteractable)
         {
-            this.isInteractable = true;
+            this.isInteractableCached = true;
             Links.instance.globalLists.AddInteractableOnLocation(this);
         }
         else if (!isInteractable)
         {
-            this.isInteractable = false;
+            this.isInteractableCached = false;
             Links.instance.globalLists.RemoveInteractableOnLocation(this);
         }
     }
@@ -29,10 +29,10 @@ public class InteractableObject : MonoBehaviour
     }
     void OnEnable()
     {
-        SetInteractable(isInteractable);
+        SetInteractable(isInteractableCached);
     }
     void OnDisable()
     {
-        SetInteractable(isInteractable);
+        SetInteractable(isInteractableCached);
     }
 }

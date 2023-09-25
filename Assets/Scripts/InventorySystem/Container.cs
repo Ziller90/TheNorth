@@ -10,7 +10,7 @@ public class ItemStack
     [SerializeField] int itemsNumber;
 
     public Item Item => itemPrefab;
-    public Action quantityUpdatedEvent;
+    public Action itemsNumberUpdatedEvent;
     public Action deletedEvent;
     public int ItemsNumber
     {
@@ -21,7 +21,7 @@ public class ItemStack
         set 
         { 
             itemsNumber = value;
-            quantityUpdatedEvent?.Invoke();
+            itemsNumberUpdatedEvent?.Invoke();
             if (itemsNumber <= 0)
             {
                 deletedEvent?.Invoke();

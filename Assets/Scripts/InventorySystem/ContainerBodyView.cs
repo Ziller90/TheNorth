@@ -10,8 +10,8 @@ public class ContainerBodyView : MonoBehaviour
     private void Start()
     {
         containerBody = transform.parent.GetComponent<ContainerBody>();
-        containerBody.containerOpened += OpenContainer;
-        containerBody.containerClosed += CloseContainer;
+        containerBody.containerOpenedEvent += OpenContainer;
+        containerBody.containerClosedEvent += CloseContainer;
     }
 
     public void OpenContainer() => containerAnimator.SetBool("Opened", true);

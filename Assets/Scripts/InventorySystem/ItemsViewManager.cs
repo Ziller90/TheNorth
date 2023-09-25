@@ -131,4 +131,12 @@ public class ItemsViewManager : MonoBehaviour
         slot2.RemoveIcon();
         slot2.InsertIcon(itemIcon1, false);
     }
+    public void DivideSelectedItem()
+    {
+        if (SelectedItemIcon.ItemStack.ItemsNumber == 1)
+        {
+            Debug.Log("Can't divide one item");
+            return;
+        }
+    }
 }
