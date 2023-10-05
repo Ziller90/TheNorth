@@ -9,8 +9,8 @@ public class MobileButtonsManager : MonoBehaviour
     {
         this.actionManager = actionManager;
     }
-    public void MeleeAttackPressed() { actionManager.isMeleeAttackActing = true; }
-    public void MeleeAttackReleased() { actionManager.isMeleeAttackActing = false; }
+    public void RightHandPressed() { actionManager.rightHandWeaponUsing = true; }
+    public void RightHandReleased() { actionManager.rightHandWeaponUsing = false; }
 
     public void DistanceAttackPressed() { actionManager.isDistantAttackActing = true; }
     public void DistanceAttackReleased() { actionManager.isDistantAttackActing = false; }

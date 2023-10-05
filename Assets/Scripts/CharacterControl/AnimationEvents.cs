@@ -59,11 +59,13 @@ public class AnimationEvents : MonoBehaviour
     }
     public void SetCuttingAnimationTrue()
     {
-        characterMeleeWeapon.SetCuttingAnimation(true);
+        if (characterMeleeWeapon)
+            characterMeleeWeapon.SetCuttingAnimation(true);
     }
     public void SetCuttingAnimationFalse()
     {
-        characterMeleeWeapon.SetCuttingAnimation(false);
+        if (characterMeleeWeapon)
+            characterMeleeWeapon.SetCuttingAnimation(false);
     }
     public void AutoAim()
     {

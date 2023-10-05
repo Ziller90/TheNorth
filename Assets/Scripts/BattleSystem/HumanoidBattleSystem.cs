@@ -69,7 +69,7 @@ public class HumanoidBattleSystem : MonoBehaviour
     }
     public void StopAttack()
     {
-        if (actionManager.isMeleeAttackActing == false)
+        if (actionManager.rightHandWeaponUsing == false)
         {
             isMeleeAttack = false;
         }
@@ -87,7 +87,7 @@ public class HumanoidBattleSystem : MonoBehaviour
     }
     public void AllowMoving()
     {
-        if (actionManager.isMeleeAttackActing == false) 
+        if (actionManager.rightHandWeaponUsing == false) 
         {
             characterContoller.allowMoving = true;
         }
@@ -103,11 +103,12 @@ public class HumanoidBattleSystem : MonoBehaviour
 
     public void Update()
     {
-        if (actionManager.isMeleeAttackActing)
+        if (actionManager.rightHandWeaponUsing)
         {
             isMeleeAttack = true;
             DisableMoving();
         }
+
         humanAnimator.SetBool("Attack", isMeleeAttack);
 
         if (actionManager.isBlockActing)

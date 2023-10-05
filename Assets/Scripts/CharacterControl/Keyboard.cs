@@ -43,11 +43,11 @@ public class Keyboard : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-            actionManager.isMeleeAttackActing = true;
+            actionManager.rightHandWeaponUsing = true;
         }
         if (Input.GetMouseButtonUp(0))
         {
-            actionManager.isMeleeAttackActing = false;
+            actionManager.rightHandWeaponUsing = false;
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
