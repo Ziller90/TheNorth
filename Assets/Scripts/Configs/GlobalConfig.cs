@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,11 +15,13 @@ public class GlobalConfig : ScriptableObject
 {
     [SerializeField] ControlType manuallySelectedControlType;
     [SerializeField] bool allowAutoControlTypeSelect;
+
     [SerializeField] Material hightlightMaterial;
     [SerializeField] AnimationCurve highlightCurve;
     [SerializeField] AnimationCurve fadeOutCurve;
     [SerializeField] float highlighSpeed;
     [SerializeField] float fadeOutSpeed;
+
     [ColorUsage(false, true)] [SerializeField] Color32 highLightColor;
     ControlType currentControlType;
     public ControlType CurrentControlType => currentControlType;
@@ -28,6 +31,8 @@ public class GlobalConfig : ScriptableObject
     public float FadeOutSpeed => fadeOutSpeed;
     public AnimationCurve FadeOutCurve => fadeOutCurve;
     public Color32 HighLightColor => highLightColor;
+
+
     public void SetControlType()
     {
         if (allowAutoControlTypeSelect)
@@ -62,6 +67,7 @@ public class GlobalConfig : ScriptableObject
             currentControlType = manuallySelectedControlType;
         }
     }
+
     public void OnEnable()
     {
         SetControlType();

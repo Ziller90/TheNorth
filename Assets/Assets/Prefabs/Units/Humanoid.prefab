@@ -4721,14 +4721,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6115228454313205722}
-  m_LocalRotation: {x: 0.49138352, y: -0.52545077, z: 0.5072005, w: -0.47454342}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: -0.5}
   m_LocalPosition: {x: 10.1, y: 4.7, z: 0.1}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5133935866322722867}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 176.178, y: -87.983, z: 90.148}
+  m_LocalEulerAnglesHint: {x: 180, y: -90, z: 90}
 --- !u!114 &3217649098697348155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4883,6 +4883,7 @@ MonoBehaviour:
   mainWeaponInHand: {fileID: 6115228454313205722}
   thisCreature: {fileID: 6115228454438917361}
   standartThrowDistance: 7
+  rightHandWeapon: {fileID: 0}
 --- !u!114 &6115228454438917375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5063,6 +5064,7 @@ MonoBehaviour:
   - itemPrefab: {fileID: 0}
     itemsNumber: 0
   dropSackPrefab: {fileID: 390682515965362878, guid: 4a6b3267735ccc745a8353076a4887a6, type: 3}
+  battleSystem: {fileID: 6115228454438917371}
 --- !u!1 &6115228454590202541
 GameObject:
   m_ObjectHideFlags: 0
@@ -6118,14 +6120,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8192213370732686490}
-  m_LocalRotation: {x: -0.6284827, y: -0.034868795, z: -0.033836782, w: 0.77630454}
-  m_LocalPosition: {x: -10.2, y: 4.7, z: -0.6}
+  m_LocalRotation: {x: 0.49958098, y: -0.5004187, z: -0.49958098, w: 0.5004187}
+  m_LocalPosition: {x: -10.2, y: -3.23, z: -0.6}
   m_LocalScale: {x: 100.00002, y: 100, z: 99.999985}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5133935866322626295}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: -78, y: -3.2, z: -2.4}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: -89.904}
 --- !u!114 &2250152776409225094
 MonoBehaviour:
   m_ObjectHideFlags: 0

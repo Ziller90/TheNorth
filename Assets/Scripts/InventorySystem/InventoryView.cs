@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 public class InventoryView : MonoBehaviour
 {
-    [SerializeField] Slot rightHandSlot;
-    [SerializeField] Slot leftHandSlot;
+    [SerializeField] Slot mainWeaponSlot;
+    [SerializeField] Slot secondaryWeaponSlot;
     [SerializeField] Slot[] quickAccessSlots;
     [SerializeField] ContainerGridView containerGridView;
     [SerializeField] ItemIcon itemIconPrefab;
@@ -55,15 +55,15 @@ public class InventoryView : MonoBehaviour
     {
         containerGridView.ClearContainerGrid();
 
-        rightHandSlot.DestroyItemIcon();
-        rightHandSlot.iconInsertedEvent.RemoveAllListeners();
-        rightHandSlot.iconRemovedEvent.RemoveAllListeners();
-        itemsViewManager.RemoveActiveSlot(rightHandSlot);
+        mainWeaponSlot.DestroyItemIcon();
+        mainWeaponSlot.iconInsertedEvent.RemoveAllListeners();
+        mainWeaponSlot.iconRemovedEvent.RemoveAllListeners();
+        itemsViewManager.RemoveActiveSlot(mainWeaponSlot);
 
-        leftHandSlot.DestroyItemIcon();
-        leftHandSlot.iconInsertedEvent.RemoveAllListeners();
-        leftHandSlot.iconRemovedEvent.RemoveAllListeners();
-        itemsViewManager.RemoveActiveSlot(leftHandSlot);
+        secondaryWeaponSlot.DestroyItemIcon();
+        secondaryWeaponSlot.iconInsertedEvent.RemoveAllListeners();
+        secondaryWeaponSlot.iconRemovedEvent.RemoveAllListeners();
+        itemsViewManager.RemoveActiveSlot(secondaryWeaponSlot);
         for (int i = 0; i < quickAccessSlots.Length; i++)
         {
             itemsViewManager.RemoveActiveSlot(quickAccessSlots[i]);
@@ -77,15 +77,15 @@ public class InventoryView : MonoBehaviour
     {
         containerGridView.DrawContainerSlots();
 
-        InstantiateItemIcon(inventory.RightHandItemStack, rightHandSlot);
-        rightHandSlot.iconInsertedEvent.AddListener((ItemIcon icon, Slot slot) => inventory.SetItemStackInRightHand(icon.ItemStack));
-        rightHandSlot.iconRemovedEvent.AddListener((ItemIcon icon, Slot slot) => inventory.RemoveItemFromRightHand());
-        itemsViewManager.AddActiveSlot(rightHandSlot);
+        InstantiateItemIcon(inventory.MainWeaponItemStack, mainWeaponSlot);
+        mainWeaponSlot.iconInsertedEvent.AddListener((ItemIcon icon, Slot slot) => inventory.SetItemStackInEquipmentPosition(icon.ItemStack));
+        mainWeaponSlot.iconRemovedEvent.AddListener((ItemIcon icon, Slot slot) => inventory.RemoveMainWeapon());
+        itemsViewManager.AddActiveSlot(mainWeaponSlot);
 
-        InstantiateItemIcon(inventory.LeftHandItemStack, leftHandSlot);
-        leftHandSlot.iconInsertedEvent.AddListener((ItemIcon icon, Slot slot) => inventory.SetItemStackInLeftHand(icon.ItemStack));
-        leftHandSlot.iconRemovedEvent.AddListener((ItemIcon icon, Slot slot) => inventory.RemoveItemFromLeftHand());
-        itemsViewManager.AddActiveSlot(leftHandSlot);
+        InstantiateItemIcon(inventory.SecondaryWeaponItemStack, secondaryWeaponSlot);
+        secondaryWeaponSlot.iconInsertedEvent.AddListener((ItemIcon icon, Slot slot) => inventory.SetItemStackInEquipmentPosition(icon.ItemStack));
+        secondaryWeaponSlot.iconRemovedEvent.AddListener((ItemIcon icon, Slot slot) => inventory.RemoveSecondaryWeapon());
+        itemsViewManager.AddActiveSlot(secondaryWeaponSlot);
 
         for (int i = 0; i < quickAccessSlots.Length; i++)
         {
@@ -131,11 +131,11 @@ public class InventoryView : MonoBehaviour
     {
         var selectedItemIcon = itemsViewManager.SelectedItemIcon;
 
-        if (selectedItemIcon.ItemStack.Item.ItemUsingType == ItemUsingType.RightHand)
-            itemsViewManager.MoveItemToSlot(selectedItemIcon, rightHandSlot);
-        if (selectedItemIcon.ItemStack.Item.ItemUsingType == ItemUsingType.LeftHand)
-            itemsViewManager.MoveItemToSlot(selectedItemIcon, leftHandSlot);
-        if (selectedItemIcon.ItemStack.Item.ItemUsingType == ItemUsingType.ActiveUsable)
+        if (selectedItemIcon.ItemStack.Item.SuitableSlots == SuitableSlotTypes.MainWeapon)
+            itemsViewManager.MoveItemToSlot(selectedItemIcon, mainWeaponSlot);
+        if (selectedItemIcon.ItemStack.Item.SuitableSlots == SuitableSlotTypes.SecondaryWeapon)
+            itemsViewManager.MoveItemToSlot(selectedItemIcon, secondaryWeaponSlot);
+        if (selectedItemIcon.ItemStack.Item.SuitableSlots == SuitableSlotTypes.QuikAcess)
             inventory.UseItem(selectedItemIcon.ItemStack);
 
         itemsViewManager.RemoveSelection();

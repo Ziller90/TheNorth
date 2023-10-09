@@ -19,8 +19,8 @@ public class MobileButtonsView : MonoBehaviour
 
     void Update()
     {
-        if (playerInventory.RightHandItemStack.Item != null)
-            rightHandWeaponImage.sprite = playerInventory.RightHandItemStack.Item.Icon;
+        if (playerInventory.MainWeaponItemStack.Item != null)
+            rightHandWeaponImage.sprite = playerInventory.MainWeaponItemStack.Item.Icon;
         else
             rightHandWeaponImage.sprite = fistSprite;
 

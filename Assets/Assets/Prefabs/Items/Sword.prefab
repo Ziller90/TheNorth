@@ -182,6 +182,7 @@ GameObject:
   - component: {fileID: 6759848368673478585}
   - component: {fileID: 6200276509977123665}
   - component: {fileID: -2066988369578927645}
+  - component: {fileID: -5585521636719186022}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -250,8 +251,13 @@ MonoBehaviour:
   cost: 120
   icon: {fileID: 21300000, guid: f1ad37d1a9aa1da4badb8efeb2168a68, type: 3}
   maxStackSize: 1
-  itemUsingType: 1
-  equiped: 0
+  suitableSlots: 1
+  equipPositon: 1
+  equipedCached: 0
+  itemColliders:
+  - {fileID: 3785722318620882532}
+  - {fileID: 6759848368673478585}
+  - {fileID: 6200276509977123665}
 --- !u!65 &3785722318620882532
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -327,4 +333,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe879ece6df836547b9cddf476fed3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInteractable: 1
+  isInteractableCached: 1
+--- !u!114 &-5585521636719186022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7087786812071082882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d8294fbe2f40b419ea1f9f7f8adf5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponType: 1

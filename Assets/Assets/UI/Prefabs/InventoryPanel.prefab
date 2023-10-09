@@ -339,8 +339,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c90d862699495d64392affcee7b1dbcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightHandSlot: {fileID: 5532835343150534301}
-  leftHandSlot: {fileID: 7966150032797252169}
+  mainWeaponSlot: {fileID: 5532835343150534301}
+  secondaryWeaponSlot: {fileID: 7966150032797252169}
   quickAccessSlots:
   - {fileID: 8746366050217369780}
   - {fileID: 5311579406055027333}
@@ -895,7 +895,7 @@ PrefabInstance:
       objectReference: {fileID: 1089561314549887299, guid: 11e3afd589cefd54388e60565e062735, type: 3}
     - target: {fileID: 8834539050554049246, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
       propertyPath: m_Name
-      value: LeftHand
+      value: SecondaryWeaponSlot
       objectReference: {fileID: 0}
     - target: {fileID: 8834539050554049247, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
       propertyPath: m_Pivot.x
@@ -1520,7 +1520,7 @@ PrefabInstance:
       objectReference: {fileID: 1089561314549887299, guid: 11e3afd589cefd54388e60565e062735, type: 3}
     - target: {fileID: 8834539050554049246, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
       propertyPath: m_Name
-      value: RightHand
+      value: MainWeaponSlot
       objectReference: {fileID: 0}
     - target: {fileID: 8834539050554049247, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
       propertyPath: m_Pivot.x

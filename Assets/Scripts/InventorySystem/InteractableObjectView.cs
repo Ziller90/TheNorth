@@ -14,6 +14,7 @@ enum HighlightState
 public class InteractableObjectView : MonoBehaviour
 {
     [SerializeField] List<MeshRenderer> meshRenderers;
+    [SerializeField] List<SkinnedMeshRenderer> skinnedMeshRenderers;
     [SerializeField] InteractableObject interactableObject;
 
     AnimationCurve highlightCurve; 
@@ -50,6 +51,7 @@ public class InteractableObjectView : MonoBehaviour
     public void FindObjectMeshRenderers()
     {
         meshRenderers = gameObject.GetComponentsInChildren<MeshRenderer>().ToList();
+        skinnedMeshRenderers = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>().ToList();
     }
     public void SetHighlighted(bool highlight)
     {
@@ -92,6 +94,11 @@ public class InteractableObjectView : MonoBehaviour
 
         Color32 currentEmissionColor = Color.Lerp(defaultEmissionColor, highlightEmissionColor, currentPhase);
         foreach (var renderer in meshRenderers)
+        {
+            renderer.material.SetColor("_EmissionColor", currentEmissionColor);
+        }
+
+        foreach (var renderer in skinnedMeshRenderers)
         {
             renderer.material.SetColor("_EmissionColor", currentEmissionColor);
         }

@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 7430892709541178247}
   - component: {fileID: 8156922100725828353}
   - component: {fileID: 6825266256748935649}
+  - component: {fileID: 7285154890313916723}
   m_Layer: 0
   m_Name: RoundShield
   m_TagString: Untagged
@@ -221,8 +222,11 @@ MonoBehaviour:
   cost: 80
   icon: {fileID: 21300000, guid: a5407af88404f67478d01fd2d9310104, type: 3}
   maxStackSize: 1
-  itemUsingType: 2
-  equiped: 0
+  suitableSlots: 2
+  equipPositon: 2
+  equipedCached: 0
+  itemColliders:
+  - {fileID: 8156922100725828353}
 --- !u!54 &7430892709541178247
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -283,4 +287,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe879ece6df836547b9cddf476fed3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInteractable: 1
+  isInteractableCached: 1
+--- !u!114 &7285154890313916723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6331601498271844124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d8294fbe2f40b419ea1f9f7f8adf5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponType: 3

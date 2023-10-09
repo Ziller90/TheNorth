@@ -4,18 +4,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum ItemUsingType
+
+public enum SuitableSlotTypes
 {
     None = 0,
-    RightHand = 1,
-    LeftHand = 2,
-    BothHand = 4,
-    TwoHanded = 8,
+    MainWeapon = 1,
+    SecondaryWeapon = 2,
+    TwoHanded = 4,
+    BothHanded = 8,
     Torso = 16,
     Helmet = 32,
     Trousers = 64,
     Boots = 128,
-    ActiveUsable = 256,
+    QuikAcess = 256,
+}
+
+public enum EquipPositon
+{
+    None = 0,
+    RightHand = 1,
+    LeftHand = 2,
+    Spine = 3
 }
 
 public class Item : MonoBehaviour
@@ -26,25 +35,34 @@ public class Item : MonoBehaviour
     [SerializeField] int cost;
     [SerializeField] Sprite icon;
     [SerializeField] int maxStackSize;
-    [SerializeField] ItemUsingType itemUsingType;
+    [SerializeField] SuitableSlotTypes suitableSlots;
+    [SerializeField] EquipPositon equipPositon;
+
     [SerializeField] bool equipedCached;
+    [SerializeField] Collider[] itemColliders;
     public int MaxStackSize => maxStackSize;
     public int Id => id;
     public string Name => itemName;
     public string Description => description;
     public int Cost => cost;
     public Sprite Icon => icon;
-    public ItemUsingType ItemUsingType => itemUsingType;
+    public SuitableSlotTypes SuitableSlots => suitableSlots;
+    public EquipPositon EquipPositon => equipPositon;
 
     Rigidbody rgbody;
-    Collider[] itemColliders;
+
+    [ContextMenu("FindColliders")]
+    public void FindItemColliders()
+    {
+        itemColliders = GetComponentsInChildren<Collider>();
+    }
 
     void OnEnable()
     {
         rgbody = GetComponent<Rigidbody>();
-        itemColliders = GetComponents<Collider>();
         SetItemEquiped(equipedCached);
     }
+
     public void SetItemEquiped(bool isEquiped)
     {
         equipedCached = isEquiped;
