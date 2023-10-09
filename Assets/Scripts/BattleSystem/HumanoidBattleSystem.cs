@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using System;
 
 public class HumanoidBattleSystem : MonoBehaviour
 {
@@ -9,7 +11,7 @@ public class HumanoidBattleSystem : MonoBehaviour
     [SerializeField] AutoAimController autoAim;
     [SerializeField] ActionManager actionManager;
     [SerializeField] Animator humanAnimator;
-    [SerializeField] Thrower thrower;
+    [SerializeField] Thrower throwingWeaponThrower;
     [SerializeField] float maxDistanceForAutoAim;
     [SerializeField] GameObject throwingWeaponPrefab;
     [SerializeField] GameObject throwingWeaponInHand;
@@ -17,35 +19,60 @@ public class HumanoidBattleSystem : MonoBehaviour
     [SerializeField] GameObject thisCreature;
     [SerializeField] float standartThrowDistance;
 
+    [SerializeField] Weapon mainWeapon;
+    [SerializeField] Weapon secondaryWeapon;
+
     Vector3 distantAttackTargetPosition;
-    bool isMeleeAttack;
+    bool isMainWeaponAttack;
     bool isBlock;
     bool isDistantAttack;
     bool shieldRaised;
+
     public bool ShieldRaised => shieldRaised;
     public float ShieldProtectionAngle => shieldProtectionAngle;
+
     public void SetShieldRaised(bool isRaised)
     {
         shieldRaised = isRaised;
     }
+
     public void SetActionManager(ActionManager actionManager)
     {
         this.actionManager = actionManager;
     }
+
+    public void SetMainWeapon(Weapon weapon)
+    {
+        mainWeapon = weapon;
+    }
+
+    public void SetSecondaryWeapon(Weapon weapon)
+    {
+        secondaryWeapon = weapon;
+    }
+
     public void SetThrowingWeaponInHand()
     {
         mainWeaponInHand.SetActive(false);
         throwingWeaponInHand.SetActive(true);
     }
+
     public void SetMainWeapon()
     {
         mainWeaponInHand.SetActive(true);
     }
+
     public void ThrowWeapon()
     {
         throwingWeaponInHand.SetActive(false);
-        thrower.Throw(throwingWeaponPrefab, distantAttackTargetPosition);
+        throwingWeaponThrower.Throw(throwingWeaponPrefab, distantAttackTargetPosition);
     }
+
+    public void ReleaseBow()
+    {
+
+    }
+
     public void Aim()
     {
         if (autoAim.HasAutoAimTarget(thisCreature, gameObject.transform, maxDistanceForAutoAim))
@@ -59,21 +86,25 @@ public class HumanoidBattleSystem : MonoBehaviour
             characterContoller.LookAtPoint(distantAttackTargetPosition);
         }
     }
+
     public void DisableRunning()
     {
         characterContoller.allowRunning = false;
     }
+
     public void AllowRunning()
     {
         characterContoller.allowRunning = true;
     }
+
     public void StopAttack()
     {
         if (actionManager.rightHandWeaponUsing == false)
         {
-            isMeleeAttack = false;
+            isMainWeaponAttack = false;
         }
     }
+
     public void StopDistantAttack()
     {
         if (actionManager.isDistantAttackActing == false)
@@ -81,10 +112,12 @@ public class HumanoidBattleSystem : MonoBehaviour
             isDistantAttack = false;
         }
     }
+
     public void DisableMoving()
     {
         characterContoller.allowMoving = false;
     }
+
     public void AllowMoving()
     {
         if (actionManager.rightHandWeaponUsing == false) 
@@ -92,10 +125,12 @@ public class HumanoidBattleSystem : MonoBehaviour
             characterContoller.allowMoving = true;
         }
     }
+
     public void DisableRotation()
     {
         characterContoller.allowRotation = false;
     }
+
     public void AllowRotation()
     {
         characterContoller.allowRotation = true;
@@ -105,11 +140,20 @@ public class HumanoidBattleSystem : MonoBehaviour
     {
         if (actionManager.rightHandWeaponUsing)
         {
-            isMeleeAttack = true;
+            isMainWeaponAttack = true;
             DisableMoving();
         }
 
-        humanAnimator.SetBool("Attack", isMeleeAttack);
+
+        if (!isMainWeaponAttack)
+            humanAnimator.SetInteger("AttackIndex", 0);
+        else
+        {
+            if (!mainWeapon)
+                humanAnimator.SetInteger("AttackIndex", 1);
+            else
+                humanAnimator.SetInteger("AttackIndex", (int) mainWeapon.Type);
+        }
 
         if (actionManager.isBlockActing)
         {
@@ -121,7 +165,7 @@ public class HumanoidBattleSystem : MonoBehaviour
             isBlock = false;
             AllowRunning();
         }
-        humanAnimator.SetBool("ShieldUp", isBlock);
+        humanAnimator.SetBool("Shield", isBlock);
 
         if (actionManager.isDistantAttackActing)
         {
@@ -131,6 +175,7 @@ public class HumanoidBattleSystem : MonoBehaviour
         }
         humanAnimator.SetBool("Throw", isDistantAttack);
     }
+
     public Vector3 GetHitVector(Vector3 hitPosition)
     {
         return transform.position - hitPosition;

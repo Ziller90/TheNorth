@@ -48,6 +48,6 @@ public class Thrower : MonoBehaviour
         Vector3 throwingVelocity = positionInHand.forward * v;
 
         thisThrowingWeapon.GetComponent<Rigidbody>().velocity = throwingVelocity;
-        thisThrowingWeapon.GetComponent<ThrowingWeapon>().thisCreature = thisCreature;
+        thisThrowingWeapon.GetComponent<Projectile>().thisCreature = thisCreature;
     }
 }

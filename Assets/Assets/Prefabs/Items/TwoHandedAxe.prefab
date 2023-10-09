@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 306203864332640554}
   - component: {fileID: 3376163150080205506}
   - component: {fileID: 472288444273180106}
+  - component: {fileID: 6890375309901345546}
   m_Layer: 0
   m_Name: TwoHandedAxe
   m_TagString: Untagged
@@ -56,8 +57,11 @@ MonoBehaviour:
   cost: 200
   icon: {fileID: 21300000, guid: a3c6575ddf3131949bd7db7bbc5c1f05, type: 3}
   maxStackSize: 1
-  itemUsingType: 1
-  equiped: 0
+  suitableSlots: 1
+  equipPositon: 1
+  equipedCached: 0
+  itemColliders:
+  - {fileID: 5104327396753269823}
 --- !u!65 &5104327396753269823
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -118,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe879ece6df836547b9cddf476fed3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInteractable: 1
+  isInteractableCached: 1
 --- !u!114 &472288444273180106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,6 +138,19 @@ MonoBehaviour:
   meshRenderers:
   - {fileID: 2105301957467014818}
   interactableObject: {fileID: 3376163150080205506}
+--- !u!114 &6890375309901345546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023232713239520684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d8294fbe2f40b419ea1f9f7f8adf5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponType: 2
 --- !u!1 &2105301957469062122
 GameObject:
   m_ObjectHideFlags: 0

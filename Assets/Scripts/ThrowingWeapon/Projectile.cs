@@ -3,57 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class ThrowingWeapon : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
-    [SerializeField] bool selfDestroying;
     [SerializeField] bool stickIn;
     [SerializeField] float timeToSelfDestroying;
-    [SerializeField] bool isSpear;
+    [SerializeField] bool lookAtEnemy;
     [SerializeField] bool isRotating;
     [SerializeField] float rotationSpeed;
     [SerializeField] float baseDamage;
     [SerializeField] AudioSource audioSource;
-    [SerializeField] MeshRenderer spearRenderer;
 
     public GameObject thisCreature;
 
-    Rigidbody rigidbody;
-    float distanceToTarget;
+    Rigidbody rgbody;
 
     void Start()
     {
-        rigidbody = gameObject.GetComponent<Rigidbody>();
-        if (selfDestroying)
-        {
-            StartCoroutine("Destroy");
-        }
+        rgbody = gameObject.GetComponent<Rigidbody>();
     }
+
     void Update()
     {
         if (isRotating)
-        {
             transform.Rotate(rotationSpeed, 0, 0);
-        }
-        if (isSpear)
-        {
-            transform.LookAt(transform.position + rigidbody.velocity);
-        }
+        if (lookAtEnemy)
+            transform.LookAt(transform.position + rgbody.velocity);
     }
+
     public IEnumerator Destroy()
     {
         yield return new WaitForSeconds(timeToSelfDestroying);
         Destroy(gameObject);
     }
+
     public void OnTriggerEnter(Collider other)
     {
         if (stickIn && other.gameObject.tag != "Creature")
         {
-            rigidbody.isKinematic = true;
+            rgbody.isKinematic = true;
             audioSource.Play();
             if (other.gameObject.GetComponent<HitBox>() != null)
             {
                 other.gameObject.GetComponent<HitBox>().HitBoxGetDamage(baseDamage, transform.position);
-                spearRenderer.enabled = false;
                 gameObject.GetComponent<Collider>().enabled = false;
                 Destroy(gameObject,1f);
             }

@@ -8,27 +8,26 @@ public class AnimationEvents : MonoBehaviour
     [SerializeField] MeleeWeapon characterMeleeWeapon;
     [SerializeField] StepSounds stepSounds;
     [SerializeField] MeleeWeaponSounds meleeWeaponSounds;
+    [SerializeField] Bow bow;
 
-    public void SetMeleeWeapon(MeleeWeapon characterMeleeWeapon)
-    {
-        this.characterMeleeWeapon = characterMeleeWeapon;
-    }
-    public void SetThrowingWeaponInHand()
-    {
-        battleSystem.SetThrowingWeaponInHand();
-    }
-    public void MeleeWeaponAirCuttingSound()
-    {
-        meleeWeaponSounds.PlayAirCuttingSound();
-    }
-    public void SetBlock()
-    {
-        battleSystem.SetShieldRaised(true);
-    }
-    public void RemoveBlock()
-    {
-        battleSystem.SetShieldRaised(false);
-    }
+    public void SetMeleeWeapon(MeleeWeapon characterMeleeWeapon) => this.characterMeleeWeapon = characterMeleeWeapon;
+    public void SetBow(Bow bow) => this.bow = bow;
+    public void SetThrowingWeaponInHand() => battleSystem.SetThrowingWeaponInHand();
+    public void MeleeWeaponAirCuttingSound() => meleeWeaponSounds.PlayAirCuttingSound();
+    public void SetBlock() => battleSystem.SetShieldRaised(true);
+    public void RemoveBlock() => battleSystem.SetShieldRaised(false);
+    public void SetMainWeapon() => battleSystem.SetMainWeapon();
+    public void AutoAim() => battleSystem.Aim();
+    public void Throwed() => battleSystem.ThrowWeapon();
+    public void AttackFinished() => battleSystem.StopAttack();
+    public void DistantAttackFinished() => battleSystem.StopDistantAttack();
+    public void DisableRotation() => battleSystem.DisableRotation();
+    public void AllowRotation() => battleSystem.AllowRotation();
+    public void AllowMoving() => battleSystem.AllowMoving();
+    public void DisableMoving() => battleSystem.DisableMoving();
+    public void PullBow() => bow.Pull();
+    public void ReleseBow() => bow.Release();
+
     public void WalkingStep1()
     {
         stepSounds.SetStepSound1();
@@ -53,10 +52,7 @@ public class AnimationEvents : MonoBehaviour
         stepSounds.isRunning = true;
         stepSounds.PlaySound();
     }
-    public void SetMainWeapon()
-    {
-        battleSystem.SetMainWeapon();
-    }
+
     public void SetCuttingAnimationTrue()
     {
         if (characterMeleeWeapon)
@@ -66,37 +62,5 @@ public class AnimationEvents : MonoBehaviour
     {
         if (characterMeleeWeapon)
             characterMeleeWeapon.SetCuttingAnimation(false);
-    }
-    public void AutoAim()
-    {
-        battleSystem.Aim();
-    }
-    public void Throwed()
-    {
-        battleSystem.ThrowWeapon();
-    }
-    public void AttackFinished()
-    {
-        battleSystem.StopAttack();
-    }
-    public void DistantAttackFinished()
-    {
-        battleSystem.StopDistantAttack();
-    }
-    public void DisableRotation()
-    {
-        battleSystem.DisableRotation();
-    }
-    public void AllowRotation()
-    {
-        battleSystem.AllowRotation();
-    }
-    public void AllowMoving()
-    {
-        battleSystem.AllowMoving();
-    }
-    public void DisableMoving()
-    {
-        battleSystem.DisableMoving();
     }
 }

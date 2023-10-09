@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class HumanoidInventory : MonoBehaviour
 {
@@ -12,18 +13,23 @@ public class HumanoidInventory : MonoBehaviour
     [SerializeField] Transform rightHandKeeper;
     [SerializeField] Transform leftHandKeeper;
 
-    [SerializeField] ItemStack rightHandItemStack;
-    [SerializeField] ItemStack leftHandItemStack;
+    [SerializeField] ItemStack mainWeaponItemStack;
+    [SerializeField] ItemStack secondaryWeaponItemStack;
     [SerializeField] ItemStack[] quickAccessItemStacks = new ItemStack[3];
 
     [SerializeField] Container dropSackPrefab;
 
+    [SerializeField] HumanoidBattleSystem battleSystem;
     Container inventoryContainer;
+
     Item rightHandItem;
     Item leftHandItem;
 
-    public ItemStack RightHandItemStack => rightHandItemStack;
-    public ItemStack LeftHandItemStack => leftHandItemStack;
+    Item mainWeapon;
+    Item secondaryWeapon;
+
+    public ItemStack MainWeaponItemStack => mainWeaponItemStack;
+    public ItemStack SecondaryWeaponItemStack => secondaryWeaponItemStack;
     public ItemStack[] QuickAccessItemStacks => quickAccessItemStacks;
     public Container InventoryContainer => inventoryContainer;
     public int MoneyAmount => moneyAmount;
@@ -64,29 +70,87 @@ public class HumanoidInventory : MonoBehaviour
             return;
         }
 
-        if (item.ItemUsingType == ItemUsingType.RightHand && rightHandItemStack == null)
+        if (item.SuitableSlots == SuitableSlotTypes.MainWeapon && mainWeaponItemStack.Item == null)
         {
+            mainWeaponItemStack = newItemStack;
+
             RemoveItemFromWorld(item);
-            SetItemStackInRightHand(newItemStack);
-        }
-        else if (item.ItemUsingType == ItemUsingType.LeftHand && leftHandItemStack == null)
+            SetItemStackInEquipmentPosition(newItemStack);
+        } 
+        else if (item.SuitableSlots == SuitableSlotTypes.SecondaryWeapon && secondaryWeaponItemStack.Item == null)
         {
+            secondaryWeaponItemStack = newItemStack;
+
             RemoveItemFromWorld(item);
-            SetItemStackInLeftHand(newItemStack);
+            SetItemStackInEquipmentPosition(newItemStack);
         }
-        else if (item.ItemUsingType == ItemUsingType.ActiveUsable)
+        else if (item.SuitableSlots == SuitableSlotTypes.TwoHanded && secondaryWeaponItemStack.Item == null && mainWeaponItemStack.Item == null)
         {
-            bool addedToQuickAcessPanel = ModelUtils.AddItemStackToGroup(newItemStack, quickAccessItemStacks);
-            if (addedToQuickAcessPanel)
+            mainWeaponItemStack = newItemStack;
+            secondaryWeaponItemStack = newItemStack;
+
+            RemoveItemFromWorld(item);
+            SetItemStackInEquipmentPosition(newItemStack);
+        }
+        else if (item.SuitableSlots == SuitableSlotTypes.BothHanded)
+        {
+            if (mainWeaponItemStack.Item == null)
+            {
+                mainWeaponItemStack = newItemStack;
                 RemoveItemFromWorld(item);
-            else
-                AddItemToInventory(item, newItemStack);
+                SetItemStackInEquipmentPosition(newItemStack);
+            }
+            else if (secondaryWeaponItemStack.Item == null)
+            {
+                secondaryWeaponItemStack = newItemStack;
+                RemoveItemFromWorld(item);
+                SetItemStackInEquipmentPosition(newItemStack);
+            }
+        }
+        else if (item.SuitableSlots == SuitableSlotTypes.QuikAcess && ModelUtils.AddItemStackToGroup(newItemStack, quickAccessItemStacks))
+        {
+            RemoveItemFromWorld(item);
         }
         else
         {
             AddItemToInventory(item, newItemStack);
         }
     }
+
+    public void SetItemStackInEquipmentPosition(ItemStack itemStack)
+    {
+        Item instantiatedItem = null;
+        if (itemStack.Item.EquipPositon == EquipPositon.RightHand)
+        {
+            instantiatedItem = InstantiateItemInHand(itemStack, rightHandKeeper);
+            rightHandItem = instantiatedItem;
+        }
+        if (itemStack.Item.EquipPositon == EquipPositon.LeftHand)
+        {
+            instantiatedItem = InstantiateItemInHand(itemStack, leftHandKeeper);
+            leftHandItem = instantiatedItem;
+        }
+
+        SetWeapon(instantiatedItem);
+    }
+
+    public void SetWeapon(Item item)
+    {
+        if (item && item.GetComponent<Weapon>() != null)
+        {
+            if (item.SuitableSlots == SuitableSlotTypes.MainWeapon)
+            {
+                mainWeapon = item;
+                battleSystem.SetMainWeapon(item.GetComponent<Weapon>());
+            }
+            if (item.SuitableSlots == SuitableSlotTypes.SecondaryWeapon)
+            {
+                secondaryWeapon = item;
+                battleSystem.SetSecondaryWeapon(item.GetComponent<Weapon>());
+            }
+        }
+    }
+
     public  void AddItemToInventory(Item item, ItemStack itemStack)
     {
         bool added = ModelUtils.AddItemStackToGroup(itemStack, inventoryContainer.ItemsStacksInContainer);
@@ -101,23 +165,26 @@ public class HumanoidInventory : MonoBehaviour
         item.GetComponent<InteractableObject>().SetInteractable(false);
         Destroy(item.gameObject);
     }
+
     public void SetItemEquiped(Item item)
     {
         item.SetItemEquiped(true);
         item.GetComponent<InteractableObject>().SetInteractable(false);
     }
+
     public void DropItemsStack(ItemStack itemsStack)
     {
-        if (rightHandItemStack == itemsStack)
-            RemoveItemFromRightHand();
-        else if (leftHandItemStack == itemsStack)
-            RemoveItemFromLeftHand();
+        if (mainWeaponItemStack == itemsStack)
+            RemoveMainWeapon();
+        else if (secondaryWeaponItemStack == itemsStack)
+            RemoveSecondaryWeapon();
         else if (inventoryContainer.Contains(itemsStack))
             inventoryContainer.RemoveItemsStack(itemsStack);
 
         var dropSack = Instantiate(dropSackPrefab, dropPosition.position, Quaternion.identity);
         ModelUtils.AddItemStackToGroup(itemsStack, dropSack.ItemsStacksInContainer);
     }
+
     public void UseItem(ItemStack itemStack)
     {
         var itemUsing = itemStack.Item.GetComponent<ItemUsing>();
@@ -128,39 +195,65 @@ public class HumanoidInventory : MonoBehaviour
                 itemStack.ItemsNumber -= 1;
         }
     }
-    public void SetItemStackInRightHand(ItemStack itemsStack)
-    {
-        rightHandItemStack = itemsStack;
-        rightHandItem = Instantiate(rightHandItemStack.Item, rightHandKeeper);
-        rightHandItem.transform.rotation = rightHandKeeper.rotation;
-        SetItemEquiped(rightHandItem);
 
-        var meleeWeapon = rightHandItem.GetComponentInChildren<MeleeWeapon>();
+    public Item InstantiateItemInHand(ItemStack itemsStack, Transform handKeeper)
+    {
+        var handItem = Instantiate(itemsStack.Item, handKeeper);
+        handItem.transform.rotation = handKeeper.rotation;
+        SetItemEquiped(handItem);
+
+        var meleeWeapon = handItem.GetComponentInChildren<MeleeWeapon>();
         if (meleeWeapon)
         {
             meleeWeapon.SetWeaponHolder(creature);
             animationEvents.SetMeleeWeapon(meleeWeapon);
         }
-    }
-    public void SetItemStackInLeftHand(ItemStack itemsStack)
-    {
-        leftHandItemStack = itemsStack;
-        leftHandItem = Instantiate(itemsStack.Item, leftHandKeeper);
-        leftHandItem.transform.rotation = leftHandKeeper.rotation;
-        SetItemEquiped(leftHandItem);
+
+        var bow = handItem.GetComponent<Bow>();
+        if (bow)
+        {
+            animationEvents.SetBow(bow);
+        }
+
+        return handItem;
     }
 
-    public void RemoveItemFromRightHand()
+    public void RemoveItemStackFromHand(ItemStack itemStack)
     {
-        Destroy(rightHandItem.gameObject);
-        rightHandItem = null;
-        rightHandItemStack = new ItemStack(null, 0);
+
     }
-    public void RemoveItemFromLeftHand()
+    public void RemoveMainWeapon()
     {
-        Destroy(leftHandItem.gameObject);
-        leftHandItem = null;
-        leftHandItemStack = new ItemStack(null, 0);
+        if (mainWeapon == rightHandItem)
+            RemoveEquipment(EquipPositon.RightHand);
+        if (mainWeapon == leftHandItem)
+            RemoveEquipment(EquipPositon.LeftHand);
+
+        mainWeaponItemStack = new ItemStack(null, 0);
+    }
+
+    public void RemoveSecondaryWeapon()
+    {
+        if (secondaryWeapon == rightHandItem)
+            RemoveEquipment(EquipPositon.RightHand);
+        if (secondaryWeapon == leftHandItem)
+            RemoveEquipment(EquipPositon.LeftHand);
+
+        secondaryWeaponItemStack = new ItemStack(null, 0);
+    }
+
+    public void RemoveEquipment(EquipPositon equipPositon)
+    {
+        if (equipPositon == EquipPositon.RightHand)
+        {
+            Destroy(rightHandItem.gameObject);
+            rightHandItem = null;
+        }
+        else if (equipPositon == EquipPositon.LeftHand)
+        {
+            Destroy(leftHandItem.gameObject);
+            leftHandItem = null;
+        }
     }
 
     public void SetItemInQuickAccessSlot(ItemStack itemsStack, int index)
