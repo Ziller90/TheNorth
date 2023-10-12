@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public enum SuitableSlotTypes
+public enum SlotType
 {
     None = 0,
     MainWeapon = 1,
@@ -24,7 +24,8 @@ public enum EquipPositon
     None = 0,
     RightHand = 1,
     LeftHand = 2,
-    Spine = 3
+    BothHand = 3,
+    Spine = 4
 }
 
 public class Item : MonoBehaviour
@@ -35,7 +36,7 @@ public class Item : MonoBehaviour
     [SerializeField] int cost;
     [SerializeField] Sprite icon;
     [SerializeField] int maxStackSize;
-    [SerializeField] SuitableSlotTypes suitableSlots;
+    [SerializeField] SlotType suitableSlots;
     [SerializeField] EquipPositon equipPositon;
 
     [SerializeField] bool equipedCached;
@@ -46,7 +47,7 @@ public class Item : MonoBehaviour
     public string Description => description;
     public int Cost => cost;
     public Sprite Icon => icon;
-    public SuitableSlotTypes SuitableSlots => suitableSlots;
+    public SlotType SuitableSlots => suitableSlots;
     public EquipPositon EquipPositon => equipPositon;
 
     Rigidbody rgbody;

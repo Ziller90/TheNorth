@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 962583343711811497}
-  - component: {fileID: 2895342117544997191}
   - component: {fileID: 2017663863509936549}
   - component: {fileID: 3898661527063811106}
   - component: {fileID: 6119236525328198264}
@@ -36,33 +35,6 @@ Transform:
   m_Father: {fileID: 7087786812071082886}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &2895342117544997191
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 962583343711811542}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &2017663863509936549
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -211,7 +183,6 @@ GameObject:
   - component: {fileID: -2066988369578927645}
   - component: {fileID: -5585521636719186022}
   - component: {fileID: 6082569383232083453}
-  - component: {fileID: -3036166127426183795}
   m_Layer: 0
   m_Name: ThrowingSpear
   m_TagString: Untagged
@@ -299,10 +270,10 @@ MonoBehaviour:
   itemName: ThrowingSpear
   description: '-'
   cost: 120
-  icon: {fileID: 21300000, guid: a24eb79712068304db5a302aa7b95c0e, type: 3}
+  icon: {fileID: 21300000, guid: b87bb88f2f1dbbf41b6079d186cb31ea, type: 3}
   maxStackSize: 10
-  suitableSlots: 1
-  equipPositon: 1
+  suitableSlots: 8
+  equipPositon: 3
   equipedCached: 0
   itemColliders:
   - {fileID: 754955403071083564}
@@ -345,26 +316,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stickIn: 1
-  timeToSelfDestroying: 30
-  lookAtEnemy: 0
-  isRotating: 0
+  lookAtVelocityVector: 0
   rotationSpeed: 0
   baseDamage: 20
-  audioSource: {fileID: 3898661527063811106}
-  thisCreature: {fileID: 0}
---- !u!114 &-3036166127426183795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7087786812071082882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fee06046b025654db62a37f3e46ac19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  positionInHand: {fileID: 0}
+  tagsToIgnore: []
   thisCreature: {fileID: 0}
 --- !u!1 &7846159091453834040
 GameObject:

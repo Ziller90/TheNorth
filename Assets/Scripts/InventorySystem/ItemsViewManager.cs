@@ -10,7 +10,11 @@ using System;
 public class ItemsViewManager : MonoBehaviour
 {
     [SerializeField] Transform commonIconsContainer;
+    [SerializeField] Slot mainWeaponSlot;
+    [SerializeField] Slot secondaryWeaponSlot;
+
     List<Slot> activeSlots = new List<Slot>();
+
     ItemIcon selectedItemIcon;
     Slot selectedItemSlot;
 
@@ -79,12 +83,33 @@ public class ItemsViewManager : MonoBehaviour
     public void MoveItemToSlot(ItemIcon itemIcon, Slot targetSlot)
     {
         var currentSlot = GetItemIconSlot(itemIcon);
-        if (targetSlot == null || targetSlot == currentSlot)
+
+        if (targetSlot == null || targetSlot == currentSlot || !targetSlot.IsSuitableSlotType(itemIcon.ItemStack.Item.SuitableSlots) || targetSlot.IsBlocked)
         {
             currentSlot.StartCoroutine(currentSlot.SetIconInSlotPosition(itemIcon));
             SetSelectedIcon(itemIcon);
+            return;
         }
-        else if (targetSlot.ItemIcon == null)
+
+        if (targetSlot.SlotType == SlotType.MainWeapon && itemIcon.ItemStack.Item.SuitableSlots == SlotType.TwoHanded)
+        {
+            if (secondaryWeaponSlot.ItemIcon != null)
+            {
+                var firstFreeSlot = activeSlots.FirstOrDefault(i => i.SlotType == SlotType.None && i.ItemIcon == null);
+
+                if (firstFreeSlot)
+                    MoveItemToSlot(secondaryWeaponSlot.ItemIcon, firstFreeSlot);
+                else
+                {
+                    Debug.Log("Can't take two handed Weapon because there is no place in inventory");
+
+                    SetSelectedIcon(itemIcon);
+                    return;
+                }
+            }
+        }
+
+        if (targetSlot.ItemIcon == null)
         {
             currentSlot.RemoveIcon();
             targetSlot.InsertIcon(itemIcon, false);
@@ -130,6 +155,8 @@ public class ItemsViewManager : MonoBehaviour
         slot1.InsertIcon(slot2.ItemIcon, false);
         slot2.RemoveIcon();
         slot2.InsertIcon(itemIcon1, false);
+
+        SetSelectedIcon(slot2.ItemIcon);
     }
     public void DivideSelectedItem()
     {

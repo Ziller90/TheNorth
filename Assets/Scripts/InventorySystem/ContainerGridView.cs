@@ -30,7 +30,6 @@ public class ContainerGridView : MonoBehaviour
         for (int i = 0; i < container.MaxItemStacksNumber; i++)
         {
             var slot = Instantiate(slotPrefab, slotsGrid.transform);
-
             var itemsStack = container.GetItemStack(i);
             if (itemsStack != null && itemsStack.Item != null)
             {

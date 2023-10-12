@@ -28,11 +28,11 @@ public class CharacterContoller : MonoBehaviour
     }
     public void MoveForward()
     {
-        if (controlManager.GetMovingMode() == MovingMode.Walk)
+        if (controlManager.MovingMode == MovingMode.Walk)
         {
             Walk();
         }
-        else if (controlManager.GetMovingMode() == MovingMode.Run)
+        else if (controlManager.MovingMode== MovingMode.Run)
         {
             if (allowRunning)
             {
@@ -64,9 +64,9 @@ public class CharacterContoller : MonoBehaviour
     }
     public void Rotate()
     {
-        if (controlManager.GetMovingMode() == MovingMode.Walk || controlManager.GetMovingMode() == MovingMode.Run)
+        if (controlManager.MovingMode == MovingMode.Walk || controlManager.MovingMode == MovingMode.Run)
         {
-            Quaternion lookRotation = Quaternion.LookRotation(controlManager.GetDirection());
+            Quaternion lookRotation = Quaternion.LookRotation(controlManager.Direction);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, rotationSpeed);
         }
     }
