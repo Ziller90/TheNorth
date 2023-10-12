@@ -43,27 +43,19 @@ public class Keyboard : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-            actionManager.rightHandWeaponUsing = true;
+            actionManager.mainWeaponUsing = true;
         }
         if (Input.GetMouseButtonUp(0))
         {
-            actionManager.rightHandWeaponUsing = false;
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            actionManager.isDistantAttackActing = true;
-        }
-        if (Input.GetKeyUp(KeyCode.Q))
-        {
-            actionManager.isDistantAttackActing = false;
+            actionManager.mainWeaponUsing = false;
         }
         if (Input.GetMouseButtonDown(1))
         {
-            actionManager.isBlockActing = true;
+            actionManager.secondaryWeaponUsing = true;
         }
         if (Input.GetMouseButtonUp(1))
         {
-            actionManager.isBlockActing = false;
+            actionManager.secondaryWeaponUsing = false;
 
         }
     }

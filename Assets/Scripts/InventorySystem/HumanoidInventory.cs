@@ -70,44 +70,36 @@ public class HumanoidInventory : MonoBehaviour
             return;
         }
 
-        if (item.SuitableSlots == SuitableSlotTypes.MainWeapon && mainWeaponItemStack.Item == null)
+        if (item.SuitableSlots == SlotType.MainWeapon && mainWeaponItemStack.Item == null)
         {
-            mainWeaponItemStack = newItemStack;
-
             RemoveItemFromWorld(item);
-            SetItemStackInEquipmentPosition(newItemStack);
-        } 
-        else if (item.SuitableSlots == SuitableSlotTypes.SecondaryWeapon && secondaryWeaponItemStack.Item == null)
+            SetItemStackInEquipmentPosition(newItemStack, SlotType.MainWeapon);
+        }
+        else if (item.SuitableSlots == SlotType.SecondaryWeapon &&
+            secondaryWeaponItemStack.Item == null && 
+            (mainWeaponItemStack.Item == null || mainWeaponItemStack.Item.SuitableSlots != SlotType.TwoHanded))
         {
-            secondaryWeaponItemStack = newItemStack;
-
             RemoveItemFromWorld(item);
-            SetItemStackInEquipmentPosition(newItemStack);
+            SetItemStackInEquipmentPosition(newItemStack, SlotType.SecondaryWeapon);
         }
-        else if (item.SuitableSlots == SuitableSlotTypes.TwoHanded && secondaryWeaponItemStack.Item == null && mainWeaponItemStack.Item == null)
+        else if (item.SuitableSlots == SlotType.TwoHanded && secondaryWeaponItemStack.Item == null && mainWeaponItemStack.Item == null)
         {
-            mainWeaponItemStack = newItemStack;
-            secondaryWeaponItemStack = newItemStack;
-
             RemoveItemFromWorld(item);
-            SetItemStackInEquipmentPosition(newItemStack);
+            SetItemStackInEquipmentPosition(newItemStack, SlotType.MainWeapon);
         }
-        else if (item.SuitableSlots == SuitableSlotTypes.BothHanded)
+        else if (item.SuitableSlots == SlotType.BothHanded && mainWeaponItemStack.Item == null)
         {
-            if (mainWeaponItemStack.Item == null)
-            {
-                mainWeaponItemStack = newItemStack;
-                RemoveItemFromWorld(item);
-                SetItemStackInEquipmentPosition(newItemStack);
-            }
-            else if (secondaryWeaponItemStack.Item == null)
-            {
-                secondaryWeaponItemStack = newItemStack;
-                RemoveItemFromWorld(item);
-                SetItemStackInEquipmentPosition(newItemStack);
-            }
+            RemoveItemFromWorld(item);
+            SetItemStackInEquipmentPosition(newItemStack, SlotType.MainWeapon);
         }
-        else if (item.SuitableSlots == SuitableSlotTypes.QuikAcess && ModelUtils.AddItemStackToGroup(newItemStack, quickAccessItemStacks))
+        else if (item.SuitableSlots == SlotType.BothHanded &&
+            secondaryWeaponItemStack.Item == null &&
+            (mainWeaponItemStack.Item == null || mainWeaponItemStack.Item.SuitableSlots != SlotType.TwoHanded))
+        {
+            RemoveItemFromWorld(item);
+            SetItemStackInEquipmentPosition(newItemStack, SlotType.SecondaryWeapon);
+        }
+        else if (item.SuitableSlots == SlotType.QuikAcess && ModelUtils.AddItemStackToGroup(newItemStack, quickAccessItemStacks))
         {
             RemoveItemFromWorld(item);
         }
@@ -117,9 +109,32 @@ public class HumanoidInventory : MonoBehaviour
         }
     }
 
-    public void SetItemStackInEquipmentPosition(ItemStack itemStack)
+    public void SetItemStackInEquipmentPosition(ItemStack itemStack, SlotType slot)
     {
+        if (slot == SlotType.MainWeapon)
+        {
+            mainWeaponItemStack = itemStack;
+        }
+        else if (slot == SlotType.SecondaryWeapon)
+        {
+            secondaryWeaponItemStack = itemStack;
+        }
+
         Item instantiatedItem = null;
+        if (itemStack.Item.EquipPositon == EquipPositon.BothHand)
+        {
+            if (slot == SlotType.MainWeapon)
+            {
+                instantiatedItem = InstantiateItemInHand(itemStack, rightHandKeeper);
+                rightHandItem = instantiatedItem;
+            }
+            else if (slot == SlotType.SecondaryWeapon)
+            {
+                instantiatedItem = InstantiateItemInHand(itemStack, leftHandKeeper);
+                leftHandItem = instantiatedItem;
+            }
+        }
+
         if (itemStack.Item.EquipPositon == EquipPositon.RightHand)
         {
             instantiatedItem = InstantiateItemInHand(itemStack, rightHandKeeper);
@@ -138,15 +153,28 @@ public class HumanoidInventory : MonoBehaviour
     {
         if (item && item.GetComponent<Weapon>() != null)
         {
-            if (item.SuitableSlots == SuitableSlotTypes.MainWeapon)
+            if (item.SuitableSlots == SlotType.MainWeapon || item.SuitableSlots == SlotType.TwoHanded)
             {
                 mainWeapon = item;
                 battleSystem.SetMainWeapon(item.GetComponent<Weapon>());
             }
-            if (item.SuitableSlots == SuitableSlotTypes.SecondaryWeapon)
+            if (item.SuitableSlots == SlotType.SecondaryWeapon)
             {
                 secondaryWeapon = item;
                 battleSystem.SetSecondaryWeapon(item.GetComponent<Weapon>());
+            }
+            if (item.SuitableSlots == SlotType.BothHanded)
+            {
+                if (item == rightHandItem)
+                {
+                    mainWeapon = item;
+                    battleSystem.SetMainWeapon(item.GetComponent<Weapon>());
+                }
+                if (item == leftHandItem)
+                {
+                    secondaryWeapon = item;
+                    battleSystem.SetSecondaryWeapon(item.GetComponent<Weapon>());
+                }
             }
         }
     }
@@ -218,10 +246,6 @@ public class HumanoidInventory : MonoBehaviour
         return handItem;
     }
 
-    public void RemoveItemStackFromHand(ItemStack itemStack)
-    {
-
-    }
     public void RemoveMainWeapon()
     {
         if (mainWeapon == rightHandItem)

@@ -8,7 +8,6 @@ public class ActionManager : MonoBehaviour
     public UnityAction OnOpenInventoryPressed;
     public UnityAction OnInteractPressed;
 
-    public bool rightHandWeaponUsing;
-    public bool isDistantAttackActing;
-    public bool isBlockActing;
+    public bool mainWeaponUsing;
+    public bool secondaryWeaponUsing;
 }

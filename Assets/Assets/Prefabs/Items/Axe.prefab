@@ -187,6 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderers:
   - {fileID: 766755862121459586}
+  skinnedMeshRenderers: []
   interactableObject: {fileID: 782214957255573695}
 --- !u!1 &7087786812071082882
 GameObject:
@@ -270,8 +271,8 @@ MonoBehaviour:
   cost: 40
   icon: {fileID: 21300000, guid: fbd8bcd5e1bf0604a91562541c272f8c, type: 3}
   maxStackSize: 3
-  suitableSlots: 1
-  equipPositon: 1
+  suitableSlots: 8
+  equipPositon: 3
   equipedCached: 0
   itemColliders:
   - {fileID: 4444732449952416299}

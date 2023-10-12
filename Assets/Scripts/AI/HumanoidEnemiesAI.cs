@@ -42,24 +42,24 @@ public class HumanoidEnemiesAI : MonoBehaviour
         {
             case States.Attack:
                 navigationManager.Stand();
-                actionManager.rightHandWeaponUsing = true;
+                actionManager.mainWeaponUsing = true;
                 break;
             case States.Chase:
                 navigationManager.MoveToTarget(currentEnemy.position, MovingMode.Run);
-                actionManager.rightHandWeaponUsing = false;
+                actionManager.mainWeaponUsing = false;
                 break;
             case States.BlindChase:
                 navigationManager.MoveToTarget(enemyPosition, MovingMode.Run);
-                actionManager.rightHandWeaponUsing = false;
+                actionManager.mainWeaponUsing = false;
                 break;
             case States.Patrol:
                 routeManager.SetDefaultPatrolRoute();
                 routeManager.MoveOnRoute(MovingMode.Walk);
-                actionManager.rightHandWeaponUsing = false;
+                actionManager.mainWeaponUsing = false;
                 break;
             case States.Idle:
                 navigationManager.Stand();
-                actionManager.rightHandWeaponUsing = false;
+                actionManager.mainWeaponUsing = false;
                 break;
             case States.SearchEnemy:
                 if (searhingRouteGenerated == false)
@@ -68,7 +68,7 @@ public class HumanoidEnemiesAI : MonoBehaviour
                     searhingRouteGenerated = true;
                 }
                 routeManager.MoveOnRoute(MovingMode.Walk);
-                actionManager.rightHandWeaponUsing = false;
+                actionManager.mainWeaponUsing = false;
                 break;
         }
     }

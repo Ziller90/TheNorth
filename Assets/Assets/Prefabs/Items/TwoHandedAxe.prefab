@@ -57,7 +57,7 @@ MonoBehaviour:
   cost: 200
   icon: {fileID: 21300000, guid: a3c6575ddf3131949bd7db7bbc5c1f05, type: 3}
   maxStackSize: 1
-  suitableSlots: 1
+  suitableSlots: 4
   equipPositon: 1
   equipedCached: 0
   itemColliders:
@@ -137,6 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderers:
   - {fileID: 2105301957467014818}
+  skinnedMeshRenderers: []
   interactableObject: {fileID: 3376163150080205506}
 --- !u!114 &6890375309901345546
 MonoBehaviour:

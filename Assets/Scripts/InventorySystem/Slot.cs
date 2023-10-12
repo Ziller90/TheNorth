@@ -15,11 +15,28 @@ public class Slot : MonoBehaviour
 
     [SerializeField] bool slotIsRhombus;
     [SerializeField] Image iconShadow;
+    [SerializeField] Image blockImage;
     [SerializeField] Image selectionMarker;
+
+    [SerializeField] SlotType slotType;
+
+    public SlotType SlotType => slotType;
+    public bool IsBlocked => isBlocked;
+
+    bool isBlocked;
+
     private void OnEnable()
     {
         slotTransform = GetComponent<RectTransform>();
     }
+
+    public void SetBlocked(bool isBlocked, Sprite blockImage = null)
+    {
+        this.isBlocked = isBlocked;
+        this.blockImage.sprite = blockImage;
+        this.blockImage.gameObject.SetActive(isBlocked);
+    }
+
     public void InsertIcon(ItemIcon icon, bool initializing)
     {
         if (!initializing)
@@ -27,11 +44,13 @@ public class Slot : MonoBehaviour
 
         StartCoroutine(SetIconInSlotPosition(icon));
     }
+
     public void RemoveIcon()
     {
         iconRemovedEvent?.Invoke(itemIconInSlot, this);
         itemIconInSlot = null;
     }
+
     public IEnumerator SetIconInSlotPosition(ItemIcon icon)
     {
         itemIconInSlot = icon;
@@ -39,6 +58,7 @@ public class Slot : MonoBehaviour
         itemIconInSlot.GetComponent<RectTransform>().position = slotTransform.position;
         icon.transform.parent = slotTransform;
     }
+
     public bool IsPositionInSlot(Vector2 position)
     {
         Vector3[] corners = new Vector3[4];
@@ -65,23 +85,49 @@ public class Slot : MonoBehaviour
         if (!isSelected)
             selectionMarker.gameObject.SetActive(false);
     }
+
     public void ShowItemShadow(ItemIcon itemIcon)
     {
         iconShadow.gameObject.SetActive(true);
         iconShadow.sprite = itemIcon.ItemStack.Item.Icon;
     }
+
     public void HideItemShadow()
     {
         iconShadow.gameObject.SetActive(false);
     }
+
     public void Destroy()
     {
         DestroyItemIcon();
         Destroy(gameObject);
     }
+
     public void DestroyItemIcon()
     {
         if (itemIconInSlot)
             Destroy(itemIconInSlot.gameObject);
+    }
+
+    public bool IsSuitableSlotType(SlotType itemSuitableSlotType)
+    {
+        if (slotType != SlotType.None)
+        {
+            if (itemSuitableSlotType == SlotType.BothHanded)
+            {
+                if (slotType != SlotType.MainWeapon && slotType != SlotType.SecondaryWeapon)
+                    return false;
+            }
+            else if (itemSuitableSlotType == SlotType.TwoHanded)
+            {
+                if (slotType != SlotType.MainWeapon)
+                    return false;
+            }
+            else if (itemSuitableSlotType != slotType)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

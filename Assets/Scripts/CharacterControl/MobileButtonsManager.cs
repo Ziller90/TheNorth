@@ -9,14 +9,12 @@ public class MobileButtonsManager : MonoBehaviour
     {
         this.actionManager = actionManager;
     }
-    public void RightHandPressed() { actionManager.rightHandWeaponUsing = true; }
-    public void RightHandReleased() { actionManager.rightHandWeaponUsing = false; }
 
-    public void DistanceAttackPressed() { actionManager.isDistantAttackActing = true; }
-    public void DistanceAttackReleased() { actionManager.isDistantAttackActing = false; }
+    public void MainWeaponPressed() { actionManager.mainWeaponUsing = true; }
+    public void MainWeaponReleased() { actionManager.mainWeaponUsing = false; }
 
-    public void BlockPressed() { actionManager.isBlockActing = true; }
-    public void BlockReleased() { actionManager.isBlockActing = false; }
+    public void SecondaryWeaponPressed() { actionManager.secondaryWeaponUsing = true; }
+    public void SecondaryWeaponReleased() { actionManager.secondaryWeaponUsing = false; }
 
     public void PickUpItemPressed()
     {

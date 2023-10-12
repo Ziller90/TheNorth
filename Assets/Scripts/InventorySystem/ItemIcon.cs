@@ -12,6 +12,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     [SerializeField] float timeToShowDesctiption;
     [SerializeField] ItemDescriptionPanel descriptionPanelPrefab;
     [SerializeField] TMP_Text itemNumberText;
+    [SerializeField] Vector3 descitptionPanelOffset;
 
     ItemDescriptionPanel descriptionPanel;
     ItemsViewManager itemsViewManager;
@@ -97,7 +98,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     public void InstantiateDescriptionPanel(ItemIcon itemIcon)
     {
         descriptionPanel = Instantiate(descriptionPanelPrefab, itemIcon.transform);
-        descriptionPanel.transform.position = itemIcon.transform.position + new Vector3(120, -120, 0);
+        descriptionPanel.transform.position = itemIcon.transform.position + descitptionPanelOffset;
         descriptionPanel.SetItemData(itemIcon.ItemStack.Item);
     }
     public void DestroyDescriptionPanel()

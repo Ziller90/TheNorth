@@ -24,9 +24,9 @@ public class MobileButtonsView : MonoBehaviour
         else
             rightHandWeaponImage.sprite = fistSprite;
 
-        //if (playerinventory.lefthanditemstack != null)
-        //    lefthandweaponimage.sprite = playerinventory.lefthanditemstack.item.icon;
-        //else
-        //    lefthandweaponimage.sprite = fistsprite;
+        if (playerInventory.SecondaryWeaponItemStack.Item != null)
+            leftHandWeaponImage.sprite = playerInventory.SecondaryWeaponItemStack.Item.Icon;
+        else
+            leftHandWeaponImage.sprite = fistSprite;
     }
 }

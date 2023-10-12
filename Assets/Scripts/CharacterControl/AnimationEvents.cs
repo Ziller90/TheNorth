@@ -12,15 +12,15 @@ public class AnimationEvents : MonoBehaviour
 
     public void SetMeleeWeapon(MeleeWeapon characterMeleeWeapon) => this.characterMeleeWeapon = characterMeleeWeapon;
     public void SetBow(Bow bow) => this.bow = bow;
-    public void SetThrowingWeaponInHand() => battleSystem.SetThrowingWeaponInHand();
+    // public void SetThrowingWeaponInHand() => battleSystem.SetThrowingWeaponInHand();
     public void MeleeWeaponAirCuttingSound() => meleeWeaponSounds.PlayAirCuttingSound();
     public void SetBlock() => battleSystem.SetShieldRaised(true);
     public void RemoveBlock() => battleSystem.SetShieldRaised(false);
-    public void SetMainWeapon() => battleSystem.SetMainWeapon();
+    // public void SetMainWeapon() => battleSystem.SetMainWeapon();
     public void AutoAim() => battleSystem.Aim();
-    public void Throwed() => battleSystem.ThrowWeapon();
+    // public void Throwed() => battleSystem.ThrowWeapon();
     public void AttackFinished() => battleSystem.StopAttack();
-    public void DistantAttackFinished() => battleSystem.StopDistantAttack();
+    //public void DistantAttackFinished() => battleSystem.StopDistantAttack();
     public void DisableRotation() => battleSystem.DisableRotation();
     public void AllowRotation() => battleSystem.AllowRotation();
     public void AllowMoving() => battleSystem.AllowMoving();

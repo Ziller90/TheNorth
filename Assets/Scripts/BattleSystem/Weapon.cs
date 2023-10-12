@@ -15,5 +15,13 @@ public enum WeaponType
 public class Weapon : MonoBehaviour
 {
     [SerializeField] WeaponType weaponType;
+    ItemStack itemStackInInventory;
+
     public WeaponType Type => weaponType;
+    public ItemStack ItemStack => itemStackInInventory;
+
+    public void SetItemStack(ItemStack itemStack)
+    {
+        itemStackInInventory = itemStack;   
+    }
 }
