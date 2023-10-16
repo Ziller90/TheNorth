@@ -16,7 +16,7 @@ public class InteractablesLocator : MonoBehaviour
     void Start()
     {
         inventory = GetComponent<HumanoidInventory>();  
-        actionManager.OnInteractPressed += Interact;
+        actionManager.onInteractPressed += Interact;
         interactablesOnLocation = Links.instance.globalLists.interactablesOnLocation;
     }
     public void SetActionManager(ActionManager actionManager)

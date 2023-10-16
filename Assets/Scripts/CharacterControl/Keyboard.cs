@@ -39,7 +39,7 @@ public class Keyboard : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            actionManager.OnOpenInventoryPressed();
+            actionManager.onOpenInventoryPressed();
         }
         if (Input.GetMouseButtonDown(0))
         {

@@ -20,32 +20,20 @@ public class HumanoidBattleSystem : MonoBehaviour
 
     Vector3 distantAttackTargetPosition;
     bool isMainWeaponAttack;
-    bool isBlock;
-    bool isDistantAttack;
+    bool isSecondaryWeaponAttack;
     bool shieldRaised;
-
     public bool ShieldRaised => shieldRaised;
     public float ShieldProtectionAngle => shieldProtectionAngle;
 
-    public void SetShieldRaised(bool isRaised)
-    {
-        shieldRaised = isRaised;
-    }
-
-    public void SetActionManager(ActionManager actionManager)
-    {
-        this.actionManager = actionManager;
-    }
-
-    public void SetMainWeapon(Weapon weapon)
-    {
-        mainWeapon = weapon;
-    }
-
-    public void SetSecondaryWeapon(Weapon weapon)
-    {
-        secondaryWeapon = weapon;
-    }
+    public void SetShieldRaised(bool isRaised) => shieldRaised = isRaised;
+    public void SetActionManager(ActionManager actionManager) => this.actionManager = actionManager;
+    public void SetMainWeapon(Weapon weapon) => mainWeapon = weapon;
+    public void SetSecondaryWeapon(Weapon weapon) => secondaryWeapon = weapon;
+    public void DisableRunning() => characterContoller.allowRunning = false;
+    public void AllowRunning() => characterContoller.allowRunning = true;
+    public void DisableRotation() => characterContoller.allowRotation = false;
+    public void AllowRotation() => characterContoller.allowRotation = true;
+    public void DisableMoving() => characterContoller.allowMoving = false;
 
     public void Aim()
     {
@@ -56,27 +44,13 @@ public class HumanoidBattleSystem : MonoBehaviour
         }
     }
 
-    public void DisableRunning()
-    {
-        characterContoller.allowRunning = false;
-    }
-
-    public void AllowRunning()
-    {
-        characterContoller.allowRunning = true;
-    }
-
     public void StopAttack()
     {
         if (actionManager.mainWeaponUsing == false)
         {
             isMainWeaponAttack = false;
+            humanAnimator.SetInteger("AttackIndex", 0); 
         }
-    }
-
-    public void DisableMoving()
-    {
-        characterContoller.allowMoving = false;
     }
 
     public void AllowMoving()
@@ -87,46 +61,62 @@ public class HumanoidBattleSystem : MonoBehaviour
         }
     }
 
-    public void DisableRotation()
+    void OnEnable()
     {
-        characterContoller.allowRotation = false;
+        actionManager.mainWeaponFastAttack += MainWeaponFastAttack;
+        actionManager.mainWeaponFastAttack += MainWeaponPowerAttack;
     }
 
-    public void AllowRotation()
+    void OnDisable()
     {
-        characterContoller.allowRotation = true;
+        actionManager.mainWeaponFastAttack -= MainWeaponFastAttack;
+        actionManager.mainWeaponFastAttack -= MainWeaponPowerAttack;
+    }
+
+    public void MainWeaponFastAttack()
+    {
+        if (!isMainWeaponAttack)
+        {
+            if (!mainWeapon)
+            {
+                humanAnimator.SetInteger("AttackIndex", 7);
+            }
+        }
+    }
+
+    public void MainWeaponPowerAttack()
+    {
+
     }
 
     public void Update()
     {
-        if (actionManager.mainWeaponUsing)
-        {
-            isMainWeaponAttack = true;
-            DisableMoving();
-        }
+        //if (actionManager.mainWeaponUsing)
+        //{
+        //    isMainWeaponAttack = true;
+        //    DisableMoving();
+        //}
 
+        //if (!isMainWeaponAttack)
+        //    humanAnimator.SetInteger("AttackIndex", 0);
+        //else
+        //{
+        //    if (!mainWeapon)
+        //        humanAnimator.SetInteger("AttackIndex", 7);
+        //    else
+        //        humanAnimator.SetInteger("AttackIndex", (int) mainWeapon.Type);
+        //}
 
-        if (!isMainWeaponAttack)
-            humanAnimator.SetInteger("AttackIndex", 0);
-        else
-        {
-            if (!mainWeapon)
-                humanAnimator.SetInteger("AttackIndex", 1);
-            else
-                humanAnimator.SetInteger("AttackIndex", (int) mainWeapon.Type);
-        }
-
-        if (actionManager.secondaryWeaponUsing)
-        {
-            isBlock = true;
-            DisableRunning();
-        }
-        else
-        {
-            isBlock = false;
-            AllowRunning();
-        }
-        humanAnimator.SetBool("Shield", isBlock);
+        //if (actionManager.secondaryWeaponUsing)
+        //{
+        //    isSecondaryWeaponAttack = true;
+        //    DisableRunning();
+        //}
+        //else
+        //{
+        //    isSecondaryWeaponAttack = false;
+        //    AllowRunning();
+        //}
     }
 
     public Vector3 GetHitVector(Vector3 hitPosition)
