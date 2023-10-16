@@ -95,15 +95,15 @@ public class CharacterContoller : MonoBehaviour
 
         if (movingState == MovingState.Idle)
         {
-            humanAnimator.SetInteger("MoveIndex", 0);
+            humanAnimator.SetInteger("MoveIndex", 1);
         }
         if (movingState == MovingState.Walk)
         {
-            humanAnimator.SetInteger("MoveIndex", 1);
+            humanAnimator.SetInteger("MoveIndex", 2);
         }
         if (movingState == MovingState.Run)
         {
-            humanAnimator.SetInteger("MoveIndex", 2);
+            humanAnimator.SetInteger("MoveIndex", 3);
         }
     }
 }
