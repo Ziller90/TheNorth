@@ -1391,7 +1391,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 354176949}
         m_TargetAssemblyTypeName: MobileButtonsManager, Assembly-CSharp
-        m_MethodName: BlockPressed
+        m_MethodName: SecondaryWeaponPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1406,7 +1406,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 354176949}
         m_TargetAssemblyTypeName: MobileButtonsManager, Assembly-CSharp
-        m_MethodName: BlockReleased
+        m_MethodName: SecondaryWeaponReleased
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2436,7 +2436,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 354176949}
         m_TargetAssemblyTypeName: MobileButtonsManager, Assembly-CSharp
-        m_MethodName: RightHandPressed
+        m_MethodName: MainWeaponPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2451,7 +2451,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 354176949}
         m_TargetAssemblyTypeName: MobileButtonsManager, Assembly-CSharp
-        m_MethodName: RightHandReleased
+        m_MethodName: MainWeaponReleased
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
