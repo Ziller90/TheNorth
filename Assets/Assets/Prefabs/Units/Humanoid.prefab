@@ -4945,7 +4945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20d6e9799939ad048bf68079418957cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationEvents: {fileID: 0}
+  animationEvents: {fileID: 6040268367450635467}
   creature: {fileID: 6115228454438917369}
   dropPosition: {fileID: 6115228455271634165}
   rightHandKeeper: {fileID: 6115228454313205723}
@@ -5023,7 +5023,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 5490d8549ff0f614bbd8e5cd9ad4f333, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using System;
 
@@ -19,9 +18,14 @@ public class HumanoidBattleSystem : MonoBehaviour
     [SerializeField] Weapon secondaryWeapon;
 
     Vector3 distantAttackTargetPosition;
-    bool isMainWeaponAttack;
-    bool isSecondaryWeaponAttack;
+    bool isPlayingAttackAnimation;
+
+    bool mainWeaponContinuousAttack;
+    bool secondaryWeaponContinuousAttack;
+
     bool shieldRaised;
+    int randomAttackIndex = 0;
+
     public bool ShieldRaised => shieldRaised;
     public float ShieldProtectionAngle => shieldProtectionAngle;
 
@@ -29,11 +33,11 @@ public class HumanoidBattleSystem : MonoBehaviour
     public void SetActionManager(ActionManager actionManager) => this.actionManager = actionManager;
     public void SetMainWeapon(Weapon weapon) => mainWeapon = weapon;
     public void SetSecondaryWeapon(Weapon weapon) => secondaryWeapon = weapon;
-    public void DisableRunning() => characterContoller.allowRunning = false;
-    public void AllowRunning() => characterContoller.allowRunning = true;
-    public void DisableRotation() => characterContoller.allowRotation = false;
-    public void AllowRotation() => characterContoller.allowRotation = true;
-    public void DisableMoving() => characterContoller.allowMoving = false;
+    public void DisableRunning() => characterContoller.AllowRunning = false;
+    public void AllowRunning() => characterContoller.AllowRunning = true;
+    public void DisableRotation() => characterContoller.AllowRotation = false;
+    public void AllowRotation() => characterContoller.AllowRotation = true;
+    public void DisableMoving() => characterContoller.AllowMoving = false;
 
     public void Aim()
     {
@@ -44,83 +48,153 @@ public class HumanoidBattleSystem : MonoBehaviour
         }
     }
 
-    public void StopAttack()
+    public void AttackCompleted(int layer)
     {
-        if (actionManager.mainWeaponUsing == false)
+        Debug.Log("AttackCompleted");
+        isPlayingAttackAnimation = false;
+        Debug.Log("isPlayingAttackAnimation = false");
+
+        if (layer == 0)
         {
-            isMainWeaponAttack = false;
-            humanAnimator.SetInteger("AttackIndex", 0); 
+            if (characterContoller.ControlManager.MovingMode == MovingMode.Stand)
+            {
+                humanAnimator.CrossFadeInFixedTime("Idle", 0.20f, 0);
+            }
+            if (characterContoller.ControlManager.MovingMode == MovingMode.Walk)
+            {
+                humanAnimator.CrossFadeInFixedTime("Walk", 0.20f, 0);
+            }
+            if (characterContoller.ControlManager.MovingMode == MovingMode.Run)
+            {
+                humanAnimator.CrossFadeInFixedTime("Run", 0.20f, 0);
+            }
         }
+
+    }
+
+    public void AttackStart(int layer)
+    {
+        isPlayingAttackAnimation = true;
     }
 
     public void AllowMoving()
     {
-        if (actionManager.mainWeaponUsing == false) 
-        {
-            characterContoller.allowMoving = true;
-        }
+         characterContoller.AllowMoving = true;
     }
 
     void OnEnable()
     {
         actionManager.mainWeaponFastAttack += MainWeaponFastAttack;
-        actionManager.mainWeaponFastAttack += MainWeaponPowerAttack;
+        actionManager.mainWeaponPowerAttack += MainWeaponPowerAttack;
+        actionManager.mainWeaponContinuousAttackStart += MainWeaponContinousAttackStart;
+        actionManager.mainWeaponContinuousAttackStop += MainWeaponContinousAttackStop;
+
+        actionManager.secondaryWeaponFastAttack += SecondaryWeaponFastAttack;
+        actionManager.secondaryWeaponPowerAttack += SecondaryWeaponPowerAttack;
+        actionManager.secondaryWeaponContinuousAttackStart += SecondaryWeaponContinousAttackStart;
+        actionManager.secondaryWeaponContinuousAttackStop += SecondaryWeaponContinousAttackStop;
     }
 
     void OnDisable()
     {
         actionManager.mainWeaponFastAttack -= MainWeaponFastAttack;
-        actionManager.mainWeaponFastAttack -= MainWeaponPowerAttack;
+        actionManager.mainWeaponPowerAttack -= MainWeaponPowerAttack;
+        actionManager.mainWeaponContinuousAttackStart -= MainWeaponContinousAttackStart;
+        actionManager.mainWeaponContinuousAttackStop -= MainWeaponContinousAttackStop;
+
+        actionManager.secondaryWeaponFastAttack -= SecondaryWeaponFastAttack;
+        actionManager.secondaryWeaponPowerAttack -= SecondaryWeaponPowerAttack;
+        actionManager.secondaryWeaponContinuousAttackStart -= SecondaryWeaponContinousAttackStart;
+        actionManager.secondaryWeaponContinuousAttackStart -= SecondaryWeaponContinousAttackStop;
     }
 
     public void MainWeaponFastAttack()
     {
-        if (!isMainWeaponAttack)
+        if (!isPlayingAttackAnimation)
         {
-            if (!mainWeapon)
+            if (!mainWeapon && !secondaryWeapon)
             {
-                humanAnimator.SetInteger("AttackIndex", 7);
+                humanAnimator.Rebind();
+                if (randomAttackIndex == 0)
+                {
+                    humanAnimator.CrossFadeInFixedTime("UnarmedRight", 0.20f, 0);
+                    randomAttackIndex = 1;
+                    isPlayingAttackAnimation = true;
+                }
+                else if (randomAttackIndex == 1)
+                {
+                    humanAnimator.CrossFadeInFixedTime("UnarmedLeft", 0.20f, 0);
+                    randomAttackIndex = 0;
+                    isPlayingAttackAnimation = true;
+                }
             }
         }
     }
 
-    public void MainWeaponPowerAttack()
+    public void SecondaryWeaponFastAttack()
     {
 
     }
 
-    public void Update()
+    public void MainWeaponPowerAttack()
     {
-        //if (actionManager.mainWeaponUsing)
-        //{
-        //    isMainWeaponAttack = true;
-        //    DisableMoving();
-        //}
+        if (!isPlayingAttackAnimation)
+        {
+            if (!mainWeapon && !secondaryWeapon)
+            {
+                humanAnimator.CrossFadeInFixedTime("UnarmedCombo1", 0.20f, 0);
+                isPlayingAttackAnimation = true;
+            }
+        }
+    }
 
-        //if (!isMainWeaponAttack)
-        //    humanAnimator.SetInteger("AttackIndex", 0);
-        //else
-        //{
-        //    if (!mainWeapon)
-        //        humanAnimator.SetInteger("AttackIndex", 7);
-        //    else
-        //        humanAnimator.SetInteger("AttackIndex", (int) mainWeapon.Type);
-        //}
+    public void SecondaryWeaponPowerAttack()
+    {
 
-        //if (actionManager.secondaryWeaponUsing)
-        //{
-        //    isSecondaryWeaponAttack = true;
-        //    DisableRunning();
-        //}
-        //else
-        //{
-        //    isSecondaryWeaponAttack = false;
-        //    AllowRunning();
-        //}
+    }
+
+    public void MainWeaponContinousAttackStart()
+    {
+        mainWeaponContinuousAttack = true;
+        humanAnimator.SetBool("MainWeaponContinuousAttacking", true);
+    }
+
+    public void SecondaryWeaponContinousAttackStart()
+    {
+        secondaryWeaponContinuousAttack = true;
+        humanAnimator.SetBool("SecondaryWeaponContinuousAttacking", true);
+    }
+
+    public void MainWeaponContinousAttackStop()
+    {
+        mainWeaponContinuousAttack = false;
+        humanAnimator.SetBool("MainWeaponContinuousAttacking", false);
+    }
+
+    public void SecondaryWeaponContinousAttackStop()
+    {
+        secondaryWeaponContinuousAttack = false;
+        humanAnimator.SetBool("SecondaryWeaponContinuousAttacking", false);
     }
 
     public Vector3 GetHitVector(Vector3 hitPosition)
     {
         return transform.position - hitPosition;
+    }
+
+    private void Update()
+    {
+        humanAnimator.SetBool("isPlayingAttackAnimation", isPlayingAttackAnimation);
+    }
+
+    void DebugLogAnimator()
+    {
+        var info = humanAnimator.GetAnimatorTransitionInfo(0);
+        var infoState = humanAnimator.GetCurrentAnimatorStateInfo(0);
+        var infoNextState = humanAnimator.GetNextAnimatorStateInfo(0);
+        Debug.Log("TransitionInfo: " + "info.nameHash: " + info.nameHash + "info.normalizedTime: " + info.normalizedTime + "info.duration: " + info.duration + "info.durationUnit: " + info.durationUnit + "\n"
+            + "StateInfo: " + "infoState.nameHash: " + infoState.fullPathHash + "infoState.normalizedTime: " + infoState.normalizedTime + "infoState.length: " + infoState.length + "infoState.shortNameHash: " + infoState.shortNameHash + "\n" +
+            "NextStateInfo: " + "infoNextState.nameHash: " + infoNextState.fullPathHash + "infoNextState.normalizedTime: " + infoNextState.normalizedTime + "infoNextState.length: " + infoNextState.length + "infoNextState.shortNameHash: " + infoNextState.shortNameHash +
+            "mainWeaponPowerAttacking: " + mainWeaponContinuousAttack + "secondaryWeaponPowerAttacking: " + secondaryWeaponContinuousAttack);
     }
 }

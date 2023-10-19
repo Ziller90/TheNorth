@@ -15,12 +15,13 @@ public class CharacterContoller : MonoBehaviour
     [SerializeField] Animator humanAnimator;
     [SerializeField] ControlManager controlManager;
 
-    [HideInInspector] public bool allowMoving;
-    [HideInInspector] public bool allowRunning;
-    [HideInInspector] public bool allowRotation;
+    public bool AllowMoving { get; set; } = true;
+    public bool AllowRunning { get; set; } = true;
+    public bool AllowRotation { get; set; } = true;
 
     MovingState movingState;
     public MovingState CharacterMovingState => movingState;
+    public ControlManager ControlManager => controlManager;
 
     public void SetControlManager(ControlManager controlManager)
     {
@@ -34,7 +35,7 @@ public class CharacterContoller : MonoBehaviour
         }
         else if (controlManager.MovingMode== MovingMode.Run)
         {
-            if (allowRunning)
+            if (AllowRunning)
             {
                 Run();
             }
@@ -79,7 +80,7 @@ public class CharacterContoller : MonoBehaviour
     void FixedUpdate()
     {
         transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
-        if (allowMoving == true)
+        if (AllowMoving == true)
         {
             MoveForward();
         }
@@ -88,7 +89,7 @@ public class CharacterContoller : MonoBehaviour
             Idle();
         }
 
-        if (allowRotation == true)
+        if (AllowRotation == true)
         {
             Rotate();
         }
