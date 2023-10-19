@@ -43,20 +43,19 @@ public class Keyboard : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-            actionManager.mainWeaponUsing = true;
+            actionManager.MainWeaponPressed();
         }
         if (Input.GetMouseButtonUp(0))
         {
-            actionManager.mainWeaponUsing = false;
+            actionManager.MainWeaponReleased();
         }
         if (Input.GetMouseButtonDown(1))
         {
-            actionManager.secondaryWeaponUsing = true;
+            actionManager.SecondaryWeaponPressed();
         }
         if (Input.GetMouseButtonUp(1))
         {
-            actionManager.secondaryWeaponUsing = false;
-
+            actionManager.SecondaryWeaponReleased();
         }
     }
     public void MovePlayer()

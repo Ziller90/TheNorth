@@ -15,8 +15,8 @@ public class MobileButtonsManager : MonoBehaviour
 
     public void MainWeaponReleased() => actionManager.MainWeaponReleased();
 
-    public void SecondaryWeaponPressed() { actionManager.secondaryWeaponUsing = true; }
-    public void SecondaryWeaponReleased() { actionManager.secondaryWeaponUsing = false; }
+    public void SecondaryWeaponPressed() => actionManager.SecondaryWeaponPressed();
+    public void SecondaryWeaponReleased() => actionManager.SecondaryWeaponReleased();
 
     public void PickUpItemPressed()
     {

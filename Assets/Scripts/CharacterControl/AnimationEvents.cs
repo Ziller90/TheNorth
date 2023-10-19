@@ -16,15 +16,15 @@ public class AnimationEvents : MonoBehaviour
     public void MeleeWeaponAirCuttingSound() => meleeWeaponSounds.PlayAirCuttingSound();
     public void SetBlock() => battleSystem.SetShieldRaised(true);
     public void RemoveBlock() => battleSystem.SetShieldRaised(false);
-    // public void SetMainWeapon() => battleSystem.SetMainWeapon();
     public void AutoAim() => battleSystem.Aim();
-    // public void Throwed() => battleSystem.ThrowWeapon();
-    public void AttackFinished() => battleSystem.StopAttack();
-    //public void DistantAttackFinished() => battleSystem.StopDistantAttack();
-    public void DisableRotation() => battleSystem.DisableRotation();
+    public void AttackFinished(int layer) => battleSystem.AttackCompleted(layer);
+    public void AttackStarted(int layer) => battleSystem.AttackStart(layer);
     public void AllowRotation() => battleSystem.AllowRotation();
+    public void DisableRotation() => battleSystem.DisableRotation();
     public void AllowMoving() => battleSystem.AllowMoving();
     public void DisableMoving() => battleSystem.DisableMoving();
+    public void AllowRuning() => battleSystem.AllowRunning();
+    public void DisableRuning() => battleSystem.DisableRunning();
     public void PullBow() => bow.Pull();
     public void ReleseBow() => bow.Release();
 

@@ -7,33 +7,66 @@ using System;
 public class ActionManager : MonoBehaviour
 {
     [SerializeField] float clickTimeForFastAttack;
-    [SerializeField] float powerAttackCooldown;
 
-    bool mainWeaponWasPressed = false;
+    bool mainWeaponIsPressed = false;
+    bool secondaryWeaponIsPressed = false;
+
+    bool isMainWeaponPowerAttacking = false;
+    bool isSecondaryWeaponPowerAttacking = false;
+
     float mainWeaponPressedTime;
-    float timeOfLastPowerAttack;
+    float secondaryWeaponPressedTime;
 
     public void MainWeaponPressed()
     {
         mainWeaponPressedTime = Time.time;
-        mainWeaponWasPressed = true;
+        mainWeaponIsPressed = true;
+        mainWeaponContinuousAttackStart.Invoke();
     }
 
     public void MainWeaponReleased()
     {
+        isMainWeaponPowerAttacking = false;
+        
         if (Time.time - mainWeaponPressedTime < clickTimeForFastAttack)
         {
             mainWeaponFastAttack?.Invoke();
         }
-        mainWeaponWasPressed = false;
+        mainWeaponIsPressed = false;
+        mainWeaponContinuousAttackStop.Invoke();
+    }
+
+    public void SecondaryWeaponPressed()
+    {
+        secondaryWeaponPressedTime = Time.time;
+        secondaryWeaponIsPressed = true;
+        secondaryWeaponContinuousAttackStart.Invoke();
+    }
+
+    public void SecondaryWeaponReleased()
+    {
+        isSecondaryWeaponPowerAttacking = false;
+        
+        if (Time.time - secondaryWeaponPressedTime < clickTimeForFastAttack)
+        {
+            secondaryWeaponFastAttack?.Invoke();
+        }
+        secondaryWeaponIsPressed = false;
+        secondaryWeaponContinuousAttackStop.Invoke();
     }
 
     void Update()
     {
-        if (mainWeaponWasPressed && Time.time - mainWeaponPressedTime > clickTimeForFastAttack && Time.time - timeOfLastPowerAttack > powerAttackCooldown)
+        if (mainWeaponIsPressed && Time.time - mainWeaponPressedTime > clickTimeForFastAttack && !isMainWeaponPowerAttacking)
         {
             mainWeaponPowerAttack?.Invoke();
-            timeOfLastPowerAttack = Time.time;  
+            isMainWeaponPowerAttacking = true;
+        }
+
+        if (secondaryWeaponIsPressed && Time.time - secondaryWeaponPressedTime > clickTimeForFastAttack && !isSecondaryWeaponPowerAttacking)
+        {
+            secondaryWeaponPowerAttack?.Invoke();
+            isSecondaryWeaponPowerAttacking = true;
         }
     }
 
@@ -43,8 +76,14 @@ public class ActionManager : MonoBehaviour
     public event Action mainWeaponFastAttack;
     public event Action mainWeaponPowerAttack;
 
-    public event Action onSecondaryWeaponStartUsing;
-    public event Action onSecondaryWeaponStopUsing;
+    public event Action mainWeaponContinuousAttackStop;
+    public event Action mainWeaponContinuousAttackStart;
+
+    public event Action secondaryWeaponFastAttack;
+    public event Action secondaryWeaponPowerAttack;
+
+    public event Action secondaryWeaponContinuousAttackStart;
+    public event Action secondaryWeaponContinuousAttackStop;
 
     public bool mainWeaponUsing;
     public bool secondaryWeaponUsing;
