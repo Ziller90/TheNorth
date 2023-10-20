@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class HumanoidBattleSystem : MonoBehaviour
 {
@@ -79,7 +76,7 @@ public class HumanoidBattleSystem : MonoBehaviour
 
     public void AllowMoving()
     {
-         characterContoller.AllowMoving = true;
+        characterContoller.AllowMoving = true;
     }
 
     void OnEnable()
@@ -114,7 +111,6 @@ public class HumanoidBattleSystem : MonoBehaviour
         {
             if (!mainWeapon && !secondaryWeapon)
             {
-                humanAnimator.Rebind();
                 if (randomAttackIndex == 0)
                 {
                     humanAnimator.CrossFadeInFixedTime("UnarmedRight", 0.20f, 0);
@@ -128,12 +124,83 @@ public class HumanoidBattleSystem : MonoBehaviour
                     isPlayingAttackAnimation = true;
                 }
             }
+            else if (mainWeapon && mainWeapon.Type == WeaponType.OneHanded && !secondaryWeapon ||
+                mainWeapon && mainWeapon.Type == WeaponType.OneHanded && secondaryWeapon && secondaryWeapon.Type == WeaponType.OneHanded ||
+                mainWeapon && mainWeapon.Type == WeaponType.OneHanded && secondaryWeapon && secondaryWeapon.Type == WeaponType.Shield)
+            {
+                if (randomAttackIndex == 0)
+                {
+                    humanAnimator.CrossFadeInFixedTime("OneHandedRight", 0.20f, 0);
+                    randomAttackIndex = 1;
+                    isPlayingAttackAnimation = true;
+                }
+                else if (randomAttackIndex == 1)
+                {
+                    humanAnimator.CrossFadeInFixedTime("OneHandedRight_2", 0.20f, 0);
+                    randomAttackIndex = 0;
+                    isPlayingAttackAnimation = true;
+                }
+            }
+            else if (!mainWeapon && secondaryWeapon && secondaryWeapon.Type == WeaponType.OneHanded)
+            {
+                if (randomAttackIndex == 0)
+                {
+                    humanAnimator.CrossFadeInFixedTime("OneHandedLeft", 0.20f, 0);
+                    randomAttackIndex = 1;
+                    isPlayingAttackAnimation = true;
+                }
+                else if (randomAttackIndex == 1)
+                {
+                    humanAnimator.CrossFadeInFixedTime("OneHandedLeft_2", 0.20f, 0);
+                    randomAttackIndex = 0;
+                    isPlayingAttackAnimation = true;
+                }
+            }
+            else if (mainWeapon && mainWeapon.Type == WeaponType.TwoHanded)
+            {
+                var random = Random.Range(0, 3);
+                if (random == 0)
+                {
+                    humanAnimator.CrossFadeInFixedTime("TwoHanded_1", 0.20f, 0);
+                    randomAttackIndex = 1;
+                    isPlayingAttackAnimation = true;
+                }
+                else if (random == 1)
+                {
+                    humanAnimator.CrossFadeInFixedTime("TwoHanded_2", 0.20f, 0);
+                    randomAttackIndex = 0;
+                    isPlayingAttackAnimation = true;
+                }
+                else if (random == 2)
+                {
+                    humanAnimator.CrossFadeInFixedTime("TwoHanded_3", 0.20f, 0);
+                    randomAttackIndex = 0;
+                    isPlayingAttackAnimation = true;
+                }
+            }
         }
     }
 
     public void SecondaryWeaponFastAttack()
     {
-
+        if (!isPlayingAttackAnimation)
+        {
+            if (mainWeapon && mainWeapon.Type == WeaponType.OneHanded && secondaryWeapon && secondaryWeapon.Type == WeaponType.OneHanded)
+            {
+                if (randomAttackIndex == 0)
+                {
+                    humanAnimator.CrossFadeInFixedTime("OneHandedLeft", 0.20f, 0);
+                    randomAttackIndex = 1;
+                    isPlayingAttackAnimation = true;
+                }
+                else if (randomAttackIndex == 1)
+                {
+                    humanAnimator.CrossFadeInFixedTime("OneHandedLeft_2", 0.20f, 0);
+                    randomAttackIndex = 0;
+                    isPlayingAttackAnimation = true;
+                }
+            }
+        }
     }
 
     public void MainWeaponPowerAttack()
@@ -142,7 +209,27 @@ public class HumanoidBattleSystem : MonoBehaviour
         {
             if (!mainWeapon && !secondaryWeapon)
             {
-                humanAnimator.CrossFadeInFixedTime("UnarmedCombo1", 0.20f, 0);
+                humanAnimator.CrossFadeInFixedTime("UnarmedCombo_1", 0.20f, 0);
+                isPlayingAttackAnimation = true;
+            }
+            else if (mainWeapon && mainWeapon.Type == WeaponType.OneHanded && !secondaryWeapon)
+            {
+                humanAnimator.CrossFadeInFixedTime("OneHandedComboRight_1", 0.20f, 0);
+                isPlayingAttackAnimation = true;
+            }
+            else if (secondaryWeapon && secondaryWeapon.Type == WeaponType.OneHanded && !mainWeapon)
+            {
+                humanAnimator.CrossFadeInFixedTime("OneHandedComboLeft_1", 0.20f, 0);
+                isPlayingAttackAnimation = true;
+            }
+            else if (mainWeapon && mainWeapon.Type == WeaponType.OneHanded && secondaryWeapon && secondaryWeapon.Type == WeaponType.OneHanded)
+            {
+                //humanAnimator.CrossFadeInFixedTime("OneHandedCombo_1", 0.20f, 0);
+                //isPlayingAttackAnimation = true;
+            }
+            else if (mainWeapon && mainWeapon.Type == WeaponType.TwoHanded)
+            {
+                humanAnimator.CrossFadeInFixedTime("TwoHandedCombo_1", 0.20f, 0);
                 isPlayingAttackAnimation = true;
             }
         }
@@ -156,13 +243,11 @@ public class HumanoidBattleSystem : MonoBehaviour
     public void MainWeaponContinousAttackStart()
     {
         mainWeaponContinuousAttack = true;
-        humanAnimator.SetBool("MainWeaponContinuousAttacking", true);
     }
 
     public void SecondaryWeaponContinousAttackStart()
     {
         secondaryWeaponContinuousAttack = true;
-        humanAnimator.SetBool("SecondaryWeaponContinuousAttacking", true);
     }
 
     public void MainWeaponContinousAttackStop()
@@ -175,6 +260,7 @@ public class HumanoidBattleSystem : MonoBehaviour
     {
         secondaryWeaponContinuousAttack = false;
         humanAnimator.SetBool("SecondaryWeaponContinuousAttacking", false);
+
     }
 
     public Vector3 GetHitVector(Vector3 hitPosition)
@@ -184,7 +270,35 @@ public class HumanoidBattleSystem : MonoBehaviour
 
     private void Update()
     {
-        humanAnimator.SetBool("isPlayingAttackAnimation", isPlayingAttackAnimation);
+        if (mainWeaponContinuousAttack && !isPlayingAttackAnimation)
+        {
+            if (!mainWeapon && !secondaryWeapon)
+            {
+
+            }
+        }
+
+        if (secondaryWeaponContinuousAttack && !isPlayingAttackAnimation)
+        {
+            if (!mainWeapon && !secondaryWeapon)
+            {
+                humanAnimator.CrossFadeInFixedTime("UnarmedBlock", 0.20f, 1);
+                humanAnimator.SetBool("SecondaryWeaponContinuousAttacking", true);
+                isPlayingAttackAnimation = true;
+            }
+            else if (mainWeapon && mainWeapon.Type == WeaponType.OneHanded && !secondaryWeapon)
+            {
+                humanAnimator.CrossFadeInFixedTime("OneHandedRightBlock", 0.20f, 1);
+                humanAnimator.SetBool("SecondaryWeaponContinuousAttacking", true);
+                isPlayingAttackAnimation = true;
+            }
+            else if (secondaryWeapon && secondaryWeapon.Type == WeaponType.Shield)
+            {
+                humanAnimator.CrossFadeInFixedTime("ShieldBlock", 0.20f, 1);
+                humanAnimator.SetBool("SecondaryWeaponContinuousAttacking", true);
+                isPlayingAttackAnimation = true;
+            }
+        }
     }
 
     void DebugLogAnimator()
