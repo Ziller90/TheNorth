@@ -76,8 +76,8 @@ public class ActionManager : MonoBehaviour
     public event Action mainWeaponFastAttack;
     public event Action mainWeaponPowerAttack;
 
-    public event Action mainWeaponContinuousAttackStop;
     public event Action mainWeaponContinuousAttackStart;
+    public event Action mainWeaponContinuousAttackStop;
 
     public event Action secondaryWeaponFastAttack;
     public event Action secondaryWeaponPowerAttack;

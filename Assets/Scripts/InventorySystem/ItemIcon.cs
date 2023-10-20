@@ -41,7 +41,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     }
     void OnItemsNumberUpdated()
     {
-        itemNumberText.text = itemStack.ItemsNumber.ToString();
+        itemNumberText.text = itemStack.ItemsNumber == 1 ? "" : itemStack.ItemsNumber.ToString();
     }
     void OnItemStackDeleted()
     {

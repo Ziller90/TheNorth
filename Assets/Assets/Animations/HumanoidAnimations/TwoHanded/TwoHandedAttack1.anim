@@ -109891,6 +109891,13 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0.3
+    functionName: DisableMoving
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.43333334
     functionName: DisableRotation
     data: 
@@ -109926,15 +109933,15 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.1333333
-    functionName: AttackFinished
+  - time: 1.1666666
+    functionName: AllowMoving
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.3
-    functionName: AllowMoving
+  - time: 1.2
+    functionName: AttackFinished
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
