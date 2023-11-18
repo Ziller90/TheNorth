@@ -21,7 +21,7 @@ public class ActionManager : MonoBehaviour
     {
         mainWeaponPressedTime = Time.time;
         mainWeaponIsPressed = true;
-        mainWeaponContinuousAttackStart.Invoke();
+        mainWeaponContinuousAttackStart?.Invoke();
     }
 
     public void MainWeaponReleased()
@@ -33,14 +33,14 @@ public class ActionManager : MonoBehaviour
             mainWeaponFastAttack?.Invoke();
         }
         mainWeaponIsPressed = false;
-        mainWeaponContinuousAttackStop.Invoke();
+        mainWeaponContinuousAttackStop?.Invoke();
     }
 
     public void SecondaryWeaponPressed()
     {
         secondaryWeaponPressedTime = Time.time;
         secondaryWeaponIsPressed = true;
-        secondaryWeaponContinuousAttackStart.Invoke();
+        secondaryWeaponContinuousAttackStart?.Invoke();
     }
 
     public void SecondaryWeaponReleased()
@@ -52,7 +52,7 @@ public class ActionManager : MonoBehaviour
             secondaryWeaponFastAttack?.Invoke();
         }
         secondaryWeaponIsPressed = false;
-        secondaryWeaponContinuousAttackStop.Invoke();
+        secondaryWeaponContinuousAttackStop?.Invoke();
     }
 
     void Update()

@@ -28,12 +28,18 @@ public class HumanoidEnemiesAI : MonoBehaviour
     [SerializeField] float enemySearchingTime;
     [SerializeField] int searhingCornersNumber;
 
+    [SerializeField] HumanoidInventory AIInventory;
 
     bool searchEnemy;
     Vector3 enemyPosition;
     Vector3 lastEnemyPosition;
     bool searhingRouteGenerated;
     Transform currentEnemy;
+
+    private void Start()
+    {
+        EquipBestItems();
+    }
 
     void Update()
     {
@@ -42,7 +48,8 @@ public class HumanoidEnemiesAI : MonoBehaviour
         {
             case States.Attack:
                 navigationManager.Stand();
-                actionManager.mainWeaponUsing = true;
+                actionManager.MainWeaponPressed();
+                actionManager.MainWeaponReleased();
                 break;
             case States.Chase:
                 navigationManager.MoveToTarget(currentEnemy.position, MovingMode.Run);
@@ -72,6 +79,7 @@ public class HumanoidEnemiesAI : MonoBehaviour
                 break;
         }
     }
+
     void SetAIState()
     {
         currentEnemy = sensors.GetNearestEnemy();
@@ -115,6 +123,7 @@ public class HumanoidEnemiesAI : MonoBehaviour
             AIState = States.Idle;
         }
     }
+
     IEnumerator SearchingEnemyTimer()
     {
         yield return new WaitForSeconds(enemySearchingTime);
@@ -122,6 +131,7 @@ public class HumanoidEnemiesAI : MonoBehaviour
         searchEnemy = false;
         searhingRouteGenerated = false;
     }
+
     public Vector3[] GenerateSearchingRoute(Vector3 LastSeenPosition)
     {
         Vector3[] newRoute = new Vector3[searhingCornersNumber];
@@ -136,5 +146,38 @@ public class HumanoidEnemiesAI : MonoBehaviour
             Instantiate(debugPoint, newCorner, Quaternion.identity);
         }
         return newRoute;
+    }
+
+    void EquipBestItems()
+    {
+        foreach(var itemStack in AIInventory.InventoryContainer.ItemsStacksInContainer)
+        {
+            if (itemStack != null && itemStack.Item && itemStack.Item.SuitableSlots != SlotType.None) 
+            {
+                switch (itemStack.Item.SuitableSlots)
+                {
+                    case SlotType.MainWeapon:
+                        if (AIInventory.MainWeaponItemStack.Item == null)
+                            AIInventory.SetItemStackInEquipmentPosition(itemStack, SlotType.MainWeapon);
+                        break;
+                    case SlotType.SecondaryWeapon:
+                        if (AIInventory.SecondaryWeaponItemStack.Item == null)
+                            AIInventory.SetItemStackInEquipmentPosition(itemStack, SlotType.SecondaryWeapon);
+                        break;
+                    case SlotType.TwoHanded:
+                        if (AIInventory.MainWeaponItemStack.Item == null && AIInventory.SecondaryWeaponItemStack.Item == null)
+                            AIInventory.SetItemStackInEquipmentPosition(itemStack, SlotType.MainWeapon);
+                        break;
+                    case SlotType.BothHanded:
+                        if (AIInventory.MainWeaponItemStack.Item == null)
+                            AIInventory.SetItemStackInEquipmentPosition(itemStack, SlotType.MainWeapon);
+                        else if (AIInventory.SecondaryWeaponItemStack.Item == null)
+                            AIInventory.SetItemStackInEquipmentPosition(itemStack, SlotType.SecondaryWeapon);
+                        break;
+                    case SlotType.QuikAcess:
+                        break;
+                }
+            }
+        }
     }
 }

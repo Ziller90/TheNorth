@@ -156,6 +156,12 @@ public class HumanoidBattleSystem : MonoBehaviour
                     isPlayingAttackAnimation = true;
                 }
             }
+            else if (!mainWeapon && secondaryWeapon && secondaryWeapon.Type == WeaponType.Shield)
+            {
+                humanAnimator.CrossFadeInFixedTime("UnarmedRight", 0.20f, 0);
+                randomAttackIndex = 1;
+                isPlayingAttackAnimation = true;
+            }
             else if (mainWeapon && mainWeapon.Type == WeaponType.TwoHanded)
             {
                 var random = Random.Range(0, 3);
@@ -224,8 +230,8 @@ public class HumanoidBattleSystem : MonoBehaviour
             }
             else if (mainWeapon && mainWeapon.Type == WeaponType.OneHanded && secondaryWeapon && secondaryWeapon.Type == WeaponType.OneHanded)
             {
-                //humanAnimator.CrossFadeInFixedTime("OneHandedCombo_1", 0.20f, 0);
-                //isPlayingAttackAnimation = true;
+                humanAnimator.CrossFadeInFixedTime("OneHandedComboRight_1", 0.20f, 0); // replace with both handed combo animation
+                isPlayingAttackAnimation = true;
             }
             else if (mainWeapon && mainWeapon.Type == WeaponType.TwoHanded)
             {
@@ -237,7 +243,11 @@ public class HumanoidBattleSystem : MonoBehaviour
 
     public void SecondaryWeaponPowerAttack()
     {
-
+        if (mainWeapon && mainWeapon.Type == WeaponType.OneHanded && secondaryWeapon && secondaryWeapon.Type == WeaponType.OneHanded)
+        {
+            humanAnimator.CrossFadeInFixedTime("OneHandedComboLeft_1", 0.20f, 0); // replace with both handed combo animation
+            isPlayingAttackAnimation = true;
+        }
     }
 
     public void MainWeaponContinousAttackStart()
@@ -260,7 +270,6 @@ public class HumanoidBattleSystem : MonoBehaviour
     {
         secondaryWeaponContinuousAttack = false;
         humanAnimator.SetBool("SecondaryWeaponContinuousAttacking", false);
-
     }
 
     public Vector3 GetHitVector(Vector3 hitPosition)
