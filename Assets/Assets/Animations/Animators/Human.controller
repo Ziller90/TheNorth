@@ -683,19 +683,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: MainWeaponContinuousAttacking
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: SecondaryWeaponContinuousAttacking
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: BaseLayer
@@ -1223,16 +1223,16 @@ AnimatorStateMachine:
     m_Position: {x: 360, y: 540, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5946584956406772417}
-    m_Position: {x: -80, y: 600, z: 0}
+    m_Position: {x: -80, y: 660, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3380552149330126919}
-    m_Position: {x: 140, y: 600, z: 0}
+    m_Position: {x: 140, y: 660, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 574533586215279169}
-    m_Position: {x: 580, y: 600, z: 0}
+    m_Position: {x: 580, y: 660, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8459652880163371353}
-    m_Position: {x: 360, y: 600, z: 0}
+    m_Position: {x: 360, y: 660, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

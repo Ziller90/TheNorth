@@ -17,7 +17,7 @@ public class HumanoidInventory : MonoBehaviour
     [SerializeField] Container dropSackPrefab;
 
     [SerializeField] HumanoidBattleSystem battleSystem;
-    Container inventoryContainer;
+    [SerializeField] Container inventoryContainer;
 
     Item rightHandItem;
     Item leftHandItem;
@@ -45,11 +45,6 @@ public class HumanoidInventory : MonoBehaviour
     {
         moneyAmount -= money;
         moneyAmountUpdated?.Invoke();
-    }
-
-    public void Start()
-    {
-        inventoryContainer = GetComponent<Container>();
     }
 
     public void AddItem(Item item)
