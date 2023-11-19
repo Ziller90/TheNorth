@@ -3,16 +3,20 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class Slot : MonoBehaviour
+public class SlotView : MonoBehaviour
 {
+    Slot slot;
     ItemIcon itemIconInSlot;
     RectTransform slotTransform;
+    
+    public Slot Slot => slot;
     public bool IsEmpty => itemIconInSlot == null;
     public ItemIcon ItemIcon => itemIconInSlot;
 
-    public UnityEvent<ItemIcon, Slot> iconInsertedEvent;
-    public UnityEvent<ItemIcon, Slot> iconRemovedEvent;
+    public UnityEvent<ItemIcon, SlotView> iconInsertedEvent;
+    public UnityEvent<ItemIcon, SlotView> iconRemovedEvent;
 
+    [SerializeField] ItemIcon itemIconPrefab;
     [SerializeField] bool slotIsRhombus;
     [SerializeField] Image iconShadow;
     [SerializeField] Image blockImage;
@@ -37,26 +41,40 @@ public class Slot : MonoBehaviour
         this.blockImage.gameObject.SetActive(isBlocked);
     }
 
+    public void SetSlot(Slot slot, ItemsViewManager itemsViewManager)
+    {
+        this.slot = slot;
+        if (!slot.isEmpty)
+            InstantiateItemIcon(itemsViewManager);
+    }
+
+    public void InstantiateItemIcon(ItemsViewManager itemsViewManager)
+    {
+        var newIcon = Instantiate(itemIconPrefab, itemsViewManager.CommonIconsContainer);
+        newIcon.SetItemStack(slot.ItemStack, itemsViewManager);
+        InsertIcon(newIcon, true);
+    }
+
     public void InsertIcon(ItemIcon icon, bool initializing)
     {
         if (!initializing)
             iconInsertedEvent?.Invoke(icon, this);
-
-        StartCoroutine(SetIconInSlotPosition(icon));
+        itemIconInSlot = icon;
+        SetIconInSlotPosition();
     }
 
-    public void RemoveIcon()
+    public void SetIconInSlotPosition()
+    {
+        itemIconInSlot.transform.parent = slotTransform;
+        var itemIconRectTransform = itemIconInSlot.GetComponent<RectTransform>();
+        float width = itemIconRectTransform.rect.width;
+        itemIconRectTransform.anchoredPosition= new Vector3(width/2, -width/2, 0);
+    }
+
+    public void PullOutIcon()
     {
         iconRemovedEvent?.Invoke(itemIconInSlot, this);
         itemIconInSlot = null;
-    }
-
-    public IEnumerator SetIconInSlotPosition(ItemIcon icon)
-    {
-        itemIconInSlot = icon;
-        yield return new WaitForEndOfFrame();
-        itemIconInSlot.GetComponent<RectTransform>().position = slotTransform.position;
-        icon.transform.parent = slotTransform;
     }
 
     public bool IsPositionInSlot(Vector2 position)
@@ -99,7 +117,8 @@ public class Slot : MonoBehaviour
 
     public void Destroy()
     {
-        DestroyItemIcon();
+        if (itemIconInSlot)
+            Destroy(itemIconInSlot.gameObject);
         Destroy(gameObject);
     }
 
@@ -107,6 +126,14 @@ public class Slot : MonoBehaviour
     {
         if (itemIconInSlot)
             Destroy(itemIconInSlot.gameObject);
+    }
+
+    public void DestroyWithPullOut()
+    {
+        var itemIconTemp = itemIconInSlot;
+        PullOutIcon();
+        if (itemIconTemp)
+            Destroy(itemIconTemp.gameObject);
     }
 
     public bool IsSuitableSlotType(SlotType itemSuitableSlotType)

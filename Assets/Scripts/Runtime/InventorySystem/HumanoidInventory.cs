@@ -10,9 +10,9 @@ public class HumanoidInventory : MonoBehaviour
     [SerializeField] Transform rightHandKeeper;
     [SerializeField] Transform leftHandKeeper;
 
-    [SerializeField] ItemStack mainWeaponItemStack;
-    [SerializeField] ItemStack secondaryWeaponItemStack;
-    [SerializeField] ItemStack[] quickAccessItemStacks = new ItemStack[3];
+    [SerializeField] Slot mainWeaponSlot;
+    [SerializeField] Slot secondaryWeaponSlot;
+    [SerializeField] Slot[] quickAccessSlots = new Slot[3];
 
     [SerializeField] Container dropSackPrefab;
 
@@ -25,9 +25,9 @@ public class HumanoidInventory : MonoBehaviour
     Item mainWeapon;
     Item secondaryWeapon;
 
-    public ItemStack MainWeaponItemStack => mainWeaponItemStack;
-    public ItemStack SecondaryWeaponItemStack => secondaryWeaponItemStack;
-    public ItemStack[] QuickAccessItemStacks => quickAccessItemStacks;
+    public Slot MainWeaponSlot => mainWeaponSlot;
+    public Slot SecondaryWeaponSlot => secondaryWeaponSlot;
+    public Slot[] QuickAccessSlots => quickAccessSlots;
     public Container InventoryContainer => inventoryContainer;
     public int MoneyAmount => moneyAmount;
 
@@ -62,36 +62,36 @@ public class HumanoidInventory : MonoBehaviour
             return;
         }
 
-        if (item.SuitableSlots == SlotType.MainWeapon && mainWeaponItemStack.Item == null)
+        if (item.SuitableSlots == SlotType.MainWeapon && mainWeaponSlot.isEmpty)
         {
             RemoveItemFromWorld(item);
             SetItemStackInEquipmentPosition(newItemStack, SlotType.MainWeapon);
         }
         else if (item.SuitableSlots == SlotType.SecondaryWeapon &&
-            secondaryWeaponItemStack.Item == null && 
-            (mainWeaponItemStack.Item == null || mainWeaponItemStack.Item.SuitableSlots != SlotType.TwoHanded))
+            secondaryWeaponSlot.isEmpty && 
+            (mainWeaponSlot.isEmpty || mainWeaponSlot.ItemStack.Item.SuitableSlots != SlotType.TwoHanded))
         {
             RemoveItemFromWorld(item);
             SetItemStackInEquipmentPosition(newItemStack, SlotType.SecondaryWeapon);
         }
-        else if (item.SuitableSlots == SlotType.TwoHanded && secondaryWeaponItemStack.Item == null && mainWeaponItemStack.Item == null)
+        else if (item.SuitableSlots == SlotType.TwoHanded && secondaryWeaponSlot.isEmpty && mainWeaponSlot.isEmpty)
         {
             RemoveItemFromWorld(item);
             SetItemStackInEquipmentPosition(newItemStack, SlotType.MainWeapon);
         }
-        else if (item.SuitableSlots == SlotType.BothHanded && mainWeaponItemStack.Item == null)
+        else if (item.SuitableSlots == SlotType.BothHanded && mainWeaponSlot.isEmpty)
         {
             RemoveItemFromWorld(item);
             SetItemStackInEquipmentPosition(newItemStack, SlotType.MainWeapon);
         }
         else if (item.SuitableSlots == SlotType.BothHanded &&
-            secondaryWeaponItemStack.Item == null &&
-            (mainWeaponItemStack.Item == null || mainWeaponItemStack.Item.SuitableSlots != SlotType.TwoHanded))
+            secondaryWeaponSlot.isEmpty &&
+            (mainWeaponSlot.isEmpty || mainWeaponSlot.ItemStack.Item.SuitableSlots != SlotType.TwoHanded))
         {
             RemoveItemFromWorld(item);
             SetItemStackInEquipmentPosition(newItemStack, SlotType.SecondaryWeapon);
         }
-        else if (item.SuitableSlots == SlotType.QuikAcess && ModelUtils.AddItemStackToGroup(newItemStack, quickAccessItemStacks))
+        else if (item.SuitableSlots == SlotType.QuikAcess && ModelUtils.TryAddOrMergeItemStackToSlotGroup(newItemStack, quickAccessSlots))
         {
             RemoveItemFromWorld(item);
         }
@@ -105,11 +105,11 @@ public class HumanoidInventory : MonoBehaviour
     {
         if (slot == SlotType.MainWeapon)
         {
-            mainWeaponItemStack = itemStack;
+            mainWeaponSlot.SetItemStack(itemStack);
         }
         else if (slot == SlotType.SecondaryWeapon)
         {
-            secondaryWeaponItemStack = itemStack;
+            secondaryWeaponSlot.SetItemStack(itemStack);
         }
 
         Item instantiatedItem = null;
@@ -173,7 +173,7 @@ public class HumanoidInventory : MonoBehaviour
 
     public  void AddItemToInventory(Item item, ItemStack itemStack)
     {
-        bool added = ModelUtils.AddItemStackToGroup(itemStack, inventoryContainer.ItemsStacksInContainer);
+        bool added = ModelUtils.TryAddOrMergeItemStackToSlotGroup(itemStack, inventoryContainer.Slots);
         if (added)
             RemoveItemFromWorld(item);
         else
@@ -192,17 +192,10 @@ public class HumanoidInventory : MonoBehaviour
         item.GetComponent<InteractableObject>().SetInteractable(false);
     }
 
-    public void DropItemsStack(ItemStack itemsStack)
+    public void DropItemsStackFromSlot(Slot slot)
     {
-        if (mainWeaponItemStack == itemsStack)
-            RemoveMainWeapon();
-        else if (secondaryWeaponItemStack == itemsStack)
-            RemoveSecondaryWeapon();
-        else if (inventoryContainer.Contains(itemsStack))
-            inventoryContainer.RemoveItemsStack(itemsStack);
-
         var dropSack = Instantiate(dropSackPrefab, dropPosition.position, Quaternion.identity);
-        ModelUtils.AddItemStackToGroup(itemsStack, dropSack.ItemsStacksInContainer);
+        ModelUtils.TryAddOrMergeItemStackToSlotGroup(slot.ItemStack, dropSack.Slots);
     }
 
     public void UseItem(ItemStack itemStack)
@@ -245,7 +238,7 @@ public class HumanoidInventory : MonoBehaviour
         if (mainWeapon == leftHandItem)
             RemoveEquipment(EquipPositon.LeftHand);
 
-        mainWeaponItemStack = new ItemStack(null, 0);
+        mainWeaponSlot.SetEmpty();
     }
 
     public void RemoveSecondaryWeapon()
@@ -255,7 +248,7 @@ public class HumanoidInventory : MonoBehaviour
         if (secondaryWeapon == leftHandItem)
             RemoveEquipment(EquipPositon.LeftHand);
 
-        secondaryWeaponItemStack = new ItemStack(null, 0);
+        secondaryWeaponSlot.SetEmpty();
     }
 
     public void RemoveEquipment(EquipPositon equipPositon)
@@ -274,11 +267,11 @@ public class HumanoidInventory : MonoBehaviour
 
     public void SetItemInQuickAccessSlot(ItemStack itemsStack, int index)
     {
-        quickAccessItemStacks[index] = itemsStack;
+        quickAccessSlots[index].SetItemStack(itemsStack);
     }
 
     public void RemoveItemFromQuickAccessSlot(int index)
     {
-        quickAccessItemStacks[index] = new ItemStack(null, 0);
+        quickAccessSlots[index].SetEmpty();
     }
 }

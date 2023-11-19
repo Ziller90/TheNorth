@@ -34,11 +34,13 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
             itemStack.deletedEvent += OnItemStackDeleted;
         }
     }
+
     void OnDisable()
     {
         itemStack.itemsNumberUpdatedEvent -= OnItemsNumberUpdated;
         itemStack.deletedEvent -= OnItemStackDeleted;
     }
+
     void OnItemsNumberUpdated()
     {
         itemNumberText.text = itemStack.ItemsNumber == 1 ? "" : itemStack.ItemsNumber.ToString();
@@ -48,6 +50,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
         var currentSlot = itemsViewManager.GetItemIconSlot(this);
         currentSlot.DestroyItemIcon();
     }
+
     public void SetItemStack(ItemStack itemStack, ItemsViewManager itemsViewManager)
     {
         this.itemStack = itemStack;
@@ -58,6 +61,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
         itemStack.deletedEvent += OnItemStackDeleted;
         OnItemsNumberUpdated();
     }
+
     public void OnPointerDown(PointerEventData pointerEventData)
     {
         itemsViewManager.SetSelectedIcon(this);
@@ -65,6 +69,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
         isHold = true;
         StartCoroutine(WaitForDescription());
     }
+
     public void OnPointerUp(PointerEventData pointerEventData)
     {
         var newSlot = itemsViewManager.GetSlotByPosition(transform.position);
@@ -75,6 +80,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
         StopAllCoroutines();
         DestroyDescriptionPanel();
     }
+
     public void OnDrag(PointerEventData pointerEventData)
     {
         gameObject.transform.position = new Vector3(pointerEventData.position.x, pointerEventData.position.y,0);
@@ -95,12 +101,14 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
             InstantiateDescriptionPanel(this);
         }
     }
+
     public void InstantiateDescriptionPanel(ItemIcon itemIcon)
     {
         descriptionPanel = Instantiate(descriptionPanelPrefab, itemIcon.transform);
         descriptionPanel.transform.position = itemIcon.transform.position + descitptionPanelOffset;
         descriptionPanel.SetItemData(itemIcon.ItemStack.Item);
     }
+
     public void DestroyDescriptionPanel()
     {
         if (descriptionPanel)

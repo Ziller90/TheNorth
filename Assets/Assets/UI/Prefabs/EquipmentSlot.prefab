@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 8834539050554049247}
   - component: {fileID: 8834539050554049245}
   - component: {fileID: 8834539050554049244}
-  - component: {fileID: 3247396761088001111}
+  - component: {fileID: 5358441456063226421}
   m_Layer: 0
   m_Name: EquipmentSlot
   m_TagString: Untagged
@@ -308,7 +308,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3247396761088001111
+--- !u!114 &5358441456063226421
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8834539050554049246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3019d67921e1eb6499eee893797e86a0, type: 3}
+  m_Script: {fileID: 11500000, guid: bfce86a75809e344c8faf996e4d3c0c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   iconInsertedEvent:
@@ -326,6 +326,7 @@ MonoBehaviour:
   iconRemovedEvent:
     m_PersistentCalls:
       m_Calls: []
+  itemIconPrefab: {fileID: 6452154105753699909, guid: b08abe6d12d75754fafd8327ba7464e7, type: 3}
   slotIsRhombus: 1
   iconShadow: {fileID: 6412521632127677995}
   blockImage: {fileID: 2954860126274286147}
