@@ -4869,67 +4869,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e028e5d12fb74e43b6866a63d4e9a28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemsStackInContainer:
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
+  containerSlots:
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &2822545277258788276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4953,16 +4958,21 @@ MonoBehaviour:
   secondaryWeaponItemStack:
     itemPrefab: {fileID: 0}
     itemsNumber: 0
-  quickAccessItemStacks:
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
+  quickAccessSlots:
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
+  - itemStack:
+      rid: -2
   dropSackPrefab: {fileID: 390682515965362878, guid: 4a6b3267735ccc745a8353076a4887a6, type: 3}
   battleSystem: {fileID: 6115228454438917371}
   inventoryContainer: {fileID: 8059843138504852898}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &6040268367450635467
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -289,8 +289,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   commonIconsContainer: {fileID: 8580326812262637783}
-  mainWeaponSlot: {fileID: 5532835343150534301}
-  secondaryWeaponSlot: {fileID: 7966150032797252169}
+  mainWeaponSlot: {fileID: 3135776741334804735}
+  secondaryWeaponSlot: {fileID: 702951888686881835}
 --- !u!1 &3380745121675616037
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,12 +341,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c90d862699495d64392affcee7b1dbcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainWeaponSlot: {fileID: 5532835343150534301}
-  secondaryWeaponSlot: {fileID: 7966150032797252169}
+  mainWeaponSlot: {fileID: 3135776741334804735}
+  secondaryWeaponSlot: {fileID: 702951888686881835}
   quickAccessSlots:
-  - {fileID: 8746366050217369780}
-  - {fileID: 5311579406055027333}
-  - {fileID: 7720793160405730671}
+  - {fileID: 2174470809752012502}
+  - {fileID: 3385182347207316711}
+  - {fileID: 894479381634245389}
   containerGridView: {fileID: 6069612065761047757}
   itemIconPrefab: {fileID: 6452154105753699909, guid: b08abe6d12d75754fafd8327ba7464e7, type: 3}
   itemsViewManager: {fileID: 3939713163959957189}
@@ -636,6 +636,10 @@ PrefabInstance:
       propertyPath: iconFootprintPrefab
       value: 
       objectReference: {fileID: 1089561314549887299, guid: 11e3afd589cefd54388e60565e062735, type: 3}
+    - target: {fileID: 5358441456063226421, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
+      propertyPath: slotType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8834539050554049246, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
       propertyPath: m_Name
       value: MainWeaponSlot2
@@ -838,6 +842,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ContainerGrid
       objectReference: {fileID: 0}
+    - target: {fileID: 5241166771124695155, guid: 9ed3b730ef452f249a581f89e0bbb30a, type: 3}
+      propertyPath: slotPrefab
+      value: 
+      objectReference: {fileID: 4876314683610570144, guid: bba2bbfe088c27f46a0852a6a0142cc6, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1020,6 +1028,10 @@ PrefabInstance:
       propertyPath: iconFootprintPrefab
       value: 
       objectReference: {fileID: 1089561314549887299, guid: 11e3afd589cefd54388e60565e062735, type: 3}
+    - target: {fileID: 5358441456063226421, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
+      propertyPath: slotType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8834539050554049246, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
       propertyPath: m_Name
       value: SecondaryWeaponSlot
@@ -1113,22 +1125,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
---- !u!224 &4109243753379167425 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8834539050554049247, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
-  m_PrefabInstance: {fileID: 4871875659078516254}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7966150032797252169 stripped
+--- !u!114 &702951888686881835 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3247396761088001111, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5358441456063226421, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
   m_PrefabInstance: {fileID: 4871875659078516254}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3019d67921e1eb6499eee893797e86a0, type: 3}
+  m_Script: {fileID: 11500000, guid: bfce86a75809e344c8faf996e4d3c0c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &4109243753379167425 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8834539050554049247, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
+  m_PrefabInstance: {fileID: 4871875659078516254}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5058903985412915512
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1149,6 +1161,10 @@ PrefabInstance:
       propertyPath: iconFootprintPrefab
       value: 
       objectReference: {fileID: 1089561314549887299, guid: 11e3afd589cefd54388e60565e062735, type: 3}
+    - target: {fileID: 5358441456063226421, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
+      propertyPath: slotType
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 8834539050554049246, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
       propertyPath: m_Name
       value: EquipmentSlot3
@@ -1242,22 +1258,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
---- !u!224 &4372502840003724263 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8834539050554049247, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
-  m_PrefabInstance: {fileID: 5058903985412915512}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7720793160405730671 stripped
+--- !u!114 &894479381634245389 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3247396761088001111, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5358441456063226421, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
   m_PrefabInstance: {fileID: 5058903985412915512}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3019d67921e1eb6499eee893797e86a0, type: 3}
+  m_Script: {fileID: 11500000, guid: bfce86a75809e344c8faf996e4d3c0c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &4372502840003724263 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8834539050554049247, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
+  m_PrefabInstance: {fileID: 5058903985412915512}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6084441930968179939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1278,6 +1294,10 @@ PrefabInstance:
       propertyPath: iconFootprintPrefab
       value: 
       objectReference: {fileID: 1089561314549887299, guid: 11e3afd589cefd54388e60565e062735, type: 3}
+    - target: {fileID: 5358441456063226421, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
+      propertyPath: slotType
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 8834539050554049246, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
       propertyPath: m_Name
       value: EquipmentSlot1
@@ -1371,22 +1391,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
---- !u!224 &3380745120932357692 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8834539050554049247, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
-  m_PrefabInstance: {fileID: 6084441930968179939}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8746366050217369780 stripped
+--- !u!114 &2174470809752012502 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3247396761088001111, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5358441456063226421, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
   m_PrefabInstance: {fileID: 6084441930968179939}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3019d67921e1eb6499eee893797e86a0, type: 3}
+  m_Script: {fileID: 11500000, guid: bfce86a75809e344c8faf996e4d3c0c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &3380745120932357692 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8834539050554049247, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
+  m_PrefabInstance: {fileID: 6084441930968179939}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6696225984343248877
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1512,6 +1532,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3870804050385867337}
     m_Modifications:
+    - target: {fileID: 236823971038587623, guid: ddb53f206b69fda45a1e99d62ddf45f9, type: 3}
+      propertyPath: m_text
+      value: Drop
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054395779293482045, guid: ddb53f206b69fda45a1e99d62ddf45f9, type: 3}
+      propertyPath: m_Name
+      value: dropText
+      objectReference: {fileID: 0}
     - target: {fileID: 3336904440833274018, guid: ddb53f206b69fda45a1e99d62ddf45f9, type: 3}
       propertyPath: m_SizeDelta.x
       value: 265.312
@@ -1530,7 +1558,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8287112225842288866, guid: ddb53f206b69fda45a1e99d62ddf45f9, type: 3}
       propertyPath: m_Name
-      value: ThrowButton
+      value: DropButton
       objectReference: {fileID: 0}
     - target: {fileID: 8287112225842288867, guid: ddb53f206b69fda45a1e99d62ddf45f9, type: 3}
       propertyPath: m_Pivot.x
@@ -1661,6 +1689,10 @@ PrefabInstance:
       propertyPath: iconFootprintPrefab
       value: 
       objectReference: {fileID: 1089561314549887299, guid: 11e3afd589cefd54388e60565e062735, type: 3}
+    - target: {fileID: 5358441456063226421, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
+      propertyPath: slotType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8834539050554049246, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
       propertyPath: m_Name
       value: MainWeaponSlot
@@ -1759,15 +1791,15 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8834539050554049247, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
   m_PrefabInstance: {fileID: 7050814336365841098}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5532835343150534301 stripped
+--- !u!114 &3135776741334804735 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3247396761088001111, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5358441456063226421, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
   m_PrefabInstance: {fileID: 7050814336365841098}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3019d67921e1eb6499eee893797e86a0, type: 3}
+  m_Script: {fileID: 11500000, guid: bfce86a75809e344c8faf996e4d3c0c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &7071670990805295387
@@ -1908,6 +1940,10 @@ PrefabInstance:
       propertyPath: iconFootprintPrefab
       value: 
       objectReference: {fileID: 1089561314549887299, guid: 11e3afd589cefd54388e60565e062735, type: 3}
+    - target: {fileID: 5358441456063226421, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
+      propertyPath: slotType
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 8834539050554049246, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
       propertyPath: m_Name
       value: EquipmentSlot2
@@ -2006,15 +2042,15 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8834539050554049247, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
   m_PrefabInstance: {fileID: 7252932257887237842}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5311579406055027333 stripped
+--- !u!114 &3385182347207316711 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3247396761088001111, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5358441456063226421, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
   m_PrefabInstance: {fileID: 7252932257887237842}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3019d67921e1eb6499eee893797e86a0, type: 3}
+  m_Script: {fileID: 11500000, guid: bfce86a75809e344c8faf996e4d3c0c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &7309399385361144831
@@ -2037,6 +2073,10 @@ PrefabInstance:
       propertyPath: iconFootprintPrefab
       value: 
       objectReference: {fileID: 1089561314549887299, guid: 11e3afd589cefd54388e60565e062735, type: 3}
+    - target: {fileID: 5358441456063226421, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
+      propertyPath: slotType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8834539050554049246, guid: ec3bbe58de1102f4ea05cf623040d1c8, type: 3}
       propertyPath: m_Name
       value: SecondaryWeaponSlot2

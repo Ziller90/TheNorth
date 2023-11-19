@@ -94,6 +94,7 @@ public class ModelUtils : MonoBehaviour
         }
         return Vector3.ClampMagnitude(new Vector3(horizontal, 0, vertical), 1);
     }
+
     public static bool isInRhombus(Vector2 position, Vector2 rhombusCenter, float rhombusWidth, float rhombusHeight)
     {
         Vector2 pointVector = position - rhombusCenter;
@@ -103,86 +104,53 @@ public class ModelUtils : MonoBehaviour
         }
         return false;
     }
-    public static int GetFirstFreeSpaceIndex<T>(IEnumerable<T> objects) where T : class
-    {
-        for (int i = 0; i < objects.Count(); i++)
-        {
-            if (objects.ElementAt(i) == null) 
-                return i;
-        }
-        return -1;
-    }
 
-    public static bool AddItemStackToGroup(ItemStack newStack, ItemStack[] group)
+    public static bool TryAddOrMergeItemStackToSlotGroup(ItemStack newStack, Slot[] slotGroup)
     {
-        bool merged = TryMerge(newStack, group);
+        bool merged = TryMergeToSlotGroup(newStack, slotGroup);
         if (merged)
             return true;
 
-        bool added = TryAdd(newStack, group);
+        bool added = TryAdd(newStack, slotGroup);
         if (added)
             return true;
 
         return false;
     }
-    public static int GetFirstFreeStackInGroupIndex(ItemStack[] group)
+
+    static int GetFirstEmtySlotInGroupIndex(Slot[] slotGroup)
     {
-        for (int i = 0; i < group.Length; i++)
+        for (int i = 0; i < slotGroup.Length; i++)
         {
-            if (group[i].Item == null)
+            if (slotGroup[i].isEmpty)
                 return i;
         }
         return -1;
     }
-    public static bool TryAdd(ItemStack newStack, ItemStack[] group)
+
+    static bool TryAdd(ItemStack newStack, Slot[] slotGroup)
     {
-        int freeStackIndex = GetFirstFreeStackInGroupIndex(group);
+        int freeStackIndex = GetFirstEmtySlotInGroupIndex(slotGroup);
         if (freeStackIndex == -1)
             return false;
 
-        group[freeStackIndex] = newStack;
+        slotGroup[freeStackIndex].SetItemStack(newStack);
         return true;
     }
-    public static bool CanBeMerged(ItemStack stack1, ItemStack stack2)
-    {
-        if (stack1.Item == stack2.Item
-                    && stack1.Item.MaxStackSize != 1
-                    && stack2.Item.MaxStackSize != 1
-                    && stack1.Item.MaxStackSize != stack1.ItemsNumber
-                    && stack2.Item.MaxStackSize != stack2.ItemsNumber)
-        {
-            return true;
-        }
-        return false;
-    }
-    public static bool TryMerge(ItemStack newStack, ItemStack[] group)
+
+    static bool TryMergeToSlotGroup(ItemStack newStack, Slot[] slotGroup)
     {
         if (newStack.Item.MaxStackSize != 1)
         {
-            foreach (var stack in group)
+            foreach (var slot in slotGroup)
             {
-                if (CanBeMerged(stack, newStack))
+                if (slot.CanBeMerged(newStack))
                 {
-                    Merge(newStack, stack);
+                    slot.Merge(newStack);
                     return true;
                 }
             }
         }
         return false;
-    }
-    public static void Merge(ItemStack stack1, ItemStack stack2)
-    {
-        int MaxStackSize = stack1.Item.MaxStackSize;
-        if (stack1.ItemsNumber + stack2.ItemsNumber <= MaxStackSize)
-        {
-            stack2.ItemsNumber = stack1.ItemsNumber + stack2.ItemsNumber;
-            stack1.ItemsNumber = 0;
-        }
-        else if (stack1.ItemsNumber + stack2.ItemsNumber >= MaxStackSize)
-        {
-            int deficient = MaxStackSize - stack2.ItemsNumber;
-            stack2.ItemsNumber = MaxStackSize;
-            stack1.ItemsNumber -= deficient;
-        }
     }
 }

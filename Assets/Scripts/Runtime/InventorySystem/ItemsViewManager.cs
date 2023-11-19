@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -10,16 +10,16 @@ using System;
 public class ItemsViewManager : MonoBehaviour
 {
     [SerializeField] Transform commonIconsContainer;
-    [SerializeField] Slot mainWeaponSlot;
-    [SerializeField] Slot secondaryWeaponSlot;
+    [SerializeField] SlotView mainWeaponSlot;
+    [SerializeField] SlotView secondaryWeaponSlot;
 
-    List<Slot> activeSlots = new List<Slot>();
+    List<SlotView> activeSlots = new List<SlotView>();
 
     ItemIcon selectedItemIcon;
-    Slot selectedItemSlot;
+    SlotView selectedItemSlot;
 
     public ItemIcon SelectedItemIcon => selectedItemIcon;
-    public Slot SelectedItemSlot => selectedItemSlot;
+    public SlotView SelectedItemSlot => selectedItemSlot;
     public Transform CommonIconsContainer => commonIconsContainer;
 
     public event Action selectedItemIconUpdated;
@@ -30,26 +30,24 @@ public class ItemsViewManager : MonoBehaviour
         selectedItemIcon = null;
         RemoveSelection();
     }
-    public void AddActiveSlot(Slot slot)
+    public void AddActiveSlot(SlotView slot)
     {
         activeSlots.Add(slot);
     }
 
-    public void RemoveActiveSlot(Slot slot)
+    public void RemoveActiveSlot(SlotView slot)
     {
         if (activeSlots.Contains(slot))
             activeSlots.Remove(slot);
     }
 
-    public Slot GetItemIconSlot(ItemIcon itemIcon)
+    public SlotView GetItemIconSlot(ItemIcon itemIcon)
     {
         return activeSlots.FirstOrDefault(i => i.ItemIcon == itemIcon);
     }
 
     public void SetSelectedIcon(ItemIcon itemIcon)
     {
-        Debug.Log(itemIcon + "Set seleted");
-
         RemoveSelection();
         selectedItemIcon = itemIcon;
         selectedItemSlot = GetItemIconSlot(itemIcon);
@@ -57,9 +55,9 @@ public class ItemsViewManager : MonoBehaviour
         selectedItemSlot.ShowItemShadow(itemIcon);
         selectedItemIconUpdated?.Invoke();
     }
+
     public void RemoveSelection()
     {
-        Debug.Log(selectedItemSlot + "removed selection");
         if (selectedItemSlot)
         {
             selectedItemSlot.SetSlotSelection(false);
@@ -70,7 +68,7 @@ public class ItemsViewManager : MonoBehaviour
         selectedItemIconUpdated?.Invoke();
     }
 
-    public Slot GetSlotByPosition(Vector2 itemPosition)
+    public SlotView GetSlotByPosition(Vector2 itemPosition)
     { 
         foreach (var slot in activeSlots)
         {
@@ -80,18 +78,18 @@ public class ItemsViewManager : MonoBehaviour
         return null;
     }
 
-    public void MoveItemToSlot(ItemIcon itemIcon, Slot targetSlot)
+    public void MoveItemToSlot(ItemIcon itemIcon, SlotView targetSlotView)
     {
-        var currentSlot = GetItemIconSlot(itemIcon);
+        var currentSlotView = GetItemIconSlot(itemIcon);
 
-        if (targetSlot == null || targetSlot == currentSlot || !targetSlot.IsSuitableSlotType(itemIcon.ItemStack.Item.SuitableSlots) || targetSlot.IsBlocked)
+        if (targetSlotView == null || targetSlotView == currentSlotView || !targetSlotView.IsSuitableSlotType(itemIcon.ItemStack.Item.SuitableSlots) || targetSlotView.IsBlocked)
         {
-            currentSlot.StartCoroutine(currentSlot.SetIconInSlotPosition(itemIcon));
+            currentSlotView.SetIconInSlotPosition();
             SetSelectedIcon(itemIcon);
             return;
         }
 
-        if (targetSlot.SlotType == SlotType.MainWeapon && itemIcon.ItemStack.Item.SuitableSlots == SlotType.TwoHanded)
+        if (targetSlotView.SlotType == SlotType.MainWeapon && itemIcon.ItemStack.Item.SuitableSlots == SlotType.TwoHanded)
         {
             if (secondaryWeaponSlot.ItemIcon != null)
             {
@@ -109,55 +107,57 @@ public class ItemsViewManager : MonoBehaviour
             }
         }
 
-        if (targetSlot.ItemIcon == null)
+        if (targetSlotView.ItemIcon == null)
         {
-            currentSlot.RemoveIcon();
-            targetSlot.InsertIcon(itemIcon, false);
+            currentSlotView.PullOutIcon();
+            targetSlotView.InsertIcon(itemIcon, false);
             SetSelectedIcon(itemIcon);
         }
         else
         {
-            var stack1 = currentSlot.ItemIcon.ItemStack;
-            var stack2 = targetSlot.ItemIcon.ItemStack;
+            var stackToMerge = itemIcon.ItemStack;
 
-            if (ModelUtils.CanBeMerged(stack1, stack2))
+            if (targetSlotView.Slot.CanBeMerged(stackToMerge))
             {
-                MergeView(itemIcon, targetSlot.ItemIcon);
-                ModelUtils.Merge(stack1, stack2);
+                MergeView(itemIcon, targetSlotView.ItemIcon);
+                targetSlotView.Slot.Merge(stackToMerge);
             }
             else
-                SwapItemIcons(currentSlot, targetSlot);
+                SwapItemIcons(currentSlotView, targetSlotView);
         }
     }
+
     public void MergeView(ItemIcon itemIcon1, ItemIcon itemIcon2)
     {
         var stack1 = itemIcon1.ItemStack;
         var stack2 = itemIcon2.ItemStack;
-        var slot1 = GetItemIconSlot(itemIcon1);
-        var slot2 = GetItemIconSlot(itemIcon2);
+        var slotView1 = GetItemIconSlot(itemIcon1);
+        var slotView2 = GetItemIconSlot(itemIcon2);
         int MaxStackSize = stack1.Item.MaxStackSize;
 
         if (stack1.ItemsNumber + stack2.ItemsNumber <= MaxStackSize)
         {
-            SetSelectedIcon(slot2.ItemIcon);
-            slot1.DestroyItemIcon();
+            SetSelectedIcon(slotView2.ItemIcon);
+            slotView1.DestroyItemIcon();
         }
         else if (stack1.ItemsNumber + stack2.ItemsNumber >= MaxStackSize)
         {
-            slot1.StartCoroutine(slot1.SetIconInSlotPosition(itemIcon1));
-            SetSelectedIcon(slot2.ItemIcon);
+            slotView1.SetIconInSlotPosition();
+            SetSelectedIcon(slotView2.ItemIcon);
         }
     }
-    public void SwapItemIcons(Slot slot1, Slot slot2)
+
+    public void SwapItemIcons(SlotView slot1, SlotView slot2)
     {
         var itemIcon1 = slot1.ItemIcon;
-        slot1.RemoveIcon();
+        slot1.PullOutIcon();
         slot1.InsertIcon(slot2.ItemIcon, false);
-        slot2.RemoveIcon();
+        slot2.PullOutIcon();
         slot2.InsertIcon(itemIcon1, false);
 
         SetSelectedIcon(slot2.ItemIcon);
     }
+
     public void DivideSelectedItem()
     {
         if (SelectedItemIcon.ItemStack.ItemsNumber == 1)

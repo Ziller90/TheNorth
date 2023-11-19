@@ -150,29 +150,29 @@ public class HumanoidEnemiesAI : MonoBehaviour
 
     void EquipBestItems()
     {
-        foreach(var itemStack in AIInventory.InventoryContainer.ItemsStacksInContainer)
+        foreach(var slot in AIInventory.InventoryContainer.Slots)
         {
-            if (itemStack != null && itemStack.Item && itemStack.Item.SuitableSlots != SlotType.None) 
+            if (slot.ItemStack != null && slot.ItemStack.Item.SuitableSlots != SlotType.None) 
             {
-                switch (itemStack.Item.SuitableSlots)
+                switch (slot.ItemStack.Item.SuitableSlots)
                 {
                     case SlotType.MainWeapon:
-                        if (AIInventory.MainWeaponItemStack.Item == null)
-                            AIInventory.SetItemStackInEquipmentPosition(itemStack, SlotType.MainWeapon);
+                        if (AIInventory.MainWeaponSlot.isEmpty)
+                            AIInventory.SetItemStackInEquipmentPosition(slot.ItemStack, SlotType.MainWeapon);
                         break;
                     case SlotType.SecondaryWeapon:
-                        if (AIInventory.SecondaryWeaponItemStack.Item == null)
-                            AIInventory.SetItemStackInEquipmentPosition(itemStack, SlotType.SecondaryWeapon);
+                        if (AIInventory.SecondaryWeaponSlot.isEmpty)
+                            AIInventory.SetItemStackInEquipmentPosition(slot.ItemStack, SlotType.SecondaryWeapon);
                         break;
                     case SlotType.TwoHanded:
-                        if (AIInventory.MainWeaponItemStack.Item == null && AIInventory.SecondaryWeaponItemStack.Item == null)
-                            AIInventory.SetItemStackInEquipmentPosition(itemStack, SlotType.MainWeapon);
+                        if (AIInventory.MainWeaponSlot.isEmpty && AIInventory.SecondaryWeaponSlot.isEmpty)
+                            AIInventory.SetItemStackInEquipmentPosition(slot.ItemStack, SlotType.MainWeapon);
                         break;
                     case SlotType.BothHanded:
-                        if (AIInventory.MainWeaponItemStack.Item == null)
-                            AIInventory.SetItemStackInEquipmentPosition(itemStack, SlotType.MainWeapon);
-                        else if (AIInventory.SecondaryWeaponItemStack.Item == null)
-                            AIInventory.SetItemStackInEquipmentPosition(itemStack, SlotType.SecondaryWeapon);
+                        if (AIInventory.MainWeaponSlot.isEmpty)
+                            AIInventory.SetItemStackInEquipmentPosition(slot.ItemStack, SlotType.MainWeapon);
+                        else if (AIInventory.SecondaryWeaponSlot.ItemStack.Item == null)
+                            AIInventory.SetItemStackInEquipmentPosition(slot.ItemStack, SlotType.SecondaryWeapon);
                         break;
                     case SlotType.QuikAcess:
                         break;

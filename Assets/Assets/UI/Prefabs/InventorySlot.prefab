@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 8160830472914566672}
   - component: {fileID: 8160830472914566674}
   - component: {fileID: 8160830472914566675}
-  - component: {fileID: 1092138943670284434}
+  - component: {fileID: 4876314683610570144}
   m_Layer: 5
   m_Name: InventorySlot
   m_TagString: Untagged
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1092138943670284434
+--- !u!114 &4876314683610570144
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8160830472914566673}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3019d67921e1eb6499eee893797e86a0, type: 3}
+  m_Script: {fileID: 11500000, guid: bfce86a75809e344c8faf996e4d3c0c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   iconInsertedEvent:
@@ -173,9 +173,12 @@ MonoBehaviour:
   iconRemovedEvent:
     m_PersistentCalls:
       m_Calls: []
+  itemIconPrefab: {fileID: 6452154105753699909, guid: b08abe6d12d75754fafd8327ba7464e7, type: 3}
   slotIsRhombus: 0
   iconShadow: {fileID: 3940657778515223519}
+  blockImage: {fileID: 0}
   selectionMarker: {fileID: 106977092441292942}
+  slotType: 0
 --- !u!1 &8350081534988454075
 GameObject:
   m_ObjectHideFlags: 0
