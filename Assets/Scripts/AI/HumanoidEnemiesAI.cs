@@ -31,7 +31,6 @@ public class HumanoidEnemiesAI : MonoBehaviour
     [SerializeField] HumanoidInventory AIInventory;
 
     bool searchEnemy;
-    Vector3 enemyPosition;
     Vector3 lastEnemyPosition;
     bool searhingRouteGenerated;
     Transform currentEnemy;
@@ -56,7 +55,7 @@ public class HumanoidEnemiesAI : MonoBehaviour
                 actionManager.mainWeaponUsing = false;
                 break;
             case States.BlindChase:
-                navigationManager.MoveToTarget(enemyPosition, MovingMode.Run);
+                navigationManager.MoveToTarget(lastEnemyPosition, MovingMode.Run);
                 actionManager.mainWeaponUsing = false;
                 break;
             case States.Patrol:
@@ -85,7 +84,7 @@ public class HumanoidEnemiesAI : MonoBehaviour
         currentEnemy = sensors.GetNearestEnemy();
         if (currentEnemy != null)
         {
-            enemyPosition = currentEnemy.position;
+            lastEnemyPosition = currentEnemy.position;
             searhingRouteGenerated = false;
             if (Vector3.Distance(transform.position, currentEnemy.position) < distanceToAttack)
             {
@@ -96,14 +95,12 @@ public class HumanoidEnemiesAI : MonoBehaviour
                 AIState = States.Chase;
             }
         }
-        else if (enemyPosition != Vector3.zero)
+        else if (lastEnemyPosition != Vector3.zero)
         {
-            if (Vector3.Distance(transform.position, enemyPosition) < distanceToLastEnemyPosition)
+            if (Vector3.Distance(transform.position, lastEnemyPosition) < distanceToLastEnemyPosition)
             {
-                lastEnemyPosition = enemyPosition;
                 searchEnemy = true;
                 StartCoroutine("SearchingEnemyTimer");
-                enemyPosition = Vector3.zero;
             }
             else
             {
