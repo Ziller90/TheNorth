@@ -6,8 +6,8 @@ using UnityEngine;
 public class MoneyView : MonoBehaviour
 {
     [SerializeField] TMP_Text moneyCountText;
-    HumanoidInventory humanoidInventory;
-    public void SetHumanoidInventory(HumanoidInventory inventory)
+    HumanoidInventoryContainer humanoidInventory;
+    public void SetHumanoidInventory(HumanoidInventoryContainer inventory)
     {
         humanoidInventory = inventory;
         UpdateMoneyView();

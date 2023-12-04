@@ -173,6 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderers:
   - {fileID: 2790954570410452690}
+  skinnedMeshRenderers: []
   interactableObject: {fileID: 4007669262056698384}
 --- !u!1 &5929606748866764101
 GameObject:
@@ -220,30 +221,77 @@ MonoBehaviour:
   m_GameObject: {fileID: 5929606748866764101}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e028e5d12fb74e43b6866a63d4e9a28, type: 3}
+  m_Script: {fileID: 11500000, guid: 54d11fecd5ef16f42b22e09c22ca0c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemsStackInContainer:
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
+  slotGroup:
+    suitableItemTags: []
+    slots:
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &6597315074170894175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,7 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe879ece6df836547b9cddf476fed3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInteractable: 1
+  isInteractableCached: 1
 --- !u!54 &1472420637019272393
 Rigidbody:
   m_ObjectHideFlags: 0

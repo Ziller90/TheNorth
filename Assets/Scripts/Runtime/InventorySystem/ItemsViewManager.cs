@@ -2,58 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using TMPro;
-using UnityEngine.UI;
-using UnityEngine.Rendering;
 using System;
 
 public class ItemsViewManager : MonoBehaviour
 {
+    // used to contain all slotViews that are active on UI in moment
+    public class ActiveSlot
+    {
+        public SlotView slotView;
+        public ContainerBase container;
+    }
+
     [SerializeField] Transform commonIconsContainer;
-    [SerializeField] SlotView mainWeaponSlot;
-    [SerializeField] SlotView secondaryWeaponSlot;
 
-    List<SlotView> activeSlots = new List<SlotView>();
+    List<ActiveSlot> activeSlots = new List<ActiveSlot>();
 
-    ItemIcon selectedItemIcon;
     SlotView selectedItemSlot;
 
-    public ItemIcon SelectedItemIcon => selectedItemIcon;
+    public ItemIcon SelectedItemIcon => selectedItemSlot ? selectedItemSlot.ItemIcon : null;
     public SlotView SelectedItemSlot => selectedItemSlot;
     public Transform CommonIconsContainer => commonIconsContainer;
 
-    public event Action selectedItemIconUpdated;
+    public event Action selectedSlotUpdated;
 
     void OnDisable()
     {
-        selectedItemSlot = null;
-        selectedItemIcon = null;
         RemoveSelection();
     }
-    public void AddActiveSlot(SlotView slot)
-    {
-        activeSlots.Add(slot);
-    }
 
-    public void RemoveActiveSlot(SlotView slot)
-    {
-        if (activeSlots.Contains(slot))
-            activeSlots.Remove(slot);
-    }
+    public void AddActiveSlot(ContainerBase container, SlotView slotView) => activeSlots.Add(new ActiveSlot {container = container, slotView = slotView } );
+    public void RemoveActiveSlot(SlotView slotView) => activeSlots.RemoveAll(i => i.slotView == slotView);
+    public ActiveSlot GetActiveSlotByItemIcon(ItemIcon itemIcon) => activeSlots.FirstOrDefault(i => i.slotView.ItemIcon == itemIcon);
+    public ActiveSlot GetActiveSlotBySlotView(SlotView slot) => activeSlots.FirstOrDefault(i => i.slotView == slot);
 
-    public SlotView GetItemIconSlot(ItemIcon itemIcon)
-    {
-        return activeSlots.FirstOrDefault(i => i.ItemIcon == itemIcon);
-    }
-
-    public void SetSelectedIcon(ItemIcon itemIcon)
+    public void SetSelectedSlotView(SlotView newSelectedSlotView)
     {
         RemoveSelection();
-        selectedItemIcon = itemIcon;
-        selectedItemSlot = GetItemIconSlot(itemIcon);
+        selectedItemSlot = newSelectedSlotView;
         selectedItemSlot.SetSlotSelection(true);
-        selectedItemSlot.ShowItemShadow(itemIcon);
-        selectedItemIconUpdated?.Invoke();
+        selectedSlotUpdated?.Invoke();
     }
 
     public void RemoveSelection()
@@ -61,109 +48,82 @@ public class ItemsViewManager : MonoBehaviour
         if (selectedItemSlot)
         {
             selectedItemSlot.SetSlotSelection(false);
-            selectedItemSlot.HideItemShadow();
-            selectedItemIcon = null;
             selectedItemSlot = null;
         }
-        selectedItemIconUpdated?.Invoke();
+        selectedSlotUpdated?.Invoke();
     }
 
-    public SlotView GetSlotByPosition(Vector2 itemPosition)
+    public ActiveSlot GetActiveSlotByPosition(Vector2 itemPosition)
     { 
-        foreach (var slot in activeSlots)
+        foreach (var activeSlot in activeSlots)
         {
-            if (slot.IsPositionInSlot(itemPosition))
-                return slot;
+            if (activeSlot.slotView.IsPositionInSlot(itemPosition))
+                return activeSlot;
         }
         return null;
     }
 
-    public void MoveItemToSlot(ItemIcon itemIcon, SlotView targetSlotView)
+    public void MoveItemToSlot(ItemIcon itemIcon, ActiveSlot targetActiveSlot)
     {
-        var currentSlotView = GetItemIconSlot(itemIcon);
+        var currentActiveSlot = GetActiveSlotByItemIcon(itemIcon);
 
-        if (targetSlotView == null || targetSlotView == currentSlotView || !targetSlotView.IsSuitableSlotType(itemIcon.ItemStack.Item.SuitableSlots) || targetSlotView.IsBlocked)
+        var targetSlotView = targetActiveSlot?.slotView;   
+        var currentSlotView = currentActiveSlot?.slotView;   
+
+        var targetSlot = targetSlotView ? targetSlotView.Slot : null;
+        var currentSlot = currentSlotView ? currentSlotView.Slot : null;
+
+        var result = ModelUtils.TryMoveFromSlotToSlotWithResult(currentActiveSlot?.container, currentSlot, targetActiveSlot?.container, targetSlot);
+
+        switch (result)
         {
-            currentSlotView.SetIconInSlotPosition();
-            SetSelectedIcon(itemIcon);
-            return;
-        }
-
-        if (targetSlotView.SlotType == SlotType.MainWeapon && itemIcon.ItemStack.Item.SuitableSlots == SlotType.TwoHanded)
-        {
-            if (secondaryWeaponSlot.ItemIcon != null)
-            {
-                var firstFreeSlot = activeSlots.FirstOrDefault(i => i.SlotType == SlotType.None && i.ItemIcon == null);
-
-                if (firstFreeSlot)
-                    MoveItemToSlot(secondaryWeaponSlot.ItemIcon, firstFreeSlot);
-                else
-                {
-                    Debug.Log("Can't take two handed Weapon because there is no place in inventory");
-
-                    SetSelectedIcon(itemIcon);
-                    return;
-                }
-            }
-        }
-
-        if (targetSlotView.ItemIcon == null)
-        {
-            currentSlotView.PullOutIcon();
-            targetSlotView.InsertIcon(itemIcon, false);
-            SetSelectedIcon(itemIcon);
-        }
-        else
-        {
-            var stackToMerge = itemIcon.ItemStack;
-
-            if (targetSlotView.Slot.CanBeMerged(stackToMerge))
-            {
+            case TransferResult.Added:
+                currentSlotView.PullOutIcon();
+                targetSlotView.InsertIcon(itemIcon);
+                SetSelectedSlotView(targetSlotView);
+                break;
+            case TransferResult.Merged:
                 MergeView(itemIcon, targetSlotView.ItemIcon);
-                targetSlotView.Slot.Merge(stackToMerge);
-            }
-            else
-                SwapItemIcons(currentSlotView, targetSlotView);
+                break;
+            case TransferResult.Swapped:
+                SwapView(currentSlotView, targetSlotView);
+                break;
+            default:
+                currentSlotView.SetIconInSlotPosition();
+                break;
         }
     }
 
     public void MergeView(ItemIcon itemIcon1, ItemIcon itemIcon2)
     {
         var stack1 = itemIcon1.ItemStack;
-        var stack2 = itemIcon2.ItemStack;
-        var slotView1 = GetItemIconSlot(itemIcon1);
-        var slotView2 = GetItemIconSlot(itemIcon2);
-        int MaxStackSize = stack1.Item.MaxStackSize;
 
-        if (stack1.ItemsNumber + stack2.ItemsNumber <= MaxStackSize)
+        var slotView1 = GetActiveSlotByItemIcon(itemIcon1).slotView;
+        var slotView2 = GetActiveSlotByItemIcon(itemIcon2).slotView;
+
+        if (stack1.ItemsNumber == 0)
         {
-            SetSelectedIcon(slotView2.ItemIcon);
+            SetSelectedSlotView(slotView2);
             slotView1.DestroyItemIcon();
         }
-        else if (stack1.ItemsNumber + stack2.ItemsNumber >= MaxStackSize)
+        else
         {
             slotView1.SetIconInSlotPosition();
-            SetSelectedIcon(slotView2.ItemIcon);
+            SetSelectedSlotView(slotView2);
         }
     }
 
-    public void SwapItemIcons(SlotView slot1, SlotView slot2)
+    public void SwapView(SlotView slot1, SlotView slot2)
     {
         var itemIcon1 = slot1.ItemIcon;
+        var itemIcon2 = slot2.ItemIcon;
+
         slot1.PullOutIcon();
-        slot1.InsertIcon(slot2.ItemIcon, false);
         slot2.PullOutIcon();
-        slot2.InsertIcon(itemIcon1, false);
 
-        SetSelectedIcon(slot2.ItemIcon);
-    }
+        slot1.InsertIcon(itemIcon2);
+        slot2.InsertIcon(itemIcon1);
 
-    public void DivideSelectedItem()
-    {
-        if (SelectedItemIcon.ItemStack.ItemsNumber == 1)
-        {
-            Debug.Log("Can't divide one item");
-            return;
-        }
+        SetSelectedSlotView(slot2);
     }
 }

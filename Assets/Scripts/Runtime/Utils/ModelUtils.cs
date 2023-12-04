@@ -95,7 +95,7 @@ public class ModelUtils : MonoBehaviour
         return Vector3.ClampMagnitude(new Vector3(horizontal, 0, vertical), 1);
     }
 
-    public static bool isInRhombus(Vector2 position, Vector2 rhombusCenter, float rhombusWidth, float rhombusHeight)
+    public static bool IsInRhombus(Vector2 position, Vector2 rhombusCenter, float rhombusWidth, float rhombusHeight)
     {
         Vector2 pointVector = position - rhombusCenter;
         if (Mathf.Abs(pointVector.x) / (rhombusWidth / 2) + Mathf.Abs(pointVector.y) / (rhombusHeight / 2) <= 1)
@@ -105,52 +105,102 @@ public class ModelUtils : MonoBehaviour
         return false;
     }
 
-    public static bool TryAddOrMergeItemStackToSlotGroup(ItemStack newStack, Slot[] slotGroup)
+    public static bool TryMoveFromSlotToSlot(ContainerBase container1, Slot slot1, ContainerBase container2, Slot slot2)
     {
-        bool merged = TryMergeToSlotGroup(newStack, slotGroup);
-        if (merged)
+        var result = TryMoveFromSlotToSlotWithResult(container1, slot1, container2, slot2);
+        if (result == TransferResult.Added || result == TransferResult.Merged || result == TransferResult.Swapped)
             return true;
-
-        bool added = TryAdd(newStack, slotGroup);
-        if (added)
-            return true;
-
-        return false;
+        else 
+            return false;  
     }
 
-    static int GetFirstEmtySlotInGroupIndex(Slot[] slotGroup)
+    public static TransferResult TryMoveFromSlotToSlotWithResult(ContainerBase container1, Slot slot1, ContainerBase container2, Slot slot2)
     {
-        for (int i = 0; i < slotGroup.Length; i++)
+        if (slot1 == null || slot2 == null)
         {
-            if (slotGroup[i].isEmpty)
-                return i;
+            return TransferResult.Undefined;
         }
-        return -1;
-    }
 
-    static bool TryAdd(ItemStack newStack, Slot[] slotGroup)
-    {
-        int freeStackIndex = GetFirstEmtySlotInGroupIndex(slotGroup);
-        if (freeStackIndex == -1)
-            return false;
+        if (slot1 == slot2)
+            return TransferResult.CurrentAndTargetAreSame;
 
-        slotGroup[freeStackIndex].SetItemStack(newStack);
-        return true;
-    }
-
-    static bool TryMergeToSlotGroup(ItemStack newStack, Slot[] slotGroup)
-    {
-        if (newStack.Item.MaxStackSize != 1)
+        TransferResult result;
+        if (container1.CanRemoveItemStackFromSlot(slot1) && container2.CanAddItemStackInSlot(slot1.ItemStack, slot2))
         {
-            foreach (var slot in slotGroup)
+            var itemStack = slot1.ItemStack;
+
+            result = slot2.TryAddWithResult(itemStack);
+            if (result == TransferResult.Added)
             {
-                if (slot.CanBeMerged(newStack))
-                {
-                    slot.Merge(newStack);
-                    return true;
-                }
+                slot1.Pop();
+                return result;
+            }
+            else if (result == TransferResult.Merged)
+            {
+                if (itemStack.ItemsNumber == 0)
+                    slot1.Pop();
+                return result;
+            }
+            else if (result == TransferResult.SlotIsBlocked || result == TransferResult.NotSuitableItemStack)
+            {
+                return result;
+            }
+            else if (result == TransferResult.NoFreeSpace && container2.CanRemoveItemStackFromSlot(slot2) && container1.CanAddItemStackInSlot(slot2.ItemStack, slot1))
+            {
+                return TrySwapSlotsWithResult(slot1, slot2);
             }
         }
+
+        return TransferResult.Undefined;
+    }
+
+    public static bool TryMoveFromSlotToSlotGroup(ContainerBase container1, Slot slot1, ContainerBase container2, SlotGroup slotGroup)
+    {
+        if (container1.CanRemoveItemStackFromSlot(slot1) && container2.CanAddItemStackInSlotGroup(slot1.ItemStack, slotGroup))
+        {
+            var success = slotGroup.TryAdd(slot1.ItemStack);
+            if (success)
+            {
+                slot1.Pop();
+                return true;
+            }
+        }
+
         return false;
+    }
+
+    static TransferResult TrySwapSlotsWithResult(Slot slot1, Slot slot2)
+    {
+        var slot1ItemStackTemp = slot1.Pop();
+        var slot2ItemStackTemp = slot2.Pop();
+
+        var result1 = slot1.TryAddWithResult(slot2ItemStackTemp);
+        var result2 = slot2.TryAddWithResult(slot1ItemStackTemp);
+
+        if (result1 == TransferResult.Added && result2 == TransferResult.Added)
+        {
+            return TransferResult.Swapped;
+        }
+        else
+        {
+            slot1.TryAdd(slot1ItemStackTemp);
+            slot2.TryAdd(slot2ItemStackTemp);
+            return TransferResult.CantSwap;
+        }
+    }
+
+    public static bool IsSuitableItemStack(ItemStack itemStack, List<AndItemTagList> suitableItemTags)
+    {
+        if (suitableItemTags.Count != 0)
+        {
+            foreach (var andtagList in suitableItemTags)
+            {
+                var valid = andtagList.List.All(x => itemStack.Item.Tags.Contains(x));
+                if (valid)
+                    return true;
+            }
+            return false;
+        }
+        return true;
     }
 }

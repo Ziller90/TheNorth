@@ -35,7 +35,7 @@ public class InventoryUI : MonoBehaviour
     {
         openedContainer = containerBody;
         openedContainer.OpenContainer();
-        openedContainerView.SetOpenedContainer(openedContainer.GetComponent<Container>());
+        openedContainerView.SetOpenedContainer(openedContainer.GetComponent<SimpleContainer>());
         openedContainer.GetComponent<InteractableObject>().SetInteractable(false);
 
         mobileBattleSystemInterface.SetActive(false);

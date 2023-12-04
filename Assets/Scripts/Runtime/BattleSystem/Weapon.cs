@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//defines animation that should be used for this weapon
 public enum WeaponType
 {
     None = 0,

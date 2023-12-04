@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -28,7 +29,7 @@ public class HumanoidEnemiesAI : MonoBehaviour
     [SerializeField] float enemySearchingTime;
     [SerializeField] int searhingCornersNumber;
 
-    [SerializeField] HumanoidInventory AIInventory;
+    [SerializeField] HumanoidInventoryContainer AIInventory;
 
     bool searchEnemy;
     Vector3 enemyPosition;
@@ -150,34 +151,16 @@ public class HumanoidEnemiesAI : MonoBehaviour
 
     void EquipBestItems()
     {
-        foreach(var slot in AIInventory.InventoryContainer.Slots)
-        {
-            if (slot.ItemStack != null && slot.ItemStack.Item.SuitableSlots != SlotType.None) 
-            {
-                switch (slot.ItemStack.Item.SuitableSlots)
-                {
-                    case SlotType.MainWeapon:
-                        if (AIInventory.MainWeaponSlot.isEmpty)
-                            AIInventory.SetItemStackInEquipmentPosition(slot.ItemStack, SlotType.MainWeapon);
-                        break;
-                    case SlotType.SecondaryWeapon:
-                        if (AIInventory.SecondaryWeaponSlot.isEmpty)
-                            AIInventory.SetItemStackInEquipmentPosition(slot.ItemStack, SlotType.SecondaryWeapon);
-                        break;
-                    case SlotType.TwoHanded:
-                        if (AIInventory.MainWeaponSlot.isEmpty && AIInventory.SecondaryWeaponSlot.isEmpty)
-                            AIInventory.SetItemStackInEquipmentPosition(slot.ItemStack, SlotType.MainWeapon);
-                        break;
-                    case SlotType.BothHanded:
-                        if (AIInventory.MainWeaponSlot.isEmpty)
-                            AIInventory.SetItemStackInEquipmentPosition(slot.ItemStack, SlotType.MainWeapon);
-                        else if (AIInventory.SecondaryWeaponSlot.ItemStack.Item == null)
-                            AIInventory.SetItemStackInEquipmentPosition(slot.ItemStack, SlotType.SecondaryWeapon);
-                        break;
-                    case SlotType.QuikAcess:
-                        break;
-                }
-            }
-        }
+        EquipMostExpensiveItemSuitableForSlot(AIInventory.MainWeaponSlot);
+        EquipMostExpensiveItemSuitableForSlot(AIInventory.SecondaryWeaponSlot);
+    }
+
+    void EquipMostExpensiveItemSuitableForSlot(Slot slot)
+    {
+        var suitableSlots = AIInventory.BackpackSlots.Slots.Where(i => i.ItemStack != null && slot.IsSuitable(i.ItemStack));
+        var mostExpensiveItemSlot = suitableSlots.OrderByDescending(i => i.ItemStack.Item.Cost).FirstOrDefault();
+
+        if (mostExpensiveItemSlot != null)
+            ModelUtils.TryMoveFromSlotToSlot(AIInventory, mostExpensiveItemSlot, AIInventory, slot);
     }
 }
