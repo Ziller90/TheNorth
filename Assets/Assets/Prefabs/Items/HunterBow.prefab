@@ -457,6 +457,7 @@ GameObject:
   - component: {fileID: -2066988369578927645}
   - component: {fileID: -8793508508144218161}
   - component: {fileID: 2065891690038764213}
+  - component: {fileID: -7405101690211859378}
   m_Layer: 0
   m_Name: HunterBow
   m_TagString: Untagged
@@ -525,11 +526,7 @@ MonoBehaviour:
   cost: 120
   icon: {fileID: 21300000, guid: b49c27c59fab60747bc93d65781cd392, type: 3}
   maxStackSize: 1
-  suitableSlots: 4
-  equipPositon: 2
-  equipedCached: 0
-  itemColliders:
-  - {fileID: 198249334945004079}
+  itemTags: 0100000016000000
 --- !u!114 &-2066988369578927645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,6 +569,23 @@ MonoBehaviour:
   arrowThrower: {fileID: 0}
   arrowPrefab: {fileID: 0}
   arrowInBow: {fileID: 0}
+--- !u!114 &-7405101690211859378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7087786812071082882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0f0dbdfd523dac43b1475da257e34f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipedCached: 0
+  itemColliders:
+  - {fileID: 198249334945004079}
+  interactableObject: {fileID: -2066988369578927645}
+  equipmentPosition: 1
 --- !u!1 &7721179338872754874
 GameObject:
   m_ObjectHideFlags: 0

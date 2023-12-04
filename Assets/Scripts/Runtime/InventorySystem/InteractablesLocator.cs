@@ -6,7 +6,7 @@ public class InteractablesLocator : MonoBehaviour
 {
     [SerializeField] float interactionRange;
     [SerializeField] ActionManager actionManager;
-    HumanoidInventory inventory;
+    HumanoidInventoryContainer inventory;
 
     List<InteractableObject> interactablesOnLocation;
     InteractableObject nearestInteractable = null;
@@ -15,7 +15,7 @@ public class InteractablesLocator : MonoBehaviour
     public event ContainerOpened containerOpenedEvent;
     void Start()
     {
-        inventory = GetComponent<HumanoidInventory>();  
+        inventory = GetComponent<HumanoidInventoryContainer>();  
         actionManager.onInteractPressed += Interact;
         interactablesOnLocation = Links.instance.globalLists.interactablesOnLocation;
     }
@@ -55,7 +55,7 @@ public class InteractablesLocator : MonoBehaviour
         if (nearestInteractable)
         {
             if (nearestInteractable.GetComponent<Item>())
-                inventory.AddItem(nearestInteractable.GetComponent<Item>());
+                inventory.TryPickUpItem(nearestInteractable.GetComponent<Item>());
             if (nearestInteractable.GetComponent<ContainerBody>())
                 containerOpenedEvent(nearestInteractable.GetComponent<ContainerBody>());
         }

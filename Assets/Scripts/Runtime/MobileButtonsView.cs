@@ -8,14 +8,24 @@ public class MobileButtonsView : MonoBehaviour
     [SerializeField] Image leftHandWeaponImage;
     [SerializeField] Sprite fistSprite;
     [SerializeField] Sprite noneSprite;
+    [SerializeField] SlotView[] quickSlotViews;
 
-    HumanoidInventory playerInventory;
-    [SerializeField] Image[] accessButtonIcons;
-    [SerializeField] TMP_Text[] acessButtonsItemNumber;
+    HumanoidInventoryContainer playerInventory;
 
     private void Awake()
     {
-        playerInventory = Links.instance.playerCharacter.GetComponentInChildren<HumanoidInventory>();
+        playerInventory = Links.instance.playerCharacter.GetComponentInChildren<HumanoidInventoryContainer>();
+    }
+
+    void Start()
+    {
+        SetUpQuickSlotsButtons();
+    }
+
+    void SetUpQuickSlotsButtons()
+    {
+        for (int i = 0; i < playerInventory.QuickAccessSlots.Slots.Length; i++)
+            quickSlotViews[i].SetSlot(playerInventory.QuickAccessSlots.Slots[i], null);
     }
 
     void Update()
@@ -29,21 +39,10 @@ public class MobileButtonsView : MonoBehaviour
             leftHandWeaponImage.sprite = playerInventory.SecondaryWeaponSlot.ItemStack.Item.Icon;
         else
             leftHandWeaponImage.sprite = fistSprite;
-
-        for (int i = 0; i < accessButtonIcons.Length; i++)
-        {
-            if (!playerInventory.QuickAccessSlots[i].isEmpty)
-                accessButtonIcons[i].sprite = playerInventory.QuickAccessSlots[i].ItemStack.Item.Icon;
-            else
-                accessButtonIcons[i].sprite = noneSprite;
-
-            var itemsNumber = playerInventory.QuickAccessSlots[i].ItemStack.ItemsNumber;
-            acessButtonsItemNumber[i].text = itemsNumber == 0 || itemsNumber == 1 ? "" : playerInventory.QuickAccessSlots[i].ItemStack.ItemsNumber.ToString();
-        }
     }
 
     public void UseAcessButtonItem(int index)
     {
-        playerInventory.UseItem(playerInventory.QuickAccessSlots[index].ItemStack);
+        playerInventory.UseUsableItem(playerInventory.QuickAccessSlots.Slots[index].ItemStack);
     }
 }

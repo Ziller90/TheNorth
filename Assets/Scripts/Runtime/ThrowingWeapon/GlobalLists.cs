@@ -9,7 +9,7 @@ public class GlobalLists : MonoBehaviour
     public List<InteractableObject> interactablesOnLocation;
     public List<Item> itemsPrefabs;
 
-    public Item GetItemById(int id)
+    public Item GetItemPrefabById(int id)
     {
         return itemsPrefabs.FirstOrDefault(i => i.Id == id);
     }

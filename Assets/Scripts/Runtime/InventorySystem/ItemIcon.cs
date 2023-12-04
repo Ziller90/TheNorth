@@ -23,34 +23,6 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     bool isDragged = false;
     bool isHold = false;
 
-    void OnEnable()
-    {
-        if (itemStack != null)
-        {
-            itemStack.itemsNumberUpdatedEvent -= OnItemsNumberUpdated;
-            itemStack.itemsNumberUpdatedEvent += OnItemsNumberUpdated;
-
-            itemStack.deletedEvent -= OnItemStackDeleted;
-            itemStack.deletedEvent += OnItemStackDeleted;
-        }
-    }
-
-    void OnDisable()
-    {
-        itemStack.itemsNumberUpdatedEvent -= OnItemsNumberUpdated;
-        itemStack.deletedEvent -= OnItemStackDeleted;
-    }
-
-    void OnItemsNumberUpdated()
-    {
-        itemNumberText.text = itemStack.ItemsNumber == 1 ? "" : itemStack.ItemsNumber.ToString();
-    }
-    void OnItemStackDeleted()
-    {
-        var currentSlot = itemsViewManager.GetItemIconSlot(this);
-        currentSlot.DestroyItemIcon();
-    }
-
     public void SetItemStack(ItemStack itemStack, ItemsViewManager itemsViewManager)
     {
         this.itemStack = itemStack;
@@ -58,13 +30,13 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
         icon.sprite = itemStack.Item.Icon;
 
         itemStack.itemsNumberUpdatedEvent += OnItemsNumberUpdated;
-        itemStack.deletedEvent += OnItemStackDeleted;
         OnItemsNumberUpdated();
     }
 
     public void OnPointerDown(PointerEventData pointerEventData)
     {
-        itemsViewManager.SetSelectedIcon(this);
+        var thisIconSlot = itemsViewManager.GetActiveSlotByItemIcon(this).slotView;
+        itemsViewManager.SetSelectedSlotView(thisIconSlot);
         transform.SetParent(itemsViewManager.CommonIconsContainer);
         isHold = true;
         StartCoroutine(WaitForDescription());
@@ -72,8 +44,8 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
 
     public void OnPointerUp(PointerEventData pointerEventData)
     {
-        var newSlot = itemsViewManager.GetSlotByPosition(transform.position);
-        itemsViewManager.MoveItemToSlot(this, newSlot);
+        var newActiveSlot = itemsViewManager.GetActiveSlotByPosition(transform.position);
+        itemsViewManager.MoveItemToSlot(this, newActiveSlot);
 
         isDragged = false;
         isHold = false;
@@ -93,6 +65,25 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
         }
     }
 
+    void OnEnable()
+    {
+        if (itemStack != null)
+        {
+            itemStack.itemsNumberUpdatedEvent -= OnItemsNumberUpdated;
+            itemStack.itemsNumberUpdatedEvent += OnItemsNumberUpdated;
+        }
+    }
+
+    void OnDisable()
+    {
+        itemStack.itemsNumberUpdatedEvent -= OnItemsNumberUpdated;
+    }
+
+    void OnItemsNumberUpdated()
+    {
+        itemNumberText.text = itemStack.ItemsNumber == 1 ? "" : itemStack.ItemsNumber.ToString();
+    }
+
     IEnumerator WaitForDescription()
     {
         yield return new WaitForSeconds(timeToShowDesctiption);
@@ -102,14 +93,14 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
         }
     }
 
-    public void InstantiateDescriptionPanel(ItemIcon itemIcon)
+    void InstantiateDescriptionPanel(ItemIcon itemIcon)
     {
         descriptionPanel = Instantiate(descriptionPanelPrefab, itemIcon.transform);
         descriptionPanel.transform.position = itemIcon.transform.position + descitptionPanelOffset;
         descriptionPanel.SetItemData(itemIcon.ItemStack.Item);
     }
 
-    public void DestroyDescriptionPanel()
+    void DestroyDescriptionPanel()
     {
         if (descriptionPanel)
             Destroy(descriptionPanel.gameObject);

@@ -12,7 +12,6 @@ public class ItemStack
 
     public Item Item => itemPrefab;
     public Action itemsNumberUpdatedEvent;
-    public Action deletedEvent;
 
     public int ItemsNumber
     {
@@ -26,7 +25,6 @@ public class ItemStack
             itemsNumberUpdatedEvent?.Invoke();
             if (itemsNumber <= 0)
             {
-                deletedEvent?.Invoke();
                 itemPrefab = null;
             }
         }
@@ -41,6 +39,6 @@ public class ItemStack
     public ItemStack()
     {
         itemPrefab = null;
-        itemsNumber = 0;
+        itemsNumber = 0;    
     }
 }

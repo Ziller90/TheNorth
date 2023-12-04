@@ -4,28 +4,33 @@ using UnityEngine;
 
 public class OpenedContainerView : MonoBehaviour
 {
-    [SerializeField] ContainerGridView playerInventoryGrid;
-    [SerializeField] ContainerGridView openedContainerGrid;
+    [SerializeField] SlotsGridView playerInventoryGrid;
+    [SerializeField] SlotsGridView openedContainerGrid;
     [SerializeField] ItemsViewManager itemsViewManager;
 
-    HumanoidInventory playerInventory;
+    HumanoidInventoryContainer playerInventory;
+
     void Awake()
     {
-        playerInventory = Links.instance.playerCharacter.GetComponentInChildren<HumanoidInventory>();
-        playerInventoryGrid.SetContainer(playerInventory.InventoryContainer, itemsViewManager);
+        playerInventory = Links.instance.playerCharacter.GetComponentInChildren<HumanoidInventoryContainer>();
+        playerInventoryGrid.SetSlotsGroup(playerInventory, itemsViewManager, playerInventory.BackpackSlots);
     }
-    public void SetOpenedContainer(Container openedContainer)
+
+    public void SetOpenedContainer(SimpleContainer openedContainer)
     {
-        openedContainerGrid.SetContainer(openedContainer, itemsViewManager);
+        openedContainerGrid.SetSlotsGroup(openedContainer, itemsViewManager, openedContainer.SlotGroup);
     }
+
     void OnEnable()
     {
         DrawView();
     }
+
     void OnDisable()
     {
         ClearView();
     }
+
     void DrawView()
     {
         playerInventoryGrid.DrawContainerSlots();
