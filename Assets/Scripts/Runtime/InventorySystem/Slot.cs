@@ -28,25 +28,25 @@ public class Slot
     [SerializeField] List<AndItemTagList> suitableItemTags;
     [SerializeReference, SubclassSelector] ItemStack itemStack = null;
     public ItemStack ItemStack => itemStack;
-    public Sprite BlockImage => blockImage;
+    public Sprite BlockImage => blockImageSprite;
     public bool isEmpty => itemStack == null;
     public bool IsBlocked { get; set; }
 
     public delegate void SlotRemovedAction(ItemStack itemStack);
-    public delegate void SetBlockAction(bool isBlocked, Sprite blockImage = null);
+    public delegate void SetBlockAction(bool isBlocked, Sprite blockSprite = null);
 
-    public event SetBlockAction setBlock;
+    public event SetBlockAction blockStateUpdated;
 
     public event Action inserted;
     public event SlotRemovedAction removed;
 
-    Sprite blockImage;
+    Sprite blockImageSprite;
 
-    public void SetBlock(bool isBlocked, Sprite blockImage = null)
+    public void SetBlock(bool isBlocked, Sprite blockSprite = null)
     {
-        this.blockImage = blockImage;
+        this.blockImageSprite = blockSprite;
         IsBlocked = isBlocked;
-        setBlock?.Invoke(isBlocked, blockImage);
+        blockStateUpdated?.Invoke(isBlocked, blockSprite);
     }
 
     public bool TryAdd(ItemStack itemStack)

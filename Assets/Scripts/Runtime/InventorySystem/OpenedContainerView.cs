@@ -6,19 +6,18 @@ public class OpenedContainerView : MonoBehaviour
 {
     [SerializeField] SlotsGridView playerInventoryGrid;
     [SerializeField] SlotsGridView openedContainerGrid;
-    [SerializeField] ItemsViewManager itemsViewManager;
 
     HumanoidInventoryContainer playerInventory;
 
     void Awake()
     {
         playerInventory = Links.instance.playerCharacter.GetComponentInChildren<HumanoidInventoryContainer>();
-        playerInventoryGrid.SetSlotsGroup(playerInventory, itemsViewManager, playerInventory.BackpackSlots);
+        playerInventoryGrid.SetSlotsGroup(playerInventory, playerInventory.BackpackSlots);
     }
 
     public void SetOpenedContainer(SimpleContainer openedContainer)
     {
-        openedContainerGrid.SetSlotsGroup(openedContainer, itemsViewManager, openedContainer.SlotGroup);
+        openedContainerGrid.SetSlotsGroup(openedContainer, openedContainer.SlotGroup);
     }
 
     void OnEnable()
