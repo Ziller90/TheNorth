@@ -55,9 +55,16 @@ public class InteractablesLocator : MonoBehaviour
         if (nearestInteractable)
         {
             if (nearestInteractable.GetComponent<Item>())
-                inventory.TryPickUpItem(nearestInteractable.GetComponent<Item>());
+            {
+                var item = nearestInteractable.GetComponent<Item>();
+                inventory.TryPickUpItem(item);
+            }
+
             if (nearestInteractable.GetComponent<ContainerBody>())
-                containerOpenedEvent(nearestInteractable.GetComponent<ContainerBody>());
+            {
+                var containerBody = nearestInteractable.GetComponent<ContainerBody>();
+                containerOpenedEvent?.Invoke(containerBody);
+            }
         }
     }
 }

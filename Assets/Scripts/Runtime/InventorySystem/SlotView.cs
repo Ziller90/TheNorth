@@ -8,7 +8,7 @@ public class SlotView : MonoBehaviour
     Slot slot;
     ItemIcon itemIconInSlot;
     RectTransform slotTransform;
-    
+
     public Slot Slot => slot;
     public ItemIcon ItemIcon => itemIconInSlot;
 
@@ -18,22 +18,44 @@ public class SlotView : MonoBehaviour
     [SerializeField] Image blockImage;
     [SerializeField] Image selectionMarker;
 
-    private void OnEnable()
+    void OnEnable()
     {
         slotTransform = GetComponent<RectTransform>();
+
+        if (slot != null)
+        {
+            slot.blockStateUpdated -= SetBlockView;
+            slot.blockStateUpdated += SetBlockView;
+        }
     }
 
-    public void SetSlot(Slot slot, ItemsViewManager itemsViewManager)
+    void OnDisable()
+    {
+        if (slot != null)
+        {
+            slot.blockStateUpdated -= SetBlockView;
+        }
+    }
+
+    void SetBlockView(bool isBlocked, Sprite blockSprite = null)
+    {
+        blockImage.gameObject.SetActive(isBlocked);
+        blockImage.sprite = blockSprite;
+    }
+
+    public void SetSlot(Slot slot)
     {
         this.slot = slot;
+        slot.blockStateUpdated += SetBlockView;
+
         if (!slot.isEmpty)
-            InstantiateItemIcon(itemsViewManager);
+            InstantiateItemIcon();
     }
 
-    public void InstantiateItemIcon(ItemsViewManager itemsViewManager)
+    public void InstantiateItemIcon()
     {
         var newIcon = Instantiate(itemIconPrefab, slotTransform);
-        newIcon.SetItemStack(slot.ItemStack, itemsViewManager);
+        newIcon.SetItemStack(slot.ItemStack);
         InsertIcon(newIcon);
     }
 
@@ -48,7 +70,7 @@ public class SlotView : MonoBehaviour
         itemIconInSlot.transform.SetParent(slotTransform);
         var itemIconRectTransform = itemIconInSlot.GetComponent<RectTransform>();
         float width = itemIconRectTransform.rect.width;
-        itemIconRectTransform.anchoredPosition= new Vector3(width/2, -width/2, 0);
+        itemIconRectTransform.anchoredPosition = new Vector3(width / 2, -width / 2, 0);
     }
 
     public void PullOutIcon()
@@ -60,7 +82,7 @@ public class SlotView : MonoBehaviour
     {
         Vector3[] corners = new Vector3[4];
         slotTransform.GetWorldCorners(corners);
-        if (!slotIsRhombus) 
+        if (!slotIsRhombus)
         {
             Rect slotWorldRect = new Rect(corners[0].x, corners[0].y, corners[3].x - corners[0].x, corners[1].y - corners[0].y);
             if (slotWorldRect.Contains(position))
@@ -97,7 +119,7 @@ public class SlotView : MonoBehaviour
             Destroy(itemIconInSlot.gameObject);
     }
 
-    public void PullOutAndDestroy()
+    public void PullOutAndDestroyItemIcon()
     {
         var itemIconTemp = itemIconInSlot;
         PullOutIcon();

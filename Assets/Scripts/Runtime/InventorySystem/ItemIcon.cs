@@ -15,7 +15,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     [SerializeField] Vector3 descitptionPanelOffset;
 
     ItemDescriptionPanel descriptionPanel;
-    ItemsViewManager itemsViewManager;
+    ItemsManagerWindow itemsViewManager;
     ItemStack itemStack;
 
     public ItemStack ItemStack => itemStack;
@@ -23,12 +23,11 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     bool isDragged = false;
     bool isHold = false;
 
-    public void SetItemStack(ItemStack itemStack, ItemsViewManager itemsViewManager)
+    public void SetItemStack(ItemStack itemStack)
     {
         this.itemStack = itemStack;
-        this.itemsViewManager = itemsViewManager;
         icon.sprite = itemStack.Item.Icon;
-
+        itemsViewManager = Links.instance.currentItemsViewManager;
         itemStack.itemsNumberUpdatedEvent += OnItemsNumberUpdated;
         OnItemsNumberUpdated();
     }

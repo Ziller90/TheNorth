@@ -10,17 +10,18 @@ public class HumanoidInventoryView : MonoBehaviour
     [SerializeField] SlotView[] quickSlotViews;
     [SerializeField] SlotsGridView containerGridView;
     [SerializeField] ItemIcon itemIconPrefab;
-    [SerializeField] ItemsViewManager itemsViewManager;
     [SerializeField] Button useButton;
     [SerializeField] Button dropButton;
     [SerializeField] MoneyView moneyView;
 
     HumanoidInventoryContainer inventory;
+    ItemsManagerWindow itemsViewManager;
 
     void Awake()
     {
+        itemsViewManager = Links.instance.currentItemsViewManager;
         inventory = Links.instance.playerCharacter.GetComponentInChildren<HumanoidInventoryContainer>();
-        containerGridView.SetSlotsGroup(inventory, itemsViewManager, inventory.BackpackSlots);
+        containerGridView.SetSlotsGroup(inventory, inventory.BackpackSlots);
         moneyView.SetHumanoidInventory(inventory);
     }
 
@@ -56,33 +57,28 @@ public class HumanoidInventoryView : MonoBehaviour
     public void ClearInventory()
     {
         containerGridView.ClearContainerGrid();
-
         mainWeaponSlotView.DestroyItemIcon();
-        itemsViewManager.RemoveActiveSlot(mainWeaponSlotView);
-
         secondaryWeaponSlotView.DestroyItemIcon();
-        itemsViewManager.RemoveActiveSlot(secondaryWeaponSlotView);
 
         foreach (var quickSlot in quickSlotViews)
-        {
             quickSlot.DestroyItemIcon();
-            itemsViewManager.RemoveActiveSlot(quickSlot);
-        }
+
+        itemsViewManager.Clear();
     }
 
     void DrawInventorySlots()
     {
         containerGridView.DrawContainerSlots();
 
-        mainWeaponSlotView.SetSlot(inventory.MainWeaponSlot, itemsViewManager);
+        mainWeaponSlotView.SetSlot(inventory.MainWeaponSlot);
         itemsViewManager.AddActiveSlot(inventory, mainWeaponSlotView);
 
-        secondaryWeaponSlotView.SetSlot(inventory.SecondaryWeaponSlot, itemsViewManager);
+        secondaryWeaponSlotView.SetSlot(inventory.SecondaryWeaponSlot);
         itemsViewManager.AddActiveSlot(inventory, secondaryWeaponSlotView);
 
         for (int i = 0; i < quickSlotViews.Length; i++)
         {
-            quickSlotViews[i].SetSlot(inventory.QuickAccessSlots.Slots[i], itemsViewManager);
+            quickSlotViews[i].SetSlot(inventory.QuickAccessSlots.Slots[i]);
             itemsViewManager.AddActiveSlot(inventory, quickSlotViews[i]);
         }
     }
@@ -95,7 +91,7 @@ public class HumanoidInventoryView : MonoBehaviour
     public void DropSelectedSlotItem()
     {
         inventory.DropItemsStackFromSlot(itemsViewManager.SelectedItemSlot.Slot);
-        itemsViewManager.SelectedItemSlot.PullOutAndDestroy();
+        itemsViewManager.SelectedItemSlot.PullOutAndDestroyItemIcon();
         itemsViewManager.RemoveSelection();
     }
 

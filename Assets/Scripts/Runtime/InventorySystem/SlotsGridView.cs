@@ -9,14 +9,18 @@ public class SlotsGridView : MonoBehaviour
     [SerializeField] GridLayoutGroup slotsGrid;
     [SerializeField] SlotView slotPrefab;
 
-    ItemsViewManager itemsViewManager;
+    ItemsManagerWindow itemsViewManager;
     ContainerBase slotsOwnerContainer;
     SlotGroup slotGroup;
 
-    public void SetSlotsGroup(ContainerBase container, ItemsViewManager itemsViewManager, SlotGroup slotGroup)
+    public void Awake()
+    {
+        itemsViewManager = Links.instance.currentItemsViewManager;
+    }
+
+    public void SetSlotsGroup(ContainerBase container, SlotGroup slotGroup)
     {
         slotsOwnerContainer = container;
-        this.itemsViewManager = itemsViewManager;
         this.slotGroup = slotGroup;
     }
 
@@ -35,7 +39,7 @@ public class SlotsGridView : MonoBehaviour
         for (int i = 0; i < slotGroup.Slots.Length; i++)
         {
             var slot = Instantiate(slotPrefab, slotsGrid.transform);
-            slot.SetSlot(slotGroup.Slots[i], itemsViewManager);
+            slot.SetSlot(slotGroup.Slots[i]);
             slotViews.Add(slot);
             itemsViewManager.AddActiveSlot(slotsOwnerContainer, slot);
         }

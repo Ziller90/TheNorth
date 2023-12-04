@@ -25,7 +25,7 @@ public class MobileButtonsView : MonoBehaviour
     void SetUpQuickSlotsButtons()
     {
         for (int i = 0; i < playerInventory.QuickAccessSlots.Slots.Length; i++)
-            quickSlotViews[i].SetSlot(playerInventory.QuickAccessSlots.Slots[i], null);
+            quickSlotViews[i].SetSlot(playerInventory.QuickAccessSlots.Slots[i]);
     }
 
     void Update()

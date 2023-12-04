@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 3380745120881329048}
   - component: {fileID: 3380745120881329049}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: BackgroundPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -201,10 +201,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3380745121464893055}
   - component: {fileID: 3380745121464893049}
-  - component: {fileID: 3380745121464893054}
   - component: {fileID: 3939713163959957189}
+  - component: {fileID: 2503978905110041796}
   m_Layer: 5
-  m_Name: InventoryPanel
+  m_Name: InventoryWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -246,36 +246,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3380745121464893052}
   m_CullTransparentMesh: 1
---- !u!114 &3380745121464893054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3380745121464893052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &3939713163959957189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,6 +259,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   commonIconsContainer: {fileID: 8580326812262637783}
+--- !u!114 &2503978905110041796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3380745121464893052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c90d862699495d64392affcee7b1dbcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainWeaponSlotView: {fileID: 3135776741334804735}
+  secondaryWeaponSlotView: {fileID: 702951888686881835}
+  quickSlotViews:
+  - {fileID: 2174470809752012502}
+  - {fileID: 3385182347207316711}
+  - {fileID: 894479381634245389}
+  containerGridView: {fileID: 6069612065761047757}
+  itemIconPrefab: {fileID: 6452154105753699909, guid: b08abe6d12d75754fafd8327ba7464e7, type: 3}
+  itemsViewManager: {fileID: 3939713163959957189}
+  useButton: {fileID: 139342361053372254}
+  dropButton: {fileID: 1703080749905916044}
+  moneyView: {fileID: 3056980963832522507}
 --- !u!1 &3380745121675616037
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,7 +292,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3380745121675616036}
-  - component: {fileID: 2303484620346947280}
   m_Layer: 5
   m_Name: LeftPanel
   m_TagString: Untagged
@@ -327,30 +320,6 @@ RectTransform:
   m_AnchoredPosition: {x: 56, y: 26}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2303484620346947280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3380745121675616037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c90d862699495d64392affcee7b1dbcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainWeaponSlotView: {fileID: 3135776741334804735}
-  secondaryWeaponSlotView: {fileID: 702951888686881835}
-  quickSlotViews:
-  - {fileID: 2174470809752012502}
-  - {fileID: 3385182347207316711}
-  - {fileID: 894479381634245389}
-  containerGridView: {fileID: 6069612065761047757}
-  itemIconPrefab: {fileID: 6452154105753699909, guid: b08abe6d12d75754fafd8327ba7464e7, type: 3}
-  itemsViewManager: {fileID: 3939713163959957189}
-  useButton: {fileID: 139342361053372254}
-  dropButton: {fileID: 1703080749905916044}
-  moneyView: {fileID: 3056980963832522507}
 --- !u!1 &3380745121979320610
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,10 +806,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UseButton
       objectReference: {fileID: 0}
-    - target: {fileID: 3384705871575992261, guid: 8f5254ade663304499d0354f3b9735de, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2303484620346947280}
     - target: {fileID: 3384705871575992261, guid: 8f5254ade663304499d0354f3b9735de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: UseSelectedItem
@@ -1423,10 +1388,6 @@ PrefabInstance:
       value: 1.339
       objectReference: {fileID: 0}
     - target: {fileID: 5353059788395127657, guid: ddb53f206b69fda45a1e99d62ddf45f9, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2303484620346947280}
-    - target: {fileID: 5353059788395127657, guid: ddb53f206b69fda45a1e99d62ddf45f9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: DropSelectedItem
       objectReference: {fileID: 0}
@@ -1963,10 +1924,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 3.031
       objectReference: {fileID: 0}
-    - target: {fileID: 5353059788395127657, guid: ddb53f206b69fda45a1e99d62ddf45f9, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2303484620346947280}
     - target: {fileID: 5353059788395127657, guid: ddb53f206b69fda45a1e99d62ddf45f9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: DropSelectedItem

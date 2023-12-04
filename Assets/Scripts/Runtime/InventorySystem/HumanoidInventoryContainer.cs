@@ -97,7 +97,7 @@ public class HumanoidInventoryContainer : ContainerBase
         return mainWeaponSlot.TryAdd(itemStack);
     }
 
-    void EquipMainWeapon() // listen to mainWeaponSlot insertEvent
+    void EquipMainWeapon()
     {
         var equipment = mainWeaponSlot.ItemStack.Item.GetComponent<Equipment>();
         Item instantiatedItem = null;
@@ -108,10 +108,6 @@ public class HumanoidInventoryContainer : ContainerBase
         {
             instantiatedItem = InstantiateItemInEquipmentPosition(mainWeaponSlot.ItemStack, rightHandEquipPosition);
             rightHandItem = instantiatedItem;
-
-            // need to remove secondary weapon when player equips twohanded weapon in mainWeaponSlot
-            //if (!secondaryWeaponSlot.isEmpty)
-            //    ModelUtils.TryMoveFromSlotToSlotGroup(this, secondaryWeaponSlot, this, backpackSlots);
         }
         else if (equipment.EquipmentPosition == EquipmentPosition.LeftHand)
         {
@@ -120,12 +116,22 @@ public class HumanoidInventoryContainer : ContainerBase
         }
 
         if (mainWeaponSlot.ItemStack.Item.Tags.Contains(ItemTag.TwoHanded))
-            mainWeaponSlot.SetBlock(true, mainWeaponSlot.ItemStack.Item.Icon);
+            EquipTwoHandedWeapon();
 
         SetMainWeapon(instantiatedItem);
     }
 
-    void EquipSecondaryWeapon() // listen to secondaryWeaponSlot insertEvent
+    void EquipTwoHandedWeapon()
+    {
+        if (!secondaryWeaponSlot.isEmpty)
+        {
+            // need to remove secondaryWeaponSlot
+        }
+
+        secondaryWeaponSlot.SetBlock(true, mainWeaponSlot.ItemStack.Item.Icon);
+    }
+
+    void EquipSecondaryWeapon() 
     {
         var equipment = secondaryWeaponSlot.ItemStack.Item.GetComponent<Equipment>();
         Item instantiatedItem = null;
@@ -140,7 +146,7 @@ public class HumanoidInventoryContainer : ContainerBase
         SetSecondaryWeapon(instantiatedItem);   
     }
 
-    void UnEquipMainWeapon(ItemStack removedItemStack) // listen to mainWeaponSlot remove event
+    void UnEquipMainWeapon(ItemStack removedItemStack)
     {
         if (mainWeaponItem == rightHandItem)
             Destroy(rightHandItem.gameObject);
@@ -148,12 +154,12 @@ public class HumanoidInventoryContainer : ContainerBase
             Destroy(leftHandItem.gameObject);
 
         if (removedItemStack.Item.Tags.Contains(ItemTag.TwoHanded))
-            mainWeaponSlot.SetBlock(false, null);
+            secondaryWeaponSlot.SetBlock(false, null);
 
         mainWeaponItem = null;
     }
 
-    void UnEquipSecondaryWeapon(ItemStack removedItemStack) // listen to secondaryWeaponSlot remove event
+    void UnEquipSecondaryWeapon(ItemStack removedItemStack)
     {
         if (secondaryWeaponItem == rightHandItem)
             Destroy(rightHandItem.gameObject);

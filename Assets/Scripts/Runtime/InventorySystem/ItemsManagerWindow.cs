@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 
-public class ItemsViewManager : MonoBehaviour
+public class ItemsManagerWindow : MonoBehaviour
 {
     // used to contain all slotViews that are active on UI in moment
     public class ActiveSlot
@@ -33,7 +33,7 @@ public class ItemsViewManager : MonoBehaviour
     public void AddActiveSlot(ContainerBase container, SlotView slotView) => activeSlots.Add(new ActiveSlot {container = container, slotView = slotView } );
     public void RemoveActiveSlot(SlotView slotView) => activeSlots.RemoveAll(i => i.slotView == slotView);
     public ActiveSlot GetActiveSlotByItemIcon(ItemIcon itemIcon) => activeSlots.FirstOrDefault(i => i.slotView.ItemIcon == itemIcon);
-    public ActiveSlot GetActiveSlotBySlotView(SlotView slot) => activeSlots.FirstOrDefault(i => i.slotView == slot);
+    public void Clear() => activeSlots.Clear();
 
     public void SetSelectedSlotView(SlotView newSelectedSlotView)
     {

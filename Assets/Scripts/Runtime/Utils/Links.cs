@@ -20,6 +20,7 @@ public class Links : MonoBehaviour
     public MobileButtonsManager mobileButtonsManager;
     public DeathScreen deathScreen;
     public GlobalConfig globalConfig;
+    public ItemsManagerWindow currentItemsViewManager;
 
     public void Awake()
     {
