@@ -13,12 +13,14 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     [SerializeField] ItemDescriptionPanel descriptionPanelPrefab;
     [SerializeField] TMP_Text itemNumberText;
     [SerializeField] Vector3 descitptionPanelOffset;
+    [SerializeField] bool isInteratable = true;
 
     ItemDescriptionPanel descriptionPanel;
     ItemsManagerWindow itemsViewManager;
     ItemStack itemStack;
 
     public ItemStack ItemStack => itemStack;
+    public bool IsInteratable { get => isInteratable; set => isInteratable = value; }
 
     bool isDragged = false;
     bool isHold = false;
@@ -34,6 +36,9 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
 
     public void OnPointerDown(PointerEventData pointerEventData)
     {
+        if (!IsInteratable)
+            return;
+
         var thisIconSlot = itemsViewManager.GetActiveSlotByItemIcon(this).slotView;
         itemsViewManager.SetSelectedSlotView(thisIconSlot);
         transform.SetParent(itemsViewManager.CommonIconsContainer);
@@ -43,6 +48,9 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
 
     public void OnPointerUp(PointerEventData pointerEventData)
     {
+        if (!IsInteratable)
+            return;
+
         var newActiveSlot = itemsViewManager.GetActiveSlotByPosition(transform.position);
         itemsViewManager.MoveItemToSlot(this, newActiveSlot);
 
@@ -54,6 +62,9 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
 
     public void OnDrag(PointerEventData pointerEventData)
     {
+        if (!IsInteratable)
+            return;
+
         gameObject.transform.position = new Vector3(pointerEventData.position.x, pointerEventData.position.y,0);
         if (!isDragged)
         {

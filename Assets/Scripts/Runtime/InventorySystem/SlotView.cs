@@ -5,28 +5,39 @@ using UnityEngine.UI;
 
 public class SlotView : MonoBehaviour
 {
-    Slot slot;
-    ItemIcon itemIconInSlot;
-    RectTransform slotTransform;
-
-    public Slot Slot => slot;
-    public ItemIcon ItemIcon => itemIconInSlot;
-
     [SerializeField] ItemIcon itemIconPrefab;
     [SerializeField] bool slotIsRhombus;
     [SerializeField] Image iconShadow;
     [SerializeField] Image blockImage;
     [SerializeField] Image selectionMarker;
+    [SerializeField] bool isInteratable = true;
+
+    public Slot Slot => slot;
+    public ItemIcon ItemIcon => itemIconInSlot;
+    public bool IsInteratable
+    {
+        get => isInteratable;
+        set
+        {
+            isInteratable = value;
+            if (itemIconInSlot)
+                itemIconInSlot.IsInteratable = value;
+        }
+    }
+
+    Slot slot;
+    ItemIcon itemIconInSlot;
+    RectTransform slotTransform;
+
+    void Awake()
+    {
+        slotTransform = GetComponent<RectTransform>();
+    }
 
     void OnEnable()
     {
-        slotTransform = GetComponent<RectTransform>();
-
         if (slot != null)
-        {
-            slot.blockStateUpdated -= SetBlockView;
-            slot.blockStateUpdated += SetBlockView;
-        }
+            InitializeSlotView();
     }
 
     void OnDisable()
@@ -34,28 +45,50 @@ public class SlotView : MonoBehaviour
         if (slot != null)
         {
             slot.blockStateUpdated -= SetBlockView;
+            slot.removed -= OnSlotRemovedItemStack;
+            slot.inserted -= InstantiateItemIcon;
         }
+    }
+
+    void InitializeSlotView()
+    {
+        SetBlockView(slot.IsBlocked, slot.BlockSprite);
+        PullOutAndDestroyItemIcon();
+        InstantiateItemIcon();
+
+        slot.blockStateUpdated -= SetBlockView;
+        slot.blockStateUpdated += SetBlockView;
+
+        slot.removed -= OnSlotRemovedItemStack;
+        slot.removed += OnSlotRemovedItemStack;
+
+        slot.inserted -= InstantiateItemIcon;
+        slot.inserted += InstantiateItemIcon;
     }
 
     void SetBlockView(bool isBlocked, Sprite blockSprite = null)
     {
         blockImage.gameObject.SetActive(isBlocked);
-        blockImage.sprite = blockSprite;
+        if (blockSprite)
+            blockImage.sprite = blockSprite;
     }
 
     public void SetSlot(Slot slot)
     {
+        slotTransform = GetComponent<RectTransform>();
         this.slot = slot;
-        slot.blockStateUpdated += SetBlockView;
 
-        if (!slot.isEmpty)
-            InstantiateItemIcon();
+        InitializeSlotView();
     }
 
     public void InstantiateItemIcon()
     {
+        if (slot.isEmpty || ItemIcon)
+            return;
+
         var newIcon = Instantiate(itemIconPrefab, slotTransform);
         newIcon.SetItemStack(slot.ItemStack);
+        newIcon.IsInteratable = isInteratable;
         InsertIcon(newIcon);
     }
 
@@ -117,6 +150,11 @@ public class SlotView : MonoBehaviour
     {
         if (itemIconInSlot)
             Destroy(itemIconInSlot.gameObject);
+    }
+
+    void OnSlotRemovedItemStack(ItemStack removedItemStack)
+    {
+        PullOutAndDestroyItemIcon();
     }
 
     public void PullOutAndDestroyItemIcon()

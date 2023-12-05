@@ -34,10 +34,10 @@ public class InventoryUI : MonoBehaviour
 
     public void CloseInventory()
     {
-        Links.instance.currentItemsViewManager = null;
-
         inventoryWindow.gameObject.SetActive(false);
         mobileBattleSystemInterface.SetActive(true);
+
+        Links.instance.currentItemsViewManager = null;
     }
 
     public void OpenContainer(ContainerBody containerBody)
@@ -54,12 +54,12 @@ public class InventoryUI : MonoBehaviour
 
     public void CloseContainer()
     {
-        Links.instance.currentItemsViewManager = null;
-
         openedContainer.CloseContainer();
         openedContainer.GetComponent<InteractableObject>().SetInteractable(true);
 
         openedContainerWindow.gameObject.SetActive(false);
         mobileBattleSystemInterface.SetActive(true);
+
+        Links.instance.currentItemsViewManager = null;
     }
 }

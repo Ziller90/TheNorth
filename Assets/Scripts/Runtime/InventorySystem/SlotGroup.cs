@@ -10,13 +10,23 @@ public class SlotGroup
     [SerializeField] Slot[] slots;
     public Slot[] Slots => slots;
 
-    public bool TryAdd(ItemStack itemStack)
+    public bool CanAdd(ItemStack itemStack)
     {
-        var result = TryAddAndReturnResult(itemStack);
+        if (!IsSuitableItemStackForGroup(itemStack))
+            return false;
+        if (GetFirstEmtySlotInGroupIndex() == -1)
+            return false;
+
+        return true;
+    }
+
+    public bool TryAddOrMerge(ItemStack itemStack)
+    {
+        var result = TryAddOrMergeAndReturnResult(itemStack);
         return result == TransferResult.Added || result == TransferResult.Merged;
     }
 
-    public TransferResult TryAddAndReturnResult(ItemStack itemStack)
+    public TransferResult TryAddOrMergeAndReturnResult(ItemStack itemStack)
     {
         if (!IsSuitableItemStackForGroup(itemStack))
             return TransferResult.NotSuitableItemStack;
@@ -42,7 +52,7 @@ public class SlotGroup
         return -1;
     }
 
-    bool TryAddItemStackToSlotGroup(ItemStack newStack)
+    public bool TryAddItemStackToSlotGroup(ItemStack newStack)
     {
         int freeStackIndex = GetFirstEmtySlotInGroupIndex();
         if (freeStackIndex == -1)
@@ -71,5 +81,15 @@ public class SlotGroup
     public bool IsSuitableItemStackForGroup(ItemStack itemStack)
     {
         return ModelUtils.IsSuitableItemStack(itemStack, suitableItemTags);
+    }
+
+    public bool isSlotInSlotGroup(Slot slotForCheck)
+    {
+        foreach(var slot in slots)
+        {
+            if (slot == slotForCheck)
+                return true;
+        }
+        return false;
     }
 }

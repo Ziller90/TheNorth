@@ -75,55 +75,15 @@ public class ItemsManagerWindow : MonoBehaviour
 
         var result = ModelUtils.TryMoveFromSlotToSlotWithResult(currentActiveSlot?.container, currentSlot, targetActiveSlot?.container, targetSlot);
 
-        switch (result)
+        if (result == TransferResult.Added || result == TransferResult.Swapped || result == TransferResult.Merged)
         {
-            case TransferResult.Added:
-                currentSlotView.PullOutIcon();
-                targetSlotView.InsertIcon(itemIcon);
-                SetSelectedSlotView(targetSlotView);
-                break;
-            case TransferResult.Merged:
-                MergeView(itemIcon, targetSlotView.ItemIcon);
-                break;
-            case TransferResult.Swapped:
-                SwapView(currentSlotView, targetSlotView);
-                break;
-            default:
+            SetSelectedSlotView(targetSlotView);
+            if (result == TransferResult.Merged && itemIcon.ItemStack.ItemsNumber != 0)
                 currentSlotView.SetIconInSlotPosition();
-                break;
-        }
-    }
-
-    public void MergeView(ItemIcon itemIcon1, ItemIcon itemIcon2)
-    {
-        var stack1 = itemIcon1.ItemStack;
-
-        var slotView1 = GetActiveSlotByItemIcon(itemIcon1).slotView;
-        var slotView2 = GetActiveSlotByItemIcon(itemIcon2).slotView;
-
-        if (stack1.ItemsNumber == 0)
-        {
-            SetSelectedSlotView(slotView2);
-            slotView1.DestroyItemIcon();
         }
         else
         {
-            slotView1.SetIconInSlotPosition();
-            SetSelectedSlotView(slotView2);
+            currentSlotView.SetIconInSlotPosition();
         }
-    }
-
-    public void SwapView(SlotView slot1, SlotView slot2)
-    {
-        var itemIcon1 = slot1.ItemIcon;
-        var itemIcon2 = slot2.ItemIcon;
-
-        slot1.PullOutIcon();
-        slot2.PullOutIcon();
-
-        slot1.InsertIcon(itemIcon2);
-        slot2.InsertIcon(itemIcon1);
-
-        SetSelectedSlotView(slot2);
     }
 }

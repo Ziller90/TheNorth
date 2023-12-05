@@ -78,8 +78,8 @@ public class HumanoidInventoryContainer : ContainerBase
 
         if (TryPickUpToMainWeaponSlot(newItemStack) ||
             secondaryWeaponSlot.TryAdd(newItemStack) ||
-            quickSlots.TryAdd(newItemStack) ||
-            backpackSlots.TryAdd(newItemStack))
+            quickSlots.TryAddOrMerge(newItemStack) ||
+            backpackSlots.TryAddOrMerge(newItemStack))
         {
             DestroyItemOnScene(item);
             return true;
@@ -125,9 +125,8 @@ public class HumanoidInventoryContainer : ContainerBase
     {
         if (!secondaryWeaponSlot.isEmpty)
         {
-            // need to remove secondaryWeaponSlot
+            ModelUtils.TryMoveFromSlotToSlotGroup(this, secondaryWeaponSlot, this, BackpackSlots);
         }
-
         secondaryWeaponSlot.SetBlock(true, mainWeaponSlot.ItemStack.Item.Icon);
     }
 
@@ -197,9 +196,7 @@ public class HumanoidInventoryContainer : ContainerBase
     {
         var itemStack = slot.ItemStack;
 
-        bool success;
-
-        success = mainWeaponSlot.TryAdd(itemStack) || secondaryWeaponSlot.TryAdd(itemStack);
+        bool success = mainWeaponSlot.TryAdd(itemStack) || secondaryWeaponSlot.TryAdd(itemStack);
         if (success)
             return;
 
@@ -257,5 +254,48 @@ public class HumanoidInventoryContainer : ContainerBase
             return false;
         }
         return true;
+    }
+
+    public void DivideItemStackInSlot(Slot slot)
+    {
+        var itemStackToDivide = slot.ItemStack;
+        int newItemStackItemsNumber = Mathf.FloorToInt(itemStackToDivide.ItemsNumber / 2);
+        itemStackToDivide.ItemsNumber -= newItemStackItemsNumber;
+        var newItemStack = new ItemStack(itemStackToDivide.Item, newItemStackItemsNumber);
+
+        if (BackpackSlots.isSlotInSlotGroup(slot) && BackpackSlots.CanAdd(newItemStack))
+        {
+            BackpackSlots.TryAddItemStackToSlotGroup(newItemStack);
+        }
+        else if (QuickAccessSlots.isSlotInSlotGroup(slot))
+        {
+            if (QuickAccessSlots.CanAdd(newItemStack))
+            {
+                QuickAccessSlots.TryAddItemStackToSlotGroup(newItemStack);
+            }
+            else if (BackpackSlots.CanAdd(newItemStack))
+            {
+                BackpackSlots.TryAddItemStackToSlotGroup(newItemStack);
+            }
+        }
+    }
+
+    public bool CanDivideItemStackInSlot(Slot slot)
+    {
+        if (slot.ItemStack.ItemsNumber > 1)
+        {
+            if (BackpackSlots.isSlotInSlotGroup(slot) && BackpackSlots.CanAdd(slot.ItemStack))
+            {
+                return true;
+            }
+            else if (QuickAccessSlots.isSlotInSlotGroup(slot))
+            {
+                if (QuickAccessSlots.CanAdd(slot.ItemStack))
+                    return true;
+                else if (BackpackSlots.CanAdd(slot.ItemStack))
+                    return true;
+            }
+        }
+        return false;
     }
 }

@@ -158,7 +158,7 @@ public class ModelUtils : MonoBehaviour
     {
         if (container1.CanRemoveItemStackFromSlot(slot1) && container2.CanAddItemStackInSlotGroup(slot1.ItemStack, slotGroup))
         {
-            var success = slotGroup.TryAdd(slot1.ItemStack);
+            var success = slotGroup.TryAddOrMerge(slot1.ItemStack);
             if (success)
             {
                 slot1.Pop();
