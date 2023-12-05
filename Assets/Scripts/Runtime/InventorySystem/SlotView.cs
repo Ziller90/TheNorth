@@ -154,6 +154,10 @@ public class SlotView : MonoBehaviour
 
     void OnSlotRemovedItemStack(ItemStack removedItemStack)
     {
+        var itemsViewManager = Links.instance.currentItemsViewManager;
+        if (itemsViewManager && itemsViewManager.SelectedItemSlot == this)
+            itemsViewManager.RemoveSelection();
+
         PullOutAndDestroyItemIcon();
     }
 
