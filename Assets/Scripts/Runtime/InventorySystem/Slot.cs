@@ -42,6 +42,27 @@ public class Slot
 
     Sprite blockSprite;
 
+    public void SubscribeItemsNumberUpdateEvent()
+    {
+        if (itemStack != null)
+        {
+            itemStack.itemsNumberUpdatedEvent -= RemoveItemStackOnRunOut;
+            itemStack.itemsNumberUpdatedEvent += RemoveItemStackOnRunOut;
+        }
+    }
+
+    public void UnSubscribeItemsNumberUpdateEvent()
+    {
+        if (itemStack != null)
+            itemStack.itemsNumberUpdatedEvent -= RemoveItemStackOnRunOut;
+    }
+
+    void RemoveItemStackOnRunOut()
+    {
+        if (itemStack.ItemsNumber == 0)
+            Pop();
+    }
+
     public void SetBlock(bool isBlocked, Sprite blockSprite = null)
     {
         this.blockSprite = blockSprite;
@@ -83,6 +104,7 @@ public class Slot
 
     public ItemStack Pop()
     {
+        UnSubscribeItemsNumberUpdateEvent();
         var itemStackTemp = itemStack;
         itemStack = null;
         removed?.Invoke(itemStackTemp);
@@ -107,6 +129,7 @@ public class Slot
     void SetItemStack(ItemStack itemStack)
     {
         this.itemStack = itemStack;
+        SubscribeItemsNumberUpdateEvent();
         inserted?.Invoke();
     }
 

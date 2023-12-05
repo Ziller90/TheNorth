@@ -9,6 +9,7 @@ using System.Collections.Generic;
 public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] Image icon;
+    [SerializeField] Image background;
     [SerializeField] float timeToShowDesctiption;
     [SerializeField] ItemDescriptionPanel descriptionPanelPrefab;
     [SerializeField] TMP_Text itemNumberText;
@@ -20,7 +21,16 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     ItemStack itemStack;
 
     public ItemStack ItemStack => itemStack;
-    public bool IsInteratable { get => isInteratable; set => isInteratable = value; }
+    public bool IsInteratable
+    {
+        get => isInteratable; 
+        set
+        {
+            isInteratable = value;
+            icon.raycastTarget = isInteratable;
+            background.raycastTarget = isInteratable;
+        }
+    }
 
     bool isDragged = false;
     bool isHold = false;

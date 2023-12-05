@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -45,6 +46,11 @@ public class HumanoidInventoryContainer : ContainerBase
     {
         moneyAmount -= money;
         moneyAmountUpdated?.Invoke();
+    }
+
+    void Awake()
+    {
+        InitAllSlots();
     }
 
     void OnEnable()
@@ -196,7 +202,8 @@ public class HumanoidInventoryContainer : ContainerBase
     {
         var itemStack = slot.ItemStack;
 
-        bool success = mainWeaponSlot.TryAdd(itemStack) || secondaryWeaponSlot.TryAdd(itemStack);
+        bool success = ModelUtils.TryMoveFromSlotToSlot(this, slot, this, mainWeaponSlot) ||
+                       ModelUtils.TryMoveFromSlotToSlot(this, slot, this, secondaryWeaponSlot);
         if (success)
             return;
 
@@ -297,5 +304,19 @@ public class HumanoidInventoryContainer : ContainerBase
             }
         }
         return false;
+    }
+
+    void InitAllSlots()
+    {
+        List<Slot> allContainerSlots = new List<Slot>(100);
+        allContainerSlots.AddRange(backpackSlots.Slots);
+        allContainerSlots.AddRange(quickSlots.Slots);
+        allContainerSlots.Add(mainWeaponSlot);
+        allContainerSlots.Add(secondaryWeaponSlot);
+
+        foreach (var slot in allContainerSlots)
+        {
+            slot.SubscribeItemsNumberUpdateEvent();
+        }
     }
 }
