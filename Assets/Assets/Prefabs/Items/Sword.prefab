@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 1944734885267013610}
   - component: {fileID: 1944734885267687974}
   - component: {fileID: 2169154278977868391}
+  - component: {fileID: 5905324870338849580}
   m_Layer: 0
-  m_Name: SM_Wep_Sword_01
+  m_Name: SwordView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,6 +102,27 @@ MonoBehaviour:
   - {fileID: 1944734885267687974}
   skinnedMeshRenderers: []
   interactableObject: {fileID: -2066988369578927645}
+--- !u!65 &5905324870338849580
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944734885265954960}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.23613985, y: 1.0454232, z: 0.05437841}
+  m_Center: {x: 0.0000009536745, y: 0.38235533, z: -0.000008014033}
 --- !u!1 &3601609613231041798
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,11 +201,9 @@ GameObject:
   - component: {fileID: 7087786812071082886}
   - component: {fileID: 7087786812071082881}
   - component: {fileID: 7087786812071082880}
-  - component: {fileID: 3785722318620882532}
-  - component: {fileID: 6759848368673478585}
-  - component: {fileID: 6200276509977123665}
   - component: {fileID: -2066988369578927645}
   - component: {fileID: -5585521636719186022}
+  - component: {fileID: 6515814787680347769}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -252,76 +272,7 @@ MonoBehaviour:
   cost: 120
   icon: {fileID: 21300000, guid: f1ad37d1a9aa1da4badb8efeb2168a68, type: 3}
   maxStackSize: 1
-  suitableSlots: 8
-  equipPositon: 3
-  equipedCached: 0
-  itemColliders:
-  - {fileID: 3785722318620882532}
-  - {fileID: 6759848368673478585}
-  - {fileID: 6200276509977123665}
---- !u!65 &3785722318620882532
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7087786812071082882}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.13284789, y: 0.78649855, z: 0.042652115}
-  m_Center: {x: -0.0034929588, y: 0.51342046, z: -0.00010981131}
---- !u!65 &6759848368673478585
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7087786812071082882}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.24401096, y: 0.059771523, z: 0.06565666}
-  m_Center: {x: 0.0000936538, y: 0.09153521, z: 0.00018724799}
---- !u!65 &6200276509977123665
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7087786812071082882}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.07668939, y: 0.20643172, z: 0.05351019}
-  m_Center: {x: -0.0019316226, y: -0.041367546, z: -0.0019315779}
+  itemTags: 000000000d000000
 --- !u!114 &-2066988369578927645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,3 +299,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 1
+--- !u!114 &6515814787680347769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7087786812071082882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0f0dbdfd523dac43b1475da257e34f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipedCached: 0
+  itemColliders:
+  - {fileID: 5905324870338849580}
+  interactableObject: {fileID: -2066988369578927645}
+  equipmentPosition: 3

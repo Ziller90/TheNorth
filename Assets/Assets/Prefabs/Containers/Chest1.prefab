@@ -128,70 +128,137 @@ MonoBehaviour:
   m_GameObject: {fileID: 1444778129343031448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e028e5d12fb74e43b6866a63d4e9a28, type: 3}
+  m_Script: {fileID: 11500000, guid: 54d11fecd5ef16f42b22e09c22ca0c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemsStackInContainer:
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
+  slotGroup:
+    suitableItemTags: []
+    slots:
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &2476780937980530757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe879ece6df836547b9cddf476fed3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInteractable: 1
+  isInteractableCached: 1
 --- !u!1 &3691355276949164155
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,4 +469,5 @@ MonoBehaviour:
   meshRenderers:
   - {fileID: 3691355276951203383}
   - {fileID: 3691355276951632423}
+  skinnedMeshRenderers: []
   interactableObject: {fileID: 2476780937980530757}

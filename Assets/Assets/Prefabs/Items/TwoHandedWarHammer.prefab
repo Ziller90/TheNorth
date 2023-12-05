@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: 7357625434243092345}
   - component: {fileID: 8504188224219583549}
   - component: {fileID: -8514343810697105298}
+  - component: {fileID: -3014180504881538726}
   m_Layer: 0
   m_Name: TwoHandedWarHammer
   m_TagString: Untagged
@@ -235,12 +236,7 @@ MonoBehaviour:
   cost: 300
   icon: {fileID: 21300000, guid: e7f3fe7969034c04bba50aa34f0b238d, type: 3}
   maxStackSize: 1
-  suitableSlots: 4
-  equipPositon: 1
-  equipedCached: 0
-  itemColliders:
-  - {fileID: 7068807894482653443}
-  - {fileID: 3097800818160206378}
+  itemTags: 0100000015000000
 --- !u!65 &7068807894482653443
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -325,3 +321,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 2
+--- !u!114 &-3014180504881538726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7087786812071082882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0f0dbdfd523dac43b1475da257e34f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipedCached: 0
+  itemColliders:
+  - {fileID: 7068807894482653443}
+  interactableObject: {fileID: 7357625434243092345}
+  equipmentPosition: 0
