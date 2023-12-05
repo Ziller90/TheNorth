@@ -4601,9 +4601,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6115228454313205723}
-  - component: {fileID: 3217649098697348155}
   m_Layer: 0
-  m_Name: RightHandItemKeeper
+  m_Name: RightHandEquipPosition
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -4624,18 +4623,6 @@ Transform:
   m_Father: {fileID: 5133935866322722867}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 180, y: -90, z: 90}
---- !u!114 &3217649098697348155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6115228454313205722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f73c076eb65f86049b67a4d98869c89d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6115228454438917361
 GameObject:
   m_ObjectHideFlags: 0
@@ -4655,7 +4642,6 @@ GameObject:
   - component: {fileID: 2931067886913855964}
   - component: {fileID: 6510605634573919806}
   - component: {fileID: 8059843138504852898}
-  - component: {fileID: 2822545277258788276}
   - component: {fileID: 6040268367450635467}
   - component: {fileID: 8879553102830726590}
   - component: {fileID: 1525224019825811632}
@@ -4866,103 +4852,143 @@ MonoBehaviour:
   m_GameObject: {fileID: 6115228454438917361}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e028e5d12fb74e43b6866a63d4e9a28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemsStackInContainer:
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
---- !u!114 &2822545277258788276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6115228454438917361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20d6e9799939ad048bf68079418957cb, type: 3}
+  m_Script: {fileID: 11500000, guid: cf46b90acc7e04045aa79927cc69d462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animationEvents: {fileID: 6040268367450635467}
   creature: {fileID: 6115228454438917369}
   dropPosition: {fileID: 6115228455271634165}
-  rightHandKeeper: {fileID: 6115228454313205723}
-  leftHandKeeper: {fileID: 4857773764945573920}
-  mainWeaponItemStack:
-    itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  secondaryWeaponItemStack:
-    itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  quickAccessItemStacks:
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
-  - itemPrefab: {fileID: 0}
-    itemsNumber: 0
+  rightHandEquipPosition: {fileID: 6115228454313205723}
+  leftHandEquipPosition: {fileID: 4857773764945573920}
+  mainWeaponSlot:
+    suitableItemTags:
+    - and: 00000000
+    - and: 01000000
+    - and: 16000000
+    itemStack:
+      rid: -2
+  secondaryWeaponSlot:
+    suitableItemTags:
+    - and: 08000000
+    - and: 00000000
+    itemStack:
+      rid: -2
+  quickSlots:
+    suitableItemTags:
+    - and: 09000000
+    slots:
+    - suitableItemTags:
+      - and: 09000000
+      itemStack:
+        rid: -2
+    - suitableItemTags:
+      - and: 09000000
+      itemStack:
+        rid: -2
+    - suitableItemTags:
+      - and: 09000000
+      itemStack:
+        rid: -2
+  backpackSlots:
+    suitableItemTags: []
+    slots:
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
+    - suitableItemTags: []
+      itemStack:
+        rid: -2
   dropSackPrefab: {fileID: 390682515965362878, guid: 4a6b3267735ccc745a8353076a4887a6, type: 3}
   battleSystem: {fileID: 6115228454438917371}
-  inventoryContainer: {fileID: 8059843138504852898}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &6040268367450635467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6069,9 +6095,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4857773764945573920}
-  - component: {fileID: 2250152776409225094}
   m_Layer: 0
-  m_Name: LeftHandItemKeeper
+  m_Name: LeftHandEquipPosition
   m_TagString: Untagged
   m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -6092,18 +6117,6 @@ Transform:
   m_Father: {fileID: 5133935866322626295}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: -89.904}
---- !u!114 &2250152776409225094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8192213370732686490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f73c076eb65f86049b67a4d98869c89d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5065220002141550653
 PrefabInstance:
   m_ObjectHideFlags: 0

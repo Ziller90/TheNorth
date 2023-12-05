@@ -79,7 +79,7 @@ MonoBehaviour:
   searchingRadius: 15
   enemySearchingTime: 30
   searhingCornersNumber: 10
-  AIInventory: {fileID: 465007158186968597}
+  AIInventory: {fileID: 5658184504011615747}
 --- !u!114 &393759022535881096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -671,17 +671,6 @@ PrefabInstance:
       addedObject: {fileID: 8313477241127941622}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
---- !u!114 &465007158186968597 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2822545277258788276, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
-  m_PrefabInstance: {fileID: 2404843527227370401}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8467364967643463504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20d6e9799939ad048bf68079418957cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &716783470848166525 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2931067886913855964, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
@@ -691,6 +680,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 269cdbeb529004f4a83ac6957fd81028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5658184504011615747 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8059843138504852898, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
+  m_PrefabInstance: {fileID: 2404843527227370401}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8467364967643463504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf46b90acc7e04045aa79927cc69d462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8467364967077075387 stripped
