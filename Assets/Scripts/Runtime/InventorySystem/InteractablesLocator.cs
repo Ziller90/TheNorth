@@ -63,6 +63,7 @@ public class InteractablesLocator : MonoBehaviour
             if (nearestInteractable.GetComponent<ContainerBody>())
             {
                 var containerBody = nearestInteractable.GetComponent<ContainerBody>();
+                containerBody.OpenContainer();
                 containerOpenedEvent?.Invoke(containerBody);
             }
         }

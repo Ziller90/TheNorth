@@ -198,7 +198,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInventoryGrid: {fileID: 6069612065761047757}
   openedContainerGrid: {fileID: 7807979824287995954}
-  itemsViewManager: {fileID: 3939713163959957189}
 --- !u!1 &3380745121979320610
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,6 +596,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventoryContainerGrid
       objectReference: {fileID: 0}
+    - target: {fileID: 5241166771124695155, guid: 9ed3b730ef452f249a581f89e0bbb30a, type: 3}
+      propertyPath: slotPrefab
+      value: 
+      objectReference: {fileID: 4876314683610570144, guid: bba2bbfe088c27f46a0852a6a0142cc6, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -726,6 +729,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OpenedContainerGrid
       objectReference: {fileID: 0}
+    - target: {fileID: 5241166771124695155, guid: 9ed3b730ef452f249a581f89e0bbb30a, type: 3}
+      propertyPath: slotPrefab
+      value: 
+      objectReference: {fileID: 4876314683610570144, guid: bba2bbfe088c27f46a0852a6a0142cc6, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

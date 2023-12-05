@@ -15,17 +15,16 @@ public class MobileButtonsView : MonoBehaviour
     private void Awake()
     {
         playerInventory = Links.instance.playerCharacter.GetComponentInChildren<HumanoidInventoryContainer>();
-    }
-
-    void Start()
-    {
         SetUpQuickSlotsButtons();
     }
 
     void SetUpQuickSlotsButtons()
     {
         for (int i = 0; i < playerInventory.QuickAccessSlots.Slots.Length; i++)
+        {
             quickSlotViews[i].SetSlot(playerInventory.QuickAccessSlots.Slots[i]);
+            quickSlotViews[i].IsInteratable = false;
+        }
     }
 
     void Update()
@@ -43,6 +42,7 @@ public class MobileButtonsView : MonoBehaviour
 
     public void UseAcessButtonItem(int index)
     {
-        playerInventory.UseUsableItem(playerInventory.QuickAccessSlots.Slots[index].ItemStack);
+        if (playerInventory.QuickAccessSlots.Slots[index].ItemStack != null)
+            playerInventory.UseUsableItem(playerInventory.QuickAccessSlots.Slots[index].ItemStack);
     }
 }

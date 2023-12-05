@@ -8,10 +8,12 @@ public class HumanoidInventoryView : MonoBehaviour
     [SerializeField] SlotView mainWeaponSlotView;
     [SerializeField] SlotView secondaryWeaponSlotView;
     [SerializeField] SlotView[] quickSlotViews;
+
     [SerializeField] SlotsGridView containerGridView;
     [SerializeField] ItemIcon itemIconPrefab;
     [SerializeField] Button useButton;
     [SerializeField] Button dropButton;
+    [SerializeField] Button divideButton;
     [SerializeField] MoneyView moneyView;
 
     HumanoidInventoryContainer inventory;
@@ -23,6 +25,16 @@ public class HumanoidInventoryView : MonoBehaviour
         inventory = Links.instance.playerCharacter.GetComponentInChildren<HumanoidInventoryContainer>();
         containerGridView.SetSlotsGroup(inventory, inventory.BackpackSlots);
         moneyView.SetHumanoidInventory(inventory);
+        SetEquipSlotsView();
+    }
+
+    void SetEquipSlotsView()
+    {
+        mainWeaponSlotView.SetSlot(inventory.MainWeaponSlot);
+        secondaryWeaponSlotView.SetSlot(inventory.SecondaryWeaponSlot);
+
+        for (int i = 0; i < quickSlotViews.Length; i++)
+            quickSlotViews[i].SetSlot(inventory.QuickAccessSlots.Slots[i]);
     }
 
     private void OnEnable()
@@ -46,57 +58,52 @@ public class HumanoidInventoryView : MonoBehaviour
         {
             useButton.interactable = true;
             dropButton.interactable = true;
+
+            var selectedSlot = itemsViewManager.SelectedItemSlot;
+            if (inventory.CanDivideItemStackInSlot(selectedSlot.Slot))
+                divideButton.interactable = true;
         }
         else
         {
             useButton.interactable = false;
             dropButton.interactable = false;
+            divideButton.interactable = false;
         }
     }
 
     public void ClearInventory()
     {
         containerGridView.ClearContainerGrid();
-        mainWeaponSlotView.DestroyItemIcon();
-        secondaryWeaponSlotView.DestroyItemIcon();
-
-        foreach (var quickSlot in quickSlotViews)
-            quickSlot.DestroyItemIcon();
-
         itemsViewManager.Clear();
     }
 
     void DrawInventorySlots()
     {
         containerGridView.DrawContainerSlots();
-
-        mainWeaponSlotView.SetSlot(inventory.MainWeaponSlot);
         itemsViewManager.AddActiveSlot(inventory, mainWeaponSlotView);
-
-        secondaryWeaponSlotView.SetSlot(inventory.SecondaryWeaponSlot);
         itemsViewManager.AddActiveSlot(inventory, secondaryWeaponSlotView);
 
         for (int i = 0; i < quickSlotViews.Length; i++)
-        {
-            quickSlotViews[i].SetSlot(inventory.QuickAccessSlots.Slots[i]);
             itemsViewManager.AddActiveSlot(inventory, quickSlotViews[i]);
-        }
     }
 
-    public void UseSelectedItem()
+    public void UseSelectedSlotItem()
     {
-        inventory.UseItemInSlot(itemsViewManager.SelectedItemSlot.Slot);
+        var selectedSlotView = itemsViewManager.SelectedItemSlot;
+        inventory.UseItemInSlot(selectedSlotView.Slot);
     }
 
     public void DropSelectedSlotItem()
     {
-        inventory.DropItemsStackFromSlot(itemsViewManager.SelectedItemSlot.Slot);
-        itemsViewManager.SelectedItemSlot.PullOutAndDestroyItemIcon();
+        var selectedSlotView = itemsViewManager.SelectedItemSlot;
+        inventory.DropItemsStackFromSlot(selectedSlotView.Slot);
+        selectedSlotView.PullOutAndDestroyItemIcon();
         itemsViewManager.RemoveSelection();
     }
 
-    public void DivideSelectedItem()
+    public void DivideSelectedSlotItem()
     {
-        
+        var selectedSlotView = itemsViewManager.SelectedItemSlot;
+        inventory.DivideItemStackInSlot(selectedSlotView.Slot);
     }
 }

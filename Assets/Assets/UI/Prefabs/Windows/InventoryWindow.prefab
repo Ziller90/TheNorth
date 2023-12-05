@@ -279,9 +279,9 @@ MonoBehaviour:
   - {fileID: 894479381634245389}
   containerGridView: {fileID: 6069612065761047757}
   itemIconPrefab: {fileID: 6452154105753699909, guid: b08abe6d12d75754fafd8327ba7464e7, type: 3}
-  itemsViewManager: {fileID: 3939713163959957189}
   useButton: {fileID: 139342361053372254}
   dropButton: {fileID: 1703080749905916044}
+  divideButton: {fileID: 4378039357620193394}
   moneyView: {fileID: 3056980963832522507}
 --- !u!1 &3380745121675616037
 GameObject:
@@ -807,8 +807,16 @@ PrefabInstance:
       value: UseButton
       objectReference: {fileID: 0}
     - target: {fileID: 3384705871575992261, guid: 8f5254ade663304499d0354f3b9735de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2503978905110041796}
+    - target: {fileID: 3384705871575992261, guid: 8f5254ade663304499d0354f3b9735de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UseSelectedItem
+      value: UseSelectedSlotItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 3384705871575992261, guid: 8f5254ade663304499d0354f3b9735de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HumanoidInventoryView, TheNorth
       objectReference: {fileID: 0}
     - target: {fileID: 5876504208347359005, guid: 8f5254ade663304499d0354f3b9735de, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1388,8 +1396,16 @@ PrefabInstance:
       value: 1.339
       objectReference: {fileID: 0}
     - target: {fileID: 5353059788395127657, guid: ddb53f206b69fda45a1e99d62ddf45f9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2503978905110041796}
+    - target: {fileID: 5353059788395127657, guid: ddb53f206b69fda45a1e99d62ddf45f9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DropSelectedItem
+      value: DropSelectedSlotItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 5353059788395127657, guid: ddb53f206b69fda45a1e99d62ddf45f9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HumanoidInventoryView, TheNorth
       objectReference: {fileID: 0}
     - target: {fileID: 8287112225842288866, guid: ddb53f206b69fda45a1e99d62ddf45f9, type: 3}
       propertyPath: m_Name
@@ -1925,12 +1941,20 @@ PrefabInstance:
       value: 3.031
       objectReference: {fileID: 0}
     - target: {fileID: 5353059788395127657, guid: ddb53f206b69fda45a1e99d62ddf45f9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2503978905110041796}
+    - target: {fileID: 5353059788395127657, guid: ddb53f206b69fda45a1e99d62ddf45f9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DropSelectedItem
+      value: DivideSelectedSlotItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 5353059788395127657, guid: ddb53f206b69fda45a1e99d62ddf45f9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HumanoidInventoryView, TheNorth
       objectReference: {fileID: 0}
     - target: {fileID: 8287112225842288866, guid: ddb53f206b69fda45a1e99d62ddf45f9, type: 3}
       propertyPath: m_Name
-      value: Divide
+      value: DivideButton
       objectReference: {fileID: 0}
     - target: {fileID: 8287112225842288867, guid: ddb53f206b69fda45a1e99d62ddf45f9, type: 3}
       propertyPath: m_Pivot.x
@@ -2030,3 +2054,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8287112225842288867, guid: ddb53f206b69fda45a1e99d62ddf45f9, type: 3}
   m_PrefabInstance: {fileID: 8541085616624479003}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4378039357620193394 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5353059788395127657, guid: ddb53f206b69fda45a1e99d62ddf45f9, type: 3}
+  m_PrefabInstance: {fileID: 8541085616624479003}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

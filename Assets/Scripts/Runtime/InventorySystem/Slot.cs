@@ -28,7 +28,7 @@ public class Slot
     [SerializeField] List<AndItemTagList> suitableItemTags;
     [SerializeReference, SubclassSelector] ItemStack itemStack = null;
     public ItemStack ItemStack => itemStack;
-    public Sprite BlockImage => blockImageSprite;
+    public Sprite BlockSprite => blockSprite;
     public bool isEmpty => itemStack == null;
     public bool IsBlocked { get; set; }
 
@@ -40,11 +40,11 @@ public class Slot
     public event Action inserted;
     public event SlotRemovedAction removed;
 
-    Sprite blockImageSprite;
+    Sprite blockSprite;
 
     public void SetBlock(bool isBlocked, Sprite blockSprite = null)
     {
-        this.blockImageSprite = blockSprite;
+        this.blockSprite = blockSprite;
         IsBlocked = isBlocked;
         blockStateUpdated?.Invoke(isBlocked, blockSprite);
     }
