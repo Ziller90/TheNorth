@@ -29,7 +29,7 @@ public class Slot
     [SerializeReference, SubclassSelector] ItemStack itemStack = null;
     public ItemStack ItemStack => itemStack;
     public Sprite BlockSprite => blockSprite;
-    public bool isEmpty => itemStack == null;
+    public bool isEmpty => itemStack == null || !itemStack.Item;
     public bool IsBlocked { get; set; }
 
     public delegate void SlotRemovedAction(ItemStack itemStack);
