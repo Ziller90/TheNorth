@@ -126,6 +126,7 @@ public class HumanoidEnemiesAI : MonoBehaviour
     {
         yield return new WaitForSeconds(enemySearchingTime);
         Debug.Log("StopSearchiing");
+        currentEnemy = null;
         searchEnemy = false;
         searhingRouteGenerated = false;
     }
@@ -154,7 +155,7 @@ public class HumanoidEnemiesAI : MonoBehaviour
 
     void EquipMostExpensiveItemSuitableForSlot(Slot slot)
     {
-        var suitableSlots = AIInventory.BackpackSlots.Slots.Where(i => i.ItemStack != null && slot.IsSuitable(i.ItemStack));
+        var suitableSlots = AIInventory.BackpackSlots.Slots.Where(i => !i.isEmpty && slot.IsSuitable(i.ItemStack));
         var mostExpensiveItemSlot = suitableSlots.OrderByDescending(i => i.ItemStack.Item.Cost).FirstOrDefault();
 
         if (mostExpensiveItemSlot != null)
