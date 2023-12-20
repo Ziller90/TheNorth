@@ -6,7 +6,7 @@ public class FactionMarker : MonoBehaviour
 {
     public enum Factions
     {
-        Player,
+        Villager,
         Bandit,
         Woolf
     }

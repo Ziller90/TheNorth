@@ -127,6 +127,7 @@ public class HumanoidEnemiesAI : MonoBehaviour
         yield return new WaitForSeconds(enemySearchingTime);
         Debug.Log("StopSearchiing");
         currentEnemy = null;
+        lastEnemyPosition = Vector3.zero;
         searchEnemy = false;
         searhingRouteGenerated = false;
     }
