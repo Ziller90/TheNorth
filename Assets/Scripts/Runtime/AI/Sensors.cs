@@ -12,10 +12,12 @@ public class Sensors : MonoBehaviour
     [SerializeField] float viewPointOffset;
 
     List<Transform> creaturesOnLocation = new List<Transform>();
+
     void Start()
     {
         creaturesOnLocation = Links.instance.globalLists.creaturesOnLocation;
     }
+
     bool NoWallsOnVisionLine(Vector3 enemyPosition)
     {
         RaycastHit hitInfo;
@@ -29,6 +31,7 @@ public class Sensors : MonoBehaviour
         }
         return false;
     }
+
     public Transform GetNearestEnemy()
     {
         List<Transform> noticedEnemies = new List<Transform>();
@@ -39,14 +42,14 @@ public class Sensors : MonoBehaviour
                 Vector3 fromGameObjectToEnemy = creature.position - transform.position;
                 float distanceToEnemy = Vector3.Distance(transform.position, creature.position);
 
-                if (distanceToEnemy < maxDistanceToHear)
+                if (distanceToEnemy < maxDistanceToSee && Vector3.Angle(transform.forward, fromGameObjectToEnemy) < (fieldOfView / 2) && (NoWallsOnVisionLine(creature.position)))
+                {
+                    noticedEnemies.Add(creature);
+                }
+                else if (distanceToEnemy < maxDistanceToHear)
                 {
                     noticedEnemies.Add(creature);
                     continue;
-                }
-                if (distanceToEnemy < maxDistanceToSee && Vector3.Angle(transform.parent.forward, fromGameObjectToEnemy) < (fieldOfView / 2) && (NoWallsOnVisionLine(creature.position)))
-                {
-                    noticedEnemies.Add(creature);
                 }
             }
         }
