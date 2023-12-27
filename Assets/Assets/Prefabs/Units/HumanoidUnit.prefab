@@ -586,9 +586,6 @@ PrefabInstance:
       addedObject: {fileID: 1929616585124593929}
     - targetCorrespondingSourceObject: {fileID: 6115228454438917361, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1036080270253512910}
-    - targetCorrespondingSourceObject: {fileID: 6115228454438917361, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1307875341050060661}
     - targetCorrespondingSourceObject: {fileID: 6115228454438917361, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
       insertIndex: -1
@@ -599,6 +596,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6115228454438917361, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4784129551598956709}
+    - targetCorrespondingSourceObject: {fileID: 6115228454438917361, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2673667671613044425}
   m_SourcePrefab: {fileID: 100100000, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
 --- !u!114 &716783470848166525 stripped
 MonoBehaviour:
@@ -609,17 +609,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 269cdbeb529004f4a83ac6957fd81028, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5658184504011615747 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8059843138504852898, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
-  m_PrefabInstance: {fileID: 2404843527227370401}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8467364967643463504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf46b90acc7e04045aa79927cc69d462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8467364967077075387 stripped
@@ -650,31 +639,6 @@ MonoBehaviour:
   maxDistanceToHear: 3
   ThisCreature: {fileID: 8467364967643463504}
   viewPointOffset: 0.6
---- !u!114 &1036080270253512910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8467364967643463504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2a9363ecdf268f42a23804c4d14a1a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensors: {fileID: 1929616585124593929}
-  AIState: 0
-  navigationManager: {fileID: 7437434635719383873}
-  distanceToAttack: 1.6
-  distanceToLastEnemyPosition: 1
-  hasPatrolRoute: 0
-  routeManager: {fileID: 4784129551598956709}
-  debugPoint: {fileID: 6149223491457573555, guid: 8ecd9d08e3864b046abe4270a3ea051a, type: 3}
-  actionManager: {fileID: 8074277991308995050}
-  searchingRadius: 15
-  enemySearchingTime: 30
-  searhingCornersNumber: 10
-  AIInventory: {fileID: 5658184504011615747}
 --- !u!114 &1307875341050060661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -732,6 +696,32 @@ MonoBehaviour:
   navigationManager: {fileID: 7437434635719383873}
   routeMovingMode: 0
   thisCreature: {fileID: 8467364967643463516}
+--- !u!114 &2673667671613044425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8467364967643463504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af8219831eddf464d84888af1c975c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  consoleLogMessage: Hello World!
+  sensors: {fileID: 0}
+  AIState: 0
+  navigationManager: {fileID: 0}
+  distanceToAttack: 0
+  distanceToLastEnemyPosition: 0
+  hasPatrolRoute: 0
+  routeManager: {fileID: 0}
+  debugPoint: {fileID: 0}
+  actionManager: {fileID: 0}
+  searchingRadius: 0
+  enemySearchingTime: 0
+  searhingCornersNumber: 0
+  AIInventory: {fileID: 0}
 --- !u!4 &8467364967643463516 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6115228454438917373, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
