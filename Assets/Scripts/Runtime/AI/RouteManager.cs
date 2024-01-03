@@ -7,7 +7,7 @@ public class RouteManager : MonoBehaviour
     [SerializeField] Route patrolRoute;
     [SerializeField] AINavigationManager navigationManager;
     [SerializeField] MovingMode routeMovingMode;
-    [SerializeField] Transform thisCreature;
+    [SerializeField] Transform thisUnit;
 
     float distanceToNextCorner = 1f;
     int nextCornerIndex;
@@ -37,9 +37,9 @@ public class RouteManager : MonoBehaviour
     public void MoveOnRoute(MovingMode routeMovingMode)
     {
         navigationManager.MoveToTarget(currentRouteCorners[nextCornerIndex], routeMovingMode);
-        var creaturePositionProjectionXZ = new Vector3(thisCreature.transform.position.x, 0, thisCreature.transform.position.z);
+        var unitPositionProjectionXZ = new Vector3(thisUnit.transform.position.x, 0, thisUnit.transform.position.z);
         var nextCornerPositionProjectionXZ = new Vector3(currentRouteCorners[nextCornerIndex].x, 0, currentRouteCorners[nextCornerIndex].z);
-        if (Vector3.Distance(creaturePositionProjectionXZ, nextCornerPositionProjectionXZ) < distanceToNextCorner)
+        if (Vector3.Distance(unitPositionProjectionXZ, nextCornerPositionProjectionXZ) < distanceToNextCorner)
         {
             nextCornerIndex++;
             if (nextCornerIndex == currentRouteCorners.Length)

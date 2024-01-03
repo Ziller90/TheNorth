@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GlobalLists : MonoBehaviour
 {
-    public List<Transform> creaturesOnLocation;
+    public List<Transform> unitsOnLocation;
     public List<InteractableObject> interactablesOnLocation;
     public List<Item> itemsPrefabs;
 

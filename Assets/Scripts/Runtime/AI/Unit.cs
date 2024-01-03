@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Creature : MonoBehaviour
+public class Unit : MonoBehaviour
 {
-    [SerializeField] GameObject thisCreature;
-    [SerializeField] GameObject thisCreatureModel;
-    [SerializeField] Collider thisCreatureCollider;
+    [SerializeField] GameObject thisUnit;
+    [SerializeField] GameObject thisUnitView;
+    [SerializeField] Collider thisUnitCollider;
     [SerializeField] Behaviour[] components;
     [SerializeField] Health health;
     [SerializeField] Rigidbody rigidbody;
@@ -18,13 +18,13 @@ public class Creature : MonoBehaviour
     void Start()
     {
         globalLists = Links.instance.globalLists;
-        globalLists.creaturesOnLocation.Add(gameObject.transform);
+        globalLists.unitsOnLocation.Add(gameObject.transform);
         health.dieEvent += Die;
     } 
     public void Die()
     {
-        globalLists.creaturesOnLocation.Remove(gameObject.transform);
-        thisCreatureCollider.enabled = false;
+        globalLists.unitsOnLocation.Remove(gameObject.transform);
+        thisUnitCollider.enabled = false;
         rigidbody.isKinematic = true;
         Destroy(healthBar);
         deathAudioSource.Play();

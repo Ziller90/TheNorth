@@ -6,5 +6,5 @@ public abstract class ItemUsing : MonoBehaviour
 {
     [SerializeField] protected bool destroyOnUse;
     public bool DestroyOnUse => destroyOnUse;
-    public abstract void UseItem(Creature userCreature);
+    public abstract void UseItem(Unit userUnit);
 }

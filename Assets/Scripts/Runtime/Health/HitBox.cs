@@ -8,13 +8,14 @@ public class HitBox : MonoBehaviour
     [SerializeField] float hitBoxDamageModificator;
     [SerializeField] HumanoidBattleSystem battleSystem;
     [SerializeField] GameObject DebugPoint;
-    [SerializeField] Transform thisCreature;
-    public Transform ThisCreature => thisCreature;
+    [SerializeField] Transform unit;
+
+    public Transform Unit => unit;
     public void HitBoxGetDamage(float damage, Vector3 hitPoint)
     {
         if (battleSystem.ShieldRaised)
         {
-            if (Vector3.Angle(-battleSystem.GetHitVector(hitPoint), thisCreature.forward) > battleSystem.ShieldProtectionAngle / 2)
+            if (Vector3.Angle(-battleSystem.GetHitVector(hitPoint), unit.forward) > battleSystem.ShieldProtectionAngle / 2)
                 health.GetDamage(damage);
         }
         else

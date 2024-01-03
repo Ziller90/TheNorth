@@ -13,7 +13,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] float baseDamage;
     [SerializeField] string[] tagsToIgnore;
 
-    public GameObject thisCreature;
+    public GameObject thisUnit;
 
     int upAngleInDegrees;
     GameObject thisProjectilePrefab;
@@ -89,6 +89,6 @@ public class Projectile : MonoBehaviour
         Vector3 throwingVelocity = startPosition.forward * v;
 
         thisProjectilePrefab.GetComponent<Rigidbody>().velocity = throwingVelocity;
-        thisProjectilePrefab.GetComponent<Projectile>().thisCreature = thisCreature;
+        thisProjectilePrefab.GetComponent<Projectile>().thisUnit = thisUnit;
     }
 }

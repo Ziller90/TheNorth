@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class AINavigationManager : MonoBehaviour
 {
     [SerializeField] ControlManager controlManager;
-    [SerializeField] Transform thisCreature;
+    [SerializeField] Transform thisUnit;
 
     Vector3[] pathCorners;
     MovingMode movingMode;
@@ -29,12 +29,12 @@ public class AINavigationManager : MonoBehaviour
         if (movingMode != MovingMode.Stand)
         {
             NavMeshPath newPath = new NavMeshPath();
-            NavMesh.CalculatePath(thisCreature.position, target, NavMesh.AllAreas, newPath);
+            NavMesh.CalculatePath(thisUnit.position, target, NavMesh.AllAreas, newPath);
             pathCorners = newPath.corners;
             if (pathCorners.Length > 1)
             {
                 nextCorner = pathCorners[1];
-                Vector3 newDirection = (nextCorner - thisCreature.transform.position).normalized;
+                Vector3 newDirection = (nextCorner - thisUnit.transform.position).normalized;
                 newDirection = new Vector3(newDirection.x, 0, newDirection.z);
                 controlManager.SetControl(newDirection, movingMode);
             }
