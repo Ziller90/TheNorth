@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using BehaviorTree;
 using System;
 
-public class ConsoleLogTask : BehaviorTree.Node
+[Serializable]
+public class ConsoleLogTask : Node
 {
-    string consoleLogMessage;
+    [SerializeField] string consoleLogMessage;
+
+    public ConsoleLogTask() : base() { }
+    public ConsoleLogTask(List<Node> children) : base(children) { }
 
     public ConsoleLogTask(string consoleLogMessage)
     {
@@ -17,6 +20,7 @@ public class ConsoleLogTask : BehaviorTree.Node
     {
         Debug.Log(consoleLogMessage);
         state = NodeState.RUNNING;
-        return state;   
+        return state;
     }
 }
+
