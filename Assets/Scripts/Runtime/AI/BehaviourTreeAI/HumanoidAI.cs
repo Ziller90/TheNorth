@@ -1,32 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using BehaviorTree;
 
-public class HumanoidAI : AIBehaviourTree
+public class HumanoidAI : MonoBehaviour
 {
-    [SerializeField] string consoleLogMessage;
+    [Header("AI Parts")]
     [SerializeField] Sensors sensors;
-    [SerializeField] States AIState;
     [SerializeField] AINavigationManager navigationManager;
-    [SerializeField] float distanceToAttack;
-    [SerializeField] float distanceToLastEnemyPosition;
-    [SerializeField] bool hasPatrolRoute;
-    [SerializeField] RouteManager routeManager;
-    [SerializeField] GameObject debugPoint;
     [SerializeField] ActionManager actionManager;
+    [SerializeField] HumanoidInventoryContainer AIInventory;
+
+    Transform currentEnemy;
+    GameObject thisCreature;
 
     [SerializeField] float searchingRadius;
     [SerializeField] float enemySearchingTime;
     [SerializeField] int searhingCornersNumber;
+    [SerializeField] float distanceToAttack;
+    [SerializeField] float distanceToLastEnemyPosition;
+    [SerializeField] RouteManager routeManager;
+    [SerializeField] GameObject debugPoint;
 
-    [SerializeField] HumanoidInventoryContainer AIInventory;
+    [SerializeField] AIBehaviourTree humanoidAITree;
 
-    Transform currentEnemy;
-
-    protected override Node SetupTree()
+    void Awake()
     {
-        Node root = new ConsoleLogTask(consoleLogMessage);
-        return root;
+        humanoidAITree.SetData("currentEnemy", currentEnemy);
+        humanoidAITree.SetData("thisCreature", thisCreature);
     }
 }

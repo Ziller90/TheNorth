@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class LocationManager : MonoBehaviour
 {
@@ -16,6 +17,6 @@ public class LocationManager : MonoBehaviour
     }
     public Transform GetRandomSpawnPoint()
     {
-        return spawnPoints[Random.Range(0, spawnPoints.Count)];
+        return spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Count)];
     }
 }
