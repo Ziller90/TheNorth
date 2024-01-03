@@ -11,7 +11,6 @@ public class HumanoidAI : MonoBehaviour
     [SerializeField] HumanoidInventoryContainer AIInventory;
 
     Transform currentEnemy;
-    GameObject thisCreature;
 
     [SerializeField] float searchingRadius;
     [SerializeField] float enemySearchingTime;
@@ -26,6 +25,11 @@ public class HumanoidAI : MonoBehaviour
     void Awake()
     {
         humanoidAITree.SetData("currentEnemy", currentEnemy);
-        humanoidAITree.SetData("thisCreature", thisCreature);
+        humanoidAITree.SetData("navigationManager", navigationManager);
+    }
+
+    void Update()
+    {
+        
     }
 }

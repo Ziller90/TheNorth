@@ -8,14 +8,14 @@ public class Sensors : MonoBehaviour
     [SerializeField] int fieldOfView;
     [SerializeField] float maxDistanceToSee;
     [SerializeField] float maxDistanceToHear;
-    [SerializeField] GameObject ThisCreature;
+    [SerializeField] GameObject thisUnit;
     [SerializeField] float viewPointOffset;
 
-    List<Transform> creaturesOnLocation = new List<Transform>();
+    List<Transform> unitsOnLocation = new List<Transform>();
 
     void Start()
     {
-        creaturesOnLocation = Links.instance.globalLists.creaturesOnLocation;
+        unitsOnLocation = Links.instance.globalLists.unitsOnLocation;
     }
 
     bool NoWallsOnVisionLine(Vector3 enemyPosition)
@@ -35,20 +35,20 @@ public class Sensors : MonoBehaviour
     public Transform GetNearestEnemy()
     {
         List<Transform> noticedEnemies = new List<Transform>();
-        foreach (Transform creature in creaturesOnLocation)
+        foreach (Transform unit in unitsOnLocation)
         {
-            if (creature.GetComponent<FactionMarker>().creatureFaction != factionMarker.creatureFaction && creature != ThisCreature.transform)
+            if (unit.GetComponent<FactionMarker>().faction != factionMarker.faction && unit != thisUnit.transform)
             {
-                Vector3 fromGameObjectToEnemy = creature.position - transform.position;
-                float distanceToEnemy = Vector3.Distance(transform.position, creature.position);
+                Vector3 fromGameObjectToEnemy = unit.position - transform.position;
+                float distanceToEnemy = Vector3.Distance(transform.position, unit.position);
 
-                if (distanceToEnemy < maxDistanceToSee && Vector3.Angle(transform.forward, fromGameObjectToEnemy) < (fieldOfView / 2) && (NoWallsOnVisionLine(creature.position)))
+                if (distanceToEnemy < maxDistanceToSee && Vector3.Angle(transform.forward, fromGameObjectToEnemy) < (fieldOfView / 2) && (NoWallsOnVisionLine(unit.position)))
                 {
-                    noticedEnemies.Add(creature);
+                    noticedEnemies.Add(unit);
                 }
                 else if (distanceToEnemy < maxDistanceToHear)
                 {
-                    noticedEnemies.Add(creature);
+                    noticedEnemies.Add(unit);
                     continue;
                 }
             }

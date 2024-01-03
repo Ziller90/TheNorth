@@ -13,6 +13,7 @@ public class ModelUtils : MonoBehaviour
         direction = fixQuaternion * direction;
         return direction;
     }
+
     public static float round(float number, int roundIndex)
     {
         float temp = number * roundIndex;
@@ -20,10 +21,12 @@ public class ModelUtils : MonoBehaviour
         temp = temp / roundIndex;
         return (temp);
     }
+
     public static float SpeedConverter(float kmPerHour)
     {
         return (kmPerHour * 1000f / 3600f) / 50f;
     }
+
     public static Transform GetNearest(Transform start, List<Transform> points)
     {
         Transform nearestPoint = null;
@@ -202,5 +205,25 @@ public class ModelUtils : MonoBehaviour
             return false;
         }
         return true;
+    }
+
+    bool NoWallsOnVisionLine(Vector3 source, Vector3 target, float viewPointOffset)
+    {
+        RaycastHit hitInfo;
+        bool seeCollider = Physics.Raycast(source + (target - source).normalized * viewPointOffset, (target - source), out hitInfo);
+        if (seeCollider)
+        {
+            if (hitInfo.collider.gameObject.transform.position == target)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static List<Transform> FindObjectsInFOV(Transform center, float radius, float angle, List<Transform> objects)
+    {
+        return null;
     }
 }

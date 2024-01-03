@@ -5,8 +5,8 @@ using UnityEngine;
 public class HealingUsing : ItemUsing
 {
     [SerializeField] float healthBonus;
-    public override void UseItem(Creature userCreature)
+    public override void UseItem(Unit userUnit)
     {
-        userCreature.GetComponent<Health>().Heal(healthBonus);
+        userUnit.GetComponent<Health>().Heal(healthBonus);
     }
 }
