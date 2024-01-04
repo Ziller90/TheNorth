@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Sensors : MonoBehaviour
 {
-    [SerializeField] FactionMarker factionMarker;
     [SerializeField] int fieldOfView;
     [SerializeField] float maxDistanceToSee;
     [SerializeField] float maxDistanceToHear;
-    [SerializeField] GameObject thisUnit;
     [SerializeField] float viewPointOffset;
 
     List<Transform> unitsOnLocation = new List<Transform>();
+    FactionMarker factionMarker;
 
     void Start()
     {
         unitsOnLocation = Links.instance.globalLists.unitsOnLocation;
+        factionMarker = GetComponent<FactionMarker>();  
     }
 
     bool NoWallsOnVisionLine(Vector3 enemyPosition)
@@ -37,7 +37,7 @@ public class Sensors : MonoBehaviour
         List<Transform> noticedEnemies = new List<Transform>();
         foreach (Transform unit in unitsOnLocation)
         {
-            if (unit.GetComponent<FactionMarker>().faction != factionMarker.faction && unit != thisUnit.transform)
+            if (unit.GetComponent<FactionMarker>().faction != factionMarker.faction && unit != gameObject.transform)
             {
                 Vector3 fromGameObjectToEnemy = unit.position - transform.position;
                 float distanceToEnemy = Vector3.Distance(transform.position, unit.position);

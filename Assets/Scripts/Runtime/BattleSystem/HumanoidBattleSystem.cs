@@ -3,14 +3,15 @@ using UnityEngine;
 public class HumanoidBattleSystem : MonoBehaviour
 {
     [SerializeField] float shieldProtectionAngle;
+    [SerializeField] float maxDistanceForAutoAim;
+
     CharacterContoller characterContoller;
     AutoAimController autoAim;
     ActionManager actionManager;
     Animator humanAnimator;
-    [SerializeField] float maxDistanceForAutoAim;
 
-    [SerializeField] Weapon mainWeapon;
-    [SerializeField] Weapon secondaryWeapon;
+    Weapon mainWeapon;
+    Weapon secondaryWeapon;
 
     Vector3 distantAttackTargetPosition;
     bool isPlayingAttackAnimation;

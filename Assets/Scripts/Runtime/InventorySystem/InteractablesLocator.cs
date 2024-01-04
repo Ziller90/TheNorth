@@ -5,24 +5,28 @@ using System;
 public class InteractablesLocator : MonoBehaviour
 {
     [SerializeField] float interactionRange;
-    [SerializeField] ActionManager actionManager;
-    HumanoidInventoryContainer inventory;
 
+    ActionManager actionManager;
+    HumanoidInventoryContainer inventory;
     List<InteractableObject> interactablesOnLocation;
     InteractableObject nearestInteractable = null;
 
     public delegate void ContainerOpened(ContainerBody containerBody);
     public event ContainerOpened containerOpenedEvent;
+
     void Start()
     {
         inventory = GetComponent<HumanoidInventoryContainer>();  
+        actionManager = GetComponent<ActionManager>();
         actionManager.onInteractPressed += Interact;
         interactablesOnLocation = Links.instance.globalLists.interactablesOnLocation;
     }
+
     public void SetActionManager(ActionManager actionManager)
     {
         this.actionManager = actionManager;
     }
+
     void Update()
     {
         InteractableObject newNearestInteractable = null;

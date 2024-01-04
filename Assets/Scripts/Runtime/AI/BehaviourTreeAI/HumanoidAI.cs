@@ -6,7 +6,6 @@ public class HumanoidAI : MonoBehaviour
 {
     [Header("AI Parts")]
     [SerializeField] Sensors sensors;
-    [SerializeField] AINavigationManager navigationManager;
     [SerializeField] ActionManager actionManager;
     [SerializeField] HumanoidInventoryContainer AIInventory;
 
@@ -25,7 +24,7 @@ public class HumanoidAI : MonoBehaviour
     void Awake()
     {
         humanoidAITree.SetData("currentEnemy", currentEnemy);
-        humanoidAITree.SetData("navigationManager", navigationManager);
+        humanoidAITree.SetData("navigationManager", GetComponent<AINavigationManager>());
     }
 
     void Update()

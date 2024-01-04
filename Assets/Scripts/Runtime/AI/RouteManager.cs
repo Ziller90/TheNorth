@@ -5,10 +5,9 @@ using UnityEngine;
 public class RouteManager : MonoBehaviour
 {
     [SerializeField] Route patrolRoute;
-    [SerializeField] AINavigationManager navigationManager;
     [SerializeField] MovingMode routeMovingMode;
-    [SerializeField] Transform thisUnit;
 
+    AINavigationManager navigationManager;
     float distanceToNextCorner = 1f;
     int nextCornerIndex;
     Vector3[] patrolRouteCorners;
@@ -16,6 +15,8 @@ public class RouteManager : MonoBehaviour
 
     void Start()
     {
+        navigationManager = GetComponent<AINavigationManager>();    
+             
         if (patrolRoute)
         {
             patrolRouteCorners = patrolRoute.GetCorners();
@@ -37,7 +38,7 @@ public class RouteManager : MonoBehaviour
     public void MoveOnRoute(MovingMode routeMovingMode)
     {
         navigationManager.MoveToTarget(currentRouteCorners[nextCornerIndex], routeMovingMode);
-        var unitPositionProjectionXZ = new Vector3(thisUnit.transform.position.x, 0, thisUnit.transform.position.z);
+        var unitPositionProjectionXZ = new Vector3(transform.position.x, 0, transform.position.z);
         var nextCornerPositionProjectionXZ = new Vector3(currentRouteCorners[nextCornerIndex].x, 0, currentRouteCorners[nextCornerIndex].z);
         if (Vector3.Distance(unitPositionProjectionXZ, nextCornerPositionProjectionXZ) < distanceToNextCorner)
         {

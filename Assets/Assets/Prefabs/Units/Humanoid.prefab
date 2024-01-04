@@ -4449,7 +4449,7 @@ MonoBehaviour:
   hitBoxDamageModificator: 1
   battleSystem: {fileID: 6115228454438917371}
   DebugPoint: {fileID: 0}
-  thisCreature: {fileID: 6115228454438917373}
+  unit: {fileID: 0}
 --- !u!1 &6115228454231450102
 GameObject:
   m_ObjectHideFlags: 0
@@ -4520,7 +4520,7 @@ MonoBehaviour:
   hitBoxDamageModificator: 3
   battleSystem: {fileID: 6115228454438917371}
   DebugPoint: {fileID: 0}
-  thisCreature: {fileID: 6115228454438917373}
+  unit: {fileID: 0}
 --- !u!1 &6115228454287601862
 GameObject:
   m_ObjectHideFlags: 0
@@ -4591,7 +4591,7 @@ MonoBehaviour:
   hitBoxDamageModificator: 1
   battleSystem: {fileID: 6115228454438917371}
   DebugPoint: {fileID: 0}
-  thisCreature: {fileID: 6115228454438917373}
+  unit: {fileID: 0}
 --- !u!1 &6115228454313205722
 GameObject:
   m_ObjectHideFlags: 0
@@ -4645,6 +4645,8 @@ GameObject:
   - component: {fileID: 6040268367450635467}
   - component: {fileID: 8879553102830726590}
   - component: {fileID: 1525224019825811632}
+  - component: {fileID: 6070088289655340988}
+  - component: {fileID: 3659746340058744949}
   m_Layer: 6
   m_Name: Humanoid
   m_TagString: Creature
@@ -4743,8 +4745,6 @@ MonoBehaviour:
   runSpeed: 12
   walkSpeed: 4
   rotationSpeed: 7
-  humanAnimator: {fileID: 1525224019825811632}
-  controlManager: {fileID: 0}
 --- !u!114 &6115228454438917371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4758,15 +4758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shieldProtectionAngle: 120
-  characterContoller: {fileID: 6115228454438917370}
-  autoAim: {fileID: 6115228454438917375}
-  actionManager: {fileID: 0}
-  humanAnimator: {fileID: 1525224019825811632}
-  throwingWeaponThrower: {fileID: 0}
   maxDistanceForAutoAim: 10
-  thisCreature: {fileID: 6115228454438917361}
-  mainWeapon: {fileID: 0}
-  secondaryWeapon: {fileID: 0}
 --- !u!114 &6115228454438917375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4791,16 +4783,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b091095fcc85849827dc40b0272bd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisCreature: {fileID: 6115228454438917361}
-  thisCreatureModel: {fileID: 0}
-  thisCreatureCollider: {fileID: 6115228454438917374}
+  unitCollider: {fileID: 6115228454438917374}
   components:
   - {fileID: 6115228454438917370}
   - {fileID: 6115228454438917371}
   - {fileID: 6115228454438917375}
   - {fileID: 6115228454438917369}
-  health: {fileID: 6115228454438917894}
-  rigidbody: {fileID: 6115228454438917372}
   healthBar: {fileID: 6115228453898793498}
   deathAudioSource: {fileID: 6115228454685527418}
 --- !u!114 &6115228454438917894
@@ -4828,7 +4816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 269cdbeb529004f4a83ac6957fd81028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  creatureFaction: 0
+  faction: 0
 --- !u!114 &6510605634573919806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4842,7 +4830,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionRange: 2.5
-  actionManager: {fileID: 0}
 --- !u!114 &8059843138504852898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4855,8 +4842,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf46b90acc7e04045aa79927cc69d462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationEvents: {fileID: 6040268367450635467}
-  creature: {fileID: 6115228454438917369}
   dropPosition: {fileID: 6115228455271634165}
   rightHandEquipPosition: {fileID: 6115228454313205723}
   leftHandEquipPosition: {fileID: 4857773764945573920}
@@ -4983,7 +4968,6 @@ MonoBehaviour:
       itemStack:
         rid: -2
   dropSackPrefab: {fileID: 390682515965362878, guid: 4a6b3267735ccc745a8353076a4887a6, type: 3}
-  battleSystem: {fileID: 6115228454438917371}
   references:
     version: 2
     RefIds:
@@ -5055,6 +5039,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6070088289655340988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6115228454438917361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45144f12134c96949b5eead509ca4b32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3659746340058744949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6115228454438917361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 213717ecb8f229940b4e35d12aa31f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickTimeForFastAttack: 0
+  mainWeaponUsing: 0
+  secondaryWeaponUsing: 0
 --- !u!1 &6115228454590202541
 GameObject:
   m_ObjectHideFlags: 0
@@ -5125,7 +5136,7 @@ MonoBehaviour:
   hitBoxDamageModificator: 2
   battleSystem: {fileID: 6115228454438917371}
   DebugPoint: {fileID: 0}
-  thisCreature: {fileID: 6115228454438917373}
+  unit: {fileID: 0}
 --- !u!1 &6115228454685527420
 GameObject:
   m_ObjectHideFlags: 0
@@ -5324,7 +5335,7 @@ MonoBehaviour:
   hitBoxDamageModificator: 1
   battleSystem: {fileID: 6115228454438917371}
   DebugPoint: {fileID: 0}
-  thisCreature: {fileID: 6115228454438917373}
+  unit: {fileID: 0}
 --- !u!1 &6115228454829537490
 GameObject:
   m_ObjectHideFlags: 0
@@ -5395,7 +5406,7 @@ MonoBehaviour:
   hitBoxDamageModificator: 1
   battleSystem: {fileID: 6115228454438917371}
   DebugPoint: {fileID: 0}
-  thisCreature: {fileID: 6115228454438917373}
+  unit: {fileID: 0}
 --- !u!1 &6115228454832011817
 GameObject:
   m_ObjectHideFlags: 0
@@ -5466,7 +5477,7 @@ MonoBehaviour:
   hitBoxDamageModificator: 1
   battleSystem: {fileID: 6115228454438917371}
   DebugPoint: {fileID: 0}
-  thisCreature: {fileID: 6115228454438917373}
+  unit: {fileID: 0}
 --- !u!1 &6115228454835502342
 GameObject:
   m_ObjectHideFlags: 0
@@ -5722,7 +5733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionInHand: {fileID: 6115228455295101987}
-  thisCreature: {fileID: 6115228454438917361}
+  thisUnit: {fileID: 0}
 --- !u!1 &6115228455347269617
 GameObject:
   m_ObjectHideFlags: 0
@@ -5793,7 +5804,7 @@ MonoBehaviour:
   hitBoxDamageModificator: 1
   battleSystem: {fileID: 6115228454438917371}
   DebugPoint: {fileID: 0}
-  thisCreature: {fileID: 6115228454438917373}
+  unit: {fileID: 0}
 --- !u!1 &6115228455451347050
 GameObject:
   m_ObjectHideFlags: 0
@@ -6014,7 +6025,7 @@ MonoBehaviour:
   hitBoxDamageModificator: 1
   battleSystem: {fileID: 6115228454438917371}
   DebugPoint: {fileID: 0}
-  thisCreature: {fileID: 6115228454438917373}
+  unit: {fileID: 0}
 --- !u!1 &6115228455757127356
 GameObject:
   m_ObjectHideFlags: 0
@@ -6085,7 +6096,7 @@ MonoBehaviour:
   hitBoxDamageModificator: 1
   battleSystem: {fileID: 6115228454438917371}
   DebugPoint: {fileID: 0}
-  thisCreature: {fileID: 6115228454438917373}
+  unit: {fileID: 0}
 --- !u!1 &8192213370732686490
 GameObject:
   m_ObjectHideFlags: 0
@@ -6129,6 +6140,10 @@ PrefabInstance:
       propertyPath: health
       value: 
       objectReference: {fileID: 6115228454438917894}
+    - target: {fileID: 1339505468256946725, guid: 7f9d5c2269d6fb14fae43804149cd43a, type: 3}
+      propertyPath: thisUnit
+      value: 
+      objectReference: {fileID: 6115228454438917373}
     - target: {fileID: 1339505468256946725, guid: 7f9d5c2269d6fb14fae43804149cd43a, type: 3}
       propertyPath: thisCreature
       value: 

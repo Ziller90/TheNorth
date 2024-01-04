@@ -5,11 +5,13 @@ using UnityEngine;
 public class AutoAimController : MonoBehaviour
 {
     List<Transform> aimObjects;
+
     void Start()
     {
         GlobalLists globalAims = Links.instance.globalLists;
         aimObjects = globalAims.unitsOnLocation;
     }
+
     public bool HasAutoAimTarget(GameObject thisUnit, Transform throwPoint, float maxDistance)
     {
         foreach (Transform aim in aimObjects)
@@ -21,6 +23,7 @@ public class AutoAimController : MonoBehaviour
         }
         return false;
     }
+
     public Vector3 GetBestAim(GameObject thisUnit, Transform throwPoint, float maxDistance)
     {
         Vector3 bestAim = throwPoint.forward;
