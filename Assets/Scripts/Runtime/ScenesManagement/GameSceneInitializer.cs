@@ -11,17 +11,20 @@ public class GameSceneInitializer : MonoBehaviour
     {
         InitializeScene();
     }
+
     public void InitializeScene()
     {
         Links.instance.locationLoader.LoadLocation();
         CreatePlayerCharacter();
     }
+
     public void CreatePlayerCharacter()
     {
         GameObject playerCharacter;
         playerCharacter = Instantiate(player, Links.instance.locationSettings.GetRandomSpawnPoint().position, Quaternion.identity);
         SetMainCharacter(playerCharacter);
     }
+
     public void SetMainCharacter(GameObject character)
     {
         Links.instance.mainCamera.GetComponent<CameraFollowing>().SetObjectToFollow(character);

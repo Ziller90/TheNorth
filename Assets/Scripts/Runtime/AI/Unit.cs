@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    [SerializeField] GameObject thisUnit;
-    [SerializeField] GameObject thisUnitView;
-    [SerializeField] Collider thisUnitCollider;
+    [SerializeField] Collider unitCollider;
     [SerializeField] Behaviour[] components;
-    [SerializeField] Health health;
-    [SerializeField] Rigidbody rigidbody;
     [SerializeField] GameObject healthBar;
     [SerializeField] AudioSource deathAudioSource;
 
+    Health health;
+    Rigidbody rigidbody;
     GlobalLists globalLists;
 
     void Start()
     {
+        health = GetComponent<Health>();
+        rigidbody = GetComponent<Rigidbody>();
         globalLists = Links.instance.globalLists;
         globalLists.unitsOnLocation.Add(gameObject.transform);
         health.dieEvent += Die;
@@ -24,7 +24,7 @@ public class Unit : MonoBehaviour
     public void Die()
     {
         globalLists.unitsOnLocation.Remove(gameObject.transform);
-        thisUnitCollider.enabled = false;
+        unitCollider.enabled = false;
         rigidbody.isKinematic = true;
         Destroy(healthBar);
         deathAudioSource.Play();
