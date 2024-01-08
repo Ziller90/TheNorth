@@ -13,33 +13,34 @@ public enum NodeState
 [Serializable]
 public class Node
 {
-    protected NodeState state;
-
-    [SerializeField] protected Node parent;
     [SerializeReference, SubclassSelector] protected List<Node> children = new List<Node>();
 
-    public void SetParent(Node parent)
-    {
-        this.parent = parent;
-    }
-
-    public Node()
-    {
-        SetParent(null);
-    }
-
-    public Node(List<Node> children)
-    {
-        foreach (Node child in children)
-            Attach(child);
-    }
-
-    private void Attach(Node node)
-    {
-        node.SetParent(this);
-        children.Add(node);
-    }
+    protected AIBehaviourTree hostTree;
+    protected Node parent;
+    protected NodeState state;
 
     public virtual NodeState Evaluate() => NodeState.FAILURE;
+
+    public void Initialize(AIBehaviourTree hostTree, Node parent)
+    {
+        this.hostTree = hostTree;
+        this.parent = parent;
+
+        OnInitialize();
+        InitializeChildren();
+    }
+
+    public virtual void OnInitialize() { }
+
+    public void InitializeChildren()
+    {
+        foreach (Node child in children)
+            InitializeChild(child);
+    }
+
+    private void InitializeChild(Node childNode)
+    {
+        childNode.Initialize(hostTree, this);
+    }
 }
 

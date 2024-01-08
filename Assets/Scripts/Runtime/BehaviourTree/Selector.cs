@@ -4,9 +4,6 @@ using System;
 [Serializable]
 public class Selector : Node
 {
-    public Selector() : base() { }
-    public Selector(List<Node> children) : base(children) { }
-
     public override NodeState Evaluate()
     {
         foreach (Node node in children)
@@ -29,7 +26,6 @@ public class Selector : Node
         state = NodeState.FAILURE;
         return state;
     }
-
 }
 
 

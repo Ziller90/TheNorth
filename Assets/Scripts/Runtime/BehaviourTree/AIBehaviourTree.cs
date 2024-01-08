@@ -7,9 +7,15 @@ using UnityEngine;
 public class AIBehaviourTree : MonoBehaviour
 {
     [SerializeReference, SubclassSelector] Node root;
-    Dictionary<string, object> data = new Dictionary<string, object>();
 
-    private void Update()
+    public Dictionary<string, object> data = new Dictionary<string, object>();
+
+    void Start()
+    {
+        root.Initialize(this, null);
+    }
+
+    void Update()
     {
         if (root != null)
             root.Evaluate();
