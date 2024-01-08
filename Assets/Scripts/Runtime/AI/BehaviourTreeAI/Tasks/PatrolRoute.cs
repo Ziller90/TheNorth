@@ -6,35 +6,30 @@ using System;
 [Serializable]
 public class PatrolRoute : Node
 {
-    [SerializeField] Route patrolRoute;
-    [SerializeField] MovingMode routeMovingMode;
-
-    AINavigationManager navigationManager;
     float distanceToNextCorner = 1f;
     int nextCornerIndex;
     Vector3[] patrolRouteCorners;
     Vector3[] currentRouteCorners;
 
-    public void SetPatrolRoute(Route newRoute)
-    {
-        patrolRoute = newRoute; 
-    }
-
     public override void OnInitialize()
     {
-        navigationManager = (AINavigationManager)hostTree.GetData("navigationManager");
-
-        if (patrolRoute)
+        if (tree.PatrolRoute)
         {
-            patrolRouteCorners = patrolRoute.GetCorners();
+            patrolRouteCorners = tree.PatrolRoute.GetCorners();
             currentRouteCorners = patrolRouteCorners;
         }
     }
 
     public override NodeState Evaluate()
     {
-        navigationManager.MoveToTarget(currentRouteCorners[nextCornerIndex], routeMovingMode);
-        var unitPositionProjectionXZ = new Vector3(navigationManager.transform.position.x, 0, navigationManager.transform.position.z);
+        if (!tree.PatrolRoute)
+        {
+            state = NodeState.FAILURE;
+            return state;
+        }
+
+        tree.AINavigationManager.MoveToTarget(currentRouteCorners[nextCornerIndex], tree.PatrolMovingMode);
+        var unitPositionProjectionXZ = new Vector3(tree.AINavigationManager.transform.position.x, 0, tree.AINavigationManager.transform.position.z);
         var nextCornerPositionProjectionXZ = new Vector3(currentRouteCorners[nextCornerIndex].x, 0, currentRouteCorners[nextCornerIndex].z);
         if (Vector3.Distance(unitPositionProjectionXZ, nextCornerPositionProjectionXZ) < distanceToNextCorner)
         {

@@ -15,7 +15,7 @@ public class Node
 {
     [SerializeReference, SubclassSelector] protected List<Node> children = new List<Node>();
 
-    protected AIBehaviourTree hostTree;
+    protected AIBehaviourTree tree;
     protected Node parent;
     protected NodeState state;
 
@@ -23,7 +23,7 @@ public class Node
 
     public void Initialize(AIBehaviourTree hostTree, Node parent)
     {
-        this.hostTree = hostTree;
+        this.tree = hostTree;
         this.parent = parent;
 
         OnInitialize();
@@ -40,7 +40,7 @@ public class Node
 
     private void InitializeChild(Node childNode)
     {
-        childNode.Initialize(hostTree, this);
+        childNode.Initialize(tree, this);
     }
 }
 

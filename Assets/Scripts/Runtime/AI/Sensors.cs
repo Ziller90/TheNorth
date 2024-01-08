@@ -16,6 +16,9 @@ public class Sensors : MonoBehaviour
 
     int terrainLayer = 7;
     int evniromentLayer = 9;
+    int defaultLayer = 0;
+
+    public Transform CurrentEnemy => GetNearestEnemy();
 
     void Start()
     {
@@ -28,10 +31,11 @@ public class Sensors : MonoBehaviour
     {
         LayerMask terrainLayerMask = 1 << terrainLayer;
         LayerMask evniromentLayerMask = 1 << evniromentLayer;
-        LayerMask obstaclesMask = terrainLayerMask | evniromentLayerMask;
+        LayerMask defaultLayerMask = 1 << defaultLayer;
+        LayerMask obstaclesMask = terrainLayerMask | evniromentLayerMask | defaultLayerMask;
 
         var seenObjects = ModelUtils.FindObjectsInFOV(visionPosition, maxDistanceToSee, FOVAngle, unitsOnLocation, obstaclesMask);
-        var heardObjects = ModelUtils.FindObjectsInRadius(visionPosition, maxDistanceToSee, unitsOnLocation);
+        var heardObjects = ModelUtils.FindObjectsInRadius(visionPosition, maxDistanceToHear, unitsOnLocation);
 
         var noticedObjects = seenObjects.Union(heardObjects).ToList();
 
