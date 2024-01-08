@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Sensors : MonoBehaviour
 {
-    [SerializeField] int fieldOfView;
+    [SerializeField] Transform visionPosition;
+    [SerializeField] float FOVAngle;
     [SerializeField] float maxDistanceToSee;
     [SerializeField] float maxDistanceToHear;
     [SerializeField] float viewPointOffset;
@@ -12,51 +14,36 @@ public class Sensors : MonoBehaviour
     List<Transform> unitsOnLocation = new List<Transform>();
     FactionMarker factionMarker;
 
+    int terrainLayer = 7;
+    int evniromentLayer = 9;
+
     void Start()
     {
         unitsOnLocation = Links.instance.globalLists.unitsOnLocation;
+        unitsOnLocation.Remove(transform);
         factionMarker = GetComponent<FactionMarker>();  
-    }
-
-    bool NoWallsOnVisionLine(Vector3 enemyPosition)
-    {
-        RaycastHit hitInfo;
-        bool seeCollider = Physics.Raycast(transform.position + (enemyPosition - transform.position).normalized * viewPointOffset, (enemyPosition - transform.position), out hitInfo);
-        if (seeCollider)
-        {
-            if (hitInfo.collider.gameObject.transform.position == enemyPosition)
-            {
-                return true;
-            }
-        }
-        return false;
     }
 
     public Transform GetNearestEnemy()
     {
-        List<Transform> noticedEnemies = new List<Transform>();
-        foreach (Transform unit in unitsOnLocation)
-        {
-            if (unit.GetComponent<FactionMarker>().faction != factionMarker.faction && unit != gameObject.transform)
-            {
-                Vector3 fromGameObjectToEnemy = unit.position - transform.position;
-                float distanceToEnemy = Vector3.Distance(transform.position, unit.position);
+        LayerMask terrainLayerMask = 1 << terrainLayer;
+        LayerMask evniromentLayerMask = 1 << evniromentLayer;
+        LayerMask obstaclesMask = terrainLayerMask | evniromentLayerMask;
 
-                if (distanceToEnemy < maxDistanceToSee && Vector3.Angle(transform.forward, fromGameObjectToEnemy) < (fieldOfView / 2) && (NoWallsOnVisionLine(unit.position)))
-                {
-                    noticedEnemies.Add(unit);
-                }
-                else if (distanceToEnemy < maxDistanceToHear)
-                {
-                    noticedEnemies.Add(unit);
-                    continue;
-                }
-            }
-        }
-        if (noticedEnemies.Count != 0)
+        var seenObjects = ModelUtils.FindObjectsInFOV(visionPosition, maxDistanceToSee, FOVAngle, unitsOnLocation, obstaclesMask);
+        var heardObjects = ModelUtils.FindObjectsInRadius(visionPosition, maxDistanceToSee, unitsOnLocation);
+
+        var noticedObjects = seenObjects.Union(heardObjects).ToList();
+
+        foreach (var obj in noticedObjects) 
         {
-            return ModelUtils.GetNearest(transform, noticedEnemies);
+            if (obj.GetComponent<FactionMarker>() != null && obj.GetComponent<FactionMarker>().faction != factionMarker.faction)
+                noticedObjects.Add(obj);
         }
+
+        if (noticedObjects.Count != 0)
+            return ModelUtils.GetNearest(transform, noticedObjects);
+
         return null;
     }
 }

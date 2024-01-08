@@ -30,7 +30,7 @@ public class MeleeWeapon : MonoBehaviour
     {
         if (isCuttingAnimation)
         {
-            if (other.gameObject.tag == "Shield")
+            if (other.gameObject.GetComponent<ShieldBlock>())
             {
                 if (other.gameObject.GetComponent<ShieldBlock>().IsBlocking == true)
                 {
@@ -38,7 +38,7 @@ public class MeleeWeapon : MonoBehaviour
                     meleeWeaponSounds.PlayHitObjectSound();
                 }
             }
-            else if (other.gameObject.tag == "HitBox")
+            else if (other.gameObject.GetComponent<HitBox>())
             {
                 if (other.gameObject.GetComponent<HitBox>().Unit != hostUnit)
                 {

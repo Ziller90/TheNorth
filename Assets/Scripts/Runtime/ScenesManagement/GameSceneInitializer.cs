@@ -29,14 +29,14 @@ public class GameSceneInitializer : MonoBehaviour
     {
         Links.instance.mainCamera.GetComponent<CameraFollowing>().SetObjectToFollow(character);
 
-        ActionManager characterActionManager = character.GetComponentInChildren<ActionManager>();
-        ControlManager characterControlManager = character.GetComponentInChildren<ControlManager>();
+        ActionManager characterActionManager = character.GetComponent<ActionManager>();
+        ControlManager characterControlManager = character.GetComponent<ControlManager>();
 
         Links.instance.fixedJoystick.SetControlManager(characterControlManager);
         Links.instance.keyboard.SetControlManager(characterControlManager);
         Links.instance.keyboard.SetActionManager(characterActionManager);
         Links.instance.mobileButtonsManager.SetActionManager(characterActionManager);
         Links.instance.playerCharacter = character;
-        character.GetComponentInChildren<Health>().dieEvent += Links.instance.deathScreen.ActivateDeathScreen;
+        character.GetComponent<Health>().dieEvent += Links.instance.deathScreen.ActivateDeathScreen;
     }
 }

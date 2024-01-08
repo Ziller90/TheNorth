@@ -207,23 +207,39 @@ public class ModelUtils : MonoBehaviour
         return true;
     }
 
-    bool NoWallsOnVisionLine(Vector3 source, Vector3 target, float viewPointOffset)
+    static bool HaveObstaclesOnRaycast(Vector3 source, Vector3 target, float maxDistance, LayerMask obstaclesMask)
     {
-        RaycastHit hitInfo;
-        bool seeCollider = Physics.Raycast(source + (target - source).normalized * viewPointOffset, (target - source), out hitInfo);
-        if (seeCollider)
-        {
-            if (hitInfo.collider.gameObject.transform.position == target)
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return Physics.Raycast(source, target - source, maxDistance, obstaclesMask);
     }
 
-    public static List<Transform> FindObjectsInFOV(Transform center, float radius, float angle, List<Transform> objects)
+    public static List<Transform> FindObjectsInFOV(Transform source, float radius, float FOVAngle, List<Transform> objects, LayerMask obstaclesMask)
     {
-        return null;
+        List<Transform> objectsInFOV = new List<Transform>();
+        foreach (Transform obj in objects)
+        {
+            Vector3 direction = obj.position - source.position;
+            float distanceToObj = Vector3.Distance(source.position, obj.position);
+
+            if (distanceToObj < radius &&
+                Vector3.Angle(source.forward, direction) < (FOVAngle / 2) &&
+                (!HaveObstaclesOnRaycast(source.position, obj.position, radius, obstaclesMask)))
+            {
+                objectsInFOV.Add(obj);
+            }
+        }
+        return objectsInFOV;
+    }
+
+    public static List<Transform> FindObjectsInRadius(Transform source, float radius, List<Transform> objects)
+    {
+        List<Transform> objectsInRadius = new List<Transform>();
+        foreach (Transform obj in objects)
+        {
+            float distanceToObj = Vector3.Distance(source.position, obj.position);
+
+            if (distanceToObj < radius)
+                objectsInRadius.Add(obj);
+        }
+        return objectsInRadius;
     }
 }
