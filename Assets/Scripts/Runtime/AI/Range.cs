@@ -32,7 +32,7 @@ public class Range : MonoBehaviour
             case RangeShapeType.Box:
                 return bounds.Contains(transform.worldToLocalMatrix * (point - transform.position));
             case RangeShapeType.FOV:
-                return IsPointInFOV(point, transform.position, transform.forward, radius, angle);
+                return IsPointInFOV(point, transform.position, transform.forward, angle, radius);
         }
 
         return false;

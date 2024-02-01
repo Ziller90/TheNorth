@@ -5,20 +5,20 @@ using System.Linq;
 
 public class Sensors : MonoBehaviour
 {
-    [SerializeField] Transform visionPosition;
-    [SerializeField] float FOVAngle;
-    [SerializeField] float maxDistanceToSee;
-    [SerializeField] float maxDistanceToHear;
-    [SerializeField] float viewPointOffset;
+    [SerializeField] Range visionRange;
+    [SerializeField] Range hearingRange;
 
-    List<Transform> unitsOnLocation = new List<Transform>();
+    List<Transform> noticedUnits = new();
+    List<Transform> noticedEnemies = new();
+    List<Transform> unitsOnLocation;
     FactionMarker factionMarker;
 
     int terrainLayer = 7;
     int evniromentLayer = 9;
     int defaultLayer = 0;
 
-    public Transform CurrentEnemy => GetNearestEnemy();
+    Transform nearestEnemiy;
+    public Transform NearestEnemy => nearestEnemiy;
 
     void Start()
     {
@@ -27,28 +27,45 @@ public class Sensors : MonoBehaviour
         factionMarker = GetComponent<FactionMarker>();  
     }
 
-    public Transform GetNearestEnemy()
+    void Update()
+    {
+        noticedUnits = GetNoticedUnits();
+        noticedEnemies = GetEnemies(noticedUnits, factionMarker);
+        nearestEnemiy = GetNearestEnemy(noticedEnemies);   
+    }
+
+    public List<Transform> GetEnemies(List<Transform> units, FactionMarker factionMarker) 
+    {
+        return units.Where(x => x.GetComponent<FactionMarker>() && x.GetComponent<FactionMarker>().faction != factionMarker.faction).ToList();
+    }
+
+    public List<Transform> GetNoticedUnits()
     {
         LayerMask terrainLayerMask = 1 << terrainLayer;
         LayerMask evniromentLayerMask = 1 << evniromentLayer;
         LayerMask defaultLayerMask = 1 << defaultLayer;
         LayerMask obstaclesMask = terrainLayerMask | evniromentLayerMask | defaultLayerMask;
 
-        var seenObjects = ModelUtils.FindObjectsInFOV(visionPosition, maxDistanceToSee, FOVAngle, unitsOnLocation, obstaclesMask);
-        var heardObjects = ModelUtils.FindObjectsInRadius(visionPosition, maxDistanceToHear, unitsOnLocation);
+        var seenObjects = GetSeenObjectsInRange(unitsOnLocation, visionRange, obstaclesMask);
+        var heardObjects = GetObjectsInRange(unitsOnLocation, hearingRange);
 
-        var noticedObjects = seenObjects.Union(heardObjects).ToList();
+        var noticedUnits = seenObjects.Union(heardObjects).ToList();
+        return noticedUnits;
+    }
 
-        foreach (var obj in noticedObjects) 
-        {
-            if (obj.GetComponent<FactionMarker>() != null && obj.GetComponent<FactionMarker>().faction != factionMarker.faction)
-                noticedObjects.Add(obj);
-        }
+    public Transform GetNearestEnemy(List<Transform> units)
+    {
+        return ModelUtils.GetNearest(transform, units);
+    }
 
-        if (noticedObjects.Count != 0)
-            return ModelUtils.GetNearest(transform, noticedObjects);
+    public List<Transform> GetObjectsInRange(List<Transform> objects, Range range)
+    {
+        return objects.Where(x => range.IsPointInRange(x.position)).ToList();    
+    }
 
-        return null;
+    public List<Transform> GetSeenObjectsInRange(List<Transform> objects, Range range, LayerMask obstaclesMask)
+    {
+        return GetObjectsInRange(objects, range).Where(x => !ModelUtils.HaveObstaclesOnRaycast(range.transform.position, x.position, obstaclesMask)).ToList();    
     }
 }
 

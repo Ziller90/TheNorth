@@ -82,7 +82,7 @@ public class HumanoidEnemiesAI : MonoBehaviour
 
     void SetAIState()
     {
-        currentEnemy = sensors.GetNearestEnemy();
+        currentEnemy = sensors.NearestEnemy;
         if (currentEnemy != null)
         {
             lastEnemyPosition = currentEnemy.position;
