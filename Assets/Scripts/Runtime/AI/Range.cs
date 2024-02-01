@@ -9,15 +9,19 @@ public class Range : MonoBehaviour
     public enum RangeShapeType
     {
         Sphere,
-        СylinderSector,
+        FOV,
         Box
     }
 
     [SerializeField] RangeShapeType rangeType;
     [SerializeField] float radius;
-    [SerializeField] float height;
-    [SerializeField] float sectorAngle;
+    [SerializeField] float angle;
     [SerializeField] Bounds bounds;
+
+    public RangeShapeType RangeType => rangeType;
+    public float Radius { get => radius; set => radius = value; }
+    public float Angle { get => angle; set => angle = value; }
+    public Bounds Bounds { get => bounds; set => bounds = value; }
 
     public bool IsPointInRange(Vector3 point)
     {
@@ -27,10 +31,22 @@ public class Range : MonoBehaviour
                 return SC.MathUtils.IsPointInRange(point, transform.position, radius);
             case RangeShapeType.Box:
                 return bounds.Contains(transform.worldToLocalMatrix * (point - transform.position));
-            case RangeShapeType.СylinderSector:
-                return SC.MathUtils.IsPointInCylinderSector(point, transform.position, radius, height, sectorAngle);
+            case RangeShapeType.FOV:
+                return IsPointInFOV(point, transform.position, transform.forward, radius, angle);
         }
 
         return false;
+    }
+
+    public static bool IsPointInFOV(Vector3 point, Vector3 origin, Vector3 forward, float FOVAngle, float maxDistance)
+    {
+        Vector3 directionToPoint = point - origin;
+
+        if (directionToPoint.sqrMagnitude > maxDistance * maxDistance)
+            return false;
+
+        float angle = Vector3.Angle(forward, directionToPoint);
+
+        return angle <= FOVAngle / 2;
     }
 }

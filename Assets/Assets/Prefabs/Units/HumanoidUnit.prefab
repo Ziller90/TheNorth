@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6272426290432821927}
+  - component: {fileID: 7109038417661463590}
   m_Layer: 0
   m_Name: VisionPoint
   m_TagString: Untagged
@@ -24,13 +25,31 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6977676132678475327}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.007, y: 0.931, z: 0.572}
+  m_LocalPosition: {x: 0.007, y: 0.981, z: 0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8467364967643463516}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7109038417661463590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6977676132678475327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f772b992dc4a54a912a68ae5cc713a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangeType: 1
+  radius: 8
+  angle: 110
+  bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 5, y: 0, z: 5}
 --- !u!1001 &2404843527227370401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -614,9 +633,6 @@ PrefabInstance:
       addedObject: {fileID: 4784129551598956709}
     - targetCorrespondingSourceObject: {fileID: 6115228454438917361, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2673667671613044425}
-    - targetCorrespondingSourceObject: {fileID: 6115228454438917361, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 7943855203760559560}
   m_SourcePrefab: {fileID: 100100000, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
 --- !u!114 &8458588383854384157 stripped
@@ -684,25 +700,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patrolRoute: {fileID: 0}
   routeMovingMode: 0
---- !u!114 &2673667671613044425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8467364967643463504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af8219831eddf464d84888af1c975c30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  searchingRadius: 0
-  enemySearchingTime: 0
-  searhingCornersNumber: 0
-  distanceToAttack: 0
-  distanceToLastEnemyPosition: 0
-  debugPoint: {fileID: 0}
-  humanoidAITree: {fileID: 7943855203760559560}
 --- !u!114 &7943855203760559560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -715,6 +712,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ec2040d56334a4cad21f70d9daf037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  searchingRadius: 0
+  enemySearchingTime: 0
+  searhingCornersNumber: 0
+  distanceToAttack: 0
+  distanceToLastEnemyPosition: 0
+  debugPoint: {fileID: 0}
+  patrolRoute: {fileID: 0}
+  patrolMovingMode: 0
   root:
     rid: 4079635718838681610
   references:
@@ -724,8 +729,6 @@ MonoBehaviour:
       type: {class: PatrolRoute, ns: , asm: TheNorth}
       data:
         children: []
-        patrolRoute: {fileID: 0}
-        routeMovingMode: 0
 --- !u!4 &8467364967643463516 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6115228454438917373, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
