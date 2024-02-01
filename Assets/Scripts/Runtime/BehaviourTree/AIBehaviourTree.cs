@@ -30,7 +30,7 @@ public class AIBehaviourTree : MonoBehaviour
     public MovingMode PatrolMovingMode { get => patrolMovingMode; set => patrolMovingMode = value; }
     public AINavigationManager AINavigationManager => navigationManager;
     public Sensors Sensors => sensors;  
-    public Transform CurrentEnemy => sensors.CurrentEnemy;
+    public Transform CurrentEnemy => sensors.NearestEnemy;
     public ActionManager ActionManager => actionManager;
     public Vector3 LastEnemyPosition { get; set; }
 

@@ -1,5 +1,55 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5140355453601542423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6517099779846919252}
+  - component: {fileID: 692969398631698962}
+  m_Layer: 0
+  m_Name: HearingRange
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6517099779846919252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5140355453601542423}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.007, y: 0.981, z: 0.03}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8467364967643463516}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &692969398631698962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5140355453601542423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f772b992dc4a54a912a68ae5cc713a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangeType: 0
+  radius: 3
+  angle: 0
+  bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 5, y: 0, z: 5}
 --- !u!1 &6977676132678475327
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +61,7 @@ GameObject:
   - component: {fileID: 6272426290432821927}
   - component: {fileID: 7109038417661463590}
   m_Layer: 0
-  m_Name: VisionPoint
+  m_Name: VisionRange
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -24,12 +74,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6977676132678475327}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.007, y: 0.981, z: 0.03}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.49000025, y: 9.858769, z: 2.583961}
+  m_LocalScale: {x: 70.000046, y: 170, z: 70.00003}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8467364967643463516}
+  m_Father: {fileID: 7377141425538114404}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7109038417661463590
@@ -620,6 +670,9 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6115228454438917373, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 6517099779846919252}
+    - targetCorrespondingSourceObject: {fileID: 5133935866322634949, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 6272426290432821927}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6115228454438917361, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
@@ -635,6 +688,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7943855203760559560}
   m_SourcePrefab: {fileID: 100100000, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
+--- !u!4 &7377141425538114404 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5133935866322634949, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
+  m_PrefabInstance: {fileID: 2404843527227370401}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8458588383854384157 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6070088289655340988, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
@@ -668,11 +726,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e00376a95601d4f81504ee645ca32a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionPosition: {fileID: 6272426290432821927}
-  FOVAngle: 150
-  maxDistanceToSee: 15
-  maxDistanceToHear: 3
-  viewPointOffset: 0.6
+  visionRange: {fileID: 7109038417661463590}
+  hearingRange: {fileID: 692969398631698962}
 --- !u!114 &7437434635719383873
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,14 +14,6 @@ public class ModelUtils : MonoBehaviour
         return direction;
     }
 
-    public static float round(float number, int roundIndex)
-    {
-        float temp = number * roundIndex;
-        temp = (int)temp;
-        temp = temp / roundIndex;
-        return (temp);
-    }
-
     public static float SpeedConverter(float kmPerHour)
     {
         return (kmPerHour * 1000f / 3600f) / 50f;
@@ -42,6 +34,8 @@ public class ModelUtils : MonoBehaviour
         }
         return nearestPoint;
     }
+
+    //Never used, but can be used later
     public static Vector3 GetNearest(Vector3 start, List<Vector3> points)
     {
         Vector3 nearestPoint = Vector3.zero;
@@ -57,6 +51,7 @@ public class ModelUtils : MonoBehaviour
         }
         return nearestPoint;
     }
+
     public static Vector3 CalculateWASDVector()
     {
         float vertical;
@@ -207,39 +202,8 @@ public class ModelUtils : MonoBehaviour
         return true;
     }
 
-    static bool HaveObstaclesOnRaycast(Vector3 source, Vector3 target, float maxDistance, LayerMask obstaclesMask)
+    public static bool HaveObstaclesOnRaycast(Vector3 source, Vector3 target, LayerMask obstaclesMask)
     {
-        return Physics.Raycast(source, target - source, maxDistance, obstaclesMask);
-    }
-
-    public static List<Transform> FindObjectsInFOV(Transform source, float radius, float FOVAngle, List<Transform> objects, LayerMask obstaclesMask)
-    {
-        List<Transform> objectsInFOV = new List<Transform>();
-        foreach (Transform obj in objects)
-        {
-            Vector3 direction = obj.position - source.position;
-            float distanceToObj = Vector3.Distance(source.position, obj.position);
-
-            if (distanceToObj < radius &&
-                Vector3.Angle(source.forward, direction) < (FOVAngle / 2) &&
-                (!HaveObstaclesOnRaycast(source.position, obj.position, radius, obstaclesMask)))
-            {
-                objectsInFOV.Add(obj);
-            }
-        }
-        return objectsInFOV;
-    }
-
-    public static List<Transform> FindObjectsInRadius(Transform source, float radius, List<Transform> objects)
-    {
-        List<Transform> objectsInRadius = new List<Transform>();
-        foreach (Transform obj in objects)
-        {
-            float distanceToObj = Vector3.Distance(source.position, obj.position);
-
-            if (distanceToObj < radius)
-                objectsInRadius.Add(obj);
-        }
-        return objectsInRadius;
+        return Physics.Raycast(source, target - source, Vector3.Distance(source, target), obstaclesMask);
     }
 }
