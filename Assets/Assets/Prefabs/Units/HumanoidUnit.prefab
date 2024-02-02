@@ -1,5 +1,55 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1070199493488602899
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1894299045051219318}
+  - component: {fileID: 3477236697314793782}
+  m_Layer: 0
+  m_Name: MeleeAttackRange
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1894299045051219318
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070199493488602899}
+  m_LocalRotation: {x: -0, y: 0.7117166, z: -0, w: 0.7024668}
+  m_LocalPosition: {x: 0.01, y: 0.681, z: 1.11}
+  m_LocalScale: {x: 1.4285711, y: 0.58823526, z: 1.4285711}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8467364967643463516}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3477236697314793782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070199493488602899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f772b992dc4a54a912a68ae5cc713a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangeType: 0
+  radius: 1.2
+  angle: 0
+  bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
 --- !u!1 &5140355453601542423
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,6 +721,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6115228454438917373, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6517099779846919252}
+    - targetCorrespondingSourceObject: {fileID: 6115228454438917373, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1894299045051219318}
     - targetCorrespondingSourceObject: {fileID: 5133935866322634949, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6272426290432821927}
@@ -681,9 +734,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6115228454438917361, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7437434635719383873}
-    - targetCorrespondingSourceObject: {fileID: 6115228454438917361, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4784129551598956709}
     - targetCorrespondingSourceObject: {fileID: 6115228454438917361, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7943855203760559560}
@@ -741,20 +791,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlManager: {fileID: 8458588383854384157}
---- !u!114 &4784129551598956709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8467364967643463504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 589b7684c8b378f40aa622272b95d7d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  patrolRoute: {fileID: 0}
-  routeMovingMode: 0
 --- !u!114 &7943855203760559560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,10 +803,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ec2040d56334a4cad21f70d9daf037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myComponent: {fileID: 0}
   searchingRadius: 0
   enemySearchingTime: 0
   searhingCornersNumber: 0
-  distanceToAttack: 0
+  meleeAttackRange: {fileID: 3477236697314793782}
   distanceToLastEnemyPosition: 0
   debugPoint: {fileID: 0}
   patrolRoute: {fileID: 0}
