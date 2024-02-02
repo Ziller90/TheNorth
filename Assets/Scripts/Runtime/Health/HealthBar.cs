@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] GameObject healthBarPrefab; 
-    [SerializeField] Transform thisCreature;
+    [SerializeField] Transform thisUnit;
     [SerializeField] Vector3 offset;
     [SerializeField] Health health;
 
@@ -20,7 +20,7 @@ public class HealthBar : MonoBehaviour
     }
     void FixedUpdate()
     {
-        healthBar.transform.position = camera.WorldToScreenPoint(thisCreature.position) + offset;
+        healthBar.transform.position = camera.WorldToScreenPoint(thisUnit.position) + offset;
         healthBarView.SetBarFillness(health.CurrentHealth / health.MaxHealth);
     }
     private void OnDestroy()

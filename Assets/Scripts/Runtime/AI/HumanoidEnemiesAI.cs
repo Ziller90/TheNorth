@@ -21,7 +21,6 @@ public class HumanoidEnemiesAI : MonoBehaviour
     [SerializeField] float distanceToAttack;
     [SerializeField] float distanceToLastEnemyPosition;
     [SerializeField] bool hasPatrolRoute;
-    [SerializeField] RouteManager routeManager;
     [SerializeField] GameObject debugPoint;
     [SerializeField] ActionManager actionManager;
 
@@ -35,102 +34,6 @@ public class HumanoidEnemiesAI : MonoBehaviour
     Vector3 lastEnemyPosition;
     bool searhingRouteGenerated;
     Transform currentEnemy;
-
-    private void Start()
-    {
-        EquipBestItems();
-    }
-
-    void Update()
-    {
-        SetAIState();
-        switch (AIState)
-        {
-            case States.Attack:
-                navigationManager.Stand();
-                actionManager.MainWeaponPressed();
-                actionManager.MainWeaponReleased();
-                break;
-            case States.Chase:
-                navigationManager.MoveToTarget(currentEnemy.position, MovingMode.Run);
-                actionManager.mainWeaponUsing = false;
-                break;
-            case States.BlindChase:
-                navigationManager.MoveToTarget(lastEnemyPosition, MovingMode.Run);
-                actionManager.mainWeaponUsing = false;
-                break;
-            case States.Patrol:
-                routeManager.SetDefaultPatrolRoute();
-                routeManager.MoveOnRoute(MovingMode.Walk);
-                actionManager.mainWeaponUsing = false;
-                break;
-            case States.Idle:
-                navigationManager.Stand();
-                actionManager.mainWeaponUsing = false;
-                break;
-            case States.SearchEnemy:
-                if (searhingRouteGenerated == false)
-                {
-                    routeManager.SetNewRoute(GenerateSearchingRoute(lastEnemyPosition), 0);
-                    searhingRouteGenerated = true;
-                }
-                routeManager.MoveOnRoute(MovingMode.Walk);
-                actionManager.mainWeaponUsing = false;
-                break;
-        }
-    }
-
-    void SetAIState()
-    {
-        currentEnemy = sensors.GetNearestEnemy();
-        if (currentEnemy != null)
-        {
-            lastEnemyPosition = currentEnemy.position;
-            searhingRouteGenerated = false;
-            if (Vector3.Distance(transform.position, currentEnemy.position) < distanceToAttack)
-            {
-                AIState = States.Attack;
-            }
-            else
-            {
-                AIState = States.Chase;
-            }
-        }
-        else if (lastEnemyPosition != Vector3.zero)
-        {
-            if (Vector3.Distance(transform.position, lastEnemyPosition) < distanceToLastEnemyPosition)
-            {
-                searchEnemy = true;
-                StartCoroutine("SearchingEnemyTimer");
-            }
-            else
-            {
-                AIState = States.BlindChase;
-            }
-        }
-        else if (searchEnemy == true)
-        {
-            AIState = States.SearchEnemy;
-        }
-        else if (hasPatrolRoute)
-        {
-            AIState = States.Patrol; 
-        }
-        else
-        {
-            AIState = States.Idle;
-        }
-    }
-
-    IEnumerator SearchingEnemyTimer()
-    {
-        yield return new WaitForSeconds(enemySearchingTime);
-        Debug.Log("StopSearchiing");
-        currentEnemy = null;
-        lastEnemyPosition = Vector3.zero;
-        searchEnemy = false;
-        searhingRouteGenerated = false;
-    }
 
     public Vector3[] GenerateSearchingRoute(Vector3 LastSeenPosition)
     {

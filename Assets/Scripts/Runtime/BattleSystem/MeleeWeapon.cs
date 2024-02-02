@@ -7,18 +7,18 @@ public class MeleeWeapon : MonoBehaviour
     [SerializeField] float baseDamage;
 
     MeleeWeaponSounds meleeWeaponSounds;
-    Health thisCreatureHealth;
-    Transform hostCreature;
+    Health thisUnitHealth;
+    Transform hostUnit;
     bool isCuttingAnimation;
 
-    public void SetWeaponHolder(Creature weaponHolder)
+    public void SetWeaponHolder(Unit weaponHolder)
     {
-        thisCreatureHealth = weaponHolder.GetComponentInChildren<Health>();
+        thisUnitHealth = weaponHolder.GetComponentInChildren<Health>();
         meleeWeaponSounds = weaponHolder.GetComponentInChildren<MeleeWeaponSounds>();
-        hostCreature = weaponHolder.transform;
+        hostUnit = weaponHolder.transform;
 
-        if (thisCreatureHealth != null)
-            thisCreatureHealth.dieEvent += () => SetCuttingAnimation(false);
+        if (thisUnitHealth != null)
+            thisUnitHealth.dieEvent += () => SetCuttingAnimation(false);
     }
 
     public void SetCuttingAnimation(bool isCutting)
@@ -30,7 +30,7 @@ public class MeleeWeapon : MonoBehaviour
     {
         if (isCuttingAnimation)
         {
-            if (other.gameObject.tag == "Shield")
+            if (other.gameObject.GetComponent<ShieldBlock>())
             {
                 if (other.gameObject.GetComponent<ShieldBlock>().IsBlocking == true)
                 {
@@ -38,12 +38,12 @@ public class MeleeWeapon : MonoBehaviour
                     meleeWeaponSounds.PlayHitObjectSound();
                 }
             }
-            else if (other.gameObject.tag == "HitBox")
+            else if (other.gameObject.GetComponent<HitBox>())
             {
-                if (other.gameObject.GetComponent<HitBox>().ThisCreature != hostCreature)
+                if (other.gameObject.GetComponent<HitBox>().Unit != hostUnit)
                 {
                     meleeWeaponSounds.PlayHitCharacterSound();
-                    other.gameObject.GetComponent<HitBox>().HitBoxGetDamage(baseDamage, hostCreature.position);
+                    other.gameObject.GetComponent<HitBox>().HitBoxGetDamage(baseDamage, hostUnit.position);
                 }
             }
             else

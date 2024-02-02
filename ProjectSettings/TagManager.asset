@@ -4,13 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
-  - Creature
   - HitBox
   - Shield
-  - Collide
-  - GlobalMapTerrainPart
-  - ItemHandle
   layers:
   - Default
   - TransparentFX
@@ -18,10 +13,10 @@ TagManager:
   - Ignore NavMesh
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Unit
+  - Terrain
+  - Item
+  - Enviroment
   - 
   - 
   - 
