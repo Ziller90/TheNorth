@@ -13,17 +13,12 @@ public class ModelUtils : MonoBehaviour
         direction = fixQuaternion * direction;
         return direction;
     }
-    public static float round(float number, int roundIndex)
-    {
-        float temp = number * roundIndex;
-        temp = (int)temp;
-        temp = temp / roundIndex;
-        return (temp);
-    }
+
     public static float SpeedConverter(float kmPerHour)
     {
         return (kmPerHour * 1000f / 3600f) / 50f;
     }
+
     public static Transform GetNearest(Transform start, List<Transform> points)
     {
         Transform nearestPoint = null;
@@ -39,6 +34,8 @@ public class ModelUtils : MonoBehaviour
         }
         return nearestPoint;
     }
+
+    //Never used, but can be used later
     public static Vector3 GetNearest(Vector3 start, List<Vector3> points)
     {
         Vector3 nearestPoint = Vector3.zero;
@@ -54,6 +51,7 @@ public class ModelUtils : MonoBehaviour
         }
         return nearestPoint;
     }
+
     public static Vector3 CalculateWASDVector()
     {
         float vertical;
@@ -202,5 +200,10 @@ public class ModelUtils : MonoBehaviour
             return false;
         }
         return true;
+    }
+
+    public static bool HaveObstaclesOnRaycast(Vector3 source, Vector3 target, LayerMask obstaclesMask)
+    {
+        return Physics.Raycast(source, target - source, Vector3.Distance(source, target), obstaclesMask);
     }
 }

@@ -1,32 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public enum MovingState
 {
     Idle,
     Walk,
     Run
 }
+
 public class CharacterContoller : MonoBehaviour
 {
     [SerializeField] float runSpeed; // km per hour
     [SerializeField] float walkSpeed; // km per hour
     [SerializeField] float rotationSpeed;
-    [SerializeField] Animator humanAnimator;
-    [SerializeField] ControlManager controlManager;
-
+    
     public bool AllowMoving { get; set; } = true;
     public bool AllowRunning { get; set; } = true;
     public bool AllowRotation { get; set; } = true;
 
-    MovingState movingState;
     public MovingState CharacterMovingState => movingState;
-    public ControlManager ControlManager => controlManager;
 
-    public void SetControlManager(ControlManager controlManager)
+    MovingState movingState;
+    ControlManager controlManager;
+    Animator animator;
+
+    public void Awake()
     {
-        this.controlManager = controlManager;
+        animator = GetComponent<Animator>();
+        controlManager = GetComponent<ControlManager>();
     }
+
     public void MoveForward()
     {
         if (controlManager.MovingMode == MovingMode.Walk)
@@ -63,6 +67,7 @@ public class CharacterContoller : MonoBehaviour
     {
         movingState = MovingState.Idle;
     }
+
     public void Rotate()
     {
         if (controlManager.MovingMode == MovingMode.Walk || controlManager.MovingMode == MovingMode.Run)
@@ -71,6 +76,7 @@ public class CharacterContoller : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, rotationSpeed);
         }
     }
+
     public void LookAtPoint(Vector3 point)
     {
         point.y = transform.position.y;
@@ -96,15 +102,15 @@ public class CharacterContoller : MonoBehaviour
 
         if (movingState == MovingState.Idle)
         {
-            humanAnimator.SetInteger("MoveIndex", 1);
+            animator.SetInteger("MoveIndex", 1);
         }
         if (movingState == MovingState.Walk)
         {
-            humanAnimator.SetInteger("MoveIndex", 2);
+            animator.SetInteger("MoveIndex", 2);
         }
         if (movingState == MovingState.Run)
         {
-            humanAnimator.SetInteger("MoveIndex", 3);
+            animator.SetInteger("MoveIndex", 3);
         }
     }
 }

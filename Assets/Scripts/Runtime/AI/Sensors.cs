@@ -1,63 +1,71 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Sensors : MonoBehaviour
 {
-    [SerializeField] FactionMarker factionMarker;
-    [SerializeField] int fieldOfView;
-    [SerializeField] float maxDistanceToSee;
-    [SerializeField] float maxDistanceToHear;
-    [SerializeField] GameObject ThisCreature;
-    [SerializeField] float viewPointOffset;
+    [SerializeField] Range visionRange;
+    [SerializeField] Range hearingRange;
 
-    List<Transform> creaturesOnLocation = new List<Transform>();
+    List<Transform> noticedUnits = new();
+    List<Transform> noticedEnemies = new();
+    List<Transform> unitsOnLocation;
+    FactionMarker factionMarker;
+
+    int terrainLayer = 7;
+    int evniromentLayer = 9;
+    int defaultLayer = 0;
+
+    Transform nearestEnemiy;
+    public Transform NearestEnemy => nearestEnemiy;
 
     void Start()
     {
-        creaturesOnLocation = Links.instance.globalLists.creaturesOnLocation;
+        unitsOnLocation = Links.instance.globalLists.unitsOnLocation;
+        unitsOnLocation.Remove(transform);
+        factionMarker = GetComponent<FactionMarker>();  
     }
 
-    bool NoWallsOnVisionLine(Vector3 enemyPosition)
+    void Update()
     {
-        RaycastHit hitInfo;
-        bool seeCollider = Physics.Raycast(transform.position + (enemyPosition - transform.position).normalized * viewPointOffset, (enemyPosition - transform.position), out hitInfo);
-        if (seeCollider)
-        {
-            if (hitInfo.collider.gameObject.transform.position == enemyPosition)
-            {
-                return true;
-            }
-        }
-        return false;
+        noticedUnits = GetNoticedUnits();
+        noticedEnemies = GetEnemies(noticedUnits, factionMarker);
+        nearestEnemiy = GetNearestEnemy(noticedEnemies);   
     }
 
-    public Transform GetNearestEnemy()
+    public List<Transform> GetEnemies(List<Transform> units, FactionMarker factionMarker) 
     {
-        List<Transform> noticedEnemies = new List<Transform>();
-        foreach (Transform creature in creaturesOnLocation)
-        {
-            if (creature.GetComponent<FactionMarker>().creatureFaction != factionMarker.creatureFaction && creature != ThisCreature.transform)
-            {
-                Vector3 fromGameObjectToEnemy = creature.position - transform.position;
-                float distanceToEnemy = Vector3.Distance(transform.position, creature.position);
+        return units.Where(x => x.GetComponent<FactionMarker>() && x.GetComponent<FactionMarker>().faction != factionMarker.faction).ToList();
+    }
 
-                if (distanceToEnemy < maxDistanceToSee && Vector3.Angle(transform.forward, fromGameObjectToEnemy) < (fieldOfView / 2) && (NoWallsOnVisionLine(creature.position)))
-                {
-                    noticedEnemies.Add(creature);
-                }
-                else if (distanceToEnemy < maxDistanceToHear)
-                {
-                    noticedEnemies.Add(creature);
-                    continue;
-                }
-            }
-        }
-        if (noticedEnemies.Count != 0)
-        {
-            return ModelUtils.GetNearest(transform, noticedEnemies);
-        }
-        return null;
+    public List<Transform> GetNoticedUnits()
+    {
+        LayerMask terrainLayerMask = 1 << terrainLayer;
+        LayerMask evniromentLayerMask = 1 << evniromentLayer;
+        LayerMask defaultLayerMask = 1 << defaultLayer;
+        LayerMask obstaclesMask = terrainLayerMask | evniromentLayerMask | defaultLayerMask;
+
+        var seenObjects = GetSeenObjectsInRange(unitsOnLocation, visionRange, obstaclesMask);
+        var heardObjects = GetObjectsInRange(unitsOnLocation, hearingRange);
+
+        var noticedUnits = seenObjects.Union(heardObjects).ToList();
+        return noticedUnits;
+    }
+
+    public Transform GetNearestEnemy(List<Transform> units)
+    {
+        return ModelUtils.GetNearest(transform, units);
+    }
+
+    public List<Transform> GetObjectsInRange(List<Transform> objects, Range range)
+    {
+        return objects.Where(x => range.IsPointInRange(x.position)).ToList();    
+    }
+
+    public List<Transform> GetSeenObjectsInRange(List<Transform> objects, Range range, LayerMask obstaclesMask)
+    {
+        return GetObjectsInRange(objects, range).Where(x => !ModelUtils.HaveObstaclesOnRaycast(range.transform.position, x.position, obstaclesMask)).ToList();    
     }
 }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Thrower : MonoBehaviour
 {
     [SerializeField] Transform positionInHand;
-    [SerializeField] GameObject thisCreature;
+    [SerializeField] GameObject thisUnit;
 
     int upAngleInDegrees;
     GameObject thisThrowingWeapon;
@@ -48,6 +48,6 @@ public class Thrower : MonoBehaviour
         Vector3 throwingVelocity = positionInHand.forward * v;
 
         thisThrowingWeapon.GetComponent<Rigidbody>().velocity = throwingVelocity;
-        thisThrowingWeapon.GetComponent<Projectile>().thisCreature = thisCreature;
+        thisThrowingWeapon.GetComponent<Projectile>().thisUnit = thisUnit;
     }
 }

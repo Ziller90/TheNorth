@@ -1,11 +1,10 @@
 {
   "dependencies": {
     "com.abuksigun.mrgitui": {
-      "version": "https://github.com/mrtrizer/MRUnityGitUI.git",
+      "version": "file:com.abuksigun.mrgitui",
       "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "9ed8e89f089df03a02ccfe518c603f50fdc97181"
+      "source": "embedded",
+      "dependencies": {}
     },
     "com.mackysoft.serializereference-extensions": {
       "version": "1.1.9",
@@ -13,6 +12,12 @@
       "source": "registry",
       "dependencies": {},
       "url": "https://package.openupm.com"
+    },
+    "com.siegeup.core": {
+      "version": "file:SiegeUp.Core",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
     },
     "com.unity.ai.navigation": {
       "version": "1.1.3",

@@ -10,5 +10,5 @@ public class FactionMarker : MonoBehaviour
         Bandit,
         Woolf
     }
-    public Factions creatureFaction;
+    public Factions faction;
 }

@@ -5,10 +5,7 @@ using UnityEngine;
 
 public class HumanoidInventoryContainer : ContainerBase
 {
-    [SerializeField] AnimationEvents animationEvents;
-    [SerializeField] Creature creature;
     [SerializeField] Transform dropPosition;
-
     [SerializeField] Transform rightHandEquipPosition;
     [SerializeField] Transform leftHandEquipPosition;
 
@@ -18,7 +15,6 @@ public class HumanoidInventoryContainer : ContainerBase
     [SerializeField] SlotGroup backpackSlots;
 
     [SerializeField] SimpleContainer dropSackPrefab;
-    [SerializeField] HumanoidBattleSystem battleSystem;
 
     Item rightHandItem;
     Item leftHandItem;
@@ -34,8 +30,11 @@ public class HumanoidInventoryContainer : ContainerBase
 
     public Action moneyAmountUpdated;
 
+    AnimationEvents animationEvents;
+    HumanoidBattleSystem battleSystem;
     int moneyAmount;
- 
+    Unit unit;
+
     public void AddMoney(int money)
     {
         moneyAmount += money;
@@ -50,6 +49,10 @@ public class HumanoidInventoryContainer : ContainerBase
 
     void Awake()
     {
+        animationEvents = GetComponent<AnimationEvents>();
+        battleSystem = GetComponent<HumanoidBattleSystem>();
+        unit = GetComponent<Unit>();    
+
         InitAllSlots();
     }
 
@@ -216,7 +219,7 @@ public class HumanoidInventoryContainer : ContainerBase
         var itemUsing = itemStack.Item.GetComponent<ItemUsing>();
         if (itemUsing)
         {
-            itemUsing.UseItem(creature);
+            itemUsing.UseItem(unit);
             if (itemUsing.DestroyOnUse)
                 itemStack.ItemsNumber -= 1;
         }
@@ -231,7 +234,7 @@ public class HumanoidInventoryContainer : ContainerBase
         var meleeWeapon = item.GetComponentInChildren<MeleeWeapon>();
         if (meleeWeapon)
         {
-            meleeWeapon.SetWeaponHolder(creature);
+            meleeWeapon.SetWeaponHolder(unit);
             animationEvents.SetMeleeWeapon(meleeWeapon);
         }
 

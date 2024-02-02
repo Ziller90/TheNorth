@@ -3,25 +3,23 @@ using UnityEngine;
 public class HumanoidBattleSystem : MonoBehaviour
 {
     [SerializeField] float shieldProtectionAngle;
-    [SerializeField] CharacterContoller characterContoller;
-    [SerializeField] AutoAimController autoAim;
-    [SerializeField] ActionManager actionManager;
-    [SerializeField] Animator humanAnimator;
-    [SerializeField] Thrower throwingWeaponThrower;
     [SerializeField] float maxDistanceForAutoAim;
-    [SerializeField] GameObject thisCreature;
 
-    [SerializeField] Weapon mainWeapon;
-    [SerializeField] Weapon secondaryWeapon;
+    CharacterContoller characterContoller;
+    AutoAimController autoAim;
+    ActionManager actionManager;
+    Animator humanAnimator;
+
+    Weapon mainWeapon;
+    Weapon secondaryWeapon;
 
     Vector3 distantAttackTargetPosition;
     bool isPlayingAttackAnimation;
+    bool shieldRaised;
+    int randomAttackIndex = 0;
 
     bool mainWeaponContinuousAttack;
     bool secondaryWeaponContinuousAttack;
-
-    bool shieldRaised;
-    int randomAttackIndex = 0;
 
     public bool ShieldRaised => shieldRaised;
     public float ShieldProtectionAngle => shieldProtectionAngle;
@@ -36,11 +34,18 @@ public class HumanoidBattleSystem : MonoBehaviour
     public void AllowRotation() => characterContoller.AllowRotation = true;
     public void DisableMoving() => characterContoller.AllowMoving = false;
 
+    void Awake()
+    {
+        characterContoller = GetComponent<CharacterContoller>();
+        actionManager = GetComponent<ActionManager>();
+        humanAnimator = GetComponent<Animator>();
+    }
+
     public void Aim()
     {
-        if (autoAim.HasAutoAimTarget(thisCreature, gameObject.transform, maxDistanceForAutoAim))
+        if (autoAim.HasAutoAimTarget(gameObject, gameObject.transform, maxDistanceForAutoAim))
         {
-            distantAttackTargetPosition = autoAim.GetBestAim(thisCreature, gameObject.transform, maxDistanceForAutoAim);
+            distantAttackTargetPosition = autoAim.GetBestAim(gameObject, gameObject.transform, maxDistanceForAutoAim);
             characterContoller.LookAtPoint(distantAttackTargetPosition);
         }
     }
@@ -53,15 +58,15 @@ public class HumanoidBattleSystem : MonoBehaviour
 
         if (layer == 0)
         {
-            if (characterContoller.ControlManager.MovingMode == MovingMode.Stand)
+            if (characterContoller.CharacterMovingState == MovingState.Idle)
             {
                 humanAnimator.CrossFadeInFixedTime("Idle", 0.20f, 0);
             }
-            if (characterContoller.ControlManager.MovingMode == MovingMode.Walk)
+            if (characterContoller.CharacterMovingState == MovingState.Walk)
             {
                 humanAnimator.CrossFadeInFixedTime("Walk", 0.20f, 0);
             }
-            if (characterContoller.ControlManager.MovingMode == MovingMode.Run)
+            if (characterContoller.CharacterMovingState == MovingState.Run)
             {
                 humanAnimator.CrossFadeInFixedTime("Run", 0.20f, 0);
             }
@@ -308,16 +313,5 @@ public class HumanoidBattleSystem : MonoBehaviour
                 isPlayingAttackAnimation = true;
             }
         }
-    }
-
-    void DebugLogAnimator()
-    {
-        var info = humanAnimator.GetAnimatorTransitionInfo(0);
-        var infoState = humanAnimator.GetCurrentAnimatorStateInfo(0);
-        var infoNextState = humanAnimator.GetNextAnimatorStateInfo(0);
-        Debug.Log("TransitionInfo: " + "info.nameHash: " + info.nameHash + "info.normalizedTime: " + info.normalizedTime + "info.duration: " + info.duration + "info.durationUnit: " + info.durationUnit + "\n"
-            + "StateInfo: " + "infoState.nameHash: " + infoState.fullPathHash + "infoState.normalizedTime: " + infoState.normalizedTime + "infoState.length: " + infoState.length + "infoState.shortNameHash: " + infoState.shortNameHash + "\n" +
-            "NextStateInfo: " + "infoNextState.nameHash: " + infoNextState.fullPathHash + "infoNextState.normalizedTime: " + infoNextState.normalizedTime + "infoNextState.length: " + infoNextState.length + "infoNextState.shortNameHash: " + infoNextState.shortNameHash +
-            "mainWeaponPowerAttacking: " + mainWeaponContinuousAttack + "secondaryWeaponPowerAttacking: " + secondaryWeaponContinuousAttack);
     }
 }
