@@ -1,10 +1,11 @@
 {
   "dependencies": {
-    "com.abuksigun.mrgitui": {
-      "version": "file:com.abuksigun.mrgitui",
+    "com.abuksigun.unitygitui": {
+      "version": "https://github.com/mrtrizer/UnityGitUI.git",
       "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "d53f7162b1ce5e72a9cfab01c14484dfa788a14a"
     },
     "com.mackysoft.serializereference-extensions": {
       "version": "1.1.9",
