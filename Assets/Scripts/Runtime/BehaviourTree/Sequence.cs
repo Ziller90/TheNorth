@@ -6,27 +6,19 @@ public class Sequence : Node
 {
     public override NodeState Evaluate()
     {
-        bool anyChildIsRunning = false;
-
         foreach (Node node in children)
         {
             switch (node.Evaluate())
             {
                 case NodeState.FAILURE:
-                    state = NodeState.FAILURE;
-                    return state;
+                    return NodeState.FAILURE;
                 case NodeState.SUCCESS:
                     continue;
                 case NodeState.RUNNING:
-                    anyChildIsRunning = true;
-                    continue;
-                default:
-                    state = NodeState.SUCCESS;
-                    return state;
+                    return NodeState.RUNNING;
             }
         }
-
-        state = anyChildIsRunning ? NodeState.RUNNING : NodeState.SUCCESS;
+        state = NodeState.SUCCESS;
         return state;
     }
 }

@@ -1,29 +1,52 @@
-using System.Collections;
+﻿using UnityEngine;
+using UnityEngine.AI;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class Route : MonoBehaviour
 {
-    public List<Transform> routeCorners;
-    public Color gizmosColor;
+    [SerializeField] List<Vector3> corners;
+    [SerializeField] bool looped;
+    [SerializeField] float navMeshYOffset;
 
-    public Vector3[] GetCorners()
+    [SerializeField] Color cornersColor = Color.black;
+    [SerializeField] Color linesColor = Color.white;
+
+    public Color CornersColor => cornersColor;
+    public Color LinesColor => linesColor;
+
+    public List<Vector3> Corners { get => corners; set => corners = value; }
+    public bool Looped { get => looped; set => looped = value; }
+
+    //Can't be used in locationPrefab, only on scene
+    public void AttachCornersToNavMesh()
     {
-        Vector3[] corners = new Vector3[routeCorners.Count];
-        for (int i = 0; i < corners.Length; i++)
+        for (int i = 0; i < corners.Count; i++)
         {
-            corners[i] = routeCorners[i].position;
+            NavMeshHit hit;
+
+            if (NavMesh.SamplePosition(corners[i], out hit, 3f, NavMesh.AllAreas))
+                corners[i] = hit.position + Vector3.up * navMeshYOffset;
+            else
+                Debug.LogWarning($"Точка {corners[i]} не была пересечена с NavMesh. Проверьте её положение или высоту NavMesh.");
         }
-        return corners;
     }
 
-    private void OnDrawGizmos()
+    //Can't be used in locationPrefab, only on scene
+    public void AttachCornersToColliderBelow()
     {
-        Gizmos.color = gizmosColor;
-        for (int i = 0; i < routeCorners.Count - 1; i++)
+        float rayStartHeight = 2f;
+        float rayDistance = 5f;
+        LayerMask layerMask = ~0;
+
+        for (int i = 0; i < corners.Count; i++)
         {
-            Gizmos.DrawLine(routeCorners[i].position, routeCorners[i + 1].position);
+            Vector3 rayStart = corners[i] + Vector3.up * rayStartHeight;
+            RaycastHit hit;
+
+            if (Physics.Raycast(rayStart, Vector3.down, out hit, rayDistance, layerMask))
+                corners[i] = hit.point;
+            else
+                Debug.LogWarning($"Точка {corners[i]} не имеет под собой ни одного коллайдера.");
         }
-        Gizmos.DrawLine(routeCorners[routeCorners.Count - 1].position, routeCorners[0].position);
     }
 }

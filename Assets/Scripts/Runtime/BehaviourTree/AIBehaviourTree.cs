@@ -6,10 +6,11 @@ using UnityEngine;
 [Serializable]
 public class AIBehaviourTree : MonoBehaviour
 {
+    [SerializeField] Component myComponent;
     [SerializeField] float searchingRadius;
     [SerializeField] float enemySearchingTime;
     [SerializeField] int searhingCornersNumber;
-    [SerializeField] float distanceToAttack;
+    [SerializeField] Range meleeAttackRange;
     [SerializeField] float distanceToLastEnemyPosition;
     [SerializeField] GameObject debugPoint;
 
@@ -23,7 +24,7 @@ public class AIBehaviourTree : MonoBehaviour
     public float SearchingRadius { get => searchingRadius; set => searchingRadius = value; }
     public float EnemySearchingTime { get => enemySearchingTime; set => enemySearchingTime = value; }
     public int SearhingCornersNumber { get => searhingCornersNumber; set => searhingCornersNumber = value; }
-    public float DistanceToAttack { get => distanceToAttack; set => distanceToAttack = value; }
+    public Range MeleeAttackRange { get => meleeAttackRange; set => meleeAttackRange = value; }
     public float DistanceToLastEnemyPosition { get => distanceToLastEnemyPosition; set => distanceToLastEnemyPosition = value; }
     public GameObject DebugPoint { get => debugPoint; set => debugPoint = value; }
     public Route PatrolRoute { get => patrolRoute; set => patrolRoute = value; }
@@ -33,6 +34,8 @@ public class AIBehaviourTree : MonoBehaviour
     public Transform CurrentEnemy => sensors.NearestEnemy;
     public ActionManager ActionManager => actionManager;
     public Vector3 LastEnemyPosition { get; set; }
+    public bool SearchEnemy { get; set; }
+    public Route SearchingRoute { get; set; }   
 
     AINavigationManager navigationManager;
     ActionManager actionManager;

@@ -4,18 +4,20 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class ChaseEnemy : Node
+public class AttackMelee : Node
 {
     Transform CurrentEnemy;
+
     public override NodeState Evaluate()
     {
         CurrentEnemy = tree.CurrentEnemy;
         if (tree.CurrentEnemy != null)
         {
-            tree.LastEnemyPosition = tree.CurrentEnemy.position;
-            if (!tree.MeleeAttackRange.IsPointInRange(CurrentEnemy.position))
+            if (tree.MeleeAttackRange.IsPointInRange(CurrentEnemy.position))
             {
-                tree.AINavigationManager.MoveToTarget(tree.CurrentEnemy.position, MovingMode.Run);
+                tree.AINavigationManager.Stand();
+                tree.ActionManager.MainWeaponPressed();
+                tree.ActionManager.MainWeaponReleased();
 
                 state = NodeState.RUNNING;
                 return state;

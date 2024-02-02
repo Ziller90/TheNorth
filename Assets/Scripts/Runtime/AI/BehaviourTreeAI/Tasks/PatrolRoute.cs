@@ -8,21 +8,13 @@ public class PatrolRoute : Node
 {
     float distanceToNextCorner = 1f;
     int nextCornerIndex;
-    Vector3[] patrolRouteCorners;
-    Vector3[] currentRouteCorners;
-
-    public override void OnInitialize()
-    {
-        if (tree.PatrolRoute)
-        {
-            patrolRouteCorners = tree.PatrolRoute.GetCorners();
-            currentRouteCorners = patrolRouteCorners;
-        }
-    }
+    List<Vector3> currentRouteCorners;
 
     public override NodeState Evaluate()
     {
-        if (!tree.PatrolRoute)
+        currentRouteCorners = tree.PatrolRoute ? tree.PatrolRoute.Corners : null;
+
+        if (currentRouteCorners == null)
         {
             state = NodeState.FAILURE;
             return state;
@@ -34,7 +26,7 @@ public class PatrolRoute : Node
         if (Vector3.Distance(unitPositionProjectionXZ, nextCornerPositionProjectionXZ) < distanceToNextCorner)
         {
             nextCornerIndex++;
-            if (nextCornerIndex == currentRouteCorners.Length)
+            if (nextCornerIndex == currentRouteCorners.Count)
             {
                 nextCornerIndex = 0;
             }
