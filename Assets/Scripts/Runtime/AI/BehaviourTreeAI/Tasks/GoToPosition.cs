@@ -6,17 +6,21 @@ using System;
 [Serializable]
 public class GoToPosition : Node
 {
-    [SerializeField] Vector3 position;
+    [SerializeField] Vector3Key positionKey;
+
     [SerializeField] MovingMode movingMode;
     [SerializeField] float minDistanceToPosition = 2f;
 
-    public override NodeState Evaluate()
+    Vector3 position;
+    public override NodeState Evaluate()    
     {
+        position = (Vector3)tree.GetBlackboardValue(positionKey);
+
         if (position != Vector3.zero)
         {
             if (Vector3.Distance(tree.gameObject.transform.position, position) > minDistanceToPosition)
             {
-                tree.AINavigationManager.MoveToTarget(tree.LastEnemyPosition, movingMode);
+                tree.NavigationManager.MoveToTarget(position, movingMode);
 
                 state = NodeState.RUNNING;
                 return state;

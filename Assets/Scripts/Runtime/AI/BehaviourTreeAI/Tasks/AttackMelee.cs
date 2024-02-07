@@ -6,16 +6,22 @@ using System;
 [Serializable]
 public class AttackMelee : Node
 {
-    Transform CurrentEnemy;
+    [SerializeField] ComponentKey currentEnemyTranformKey;
+    [SerializeField] ComponentKey meleeAttackRangeKey;
+
+    Range meleeAttackRange;
+    Transform currentEnemy;
 
     public override NodeState Evaluate()
     {
-        CurrentEnemy = tree.CurrentEnemy;
-        if (tree.CurrentEnemy != null)
+        currentEnemy = tree.GetBlackboardValue(currentEnemyTranformKey) as Transform;
+        meleeAttackRange = tree.GetBlackboardValue(meleeAttackRangeKey) as Range;
+
+        if (currentEnemy != null)
         {
-            if (tree.MeleeAttackRange.IsPointInRange(CurrentEnemy.position))
+            if (meleeAttackRange.IsPointInRange(currentEnemy.position))
             {
-                tree.AINavigationManager.Stand();
+                tree.NavigationManager.Stand();
                 tree.ActionManager.MainWeaponPressed();
                 tree.ActionManager.MainWeaponReleased();
 
