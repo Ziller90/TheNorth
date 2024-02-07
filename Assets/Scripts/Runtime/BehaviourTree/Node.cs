@@ -40,6 +40,8 @@ public class Node
 
     private void InitializeChild(Node childNode)
     {
+        if (childNode == null)
+            Debug.Log("test");
         childNode.Initialize(tree, this);
     }
 }

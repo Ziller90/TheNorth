@@ -6,50 +6,61 @@ using UnityEngine;
 [Serializable]
 public class AIBehaviourTree : MonoBehaviour
 {
-    [SerializeField] Component myComponent;
-    [SerializeField] float searchingRadius;
-    [SerializeField] float enemySearchingTime;
-    [SerializeField] int searhingCornersNumber;
-    [SerializeField] Range meleeAttackRange;
-    [SerializeField] float distanceToLastEnemyPosition;
-    [SerializeField] GameObject debugPoint;
+    [SerializeReference, SubclassSelector] List<BlackboardKey> blackBoard;
 
-    [Header("Patrolling")]
-    [SerializeField] Route patrolRoute;
-    [SerializeField] MovingMode patrolMovingMode;
+    [Header("AI Components:")]
+    [SerializeField] AINavigationManager navigationManager;
+    [SerializeField] ActionManager actionManager;
+    [SerializeField] Sensors sensors;
+
+    public ActionManager ActionManager { get => actionManager; set => actionManager = value; }
+    public AINavigationManager NavigationManager { get => navigationManager; set => navigationManager = value; }
+    public Sensors Sensors { get => sensors; set => sensors = value; }
 
     [Header("Behaviour Tree:")]
     [SerializeReference, SubclassSelector] Node root;
 
-    public float SearchingRadius { get => searchingRadius; set => searchingRadius = value; }
-    public float EnemySearchingTime { get => enemySearchingTime; set => enemySearchingTime = value; }
-    public int SearhingCornersNumber { get => searhingCornersNumber; set => searhingCornersNumber = value; }
-    public Range MeleeAttackRange { get => meleeAttackRange; set => meleeAttackRange = value; }
-    public float DistanceToLastEnemyPosition { get => distanceToLastEnemyPosition; set => distanceToLastEnemyPosition = value; }
-    public GameObject DebugPoint { get => debugPoint; set => debugPoint = value; }
-    public Route PatrolRoute { get => patrolRoute; set => patrolRoute = value; }
-    public MovingMode PatrolMovingMode { get => patrolMovingMode; set => patrolMovingMode = value; }
-    public AINavigationManager AINavigationManager => navigationManager;
-    public Sensors Sensors => sensors;  
-    public Transform CurrentEnemy => sensors.NearestEnemy;
-    public ActionManager ActionManager => actionManager;
-    public Vector3 LastEnemyPosition { get; set; }
-    public bool SearchEnemy { get; set; }
-    public Route SearchingRoute { get; set; }   
+    public object GetBlackboardValue(string id)
+    {
+        foreach (BlackboardKey key in blackBoard)
+        {
+            if (key.Id == id)
+            {
+                return key.GetValue();
+            }
+        }
+        return null;
+    }
 
-    AINavigationManager navigationManager;
-    ActionManager actionManager;
-    Sensors sensors;
+    public object GetBlackboardValue(BlackboardKey key)
+    {
+        return GetBlackboardValue(key.Id) ?? key.GetValue();
+    }
+
+    public void SetBlackBoardKeyValue(BlackboardKey key, object value)
+    {
+        var blackBoardKey = GetBlackboardKey(key);
+        blackBoardKey.SetValue(value);
+    }
+
+    public BlackboardKey GetBlackboardKey(BlackboardKey key)
+    {
+        foreach (BlackboardKey blackBoardKey in blackBoard)
+        {
+            if (key.Id == blackBoardKey.Id)
+            {
+                return blackBoardKey;
+            }
+        }
+        return null;
+    }
 
     void Start()
     {
-        navigationManager = GetComponent<AINavigationManager>();
-        sensors = GetComponent<Sensors>();
-        actionManager = GetComponent<ActionManager>();
         root.Initialize(this, null);
     }
 
-    void Update()
+    void Update() 
     {
         if (root != null)
             root.Evaluate();

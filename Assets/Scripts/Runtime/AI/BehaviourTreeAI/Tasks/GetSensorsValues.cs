@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class Idle : Node
+public class GetSensorsValues : Node
 {
+    [SerializeField] ComponentKey nearestEnemyKey;
+
     public override NodeState Evaluate()
     {
-        tree.NavigationManager.Stand();
+        tree.SetBlackBoardKeyValue(nearestEnemyKey,tree.Sensors.NearestEnemy);
         state = NodeState.RUNNING;
         return state;
     }

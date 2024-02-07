@@ -6,11 +6,14 @@ using System;
 [Serializable]
 public class ConsoleLogTask : Node
 {
-    [SerializeField] string consoleLogMessage;
+    [SerializeField] StringKey consoleMessageKey;
 
+    string consoleMessage;
     public override NodeState Evaluate()
     {
-        Debug.Log(consoleLogMessage);
+        consoleMessage = (string)tree.GetBlackboardValue(consoleMessageKey);
+
+        Debug.Log(consoleMessage);
         state = NodeState.RUNNING;
         return state;
     }

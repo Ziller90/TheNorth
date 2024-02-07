@@ -6,13 +6,22 @@ using System;
 [Serializable]
 public class PatrolRoute : Node
 {
+    [SerializeField] ComponentKey patrolRouteKey;
+    [SerializeField] MovingModeKey patrolMovingModeKey;
+
+    Route patrolRoute;
+    MovingMode patrolMovingMode;
+
     float distanceToNextCorner = 1f;
     int nextCornerIndex;
     List<Vector3> currentRouteCorners;
 
     public override NodeState Evaluate()
     {
-        currentRouteCorners = tree.PatrolRoute ? tree.PatrolRoute.Corners : null;
+        patrolRoute = tree.GetBlackboardValue(patrolRouteKey) as Route;
+        patrolMovingMode = (MovingMode)tree.GetBlackboardValue(patrolMovingModeKey);
+
+        currentRouteCorners = patrolRoute ? patrolRoute.Corners : null;
 
         if (currentRouteCorners == null)
         {
@@ -20,8 +29,8 @@ public class PatrolRoute : Node
             return state;
         }
 
-        tree.AINavigationManager.MoveToTarget(currentRouteCorners[nextCornerIndex], tree.PatrolMovingMode);
-        var unitPositionProjectionXZ = new Vector3(tree.AINavigationManager.transform.position.x, 0, tree.AINavigationManager.transform.position.z);
+        tree.NavigationManager.MoveToTarget(currentRouteCorners[nextCornerIndex], patrolMovingMode);
+        var unitPositionProjectionXZ = new Vector3(tree.NavigationManager.transform.position.x, 0, tree.NavigationManager.transform.position.z);
         var nextCornerPositionProjectionXZ = new Vector3(currentRouteCorners[nextCornerIndex].x, 0, currentRouteCorners[nextCornerIndex].z);
         if (Vector3.Distance(unitPositionProjectionXZ, nextCornerPositionProjectionXZ) < distanceToNextCorner)
         {

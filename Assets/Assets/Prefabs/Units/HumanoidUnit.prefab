@@ -803,7 +803,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ec2040d56334a4cad21f70d9daf037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myComponent: {fileID: 0}
+  blackBoard:
+  - rid: 6376314279218905095
   searchingRadius: 0
   enemySearchingTime: 0
   searhingCornersNumber: 0
@@ -813,14 +814,27 @@ MonoBehaviour:
   patrolRoute: {fileID: 0}
   patrolMovingMode: 0
   root:
-    rid: 4079635718838681610
+    rid: 6376314279218905093
   references:
     version: 2
     RefIds:
-    - rid: 4079635718838681610
-      type: {class: PatrolRoute, ns: , asm: TheNorth}
+    - rid: 6376314279218905093
+      type: {class: Selector, ns: , asm: TheNorth}
+      data:
+        children:
+        - rid: 6376314279218905096
+    - rid: 6376314279218905095
+      type: {class: StringKey, ns: , asm: TheNorth}
+      data:
+        id: consoleMessage
+        obj: Hello, World!
+    - rid: 6376314279218905096
+      type: {class: ConsoleLogTask, ns: , asm: TheNorth}
       data:
         children: []
+        consoleMessageKey:
+          id: consoleMessage
+          obj: 
 --- !u!4 &8467364967643463516 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6115228454438917373, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}

@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 [Serializable]
 public class Sequence : Node
 {
+    [SerializeField] bool stopEvaluatingChildrenIfOneIsRunning;
     public override NodeState Evaluate()
     {
         foreach (Node node in children)
@@ -15,7 +17,10 @@ public class Sequence : Node
                 case NodeState.SUCCESS:
                     continue;
                 case NodeState.RUNNING:
-                    return NodeState.RUNNING;
+                    if (stopEvaluatingChildrenIfOneIsRunning)
+                        return NodeState.RUNNING;
+                    else
+                        continue;
             }
         }
         state = NodeState.SUCCESS;
