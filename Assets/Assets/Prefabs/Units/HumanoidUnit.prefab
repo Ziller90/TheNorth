@@ -736,8 +736,19 @@ PrefabInstance:
       addedObject: {fileID: 7437434635719383873}
     - targetCorrespondingSourceObject: {fileID: 6115228454438917361, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7943855203760559560}
+      addedObject: {fileID: 210710974446967450}
   m_SourcePrefab: {fileID: 100100000, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
+--- !u!114 &1411244707672237012 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3659746340058744949, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
+  m_PrefabInstance: {fileID: 2404843527227370401}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8467364967643463504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 213717ecb8f229940b4e35d12aa31f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7377141425538114404 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5133935866322634949, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
@@ -791,7 +802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlManager: {fileID: 8458588383854384157}
---- !u!114 &7943855203760559560
+--- !u!114 &210710974446967450
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -804,37 +815,359 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackBoard:
-  - rid: 6376314279218905095
-  searchingRadius: 0
-  enemySearchingTime: 0
-  searhingCornersNumber: 0
-  meleeAttackRange: {fileID: 3477236697314793782}
-  distanceToLastEnemyPosition: 0
-  debugPoint: {fileID: 0}
-  patrolRoute: {fileID: 0}
-  patrolMovingMode: 0
+  - rid: 6376314478969749539
+  - rid: 6376314478969749512
+  - rid: 6376314478969749513
+  - rid: 6376314478969749521
+  - rid: 6376314478969749540
+  - rid: 6376314478969749533
+  - rid: 6376314478969749534
+  - rid: 6376314478969749535
+  - rid: 6376314478969749538
+  navigationManager: {fileID: 7437434635719383873}
+  actionManager: {fileID: 1411244707672237012}
+  sensors: {fileID: 1929616585124593929}
   root:
-    rid: 6376314279218905093
+    rid: 6376314439604633625
   references:
     version: 2
     RefIds:
-    - rid: 6376314279218905093
+    - rid: 6376314439604633625
+      type: {class: Sequence, ns: , asm: TheNorth}
+      data:
+        name: Sequence
+        customName: 
+        children:
+        - rid: 6376314439604633626
+        - rid: 6376314439604633627
+        - rid: 6376314439604633628
+        stopEvaluatingChildrenIfOneIsRunning: 0
+    - rid: 6376314439604633626
+      type: {class: UpdateTimer, ns: , asm: TheNorth}
+      data:
+        name: UpdateTimer
+        customName: 
+        children: []
+        timerKey:
+          id: EnemySearchTimer
+          obj: 0
+    - rid: 6376314439604633627
+      type: {class: GetSensorsValues, ns: , asm: TheNorth}
+      data:
+        name: GetSensorsValues
+        customName: 
+        children: []
+        nearestEnemyKey:
+          id: NearestEnemy
+          obj: {fileID: 0}
+    - rid: 6376314439604633628
       type: {class: Selector, ns: , asm: TheNorth}
       data:
+        name: Selector
+        customName: 
         children:
-        - rid: 6376314279218905096
-    - rid: 6376314279218905095
-      type: {class: StringKey, ns: , asm: TheNorth}
+        - rid: 6376314478969749544
+        - rid: 6376314439604633629
+        - rid: 6376314478969749504
+        - rid: 6376314478969749505
+        - rid: 6376314478969749506
+        - rid: 6376314478969749526
+        - rid: 6376314478969749508
+        - rid: 6376314478969749510
+    - rid: 6376314439604633629
+      type: {class: Sequence, ns: , asm: TheNorth}
       data:
-        id: consoleMessage
-        obj: Hello, World!
-    - rid: 6376314279218905096
-      type: {class: ConsoleLogTask, ns: , asm: TheNorth}
+        name: MeleeAttack
+        customName: MeleeAttack
+        children:
+        - rid: 6376314439604633630
+        - rid: 6376314439604633631
+        stopEvaluatingChildrenIfOneIsRunning: 0
+    - rid: 6376314439604633630
+      type: {class: IsObjectInRange, ns: , asm: TheNorth}
       data:
+        name: IsObjectInRange
+        customName: 
         children: []
-        consoleMessageKey:
-          id: consoleMessage
-          obj: 
+        objectToCheckKey:
+          id: NearestEnemy
+          obj: {fileID: 0}
+        rangeKey:
+          id: MeleeAttackRange
+          obj: {fileID: 0}
+    - rid: 6376314439604633631
+      type: {class: UseWeapon, ns: , asm: TheNorth}
+      data:
+        name: UseWeapon
+        customName: 
+        children: []
+        weapon: 0
+    - rid: 6376314478969749504
+      type: {class: ChaseObject, ns: , asm: TheNorth}
+      data:
+        name: ChaseEnemy
+        customName: ChaseEnemy
+        children: []
+        objectKey:
+          id: NearestEnemy
+          obj: {fileID: 0}
+        caughtRangeKey:
+          id: MeleeAttackRange
+          obj: {fileID: 0}
+        lastObjectPositionKey:
+          id: NearestEnemyLastPosition
+          obj: {x: 0, y: 0, z: 0}
+    - rid: 6376314478969749505
+      type: {class: GoToPosition, ns: , asm: TheNorth}
+      data:
+        name: BlindChaseEnemy
+        customName: BlindChaseEnemy
+        children: []
+        positionKey:
+          id: NearestEnemyLastPosition
+          obj: {x: 0, y: 0, z: 0}
+        movingMode: 0
+        minDistanceToPosition: 2
+    - rid: 6376314478969749506
+      type: {class: Sequence, ns: , asm: TheNorth}
+      data:
+        name: GenerateSearchingRoute
+        customName: GenerateSearchingRoute
+        children:
+        - rid: 6376314478969749541
+        - rid: 6376314478969749520
+        - rid: 6376314478969749523
+        stopEvaluatingChildrenIfOneIsRunning: 0
+    - rid: 6376314478969749508
+      type: {class: Selector, ns: , asm: TheNorth}
+      data:
+        name: BehaviourScript
+        customName: BehaviourScript
+        children:
+        - rid: 6376314478969749509
+    - rid: 6376314478969749509
+      type: {class: NavigateRoute, ns: , asm: TheNorth}
+      data:
+        name: NavigateRoute
+        customName: 
+        children: []
+        patrolRouteKey:
+          id: StandartPatrolRoute
+          obj: {fileID: 0}
+        patrolMovingModeKey:
+          id: StandartPatrolRouteMovingMode
+          obj: 0
+        isLooped: 1
+    - rid: 6376314478969749510
+      type: {class: Idle, ns: , asm: TheNorth}
+      data:
+        name: Idle
+        customName: 
+        children: []
+    - rid: 6376314478969749512
+      type: {class: FloatKey, ns: , asm: TheNorth}
+      data:
+        id: EnemySearchTime
+        obj: 0
+    - rid: 6376314478969749513
+      type: {class: FloatKey, ns: , asm: TheNorth}
+      data:
+        id: EnemySearchTimer
+        obj: 0
+    - rid: 6376314478969749520
+      type: {class: GenerateSearchingRoute, ns: , asm: TheNorth}
+      data:
+        name: GenerateSearchingRoute
+        customName: 
+        children: []
+        routeAroundPositionKey:
+          id: SearchingRoute
+          obj: {fileID: 0}
+        routeCenterPositionKey:
+          id: NearestEnemyLastPosition
+          obj: {x: 0, y: 0, z: 0}
+        cornersNumber: 0
+        radius: 0
+    - rid: 6376314478969749521
+      type: {class: ComponentKey, ns: , asm: TheNorth}
+      data:
+        id: SearchingRoute
+        obj: {fileID: 0}
+    - rid: 6376314478969749523
+      type: {class: SetValue, ns: , asm: TheNorth}
+      data:
+        name: SetSearchingTimer
+        customName: SetSearchingTimer
+        children: []
+        key1:
+          rid: 6376314478969749524
+        key2:
+          rid: 6376314478969749525
+    - rid: 6376314478969749524
+      type: {class: FloatKey, ns: , asm: TheNorth}
+      data:
+        id: EnemySearchTimer
+        obj: 0
+    - rid: 6376314478969749525
+      type: {class: FloatKey, ns: , asm: TheNorth}
+      data:
+        id: EnemySearchTime
+        obj: 0
+    - rid: 6376314478969749526
+      type: {class: Sequence, ns: , asm: TheNorth}
+      data:
+        name: SearchEnemy
+        customName: SearchEnemy
+        children:
+        - rid: 6376314478969749527
+        - rid: 6376314478969749532
+        stopEvaluatingChildrenIfOneIsRunning: 0
+    - rid: 6376314478969749527
+      type: {class: Not, ns: , asm: TheNorth}
+      data:
+        name: IfSearchingTimerTicks
+        customName: IfSearchingTimerTicks
+        children:
+        - rid: 6376314478969749528
+    - rid: 6376314478969749528
+      type: {class: IsEquals, ns: , asm: TheNorth}
+      data:
+        name: IsEquals
+        customName: 
+        children: []
+        key1:
+          rid: 6376314478969749529
+        key2:
+          rid: 6376314478969749530
+    - rid: 6376314478969749529
+      type: {class: FloatKey, ns: , asm: TheNorth}
+      data:
+        id: EnemySearchTimer
+        obj: 0
+    - rid: 6376314478969749530
+      type: {class: FloatKey, ns: , asm: TheNorth}
+      data:
+        id: 
+        obj: 0
+    - rid: 6376314478969749532
+      type: {class: NavigateRoute, ns: , asm: TheNorth}
+      data:
+        name: NavigateRoute
+        customName: 
+        children: []
+        patrolRouteKey:
+          id: SearchingRoute
+          obj: {fileID: 0}
+        patrolMovingModeKey:
+          id: EnemySearchingMovingMode
+          obj: 0
+        isLooped: 1
+    - rid: 6376314478969749533
+      type: {class: MovingModeKey, ns: , asm: TheNorth}
+      data:
+        id: EnemySearchingMovingMode
+        obj: 0
+    - rid: 6376314478969749534
+      type: {class: ComponentKey, ns: , asm: TheNorth}
+      data:
+        id: StandartPatrolRoute
+        obj: {fileID: 0}
+    - rid: 6376314478969749535
+      type: {class: MovingModeKey, ns: , asm: TheNorth}
+      data:
+        id: StandartPatrolRouteMovingMode
+        obj: 0
+    - rid: 6376314478969749538
+      type: {class: ComponentKey, ns: , asm: TheNorth}
+      data:
+        id: MeleeAttackRange
+        obj: {fileID: 3477236697314793782}
+    - rid: 6376314478969749539
+      type: {class: GameObjectKey, ns: , asm: TheNorth}
+      data:
+        id: NearestEnemy
+        obj: {fileID: 0}
+    - rid: 6376314478969749540
+      type: {class: Vector3Key, ns: , asm: TheNorth}
+      data:
+        id: NearestEnemyLastPosition
+        obj: {x: 0, y: 0, z: 0}
+    - rid: 6376314478969749541
+      type: {class: IsEquals, ns: , asm: TheNorth}
+      data:
+        name: IfSearchingTimerNotTicks
+        customName: IfSearchingTimerNotTicks
+        children: []
+        key1:
+          rid: 6376314478969749542
+        key2:
+          rid: 6376314478969749543
+    - rid: 6376314478969749542
+      type: {class: FloatKey, ns: , asm: TheNorth}
+      data:
+        id: EnemySearchTimer
+        obj: 0
+    - rid: 6376314478969749543
+      type: {class: FloatKey, ns: , asm: TheNorth}
+      data:
+        id: 
+        obj: 0
+    - rid: 6376314478969749544
+      type: {class: Sequence, ns: , asm: TheNorth}
+      data:
+        name: StopSearchingTimerIfEnemyFound
+        customName: StopSearchingTimerIfEnemyFound
+        children:
+        - rid: 6376314478969749550
+        - rid: 6376314478969749556
+        stopEvaluatingChildrenIfOneIsRunning: 0
+    - rid: 6376314478969749550
+      type: {class: Not, ns: , asm: TheNorth}
+      data:
+        name: IfEnemyIsNotNull
+        customName: IfEnemyIsNotNull
+        children:
+        - rid: 6376314478969749551
+    - rid: 6376314478969749551
+      type: {class: IsEquals, ns: , asm: TheNorth}
+      data:
+        name: IsEquals
+        customName: 
+        children: []
+        key1:
+          rid: 6376314478969749554
+        key2:
+          rid: 6376314478969749555
+    - rid: 6376314478969749554
+      type: {class: GameObjectKey, ns: , asm: TheNorth}
+      data:
+        id: NearestEnemy
+        obj: {fileID: 0}
+    - rid: 6376314478969749555
+      type: {class: GameObjectKey, ns: , asm: TheNorth}
+      data:
+        id: 
+        obj: {fileID: 0}
+    - rid: 6376314478969749556
+      type: {class: SetValue, ns: , asm: TheNorth}
+      data:
+        name: RemoveEnemySearchingTimer
+        customName: RemoveEnemySearchingTimer
+        children: []
+        key1:
+          rid: 6376314478969749557
+        key2:
+          rid: 6376314478969749558
+    - rid: 6376314478969749557
+      type: {class: FloatKey, ns: , asm: TheNorth}
+      data:
+        id: EnemySearchTimer
+        obj: 0
+    - rid: 6376314478969749558
+      type: {class: FloatKey, ns: , asm: TheNorth}
+      data:
+        id: 
+        obj: 0
 --- !u!4 &8467364967643463516 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6115228454438917373, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}

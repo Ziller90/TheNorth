@@ -4,10 +4,11 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class PatrolRoute : Node
+public class NavigateRoute : Node
 {
     [SerializeField] ComponentKey patrolRouteKey;
     [SerializeField] MovingModeKey patrolMovingModeKey;
+    [SerializeField] bool isLooped;
 
     Route patrolRoute;
     MovingMode patrolMovingMode;
@@ -38,6 +39,12 @@ public class PatrolRoute : Node
             if (nextCornerIndex == currentRouteCorners.Count)
             {
                 nextCornerIndex = 0;
+                if (!isLooped)
+                {
+                    state = NodeState.SUCCESS;
+                    Debug.Log("FinishedRoute");
+                    return state;
+                }
             }
         }
 

@@ -4,6 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
+public class GameObjectKey : BlackboardKey
+{
+    [SerializeField] GameObject obj;
+    public override object GetValue() => obj;
+    public override void SetValue(object value) => obj = (GameObject)value;
+}
+
+[Serializable]
 public class ComponentKey : BlackboardKey
 {
     [SerializeField] Component obj;

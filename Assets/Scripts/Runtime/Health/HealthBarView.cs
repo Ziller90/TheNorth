@@ -8,7 +8,7 @@ public class HealthBarView : MonoBehaviour
 {
     [SerializeField] Gradient gradient;
     [SerializeField] Transform barLineTransform;
-    [SerializeField] RawImage barLine;
+    [SerializeField] Image barLine;
     [SerializeField] float Speed;
 
     float barFillness = 1;

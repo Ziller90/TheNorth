@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class GetSensorsValues : Node
 {
-    [SerializeField] ComponentKey nearestEnemyKey;
+    [SerializeField] GameObjectKey nearestEnemyKey;
 
     public override NodeState Evaluate()
     {

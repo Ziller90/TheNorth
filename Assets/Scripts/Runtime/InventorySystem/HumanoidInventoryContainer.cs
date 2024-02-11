@@ -16,6 +16,11 @@ public class HumanoidInventoryContainer : ContainerBase
 
     [SerializeField] SimpleContainer dropSackPrefab;
 
+    [SerializeField] GameObject unarmedHandItem;
+
+    GameObject unarmedRightHand;
+    GameObject unarmedLeftHand;
+
     Item rightHandItem;
     Item leftHandItem;
 
@@ -51,7 +56,12 @@ public class HumanoidInventoryContainer : ContainerBase
     {
         animationEvents = GetComponent<AnimationEvents>();
         battleSystem = GetComponent<HumanoidBattleSystem>();
-        unit = GetComponent<Unit>();    
+        unit = GetComponent<Unit>();
+
+        if (rightHandItem == null)
+            unarmedRightHand = InstantiateUnarmedHandInEquipmentPosition(rightHandEquipPosition);
+        if (leftHandItem == null)
+            unarmedLeftHand = InstantiateUnarmedHandInEquipmentPosition(leftHandEquipPosition);
 
         InitAllSlots();
     }
@@ -117,10 +127,12 @@ public class HumanoidInventoryContainer : ContainerBase
         {
             instantiatedItem = InstantiateItemInEquipmentPosition(mainWeaponSlot.ItemStack, rightHandEquipPosition);
             rightHandItem = instantiatedItem;
+            Destroy(unarmedRightHand);
         }
         else if (equipment.EquipmentPosition == EquipmentPosition.LeftHand)
         {
             instantiatedItem = InstantiateItemInEquipmentPosition(mainWeaponSlot.ItemStack, leftHandEquipPosition);
+            Destroy(unarmedLeftHand);
             leftHandItem = instantiatedItem;
         }
 
@@ -149,6 +161,7 @@ public class HumanoidInventoryContainer : ContainerBase
         {
             instantiatedItem = InstantiateItemInEquipmentPosition(secondaryWeaponSlot.ItemStack, leftHandEquipPosition);
             leftHandItem = instantiatedItem;
+            Destroy(unarmedLeftHand);
         }
 
         SetSecondaryWeapon(instantiatedItem);   
@@ -157,9 +170,15 @@ public class HumanoidInventoryContainer : ContainerBase
     void UnEquipMainWeapon(ItemStack removedItemStack)
     {
         if (mainWeaponItem == rightHandItem)
+        {
             Destroy(rightHandItem.gameObject);
+            unarmedRightHand = InstantiateUnarmedHandInEquipmentPosition(rightHandEquipPosition);
+        }
         else if (mainWeaponItem == leftHandItem)
+        {
             Destroy(leftHandItem.gameObject);
+            unarmedLeftHand = InstantiateUnarmedHandInEquipmentPosition(leftHandEquipPosition);
+        }
 
         if (removedItemStack.Item.Tags.Contains(ItemTag.TwoHanded))
             secondaryWeaponSlot.SetBlock(false, null);
@@ -170,9 +189,15 @@ public class HumanoidInventoryContainer : ContainerBase
     void UnEquipSecondaryWeapon(ItemStack removedItemStack)
     {
         if (secondaryWeaponItem == rightHandItem)
+        {
             Destroy(rightHandItem.gameObject);
+            unarmedRightHand = InstantiateUnarmedHandInEquipmentPosition(rightHandEquipPosition);
+        }
         else if (secondaryWeaponItem == leftHandItem)
+        {
             Destroy(leftHandItem.gameObject);
+            unarmedLeftHand = InstantiateUnarmedHandInEquipmentPosition(leftHandEquipPosition);
+        }
 
         secondaryWeaponItem = null;
     }
@@ -223,6 +248,16 @@ public class HumanoidInventoryContainer : ContainerBase
             if (itemUsing.DestroyOnUse)
                 itemStack.ItemsNumber -= 1;
         }
+    }
+
+    GameObject InstantiateUnarmedHandInEquipmentPosition(Transform eqpuipmentPosition)
+    {
+        var item = Instantiate(unarmedHandItem, eqpuipmentPosition);
+        item.transform.rotation = eqpuipmentPosition.rotation;
+        var meleeWeapon = item.GetComponentInChildren<MeleeWeapon>();
+        meleeWeapon.SetWeaponHolder(unit);
+        animationEvents.SetMeleeWeapon(meleeWeapon);
+        return item;
     }
 
     Item InstantiateItemInEquipmentPosition(ItemStack itemsStack, Transform eqpuipmentPosition)

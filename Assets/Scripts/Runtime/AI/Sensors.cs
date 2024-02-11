@@ -17,8 +17,8 @@ public class Sensors : MonoBehaviour
     int evniromentLayer = 9;
     int defaultLayer = 0;
 
-    Transform nearestEnemiy;
-    public Transform NearestEnemy => nearestEnemiy;
+    Transform nearestEnemy;
+    public GameObject NearestEnemy => nearestEnemy ? nearestEnemy.gameObject : null;
 
     void Start()
     {
@@ -31,7 +31,7 @@ public class Sensors : MonoBehaviour
     {
         noticedUnits = GetNoticedUnits();
         noticedEnemies = GetEnemies(noticedUnits, factionMarker);
-        nearestEnemiy = GetNearestEnemy(noticedEnemies);   
+        nearestEnemy = GetNearestEnemy(noticedEnemies);   
     }
 
     public List<Transform> GetEnemies(List<Transform> units, FactionMarker factionMarker) 
