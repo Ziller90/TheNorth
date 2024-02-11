@@ -8,7 +8,6 @@ public class AIBehaviourTree : MonoBehaviour
 {
     [SerializeReference, SubclassSelector] List<BlackboardKey> blackBoard;
 
-    [Header("AI Components:")]
     [SerializeField] AINavigationManager navigationManager;
     [SerializeField] ActionManager actionManager;
     [SerializeField] Sensors sensors;
@@ -17,8 +16,9 @@ public class AIBehaviourTree : MonoBehaviour
     public AINavigationManager NavigationManager { get => navigationManager; set => navigationManager = value; }
     public Sensors Sensors { get => sensors; set => sensors = value; }
 
-    [Header("Behaviour Tree:")]
     [SerializeReference, SubclassSelector] Node root;
+
+    public Action validated;
 
     public object GetBlackboardValue(string id)
     {
@@ -64,5 +64,10 @@ public class AIBehaviourTree : MonoBehaviour
     {
         if (root != null)
             root.Evaluate();
+    }
+
+    private void OnValidate()
+    {
+        root.SetName();
     }
 }

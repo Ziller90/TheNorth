@@ -6,23 +6,21 @@ using System;
 [Serializable]
 public class ChaseObject : Node
 {
-    [SerializeField] ComponentKey objectTransformKey;
+    [SerializeField] GameObjectKey objectKey;
     [SerializeField] ComponentKey caughtRangeKey;
     [SerializeField] Vector3Key lastObjectPositionKey;
 
-    Transform objectTransform;
-    Range caughtRange;
     public override NodeState Evaluate()
     {
-        objectTransform = tree.GetBlackboardValue(objectTransformKey) as Transform;
-        caughtRange = tree.GetBlackboardValue(caughtRangeKey) as Range;
+        GameObject obj = tree.GetBlackboardValue(objectKey) as GameObject;
+        Range caughtRange = tree.GetBlackboardValue(caughtRangeKey) as Range;
 
-        if (objectTransform != null)
+        if (obj != null)
         {
-            tree.SetBlackBoardKeyValue(lastObjectPositionKey, objectTransform.position);
-            if (!caughtRange.IsPointInRange(objectTransform.position))
+            tree.SetBlackBoardKeyValue(lastObjectPositionKey, obj.transform.position);
+            if (!caughtRange.IsPointInRange(obj.transform.position))
             {
-                tree.NavigationManager.MoveToTarget(objectTransform.position, MovingMode.Run);
+                tree.NavigationManager.MoveToTarget(obj.transform.position, MovingMode.Run);
 
                 state = NodeState.RUNNING;
                 return state;

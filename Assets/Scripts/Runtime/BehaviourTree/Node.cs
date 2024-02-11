@@ -13,11 +13,28 @@ public enum NodeState
 [Serializable]
 public class Node
 {
+    [SerializeField, HideInInspector] string name = "";
+    [SerializeField] string customName = "";
+
     [SerializeReference, SubclassSelector] protected List<Node> children = new List<Node>();
 
     protected AIBehaviourTree tree;
     protected Node parent;
     protected NodeState state;
+
+    public void SetName()
+    {
+        if (customName == "")
+            name = GetType().Name;
+        else
+            name = customName;
+
+        foreach (var child in children)
+        {
+            if (child != null)
+                child.SetName();
+        }
+    }
 
     public virtual NodeState Evaluate() => NodeState.FAILURE;
 
@@ -41,7 +58,7 @@ public class Node
     private void InitializeChild(Node childNode)
     {
         if (childNode == null)
-            Debug.Log("test");
+            return;
         childNode.Initialize(tree, this);
     }
 }
