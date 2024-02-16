@@ -7,8 +7,15 @@
       "dependencies": {},
       "hash": "d53f7162b1ce5e72a9cfab01c14484dfa788a14a"
     },
+    "com.github.yoshidan.unibt": {
+      "version": "https://github.com/yoshidan/UniBT.git?path=Assets/UniBT/Scripts",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "aa4b79845f5c3e0996081f922665ccf483e69b2e"
+    },
     "com.mackysoft.serializereference-extensions": {
-      "version": "1.1.9",
+      "version": "1.2.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -16,6 +23,12 @@
     },
     "com.siegeup.core": {
       "version": "file:SiegeUp.Core",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.thekiwicoder.behaviourtreeditor": {
+      "version": "file:com.thekiwicoder.behaviourtreeditor",
       "depth": 0,
       "source": "embedded",
       "dependencies": {}
