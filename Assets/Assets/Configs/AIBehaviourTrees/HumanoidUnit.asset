@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d285eb63c2cdd74180de7cfceaa96ad, type: 3}
+  m_Name: HumanoidUnit
+  m_EditorClassIdentifier: 
+  rootNode:
+    rid: 6376314570251436038
+  nodes:
+  - rid: 6376314570251436038
+  - rid: 6376314570251436040
+  - rid: 6376314570251436041
+  - rid: 6376314570251436045
+  - rid: 6376314570251436046
+  treeState: 0
+  blackboard:
+    keys:
+    - rid: 6376314570251436042
+  viewPosition: {x: 242.4, y: -16, z: 0}
+  viewScale: {x: 0.65751624, y: 0.65751624, z: 1}
+  references:
+    version: 2
+    RefIds:
+    - rid: 6376314570251436038
+      type: {class: RootNode, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 9038906f-4138-4c69-919e-0393972ab8e4
+        position: {x: 0, y: 15}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 6376314570251436041
+    - rid: 6376314570251436040
+      type: {class: ChaseObjectNode, ns: , asm: TheNorth}
+      data:
+        state: 0
+        started: 0
+        guid: 47bc445a60b35c2498af8c6992e87a40
+        position: {x: 90, y: 465}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        objectToChase:
+          reference:
+            rid: 6376314570251436042
+          defaultValue: {fileID: 0}
+        chasingMovingMode: 0
+    - rid: 6376314570251436041
+      type: {class: Repeat, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 16b6da8b645a9db4aab795eb59322f52
+        position: {x: 0, y: 135}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 6376314570251436045
+        restartOnSuccess: 1
+        restartOnFailure: 0
+        maxRepeats: 0
+    - rid: 6376314570251436042
+      type: {class: GameObjectKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: GameObjectToChase
+        typeName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        value: {fileID: 0}
+    - rid: 6376314570251436045
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 115d384642eb9ed4b9adc782c862d457
+        position: {x: 0, y: 270}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 6376314570251436046
+        - rid: 6376314570251436040
+    - rid: 6376314570251436046
+      type: {class: Log, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: e9fa48c8c13f89a489c69bc51c9a796c
+        position: {x: -105, y: 465}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        message:
+          reference:
+            rid: 6376314570251436057
+          defaultValue: Hello world
+    - rid: 6376314570251436057
+      type: {class: StringKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: newString
+        typeName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        value: New Hello World
