@@ -810,6 +810,10 @@ MonoBehaviour:
       rid: 6376314615936319490
     value:
       rid: 6376314615936319491
+  - key:
+      rid: 6376314615936319506
+    value:
+      rid: 6376314615936319491
   references:
     version: 2
     RefIds:
@@ -824,6 +828,13 @@ MonoBehaviour:
       type: {class: GameObjectKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
         name: 
+        typeName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        value: {fileID: 0}
+    - rid: 6376314615936319506
+      type: {class: GameObjectKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: NearestEnemy
         typeName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         value: {fileID: 0}
