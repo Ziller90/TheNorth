@@ -198,6 +198,37 @@ Transform:
   m_Father: {fileID: 4019270265892088691}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3437343915753219384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4343504269343872149}
+  m_Layer: 0
+  m_Name: PointToChase
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4343504269343872149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3437343915753219384}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 43.24, y: 19.92, z: 57.819386}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4019270265892088691}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4272924383103584576
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +601,7 @@ Transform:
   - {fileID: 6497518794117926857}
   - {fileID: 6593496175799864605}
   - {fileID: 3991444424388059505}
+  - {fileID: 4343504269343872149}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8571,6 +8603,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4019270265892088691}
     m_Modifications:
+    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: managedReferences[6376314615936319491].value
+      value: 
+      objectReference: {fileID: 3437343915753219384}
+    - target: {fileID: 6146560050563722191, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: managedReferences[6376314570251436044].value
+      value: 
+      objectReference: {fileID: 3437343915753219384}
     - target: {fileID: 8467364967643463504, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: m_Name
       value: HumanoidUnit
