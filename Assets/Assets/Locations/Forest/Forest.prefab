@@ -8603,104 +8603,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4019270265892088691}
     m_Modifications:
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[-2]
-      value: 
+    - target: {fileID: 716783470848166525, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: faction
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: blackboardOverrides.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: blackboardOverrides.Array.data[0].key
-      value: 6376314615936319507
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: blackboardOverrides.Array.data[1].key
-      value: 6376314615936319509
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314615936319507]
-      value: TheNorth UnitBlackboardTypes/RangeKey
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314615936319508]
-      value: TheNorth UnitBlackboardTypes/RangeKey
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314615936319509]
-      value: thekiwicoder.behaviourtreeeditor TheKiwiCoder.GameObjectKey
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314615936319510]
-      value: thekiwicoder.behaviourtreeeditor TheKiwiCoder.GameObjectKey
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: blackboardOverrides.Array.data[0].value
-      value: 6376314615936319508
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: blackboardOverrides.Array.data[1].value
-      value: 6376314615936319510
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314615936319507].name
-      value: RangeToCheck
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314615936319508].name
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314615936319509].name
-      value: NearestEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314615936319510].name
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314615936319491].value
-      value: 
-      objectReference: {fileID: 3437343915753219384}
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314615936319507].value
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314615936319508].value
-      value: 
-      objectReference: {fileID: 8261794449215063835}
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314615936319509].value
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314615936319510].value
-      value: 
-      objectReference: {fileID: 3437343915753219384}
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314615936319507].typeName
-      value: Range, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314615936319508].typeName
-      value: Range, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314615936319509].typeName
-      value: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952188452263452936, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314615936319510].typeName
-      value: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      objectReference: {fileID: 0}
-    - target: {fileID: 6146560050563722191, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314570251436044].value
-      value: 
-      objectReference: {fileID: 3437343915753219384}
     - target: {fileID: 8467364967643463504, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: m_Name
       value: HumanoidUnit
@@ -8708,14 +8614,6 @@ PrefabInstance:
     - target: {fileID: 8467364967643463516, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: m_RootOrder
       value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8467364967643463516, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.70000005
-      objectReference: {fileID: 0}
-    - target: {fileID: 8467364967643463516, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.70000005
       objectReference: {fileID: 0}
     - target: {fileID: 8467364967643463516, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8767,17 +8665,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8467364967643463516, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
   m_PrefabInstance: {fileID: 4820657124061519405}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8261794449215063835 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3477236697314793782, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-  m_PrefabInstance: {fileID: 4820657124061519405}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1f772b992dc4a54a912a68ae5cc713a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4870365349468567075
 PrefabInstance:
   m_ObjectHideFlags: 0
