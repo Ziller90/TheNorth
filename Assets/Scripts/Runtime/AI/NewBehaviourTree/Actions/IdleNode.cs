@@ -10,7 +10,7 @@ public class IdleNode : ActionNode
 
     protected override State OnUpdate()
     {
-        (context as UnitContext).NavigationManager.Stand();
+        context.GameObject.GetComponent<AINavigationManager>().Stand();
         return State.Success;
     }
 }

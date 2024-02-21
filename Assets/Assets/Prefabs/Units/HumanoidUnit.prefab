@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1070199493488602899}
   m_LocalRotation: {x: -0, y: 0.7117166, z: -0, w: 0.7024668}
-  m_LocalPosition: {x: 0.01, y: 0.681, z: 1.11}
+  m_LocalPosition: {x: 0.01, y: 0.432, z: 1.3}
   m_LocalScale: {x: 1.4285711, y: 0.58823526, z: 1.4285711}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeType: 0
-  radius: 1.2
+  radius: 1.3
   angle: 0
   bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -736,7 +736,7 @@ PrefabInstance:
       addedObject: {fileID: 7437434635719383873}
     - targetCorrespondingSourceObject: {fileID: 6115228454438917361, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2952188452263452936}
+      addedObject: {fileID: 6980871327643536280}
   m_SourcePrefab: {fileID: 100100000, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
 --- !u!4 &7377141425538114404 stripped
 Transform:
@@ -791,7 +791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlManager: {fileID: 8458588383854384157}
---- !u!114 &2952188452263452936
+--- !u!114 &6980871327643536280
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -800,44 +800,67 @@ MonoBehaviour:
   m_GameObject: {fileID: 8467364967643463504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76174b8aec0e9d34db47ddd3323ddfc9, type: 3}
+  m_Script: {fileID: 11500000, guid: 58c6f9b140a52a14881ec09eaebb66eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   behaviourTree: {fileID: 11400000, guid: 0ec28883671e7614c9d36646a9504847, type: 2}
   validate: 1
   blackboardOverrides:
   - key:
-      rid: 6376314615936319490
+      rid: 6376314637353484313
     value:
-      rid: 6376314615936319491
+      rid: 6376314637353484314
   - key:
-      rid: 6376314615936319506
+      rid: 6376314637353484300
     value:
-      rid: 6376314615936319491
+      rid: 6376314637353484315
+  - key:
+      rid: 6376314637353484303
+    value:
+      rid: 6376314637353484316
   references:
     version: 2
     RefIds:
-    - rid: 6376314615936319490
-      type: {class: GameObjectKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+    - rid: 6376314637353484300
+      type: {class: Vector3Key, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
-        name: GameObjectToChase
-        typeName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-        value: {fileID: 0}
-    - rid: 6376314615936319491
-      type: {class: GameObjectKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+        name: LastEnemyPosition
+        typeName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        value: {x: 0, y: 0, z: 0}
+    - rid: 6376314637353484303
+      type: {class: UnitBlackboardTypes/RangeKey, ns: , asm: TheNorth}
       data:
-        name: 
-        typeName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
+        name: MeleeAttackRange
+        typeName: Range, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         value: {fileID: 0}
-    - rid: 6376314615936319506
+    - rid: 6376314637353484313
       type: {class: GameObjectKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
         name: NearestEnemy
         typeName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         value: {fileID: 0}
+    - rid: 6376314637353484314
+      type: {class: GameObjectKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: 
+        typeName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        value: {fileID: 0}
+    - rid: 6376314637353484315
+      type: {class: Vector3Key, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: 
+        typeName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        value: {x: 0, y: 0, z: 0}
+    - rid: 6376314637353484316
+      type: {class: UnitBlackboardTypes/RangeKey, ns: , asm: TheNorth}
+      data:
+        name: 
+        typeName: Range, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        value: {fileID: 3477236697314793782}
 --- !u!4 &8467364967643463516 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6115228454438917373, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
