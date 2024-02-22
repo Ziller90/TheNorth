@@ -17,26 +17,42 @@ MonoBehaviour:
   nodes:
   - rid: 6376314615936319498
   - rid: 6376314615936319500
-  - rid: 6376314615936319504
-  - rid: 6376314615936319512
-  - rid: 6376314615936319513
   - rid: 6376314622206279680
-  - rid: 6376314622206279684
-  - rid: 6376314622206279690
-  - rid: 6376314622206279691
-  - rid: 6376314622206279695
-  - rid: 6376314622206279706
   - rid: 6376314622206279707
-  - rid: 6376314622206279708
-  - rid: 6376314637353484305
-  - rid: 6376314710719725569
+  - rid: 6376314710719725692
+  - rid: 6376314715069743126
+  - rid: 6376314715069743128
+  - rid: 6376314715069743129
+  - rid: 6376314715069743130
+  - rid: 6376314715069743135
+  - rid: 6376314715069743137
+  - rid: 6376314724963844098
+  - rid: 6376314724963844100
+  - rid: 6376314724963844102
+  - rid: 6376314724963844108
+  - rid: 6376314724963844110
+  - rid: 6376314724963844117
+  - rid: 6376314724963844119
+  - rid: 6376314724963844126
+  - rid: 6376314724963844130
+  - rid: 6376314724963844134
+  - rid: 6376314724963844135
+  - rid: 6376314724963844138
+  - rid: 6376314724963844140
+  - rid: 6376314724963844141
+  - rid: 6376314724963844143
+  - rid: 6376314724963844151
+  - rid: 6376314724963844153
+  - rid: 6376314724963844156
   treeState: 0
   blackboard:
     keys:
-    - rid: 6376314615936319505
-    - rid: 6376314622206279685
-    - rid: 6376314637353484302
-  viewPosition: {x: 344, y: -312.8, z: 0}
+    - rid: 6376314715069743104
+    - rid: 6376314724963844103
+    - rid: 6376314724963844127
+    - rid: 6376314724963844136
+    - rid: 6376314724963844154
+  viewPosition: {x: 1067.2, y: -188, z: 0}
   viewScale: {x: 0.65751624, y: 0.65751624, z: 1}
   references:
     version: 2
@@ -68,96 +84,255 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         child:
-          rid: 6376314622206279706
+          rid: 6376314715069743128
         restartOnSuccess: 1
-        restartOnFailure: 0
+        restartOnFailure: 1
         maxRepeats: 0
-    - rid: 6376314615936319504
-      type: {class: ChaseObjectNode, ns: , asm: TheNorth}
-      data:
-        state: 0
-        started: 0
-        guid: 933520fa967ac22458d0b8c00db37a16
-        position: {x: -540, y: 780}
-        blackboard:
-          keys: []
-        description: 
-        drawGizmos: 0
-        objectToChase:
-          reference:
-            rid: 6376314615936319505
-          defaultValue: {fileID: 0}
-        chasingMovingMode: 0
-        rangeToStop:
-          reference:
-            rid: 6376314637353484302
-          defaultValue: {fileID: 0}
-        radiusToStop:
-          reference:
-            rid: -2
-          defaultValue: 0
-    - rid: 6376314615936319505
-      type: {class: GameObjectKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
-      data:
-        name: NearestEnemy
-        typeName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-        value: {fileID: 0}
-    - rid: 6376314615936319512
-      type: {class: IdleNode, ns: , asm: TheNorth}
-      data:
-        state: 0
-        started: 0
-        guid: 8913f4f85f792bd488eed8aa64b00718
-        position: {x: 435, y: 630}
-        blackboard:
-          keys: []
-        description: 
-        drawGizmos: 0
-    - rid: 6376314615936319513
-      type: {class: Selector, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
-      data:
-        state: 0
-        started: 0
-        guid: cc7f6e3dab46c2b42b57a785cdafaccc
-        position: {x: 0, y: 420}
-        blackboard:
-          keys: []
-        description: 
-        drawGizmos: 0
-        children:
-        - rid: 6376314637353484305
-        - rid: 6376314622206279690
-        - rid: 6376314615936319512
     - rid: 6376314622206279680
       type: {class: GetSensorsInformation, ns: , asm: TheNorth}
       data:
         state: 0
         started: 0
         guid: b50b7af0980129a469e7f20443be4e21
-        position: {x: -615, y: 345}
+        position: {x: -855, y: 345}
         blackboard:
           keys: []
         description: 
         drawGizmos: 0
         nearestEnemy:
           reference:
-            rid: 6376314615936319505
+            rid: 6376314715069743104
           defaultValue: {fileID: 0}
-    - rid: 6376314622206279684
+    - rid: 6376314622206279707
+      type: {class: Succeed, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 620b52674c76e79419a5e17068c2d2fe
+        position: {x: -825, y: 225}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 6376314622206279680
+    - rid: 6376314710719725692
+      type: {class: ChaseObjectNode, ns: , asm: TheNorth}
+      data:
+        state: 0
+        started: 0
+        guid: 17fe2788d2c06f447a4b4c7607866623
+        position: {x: -630, y: 825}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        objectToChase:
+          reference:
+            rid: 6376314715069743104
+          defaultValue: {fileID: 0}
+        chasingMovingMode: 0
+        rangeToStop:
+          reference:
+            rid: 6376314724963844154
+          defaultValue: {fileID: 0}
+        radiusToStop:
+          reference:
+            rid: -2
+          defaultValue: 0
+    - rid: 6376314715069743104
+      type: {class: GameObjectKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: Nearest
+        typeName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        value: {fileID: 0}
+    - rid: 6376314715069743126
+      type: {class: IdleNode, ns: , asm: TheNorth}
+      data:
+        state: 0
+        started: 0
+        guid: 1cf65ca6af1f5e74381043be0c6ff267
+        position: {x: 1170, y: 570}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+    - rid: 6376314715069743128
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 6386d121314a57448ba24b624edfc8e4
+        position: {x: 0, y: 90}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 6376314622206279707
+        - rid: 6376314724963844102
+        - rid: 6376314724963844134
+        - rid: 6376314715069743129
+    - rid: 6376314715069743129
+      type: {class: Selector, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 389ff612ccbcd4c4c8c6e91811213bb6
+        position: {x: 0, y: 435}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 6376314724963844151
+        - rid: 6376314715069743137
+        - rid: 6376314724963844108
+        - rid: 6376314724963844140
+        - rid: 6376314715069743126
+    - rid: 6376314715069743130
+      type: {class: CompareProperty, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 6d37aae6890fde84ca92abb1b500acab
+        position: {x: -855, y: 825}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        pair:
+          key:
+            rid: 6376314715069743104
+          value:
+            rid: 6376314724963844155
+    - rid: 6376314715069743135
+      type: {class: Inverter, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: f44b57bd3b36f0c4bbfae152343ed152
+        position: {x: -840, y: 705}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 6376314715069743130
+    - rid: 6376314715069743137
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: c243355330e5eee42b993f6d59cf0201
+        position: {x: -720, y: 570}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 6376314715069743135
+        - rid: 6376314724963844098
+    - rid: 6376314724963844098
+      type: {class: Failure, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: bc952b53feea1134db37da59698d2833
+        position: {x: -630, y: 705}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 6376314710719725692
+    - rid: 6376314724963844100
+      type: {class: SaveGameObjectPosition, ns: , asm: TheNorth}
+      data:
+        state: 0
+        started: 0
+        guid: a90f7e342c63b8f4aa9d45430ee6bf74
+        position: {x: -600, y: 345}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        gameObject:
+          reference:
+            rid: 6376314715069743104
+          defaultValue: {fileID: 0}
+        keyToSavePosition:
+          reference:
+            rid: 6376314724963844103
+          defaultValue: {x: 0, y: 0, z: 0}
+    - rid: 6376314724963844102
+      type: {class: Succeed, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 915db5f6c435c2945b24ffe4af849f2c
+        position: {x: -555, y: 225}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 6376314724963844100
+    - rid: 6376314724963844103
+      type: {class: Vector3Key, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: LastEnemyPos
+        typeName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        value: {x: 0, y: 0, z: 0}
+    - rid: 6376314724963844108
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 3bd95fd5be4c2f0468eb247b1b64401d
+        position: {x: -180, y: 570}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 6376314724963844110
+        - rid: 6376314724963844117
+        - rid: 6376314724963844126
+        - rid: 6376314724963844138
+        - rid: 6376314724963844119
+    - rid: 6376314724963844110
+      type: {class: CompareProperty, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 568e2a8e941c0064f9a1ee28770e906c
+        position: {x: -405, y: 705}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        pair:
+          key:
+            rid: 6376314715069743104
+          value:
+            rid: 6376314724963844132
+    - rid: 6376314724963844117
       type: {class: GoToPositionNode, ns: , asm: TheNorth}
       data:
         state: 0
         started: 0
-        guid: 0c9cb793cc5131046a9bf24dd121153d
-        position: {x: -15, y: 825}
+        guid: f38c2b9565814c44eb752c1ba4b29110
+        position: {x: -195, y: 705}
         blackboard:
           keys: []
         description: 
         drawGizmos: 0
         positionToGo:
           reference:
-            rid: 6376314622206279685
+            rid: 6376314724963844103
           defaultValue: {x: 0, y: 0, z: 0}
         movingMode: 0
         rangeToStop:
@@ -167,152 +342,242 @@ MonoBehaviour:
         radiusToStop:
           reference:
             rid: -2
-          defaultValue: 3
+          defaultValue: 1
         MoveIfPositionIsZero: 0
-    - rid: 6376314622206279685
-      type: {class: Vector3Key, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
-      data:
-        name: LastEnemyPosition
-        typeName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null
-        value: {x: 0, y: 0, z: 0}
-    - rid: 6376314622206279690
-      type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
-      data:
-        state: 0
-        started: 0
-        guid: 7464035fd04aa7a44a16853fcd16c4c5
-        position: {x: 0, y: 600}
-        blackboard:
-          keys: []
-        description: 
-        drawGizmos: 0
-        children:
-        - rid: 6376314710719725569
-        - rid: 6376314622206279684
-        - rid: 6376314622206279691
-    - rid: 6376314622206279691
+    - rid: 6376314724963844119
       type: {class: SetProperty, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
         state: 0
         started: 0
-        guid: 472d7673be2b1f24cbce845d2ac04cc0
-        position: {x: 195, y: 825}
+        guid: 8c9cb9964ac8944409cc37b6c5be49dd
+        position: {x: 450, y: 705}
         blackboard:
           keys: []
         description: 
         drawGizmos: 0
         pair:
           key:
-            rid: 6376314622206279685
+            rid: 6376314724963844103
           value:
-            rid: 6376314622206279692
-    - rid: 6376314622206279692
-      type: {class: Vector3Key, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
-      data:
-        name: 
-        typeName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null
-        value: {x: 0, y: 0, z: 0}
-    - rid: 6376314622206279695
-      type: {class: SaveGameObjectPosition, ns: , asm: TheNorth}
+            rid: 6376314724963844137
+    - rid: 6376314724963844126
+      type: {class: GenerateRouteAround, ns: , asm: TheNorth}
       data:
         state: 0
         started: 0
-        guid: 8dec07ed2a3c2164ebd1f253584ee8f9
-        position: {x: -300, y: 345}
+        guid: afd0c0091f3d4774382dba5bba399e3f
+        position: {x: 30, y: 705}
         blackboard:
           keys: []
         description: 
         drawGizmos: 0
-        gameObject:
+        routeCenter:
           reference:
-            rid: 6376314615936319505
-          defaultValue: {fileID: 0}
-        keyToSavePosition:
-          reference:
-            rid: 6376314622206279685
+            rid: 6376314724963844103
           defaultValue: {x: 0, y: 0, z: 0}
-    - rid: 6376314622206279706
-      type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+        routeToSave:
+          reference:
+            rid: 6376314724963844127
+          defaultValue: {fileID: 0}
+        routeRadius: 7
+        cornersNumber: 10
+    - rid: 6376314724963844127
+      type: {class: UnitBlackboardTypes/RouteKey, ns: , asm: TheNorth}
       data:
-        state: 0
-        started: 0
-        guid: 3520d662027b6f64f8d1f04886a22258
-        position: {x: 0, y: 75}
-        blackboard:
-          keys: []
-        description: 
-        drawGizmos: 0
-        children:
-        - rid: 6376314622206279707
-        - rid: 6376314622206279708
-        - rid: 6376314615936319513
-    - rid: 6376314622206279707
-      type: {class: Succeed, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
-      data:
-        state: 0
-        started: 0
-        guid: 620b52674c76e79419a5e17068c2d2fe
-        position: {x: -585, y: 225}
-        blackboard:
-          keys: []
-        description: 
-        drawGizmos: 0
-        child:
-          rid: 6376314622206279680
-    - rid: 6376314622206279708
-      type: {class: Succeed, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
-      data:
-        state: 0
-        started: 0
-        guid: 8dea433e1d04e7b43bc2a3ac0cb0df8e
-        position: {x: -255, y: 225}
-        blackboard:
-          keys: []
-        description: 
-        drawGizmos: 0
-        child:
-          rid: 6376314622206279695
-    - rid: 6376314637353484302
-      type: {class: UnitBlackboardTypes/RangeKey, ns: , asm: TheNorth}
-      data:
-        name: MeleeAttackRange
-        typeName: Range, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        name: SearchingRoute
+        typeName: Route, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         value: {fileID: 0}
-    - rid: 6376314637353484305
-      type: {class: Failure, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+    - rid: 6376314724963844130
+      type: {class: PatrolRoute, ns: , asm: TheNorth}
       data:
         state: 0
         started: 0
-        guid: 3f7e3c32636c31b479bc9cca00857395
-        position: {x: -525, y: 645}
+        guid: 9fea121cbe3e7b04c80a8166f92488ba
+        position: {x: 930, y: 705}
         blackboard:
           keys: []
         description: 
         drawGizmos: 0
-        child:
-          rid: 6376314615936319504
-    - rid: 6376314710719725569
-      type: {class: CompareProperty, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
-      data:
-        state: 0
-        started: 0
-        guid: 5fe10ac21d1bf3a44b11c5c531133b3c
-        position: {x: -313.70807, y: 894.1217}
-        blackboard:
-          keys: []
-        description: 
-        drawGizmos: 0
-        pair:
-          key:
-            rid: 6376314615936319505
-          value:
-            rid: 6376314710719725575
-    - rid: 6376314710719725575
+        route:
+          reference:
+            rid: 6376314724963844127
+          defaultValue: {fileID: 0}
+        movingMode: 1
+        isLooped: 1
+    - rid: 6376314724963844132
       type: {class: GameObjectKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
         name: 
         typeName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         value: {fileID: 0}
+    - rid: 6376314724963844134
+      type: {class: Succeed, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: c7f1df645746c814f85dc741d023782d
+        position: {x: -270, y: 225}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 6376314724963844135
+    - rid: 6376314724963844135
+      type: {class: UpdateTimers, ns: , asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 21ece38c2f4fa1e4b936d3ba91c42219
+        position: {x: -270, y: 345}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        timer:
+          reference:
+            rid: 6376314724963844136
+          defaultValue: 0
+    - rid: 6376314724963844136
+      type: {class: FloatKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: SearchTimer
+        typeName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        value: 0
+    - rid: 6376314724963844137
+      type: {class: Vector3Key, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: 
+        typeName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        value: {x: 0, y: 0, z: 0}
+    - rid: 6376314724963844138
+      type: {class: SetProperty, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: e51429589459f5744a29cd77a999d40f
+        position: {x: 270, y: 705}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        pair:
+          key:
+            rid: 6376314724963844136
+          value:
+            rid: 6376314724963844139
+    - rid: 6376314724963844139
+      type: {class: FloatKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: 
+        typeName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        value: 20
+    - rid: 6376314724963844140
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 429a891ec885eff47b9aeda4c761fa98
+        position: {x: 780, y: 570}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 6376314724963844143
+        - rid: 6376314724963844130
+    - rid: 6376314724963844141
+      type: {class: CompareProperty, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 77258e0a53ddf6447a8d7876d10f6bde
+        position: {x: 675, y: 825}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        pair:
+          key:
+            rid: 6376314724963844136
+          value:
+            rid: 6376314724963844147
+    - rid: 6376314724963844143
+      type: {class: Inverter, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 55d6c553531189c4cb976f1b90dc96fe
+        position: {x: 675, y: 705}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 6376314724963844141
+    - rid: 6376314724963844147
+      type: {class: FloatKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: 
+        typeName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        value: 0
+    - rid: 6376314724963844151
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 1f951e28152796a47a0e0926bef812f2
+        position: {x: -1395, y: 570}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 6376314724963844153
+        - rid: 6376314724963844156
+    - rid: 6376314724963844153
+      type: {class: CheckIfObjectInRange, ns: , asm: TheNorth}
+      data:
+        state: 0
+        started: 0
+        guid: 38da6fc717673c64db1389bf1697f04c
+        position: {x: -1530, y: 705}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        gameObjectToCheck:
+          reference:
+            rid: 6376314715069743104
+          defaultValue: {fileID: 0}
+        range:
+          reference:
+            rid: 6376314724963844154
+          defaultValue: {fileID: 0}
+    - rid: 6376314724963844154
+      type: {class: UnitBlackboardTypes/RangeKey, ns: , asm: TheNorth}
+      data:
+        name: MeleeAttackRange
+        typeName: Range, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        value: {fileID: 0}
+    - rid: 6376314724963844155
+      type: {class: GameObjectKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: 
+        typeName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        value: {fileID: 0}
+    - rid: 6376314724963844156
+      type: {class: UseItemInHand, ns: , asm: TheNorth}
+      data:
+        state: 0
+        started: 0
+        guid: 7375c2e8a46c6484b9280b6fe076797c
+        position: {x: -1290, y: 705}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        weapon: 0
