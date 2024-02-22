@@ -8,9 +8,6 @@ public class CheckIfObjectInRange : ActionNode
     [SerializeField] NodeProperty<GameObject> gameObjectToCheck = new NodeProperty<GameObject>();
     [SerializeField] NodeProperty<Range> range = new NodeProperty<Range>();
 
-    protected override void OnStart() { }
-    protected override void OnStop() { }
-
     protected override State OnUpdate()
     {
         if (gameObjectToCheck.Value != null)

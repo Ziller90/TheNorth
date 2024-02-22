@@ -13,9 +13,6 @@ public class GenerateRouteAround : ActionNode
     [SerializeField] float routeRadius;
     [SerializeField] int cornersNumber;
 
-    protected override void OnStart() { }
-    protected override void OnStop() { }
-
     protected override State OnUpdate()
     {
         if (routeCenter.Value != Vector3.zero)

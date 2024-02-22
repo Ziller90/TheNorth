@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TheKiwiCoder;
 
-public class IdleNode : ActionNode
+public class Idle : ActionNode
 {
-    protected override void OnStart() { }
-    protected override void OnStop() { }
-
     protected override State OnUpdate()
     {
         context.GameObject.GetComponent<AINavigationManager>().Stand();

@@ -4,21 +4,18 @@ using UnityEngine;
 using TheKiwiCoder;
 
 [System.Serializable]
-public class GoToPositionNode : ActionNode
+public class GoToPosition : ActionNode
 {
     [SerializeField] NodeProperty<Vector3> positionToGo = new NodeProperty<Vector3>();
     [SerializeField] MovingMode movingMode;
 
-    [Tooltip("if position is in this range, node returns success")] [SerializeField]
-    NodeProperty<Range> rangeToStop = new NodeProperty<Range>();
+    [Tooltip("if position is in this range, node returns success")]
+    [SerializeField] NodeProperty<Range> rangeToStop = new NodeProperty<Range>();
 
-    [Tooltip("if position is in this radius, node returns success")] [SerializeField]
-    NodeProperty<float> radiusToStop = new NodeProperty<float>();
+    [Tooltip("if position is in this radius, node returns success")]
+    [SerializeField] NodeProperty<float> radiusToStop = new NodeProperty<float>();
 
     [SerializeField] bool MoveIfPositionIsZero = false;
-
-    protected override void OnStart() { }
-    protected override void OnStop() { }
 
     protected override State OnUpdate()
     {

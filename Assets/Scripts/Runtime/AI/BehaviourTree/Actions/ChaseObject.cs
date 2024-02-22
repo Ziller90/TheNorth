@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TheKiwiCoder;
 
-public class ChaseObjectNode : ActionNode
+public class ChaseObject : ActionNode
 {
     [Tooltip("Object that AI should chase for")]
     [SerializeField] NodeProperty<GameObject> objectToChase = new NodeProperty<GameObject>();
@@ -16,9 +16,6 @@ public class ChaseObjectNode : ActionNode
     [Tooltip("if object is in this radius, node returns success")]
     [SerializeField]
     NodeProperty<float> radiusToStop = new NodeProperty<float>();
-
-    protected override void OnStart() { }
-    protected override void OnStop() { }
 
     protected override State OnUpdate()
     {

@@ -8,9 +8,6 @@ public class SaveGameObjectPosition : ActionNode
 {
     [SerializeField] NodeProperty<GameObject> gameObject= new NodeProperty<GameObject>();
     [SerializeField] NodeProperty<Vector3> keyToSavePosition = new NodeProperty<Vector3>();
-    protected override void OnStart() { }
-
-    protected override void OnStop() { }
 
     protected override State OnUpdate()
     {
