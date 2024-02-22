@@ -18,7 +18,6 @@ public class PatrolRoute : ActionNode
     {
         navigationManager = context.GameObject.GetComponent<AINavigationManager>();
     }
-    protected override void OnStop() { }
 
     protected override State OnUpdate()
     {

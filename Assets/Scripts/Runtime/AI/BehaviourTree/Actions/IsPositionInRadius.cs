@@ -10,9 +10,6 @@ public class IsPositionInRadius : ActionNode
     [SerializeField] NodeProperty<Vector3> radiusCenter = new NodeProperty<Vector3>();
     [SerializeField] NodeProperty<float> radius = new NodeProperty<float>();
     [SerializeField] bool useSelfPositionAsCenter;
-    protected override void OnStart() { }
-
-    protected override void OnStop() { }
 
     protected override State OnUpdate()
     {
