@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d285eb63c2cdd74180de7cfceaa96ad, type: 3}
-  m_Name: HumanoidUnit
+  m_Name: Hagalar
   m_EditorClassIdentifier: 
   rootNode:
     rid: 6376314615936319498
@@ -206,7 +206,7 @@ MonoBehaviour:
           key:
             rid: 6376314715069743104
           value:
-            rid: 6376314728265547804
+            rid: 6376314728265547808
     - rid: 6376314715069743135
       type: {class: Inverter, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -318,7 +318,7 @@ MonoBehaviour:
           key:
             rid: 6376314715069743104
           value:
-            rid: 6376314728265547805
+            rid: 6376314728265547809
     - rid: 6376314724963844117
       type: {class: GoToPositionNode, ns: , asm: TheNorth}
       data:
@@ -359,7 +359,7 @@ MonoBehaviour:
           key:
             rid: 6376314724963844103
           value:
-            rid: 6376314728265547806
+            rid: 6376314728265547810
     - rid: 6376314724963844126
       type: {class: GenerateRouteAround, ns: , asm: TheNorth}
       data:
@@ -453,7 +453,7 @@ MonoBehaviour:
           key:
             rid: 6376314724963844136
           value:
-            rid: 6376314728265547807
+            rid: 6376314728265547811
     - rid: 6376314724963844140
       type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -554,28 +554,28 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         weapon: 0
-    - rid: 6376314728265547804
+    - rid: 6376314728265547808
       type: {class: GameObjectKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
         name: 
         typeName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         value: {fileID: 0}
-    - rid: 6376314728265547805
+    - rid: 6376314728265547809
       type: {class: GameObjectKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
         name: 
         typeName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         value: {fileID: 0}
-    - rid: 6376314728265547806
+    - rid: 6376314728265547810
       type: {class: Vector3Key, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
         name: 
         typeName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null
         value: {x: 0, y: 0, z: 0}
-    - rid: 6376314728265547807
+    - rid: 6376314728265547811
       type: {class: FloatKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
         name: 

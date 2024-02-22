@@ -12,6 +12,26 @@ PrefabInstance:
       propertyPath: creatureFaction
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5119905997435147980, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: managedReferences[6376314728265547799]
+      value: TheNorth UnitBlackboardTypes/RangeKey
+      objectReference: {fileID: 0}
+    - target: {fileID: 5119905997435147980, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: blackboardOverrides.Array.data[0].value
+      value: 6376314728265547799
+      objectReference: {fileID: 0}
+    - target: {fileID: 5119905997435147980, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: managedReferences[6376314728265547799].name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5119905997435147980, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: managedReferences[6376314728265547799].value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5119905997435147980, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: managedReferences[6376314728265547799].typeName
+      value: Range, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
     - target: {fileID: 7377141425537815796, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: m_IsActive
       value: 0
