@@ -6,8 +6,8 @@ using TheKiwiCoder;
 public class UnitBlackboardTypes : MonoBehaviour
 {
     [System.Serializable]
-    public class RangeKey : BlackboardKey<Range>
-    {
+    public class RangeKey : BlackboardKey<Range> { }
 
-    }
+    [System.Serializable]
+    public class RouteKey : BlackboardKey<Route> { }
 }
