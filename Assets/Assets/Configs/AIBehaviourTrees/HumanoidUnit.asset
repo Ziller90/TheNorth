@@ -19,8 +19,6 @@ MonoBehaviour:
   - rid: 6376314615936319500
   - rid: 6376314622206279680
   - rid: 6376314622206279707
-  - rid: 6376314710719725692
-  - rid: 6376314715069743126
   - rid: 6376314715069743128
   - rid: 6376314715069743129
   - rid: 6376314715069743130
@@ -31,7 +29,6 @@ MonoBehaviour:
   - rid: 6376314724963844102
   - rid: 6376314724963844108
   - rid: 6376314724963844110
-  - rid: 6376314724963844117
   - rid: 6376314724963844119
   - rid: 6376314724963844126
   - rid: 6376314724963844130
@@ -44,6 +41,10 @@ MonoBehaviour:
   - rid: 6376314724963844151
   - rid: 6376314724963844153
   - rid: 6376314724963844156
+  - rid: 6376314728265548047
+  - rid: 6376314728265548048
+  - rid: 6376314728265548049
+  - rid: 6376314728265548050
   treeState: 0
   blackboard:
     keys:
@@ -52,8 +53,9 @@ MonoBehaviour:
     - rid: 6376314724963844127
     - rid: 6376314724963844136
     - rid: 6376314724963844154
-  viewPosition: {x: 1067.2, y: -188, z: 0}
-  viewScale: {x: 0.65751624, y: 0.65751624, z: 1}
+    - rid: 6376314728265548056
+  viewPosition: {x: -215.2, y: -157.6, z: 0}
+  viewScale: {x: 0.7561437, y: 0.7561437, z: 1}
   references:
     version: 2
     RefIds:
@@ -116,30 +118,6 @@ MonoBehaviour:
         drawGizmos: 0
         child:
           rid: 6376314622206279680
-    - rid: 6376314710719725692
-      type: {class: ChaseObjectNode, ns: , asm: TheNorth}
-      data:
-        state: 0
-        started: 0
-        guid: 17fe2788d2c06f447a4b4c7607866623
-        position: {x: -630, y: 825}
-        blackboard:
-          keys: []
-        description: 
-        drawGizmos: 0
-        objectToChase:
-          reference:
-            rid: 6376314715069743104
-          defaultValue: {fileID: 0}
-        chasingMovingMode: 0
-        rangeToStop:
-          reference:
-            rid: 6376314724963844154
-          defaultValue: {fileID: 0}
-        radiusToStop:
-          reference:
-            rid: -2
-          defaultValue: 0
     - rid: 6376314715069743104
       type: {class: GameObjectKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -147,17 +125,6 @@ MonoBehaviour:
         typeName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         value: {fileID: 0}
-    - rid: 6376314715069743126
-      type: {class: IdleNode, ns: , asm: TheNorth}
-      data:
-        state: 0
-        started: 0
-        guid: 1cf65ca6af1f5e74381043be0c6ff267
-        position: {x: 1170, y: 570}
-        blackboard:
-          keys: []
-        description: 
-        drawGizmos: 0
     - rid: 6376314715069743128
       type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -190,7 +157,8 @@ MonoBehaviour:
         - rid: 6376314715069743137
         - rid: 6376314724963844108
         - rid: 6376314724963844140
-        - rid: 6376314715069743126
+        - rid: 6376314728265548050
+        - rid: 6376314728265548049
     - rid: 6376314715069743130
       type: {class: CompareProperty, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -246,7 +214,7 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         child:
-          rid: 6376314710719725692
+          rid: 6376314728265548047
     - rid: 6376314724963844100
       type: {class: SaveGameObjectPosition, ns: , asm: TheNorth}
       data:
@@ -299,7 +267,7 @@ MonoBehaviour:
         drawGizmos: 0
         children:
         - rid: 6376314724963844110
-        - rid: 6376314724963844117
+        - rid: 6376314728265548048
         - rid: 6376314724963844126
         - rid: 6376314724963844138
         - rid: 6376314724963844119
@@ -319,31 +287,6 @@ MonoBehaviour:
             rid: 6376314715069743104
           value:
             rid: 6376314728265547805
-    - rid: 6376314724963844117
-      type: {class: GoToPositionNode, ns: , asm: TheNorth}
-      data:
-        state: 0
-        started: 0
-        guid: f38c2b9565814c44eb752c1ba4b29110
-        position: {x: -195, y: 705}
-        blackboard:
-          keys: []
-        description: 
-        drawGizmos: 0
-        positionToGo:
-          reference:
-            rid: 6376314724963844103
-          defaultValue: {x: 0, y: 0, z: 0}
-        movingMode: 0
-        rangeToStop:
-          reference:
-            rid: -2
-          defaultValue: {fileID: 0}
-        radiusToStop:
-          reference:
-            rid: -2
-          defaultValue: 1
-        MoveIfPositionIsZero: 0
     - rid: 6376314724963844119
       type: {class: SetProperty, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -580,4 +523,87 @@ MonoBehaviour:
       data:
         name: 
         typeName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-        value: 0
+        value: 20
+    - rid: 6376314728265548047
+      type: {class: ChaseObject, ns: , asm: TheNorth}
+      data:
+        state: 0
+        started: 0
+        guid: 0b64014088d6f35459342ac7d1023bae
+        position: {x: -630, y: 825}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        objectToChase:
+          reference:
+            rid: 6376314715069743104
+          defaultValue: {fileID: 0}
+        chasingMovingMode: 0
+        rangeToStop:
+          reference:
+            rid: 6376314724963844154
+          defaultValue: {fileID: 0}
+        radiusToStop:
+          reference:
+            rid: -2
+          defaultValue: 0
+    - rid: 6376314728265548048
+      type: {class: GoToPosition, ns: , asm: TheNorth}
+      data:
+        state: 0
+        started: 0
+        guid: 6a695fa9e33887b48b96540f11aaf8d5
+        position: {x: -180, y: 705}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        positionToGo:
+          reference:
+            rid: 6376314724963844103
+          defaultValue: {x: 0, y: 0, z: 0}
+        movingMode: 0
+        rangeToStop:
+          reference:
+            rid: -2
+          defaultValue: {fileID: 0}
+        radiusToStop:
+          reference:
+            rid: -2
+          defaultValue: 1
+        MoveIfPositionIsZero: 0
+    - rid: 6376314728265548049
+      type: {class: Idle, ns: , asm: TheNorth}
+      data:
+        state: 0
+        started: 0
+        guid: 375de3a8e24d8e44fa895a62052ee68a
+        position: {x: 1530, y: 570}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+    - rid: 6376314728265548050
+      type: {class: SubTree, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 429262438230337449a9fb3e5d39e12c
+        position: {x: 1200, y: 570}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        treeAsset:
+          reference:
+            rid: 6376314728265548056
+          defaultValue: {fileID: 0}
+        treeInstance: {fileID: 0}
+    - rid: 6376314728265548056
+      type: {class: SubTreeKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: Shedule
+        typeName: TheKiwiCoder.BehaviourTree, thekiwicoder.behaviourtreeeditor, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        value: {fileID: 0}

@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d285eb63c2cdd74180de7cfceaa96ad, type: 3}
+  m_Name: HagalarShedule
+  m_EditorClassIdentifier: 
+  rootNode:
+    rid: 6376314728265548052
+  nodes:
+  - rid: 6376314728265548052
+  - rid: 6376314728265548053
+  - rid: 6376314728265548060
+  treeState: 0
+  blackboard:
+    keys:
+    - rid: 6376314728265548054
+  viewPosition: {x: 476, y: 335.2, z: 0}
+  viewScale: {x: 0.8695652, y: 0.8695652, z: 1}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6376314728265548052
+      type: {class: RootNode, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: ad810963-4497-4683-9b3b-ddae73d3526b
+        position: {x: 0, y: 0}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 6376314728265548060
+    - rid: 6376314728265548053
+      type: {class: PatrolRoute, ns: , asm: TheNorth}
+      data:
+        state: 0
+        started: 0
+        guid: 33b3ed86361e78c4380a701b12950bca
+        position: {x: -300, y: 75}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        route:
+          reference:
+            rid: 6376314728265548054
+          defaultValue: {fileID: 0}
+        movingMode: 1
+        isLooped: 1
+    - rid: 6376314728265548054
+      type: {class: UnitBlackboardTypes/RouteKey, ns: , asm: TheNorth}
+      data:
+        name: RouteAroundFire
+        typeName: Route, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        value: {fileID: 0}
+    - rid: 6376314728265548060
+      type: {class: Log, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 503eafcce7eb54f4bacf73ac76ead7c0
+        position: {x: 0, y: 120}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        message:
+          reference:
+            rid: -2
+          defaultValue: DoingMyShedule
