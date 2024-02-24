@@ -26,7 +26,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_CFD6D642:
-        m_Texture: {fileID: 2800000, guid: 9f1909d95587cd442b62112b425fc2aa, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -122,8 +122,8 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _QueueControl: 0
-    - _QueueOffset: 0
+    - _QueueControl: 1
+    - _QueueOffset: 50
     - _SmoothnessTextureChannel: 0
     - _Specular: 0
     - _SpecularHighlights: 0
@@ -139,18 +139,18 @@ Material:
     - _WaterSpeed: 0.042
     - _ZWrite: 1
     - __dirty: 1
-    - _edgeFoamAmount: 18.89
-    - _edgeFoamCutoff: 0.32
-    - _fakeSpecular: -40
-    - _waterDepth: 1.6
-    - _waterSmoothness: 1.29
+    - _edgeFoamAmount: 1.27
+    - _edgeFoamCutoff: 0.38
+    - _fakeSpecular: 0
+    - _waterDepth: 1.08
+    - _waterSmoothness: -0.18
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _WaterDeepColor: {r: 0.14901961, g: 0.28235295, b: 0.29411766, a: 0}
     - _WaterShallowColor: {r: 0.3019608, g: 0.427451, b: 0.41960788, a: 0}
     - _deepColor: {r: 0, g: 0.41691345, b: 0.509434, a: 1}
-    - _edgeFoamColor: {r: 1, g: 1, b: 1, a: 1}
+    - _edgeFoamColor: {r: 0.3773585, g: 0.26486292, b: 0.26486292, a: 1}
     - _shallowColor: {r: 0.04338732, g: 0.3679245, b: 0.33547083, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &221938794370141126
