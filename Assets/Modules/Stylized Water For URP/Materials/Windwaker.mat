@@ -14,7 +14,6 @@ Material:
   m_ValidKeywords:
   - INTERSECTION_EFFECTS_ON
   - SURFACE_FOAM_ON
-  - WORLD_SPACE_UV_ON
   m_InvalidKeywords:
   - FOAM_SHADOWS_ON
   - WATER_LIGHTING_ON
@@ -55,9 +54,9 @@ Material:
     - SURFACE_FOAM: 1
     - WORLD_SPACE_UV: 1
     - _IntersectionFoamBlend: 1
-    - _IntersectionFoamDepth: 0.72
+    - _IntersectionFoamDepth: 0.73
     - _IntersectionFoamScale: 0.19
-    - _IntersectionWaterBlend: 0
+    - _IntersectionWaterBlend: 0.84
     - _QueueControl: 1
     - _QueueOffset: 0
     - _RefractionStrength: 0.061
@@ -69,7 +68,7 @@ Material:
     - _WaterColorHorizonDistance: 20
     m_Colors:
     - _IntersectionFoamColor: {r: 1, g: 1, b: 1, a: 1}
-    - _IntersectionFoamMovement: {r: 0, g: 0, b: 0, a: 0}
+    - _IntersectionFoamMovement: {r: 0, g: 0.12, b: 0, a: 0}
     - _IntersectionFoamSampling: {r: 1, g: 0, b: 0, a: 0}
     - _NormalsMovement: {r: 0.138, g: 0.01, b: 0, a: 0}
     - _ShoreColor: {r: 0, g: 0.39916828, b: 0.41509432, a: 0}
