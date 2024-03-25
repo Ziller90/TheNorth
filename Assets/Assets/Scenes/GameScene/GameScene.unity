@@ -1899,7 +1899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeOfDay: 0
-  dayLengthInSeconds: 1200
+  dayLengthInSeconds: 120
 --- !u!114 &1969304687 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3248084354267156002, guid: 60c4bf342415d314ca90db311ae00f73, type: 3}
@@ -2193,10 +2193,6 @@ PrefabInstance:
     - target: {fileID: 5375480234280714654, guid: 60c4bf342415d314ca90db311ae00f73, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6242761141409802415, guid: 60c4bf342415d314ca90db311ae00f73, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -41.69995
       objectReference: {fileID: 0}
     - target: {fileID: 6442996558575757292, guid: 60c4bf342415d314ca90db311ae00f73, type: 3}
       propertyPath: m_Pivot.x
