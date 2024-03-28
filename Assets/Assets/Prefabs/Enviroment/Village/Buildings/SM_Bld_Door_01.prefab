@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 3370228}
   - component: {fileID: 2321068}
   - component: {fileID: 3272345813588434356}
+  - component: {fileID: 2931008508749419582}
+  - component: {fileID: 1019671090069662410}
+  - component: {fileID: 8077882622393336511}
   m_Layer: 0
   m_Name: SM_Bld_Door_01
   m_TagString: Untagged
@@ -30,7 +33,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6727450702537310900}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -105,3 +109,77 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.9148892, y: 2.3764713, z: 0.391616}
   m_Center: {x: 0, y: 1.1882356, z: -0.000000052154064}
+--- !u!114 &2931008508749419582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4e876bfb3d5584797f73ddb11ac50e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleportPosition: {fileID: 6727450702537310900}
+  linkedDoor: {fileID: 0}
+--- !u!114 &1019671090069662410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe879ece6df836547b9cddf476fed3cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInteractableCached: 1
+--- !u!114 &8077882622393336511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7c2fb465afd604285b36295fce11af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderers:
+  - {fileID: 2321068}
+  skinnedMeshRenderers: []
+  interactableObject: {fileID: 1019671090069662410}
+--- !u!1 &7213477969479921518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6727450702537310900}
+  m_Layer: 0
+  m_Name: TeleportPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6727450702537310900
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7213477969479921518}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.13, z: -0.963}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 405822}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
