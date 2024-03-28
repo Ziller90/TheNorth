@@ -21,6 +21,7 @@ public class Links : MonoBehaviour
     public DeathScreen deathScreen;
     public GlobalConfig globalConfig;
     public ItemsManagerWindow currentItemsViewManager;
+    public LightingManager lightingManager;
 
     public void Awake()
     {
