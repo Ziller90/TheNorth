@@ -11,12 +11,6 @@ public class ConsoleView : MonoBehaviour
     [SerializeField] Font font;
     [SerializeField] int fontSize;
 
-    private void Start()
-    {
-        Debug.Log("{EHWRE");
-        Debug.Log("{EHWRE");
-        Debug.Log("{EHWRE");
-    }
     void OnEnable()
     {
         Application.logMessageReceived += OnMessageAdded;

@@ -69,7 +69,7 @@ public class RouteEditor : Editor
     {
         Route route = (Route)target;
 
-        if (route.Corners.Count > 0)
+        if (route.Corners != null && route.Corners.Count > 0)
         {
             Handles.color = route.LinesColor;
 

@@ -7,6 +7,11 @@ public class GlobalUIOverlays : MonoBehaviour
     [SerializeField] GameObject consoleView;
     [SerializeField] GameObject openConsoleButton;
 
+    public void Start()
+    {
+        HideConsoleView();
+    }
+
     public void ShowConsoleView()
     {
         consoleView.SetActive(true);
