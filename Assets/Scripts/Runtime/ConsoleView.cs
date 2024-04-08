@@ -7,10 +7,16 @@ using UnityEngine.UI;
 public class ConsoleView : MonoBehaviour
 {
     [SerializeField] int messageSizeLimit = 300;
-    [SerializeField] VerticalLayoutGroup list;
+    [SerializeField] Transform list;
     [SerializeField] Font font;
     [SerializeField] int fontSize;
 
+    private void Start()
+    {
+        Debug.Log("{EHWRE");
+        Debug.Log("{EHWRE");
+        Debug.Log("{EHWRE");
+    }
     void OnEnable()
     {
         Application.logMessageReceived += OnMessageAdded;
@@ -24,7 +30,6 @@ public class ConsoleView : MonoBehaviour
     void OnMessageAdded(string message, string stackTrace, LogType logType)
     {
         AddMessage(message, stackTrace, logType, false);
-        list.CalculateLayoutInputVertical();
     }
 
     void AddMessage(string message, string stackTrace, LogType logType, bool reverse)
@@ -54,7 +59,7 @@ public class ConsoleView : MonoBehaviour
         textComponent.font = font;
         var contentSizeFitter = textObject.AddComponent<ContentSizeFitter>();
         contentSizeFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-        textObject.transform.SetParent(list.transform, false);
+        textObject.transform.SetParent(list, false);
         textObject.transform.localPosition = Vector3.zero;
         textObject.transform.localScale = Vector3.one;
         textObject.transform.rotation = Quaternion.identity;

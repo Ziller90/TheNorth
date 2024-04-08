@@ -34,7 +34,6 @@ public class LightingManager : MonoBehaviour
 
         if (Sun != null)
         {
-            Debug.Log(timePercent);
             Sun.color = Preset.SunLightColor.Evaluate(timePercent);
             Moon.color = Preset.MoonLightColor.Evaluate(timePercent);
 
@@ -43,9 +42,6 @@ public class LightingManager : MonoBehaviour
 
             Sun.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 170f, 0));
             Moon.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) + 91f, 170f, 0));
-
-            //Sun.enabled = Sun.intensity > Preset.IngorLightIntensity;
-            //Moon.enabled = Moon.intensity > Preset.IngorLightIntensity;
         }
     }
 
