@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class GlobalLists : MonoBehaviour
 {
-    public List<Transform> unitsOnLocation;
-    public List<InteractableObject> interactablesOnLocation;
-    public List<Item> itemsPrefabs;
+    public List<Transform> unitsOnLocation = new();
+    public List<InteractableObject> interactablesOnLocation = new();
+    public List<Item> itemsPrefabs = new();
 
     public Item GetItemPrefabById(int id)
     {
         return itemsPrefabs.FirstOrDefault(i => i.Id == id);
+    }
+
+    public void AddUnitOnLocation(Transform unit)
+    {
+        if (!unitsOnLocation.Contains(unit))
+            unitsOnLocation.Add(unit);
+    }
+
+    public void RemoveUnitOnLocation(Transform unit)
+    {
+        if (unitsOnLocation.Contains(unit))
+            unitsOnLocation.Remove(unit);
     }
 
     public void AddInteractableOnLocation(InteractableObject item)

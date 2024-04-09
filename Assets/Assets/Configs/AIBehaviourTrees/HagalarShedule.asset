@@ -16,19 +16,38 @@ MonoBehaviour:
     rid: 6376314728265548052
   nodes:
   - rid: 6376314728265548052
-  - rid: 6376314728265548053
-  - rid: 6376314728265548060
+  - rid: 7391007517018685446
+  - rid: 7391007534671724575
+  - rid: 7391007534671724580
+  - rid: 7391007534671724584
+  - rid: 7391007534671724585
+  - rid: 7391007534671724595
+  - rid: 7391007534671724606
+  - rid: 7391007534671724609
+  - rid: 7391007534671724610
+  - rid: 7391007534671724611
+  - rid: 7391007534671724612
+  - rid: 7391007534671724617
+  - rid: 7391007534671724619
+  - rid: 7391007534671724620
+  - rid: 7391007534671724621
+  - rid: 7391007534671724622
+  - rid: 7391007534671724625
+  - rid: 7391007534671724626
+  - rid: 7391007534671724627
+  - rid: 7391007534671724630
   treeState: 0
   blackboard:
     keys:
     - rid: 6376314728265548054
-  viewPosition: {x: 476, y: 335.2, z: 0}
-  viewScale: {x: 0.8695652, y: 0.8695652, z: 1}
+    - rid: 7391007517018685443
+    - rid: 7391007517018685444
+    - rid: 7391007534671724576
+  viewPosition: {x: 112.8, y: 84.8, z: 0}
+  viewScale: {x: 0.25, y: 0.25, z: 1}
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
     - rid: 6376314728265548052
       type: {class: RootNode, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -41,14 +60,46 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         child:
-          rid: 6376314728265548060
-    - rid: 6376314728265548053
-      type: {class: PatrolRoute, ns: , asm: TheNorth}
+          rid: 7391007534671724580
+    - rid: 6376314728265548054
+      type: {class: UnitBlackboardTypes/RouteKey, ns: , asm: TheNorth}
+      data:
+        name: RouteToBonfire
+        typeName: Route, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        value: {fileID: 0}
+    - rid: 7391007517018685443
+      type: {class: UnitBlackboardTypes/RouteKey, ns: , asm: TheNorth}
+      data:
+        name: RouteToTree
+        typeName: Route, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        value: {fileID: 0}
+    - rid: 7391007517018685444
+      type: {class: UnitBlackboardTypes/RouteKey, ns: , asm: TheNorth}
+      data:
+        name: RouteToHome
+        typeName: Route, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        value: {fileID: 0}
+    - rid: 7391007517018685446
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
         state: 0
         started: 0
-        guid: 33b3ed86361e78c4380a701b12950bca
-        position: {x: -300, y: 75}
+        guid: 15f2e819aca7dd940aaadb985b26f444
+        position: {x: -285, y: 285}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 7391007534671724575
+        - rid: 7391007534671724595
+    - rid: 7391007534671724575
+      type: {class: FollowTheRoute, ns: , asm: TheNorth}
+      data:
+        state: 0
+        started: 0
+        guid: dc7e0d4374769ca47bc4602c58f0a81b
+        position: {x: -390, y: 420}
         blackboard:
           keys: []
         description: 
@@ -58,25 +109,303 @@ MonoBehaviour:
             rid: 6376314728265548054
           defaultValue: {fileID: 0}
         movingMode: 1
-        isLooped: 1
-    - rid: 6376314728265548054
-      type: {class: UnitBlackboardTypes/RouteKey, ns: , asm: TheNorth}
+    - rid: 7391007534671724576
+      type: {class: IntKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
-        name: RouteAroundFire
-        typeName: Route, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        value: {fileID: 0}
-    - rid: 6376314728265548060
-      type: {class: Log, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+        name: switchIndex
+        typeName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        value: 0
+    - rid: 7391007534671724580
+      type: {class: Switch, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
         state: 0
         started: 0
-        guid: 503eafcce7eb54f4bacf73ac76ead7c0
-        position: {x: 0, y: 120}
+        guid: b290645275a2c9242896bc9fc3ea76a6
+        position: {x: 0, y: 150}
         blackboard:
           keys: []
         description: 
         drawGizmos: 0
-        message:
+        children:
+        - rid: 7391007517018685446
+        - rid: 7391007534671724584
+        - rid: 7391007534671724610
+        - rid: 7391007534671724619
+        - rid: 7391007534671724625
+        index:
           reference:
-            rid: -2
-          defaultValue: DoingMyShedule
+            rid: 7391007534671724576
+          defaultValue: 0
+        interruptable: 1
+    - rid: 7391007534671724584
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 50d2a33ad4dde2340ae3093317d60d52
+        position: {x: 165, y: 285}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 7391007534671724609
+        - rid: 7391007534671724585
+        - rid: 7391007534671724606
+        - rid: 7391007534671724630
+    - rid: 7391007534671724585
+      type: {class: Wait, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: ba4bedcea07583c4b995205948df1ded
+        position: {x: 165, y: 420}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        duration: 20
+    - rid: 7391007534671724595
+      type: {class: SetProperty, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: c4a671e135cffd84f8ee56a886a299e5
+        position: {x: -195, y: 420}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        pair:
+          key:
+            rid: 7391007534671724576
+          value:
+            rid: 7391007534671724599
+    - rid: 7391007534671724599
+      type: {class: IntKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: 
+        typeName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        value: 1
+    - rid: 7391007534671724606
+      type: {class: SetProperty, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: b8cdcfb714607e24cb0780124925b707
+        position: {x: 345, y: 420}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        pair:
+          key:
+            rid: 7391007534671724576
+          value:
+            rid: 7391007534671724607
+    - rid: 7391007534671724607
+      type: {class: IntKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: 
+        typeName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        value: 2
+    - rid: 7391007534671724609
+      type: {class: Idle, ns: , asm: TheNorth}
+      data:
+        state: 0
+        started: 0
+        guid: 794bd0a5ecc592b43a4bd1449a5493ea
+        position: {x: 0, y: 420}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+    - rid: 7391007534671724610
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 1f4a9becda92d574685546c0dce8cf69
+        position: {x: 825, y: 285}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 7391007534671724611
+        - rid: 7391007534671724612
+    - rid: 7391007534671724611
+      type: {class: FollowTheRoute, ns: , asm: TheNorth}
+      data:
+        state: 0
+        started: 0
+        guid: 588a0587a8f998d4cbcb877d04561a20
+        position: {x: 735, y: 420}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        route:
+          reference:
+            rid: 7391007517018685443
+          defaultValue: {fileID: 0}
+        movingMode: 1
+    - rid: 7391007534671724612
+      type: {class: SetProperty, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 5b0c8007e6f69b541a94da5ce5c5ee41
+        position: {x: 915, y: 420}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        pair:
+          key:
+            rid: 7391007534671724576
+          value:
+            rid: 7391007534671724613
+    - rid: 7391007534671724613
+      type: {class: IntKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: 
+        typeName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        value: 3
+    - rid: 7391007534671724617
+      type: {class: UseItemInHand, ns: , asm: TheNorth}
+      data:
+        state: 0
+        started: 0
+        guid: 7e877f81eda3333459e32115146d4452
+        position: {x: 1155, y: 420}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        weapon: 0
+    - rid: 7391007534671724619
+      type: {class: Parallel, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 15704347f03b8f341a3cc217985e0fad
+        position: {x: 1275, y: 285}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 7391007534671724617
+        - rid: 7391007534671724620
+    - rid: 7391007534671724620
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 7bbe08dd080b43f4faa4f79615fe4f90
+        position: {x: 1395, y: 420}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 7391007534671724621
+        - rid: 7391007534671724622
+    - rid: 7391007534671724621
+      type: {class: Wait, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 4059279485d8f4947b41287bd3dc1a84
+        position: {x: 1305, y: 555}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        duration: 20
+    - rid: 7391007534671724622
+      type: {class: SetProperty, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: cbe4bb9e0ba714c48846dcb0cce9228c
+        position: {x: 1485, y: 555}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        pair:
+          key:
+            rid: 7391007534671724576
+          value:
+            rid: 7391007534671724624
+    - rid: 7391007534671724624
+      type: {class: IntKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: 
+        typeName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        value: 4
+    - rid: 7391007534671724625
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: ee335b439f329564bb756989de83e5e2
+        position: {x: 1710, y: 285}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 7391007534671724626
+        - rid: 7391007534671724627
+    - rid: 7391007534671724626
+      type: {class: FollowTheRoute, ns: , asm: TheNorth}
+      data:
+        state: 0
+        started: 0
+        guid: 74f7e4bb969e2464385c0caaf82199b9
+        position: {x: 1620, y: 420}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        route:
+          reference:
+            rid: 7391007517018685444
+          defaultValue: {fileID: 0}
+        movingMode: 1
+    - rid: 7391007534671724627
+      type: {class: SetProperty, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: 65d07fa19b1326b4fab26e4a3f549a67
+        position: {x: 1815, y: 420}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        pair:
+          key:
+            rid: 7391007534671724576
+          value:
+            rid: 7391007534671724628
+    - rid: 7391007534671724628
+      type: {class: IntKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: 
+        typeName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        value: 0
+    - rid: 7391007534671724630
+      type: {class: EquipBestItems, ns: , asm: TheNorth}
+      data:
+        state: 0
+        started: 0
+        guid: 55060450a993a9a4fb8f0aef87c76e82
+        position: {x: 510, y: 420}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0

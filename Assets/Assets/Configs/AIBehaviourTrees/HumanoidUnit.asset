@@ -29,7 +29,6 @@ MonoBehaviour:
   - rid: 6376314724963844102
   - rid: 6376314724963844108
   - rid: 6376314724963844110
-  - rid: 6376314724963844119
   - rid: 6376314724963844126
   - rid: 6376314724963844130
   - rid: 6376314724963844134
@@ -49,6 +48,7 @@ MonoBehaviour:
   - rid: 4662891436188631042
   - rid: 4662891436188631043
   - rid: 4662891436188631044
+  - rid: 7391007534671724601
   treeState: 0
   blackboard:
     keys:
@@ -58,7 +58,7 @@ MonoBehaviour:
     - rid: 6376314724963844136
     - rid: 6376314724963844154
     - rid: 6376314728265548056
-  viewPosition: {x: 469.6, y: 68, z: 0}
+  viewPosition: {x: 310.4, y: -119.2, z: 0}
   viewScale: {x: 0.49717674, y: 0.49717674, z: 1}
   references:
     version: 2
@@ -322,7 +322,7 @@ MonoBehaviour:
         - rid: 6376314728265548048
         - rid: 6376314724963844126
         - rid: 6376314724963844138
-        - rid: 6376314724963844119
+        - rid: 7391007534671724601
     - rid: 6376314724963844110
       type: {class: CompareProperty, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -339,22 +339,6 @@ MonoBehaviour:
             rid: 6376314715069743104
           value:
             rid: 6376314728265547805
-    - rid: 6376314724963844119
-      type: {class: SetProperty, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
-      data:
-        state: 0
-        started: 0
-        guid: 8c9cb9964ac8944409cc37b6c5be49dd
-        position: {x: 450, y: 810}
-        blackboard:
-          keys: []
-        description: 
-        drawGizmos: 0
-        pair:
-          key:
-            rid: 6376314724963844103
-          value:
-            rid: 6376314728265547806
     - rid: 6376314724963844126
       type: {class: GenerateRouteAround, ns: , asm: TheNorth}
       data:
@@ -374,8 +358,8 @@ MonoBehaviour:
           reference:
             rid: 6376314724963844127
           defaultValue: {fileID: 0}
-        routeRadius: 7
-        cornersNumber: 10
+        routeRadius: 12
+        cornersNumber: 12
     - rid: 6376314724963844127
       type: {class: UnitBlackboardTypes/RouteKey, ns: , asm: TheNorth}
       data:
@@ -398,7 +382,6 @@ MonoBehaviour:
             rid: 6376314724963844127
           defaultValue: {fileID: 0}
         movingMode: 1
-        isLooped: 1
     - rid: 6376314724963844134
       type: {class: Succeed, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -564,19 +547,12 @@ MonoBehaviour:
         typeName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         value: {fileID: 0}
-    - rid: 6376314728265547806
-      type: {class: Vector3Key, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
-      data:
-        name: 
-        typeName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null
-        value: {x: 0, y: 0, z: 0}
     - rid: 6376314728265547807
       type: {class: FloatKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
         name: 
         typeName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-        value: 120
+        value: 30
     - rid: 6376314728265548047
       type: {class: ChaseObject, ns: , asm: TheNorth}
       data:
@@ -615,6 +591,10 @@ MonoBehaviour:
         positionToGo:
           reference:
             rid: 6376314724963844103
+          defaultValue: {x: 0, y: 0, z: 0}
+        pointToGo:
+          reference:
+            rid: -2
           defaultValue: {x: 0, y: 0, z: 0}
         movingMode: 0
         rangeToStop:
@@ -660,3 +640,26 @@ MonoBehaviour:
         typeName: TheKiwiCoder.BehaviourTree, thekiwicoder.behaviourtreeeditor, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         value: {fileID: 0}
+    - rid: 7391007534671724601
+      type: {class: SetProperty, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        state: 0
+        started: 0
+        guid: c3945b44659d76c45ae46ea27e3d0dd4
+        position: {x: 435, y: 810}
+        blackboard:
+          keys: []
+        description: 
+        drawGizmos: 0
+        pair:
+          key:
+            rid: 6376314724963844103
+          value:
+            rid: 7391007534671724605
+    - rid: 7391007534671724605
+      type: {class: Vector3Key, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
+      data:
+        name: 
+        typeName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        value: {x: 0, y: 0, z: 0}

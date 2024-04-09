@@ -23,7 +23,6 @@ public class Sensors : MonoBehaviour
     void Start()
     {
         unitsOnLocation = Links.instance.globalLists.unitsOnLocation;
-        unitsOnLocation.Remove(transform);
         factionMarker = GetComponent<FactionMarker>();  
     }
 
@@ -60,7 +59,7 @@ public class Sensors : MonoBehaviour
 
     public List<Transform> GetObjectsInRange(List<Transform> objects, Range range)
     {
-        return objects.Where(x => range.IsPointInRange(x.position)).ToList();    
+        return objects.Where(x => x != transform && range.IsPointInRange(x.position)).ToList();    
     }
 
     public List<Transform> GetSeenObjectsInRange(List<Transform> objects, Range range, LayerMask obstaclesMask)
