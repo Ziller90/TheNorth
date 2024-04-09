@@ -7,6 +7,8 @@ using TheKiwiCoder;
 public class GoToPosition : ActionNode
 {
     [SerializeField] NodeProperty<Vector3> positionToGo = new NodeProperty<Vector3>();
+    [SerializeField] NodeProperty<Vector3> pointToGo = new NodeProperty<Vector3>();
+
     [SerializeField] MovingMode movingMode;
 
     [Tooltip("if position is in this range, node returns success")]
@@ -19,7 +21,7 @@ public class GoToPosition : ActionNode
 
     protected override State OnUpdate()
     {
-        if (!MoveIfPositionIsZero && positionToGo.Value == Vector3.zero)
+        if (!MoveIfPositionIsZero && positionToGo.Value == Vector3.zero )
             return State.Failure;
 
         if (rangeToStop.Value != null && rangeToStop.Value.IsPointInRange(positionToGo.Value))

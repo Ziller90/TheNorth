@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1070199493488602899}
   m_LocalRotation: {x: -0, y: 0.7117166, z: -0, w: 0.7024668}
-  m_LocalPosition: {x: 0.01, y: 0.318, z: 0.67}
+  m_LocalPosition: {x: 0.02, y: 0.266, z: 0.89}
   m_LocalScale: {x: 1.4285711, y: 0.58823526, z: 1.4285711}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeType: 0
-  radius: 0.8
+  radius: 1
   angle: 0
   bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -254,6 +254,14 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: -19.098928
       objectReference: {fileID: 0}
+    - target: {fileID: 5133935866310857553, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fae9a746025d20b4c89e098e3ec38c7a, type: 2}
+    - target: {fileID: 5133935866310874057, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fae9a746025d20b4c89e098e3ec38c7a, type: 2}
     - target: {fileID: 5133935866322357843, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -720,6 +728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6115228454438917368, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
+    - {fileID: 6510605634573919806, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6115228454438917373, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
@@ -814,6 +823,7 @@ MonoBehaviour:
       rid: 6376314728265547794
     value:
       rid: 6376314728265547798
+  subTreesBlackboardOverrides: []
   references:
     version: 2
     RefIds:
@@ -828,7 +838,7 @@ MonoBehaviour:
       data:
         name: 
         typeName: Range, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        value: {fileID: 0}
+        value: {fileID: 3477236697314793782}
 --- !u!4 &8467364967643463516 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6115228454438917373, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}

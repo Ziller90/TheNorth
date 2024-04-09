@@ -11,19 +11,18 @@ public class Unit : MonoBehaviour
 
     Health health;
     Rigidbody rigidbody;
-    GlobalLists globalLists;
 
     void Start()
     {
         health = GetComponent<Health>();
         rigidbody = GetComponent<Rigidbody>();
-        globalLists = Links.instance.globalLists;
-        globalLists.unitsOnLocation.Add(gameObject.transform);
+        Links.instance.globalLists.AddUnitOnLocation(gameObject.transform);
         health.dieEvent += Die;
     } 
+
     public void Die()
     {
-        globalLists.unitsOnLocation.Remove(gameObject.transform);
+        Links.instance.globalLists.RemoveUnitOnLocation(gameObject.transform);
         unitCollider.enabled = false;
         rigidbody.isKinematic = true;
         Destroy(healthBar);
