@@ -4,17 +4,9 @@ using UnityEngine;
 
 public class AutoAimController : MonoBehaviour
 {
-    List<Transform> aimObjects;
-
-    void Start()
-    {
-        GlobalLists globalAims = Links.instance.globalLists;
-        aimObjects = globalAims.unitsOnLocation;
-    }
-
     public bool HasAutoAimTarget(GameObject thisUnit, Transform throwPoint, float maxDistance)
     {
-        foreach (Transform aim in aimObjects)
+        foreach (Transform aim in Game.ActorsAccessModel.Units)
         {
             if (Vector3.Distance(throwPoint.position, aim.position) <= maxDistance && thisUnit != aim.gameObject)
             {
@@ -28,7 +20,7 @@ public class AutoAimController : MonoBehaviour
     {
         Vector3 bestAim = throwPoint.forward;
         float minAngle = 180f;
-        foreach (Transform aim in aimObjects)
+        foreach (Transform aim in Game.ActorsAccessModel.Units)
         {
             if (Vector3.Distance(throwPoint.position, aim.position) <= maxDistance && thisUnit != aim.gameObject)
             {

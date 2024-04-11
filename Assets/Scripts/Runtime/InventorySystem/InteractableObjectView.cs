@@ -32,27 +32,31 @@ public class InteractableObjectView : MonoBehaviour
 
     private void Awake()
     {
-        highlightCurve = Links.instance.globalConfig.HighlightCurve;
-        fadeOutCurve = Links.instance.globalConfig.FadeOutCurve;
-        highlightSpeed = Links.instance.globalConfig.HighlighSpeed;
-        highlightEmissionColor = Links.instance.globalConfig.HighLightColor;
-        fadeOutSpeed = Links.instance.globalConfig.FadeOutSpeed;
+        highlightCurve = Game.GlobalConfig.HighlightCurve;
+        fadeOutCurve = Game.GlobalConfig.FadeOutCurve;
+        highlightSpeed = Game.GlobalConfig.HighlighSpeed;
+        highlightEmissionColor = Game.GlobalConfig.HighLightColor;
+        fadeOutSpeed = Game.GlobalConfig.FadeOutSpeed;
         defaultEmissionColor = new Color32(0, 0, 0, 0);
     }
+
     void OnEnable()
     {
         interactableObject.updateSelectionStateEvent += SetHighlighted;
     }
+
     void OnDisable()
     {
         interactableObject.updateSelectionStateEvent -= SetHighlighted;
     }
+
     [ContextMenu("Find Object's MeshRenderers")]
     public void FindObjectMeshRenderers()
     {
         meshRenderers = gameObject.GetComponentsInChildren<MeshRenderer>().ToList();
         skinnedMeshRenderers = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>().ToList();
     }
+
     public void SetHighlighted(bool highlight)
     {
         if (currentState == HighlightState.None && highlight)

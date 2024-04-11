@@ -10,6 +10,6 @@ public class DoorTeleporter : MonoBehaviour
     public void OpenDoor(GameObject opener)
     {
         opener.transform.position = linkedDoor.TeleportPosition.position;
-        Links.instance.lightingManager.SetPlayerInDoors(leadsIndoors);
+        Game.LightingManager.SetPlayerInDoors(leadsIndoors);
     }
 }

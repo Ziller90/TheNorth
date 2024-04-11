@@ -11,18 +11,21 @@ public class HealthBar : MonoBehaviour
 
     HealthBarView healthBarView;
     GameObject healthBar;
-    Camera camera;
+    Camera mainCamera;
+
     void Start()
     {
-        camera = Links.instance.mainCamera.GetComponent<Camera>();
+        mainCamera = Game.MainCameraService.MainCamera.GetComponent<Camera>();
         healthBar = Instantiate(healthBarPrefab, Links.instance.healthBarsContainer);
         healthBarView = healthBar.GetComponent<HealthBarView>();
     }
+
     void FixedUpdate()
     {
-        healthBar.transform.position = camera.WorldToScreenPoint(thisUnit.position) + offset;
+        healthBar.transform.position = mainCamera.WorldToScreenPoint(thisUnit.position) + offset;
         healthBarView.SetBarFillness(health.CurrentHealth / health.MaxHealth);
     }
+
     private void OnDestroy()
     {
         Destroy(healthBar);

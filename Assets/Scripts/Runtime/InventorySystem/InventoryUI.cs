@@ -15,7 +15,7 @@ public class InventoryUI : MonoBehaviour
 
     void OnEnable()
     {
-        playerInteractablesLocator = Links.instance.playerCharacter.GetComponent<InteractablesLocator>();
+        playerInteractablesLocator = Game.GameSceneInitializer.Player.GetComponent<InteractablesLocator>();
         playerInteractablesLocator.containerOpenedEvent += OpenContainer;
     }
 

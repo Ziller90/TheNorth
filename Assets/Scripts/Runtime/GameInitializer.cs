@@ -5,17 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameInitializer : MonoBehaviour
 {
-    GameObject gameServicesRoot;
-    [SerializeField] GlobalUIOverlays globalUIOverlaysPrefab;
-
-    GlobalUIOverlays globalUIOverlays;
-
-    private void Awake()
+    private void Start()
     {
-        gameServicesRoot = new GameObject("gameServicesRoot");
-        DontDestroyOnLoad(gameServicesRoot);
-
-        globalUIOverlays = Instantiate(globalUIOverlaysPrefab, gameServicesRoot.transform);
         SceneManager.LoadScene("MainMenuScene");
     }
 }

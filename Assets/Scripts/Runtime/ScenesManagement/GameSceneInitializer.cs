@@ -7,6 +7,8 @@ public class GameSceneInitializer : MonoBehaviour
 {
     [SerializeField] GameObject player;
 
+    public GameObject Player => player;
+
     public void Awake()
     {
         InitializeScene();
@@ -14,36 +16,35 @@ public class GameSceneInitializer : MonoBehaviour
 
     public void InitializeScene()
     {
-        Links.instance.locationLoader.LoadLocation();
-        Links.instance.savingService = FindObjectOfType<SavingService>();
-        CreatePlayerCharacter();
+        Game.LocationLoader.LoadLocation();
+        CreatePlayer();
     }
 
-    public void CreatePlayerCharacter()
+    public void CreatePlayer()
     {
-        GameObject playerCharacter;
-        playerCharacter = Instantiate(player, Links.instance.locationModel.GetRandomSpawnPoint().position, Quaternion.identity);
-        SetMainCharacter(playerCharacter);
+        GameObject player;
+        player = Instantiate(this.player, Game.LocationLoader.LoadedLocationModel.GetRandomSpawnPoint().position, Quaternion.identity);
+        SetPlayer(player);
     }
 
-    public void SetMainCharacter(GameObject character)
+    public void SetPlayer(GameObject player)
     {
-        Links.instance.mainCamera.GetComponent<CameraFollowing>().SetObjectToFollow(character);
+        Game.MainCameraService.SetObjectToFollow(player);
 
-        ActionManager characterActionManager = character.GetComponent<ActionManager>();
-        ControlManager characterControlManager = character.GetComponent<ControlManager>();
+        ActionManager characterActionManager = player.GetComponent<ActionManager>();
+        ControlManager characterControlManager = player.GetComponent<ControlManager>();
 
         Links.instance.fixedJoystick.SetControlManager(characterControlManager);
         Links.instance.keyboard.SetControlManager(characterControlManager);
         Links.instance.keyboard.SetActionManager(characterActionManager);
         Links.instance.mobileButtonsManager.SetActionManager(characterActionManager);
-        Links.instance.playerCharacter = character;
-        character.GetComponent<Health>().dieEvent += Links.instance.deathScreen.ActivateDeathScreen;
+        player.GetComponent<Health>().dieEvent += Links.instance.deathScreen.ActivateDeathScreen;
+        this.player = player;
     }
 
     public void LeaveLocation()
     {
-        Links.instance.savingService.SaveLocation();
+        Game.SavingService.SaveLocation();
         SceneManager.LoadScene("GlobalMapScene");
     }
 }

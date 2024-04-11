@@ -12,28 +12,33 @@ public class DeathScreen : MonoBehaviour
 
     void OnEnable()
     {
-        if (Links.instance.playerCharacter)
-            Links.instance.playerCharacter.GetComponentInChildren<Health>().dieEvent += ActivateDeathScreen;
+        if (Game.GameSceneInitializer.Player)
+            Game.GameSceneInitializer.Player.GetComponentInChildren<Health>().dieEvent += ActivateDeathScreen;
     }
+
     void OnDisable()
     {
-        if (Links.instance.playerCharacter)
-            Links.instance.playerCharacter.GetComponentInChildren<Health>().dieEvent -= ActivateDeathScreen;
+        if (Game.GameSceneInitializer.Player)
+            Game.GameSceneInitializer.Player.GetComponentInChildren<Health>().dieEvent -= ActivateDeathScreen;
     }
+
     public void ActivateDeathScreen()
     {
         deathScreen.SetActive(true);
         StartCoroutine("FadeIn");
     }
+
     public void DeactivateDeathScreen()
     {
         deathScreen.SetActive(false);
         deathScreenGroup.alpha = 0;
     }
+
     public void RestartGame()
     {
         SceneManager.LoadScene(0);
     }
+
     IEnumerator FadeIn()
     {
         while (deathScreenGroup.alpha < 1)

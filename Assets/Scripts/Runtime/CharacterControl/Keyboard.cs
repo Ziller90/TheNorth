@@ -4,33 +4,23 @@ using UnityEngine.Events;
 
 public class Keyboard : MonoBehaviour
 {
-    CameraFollowing camera;
-    ControlManager controlManager;
-    ActionManager actionManager;
-
     public UnityEvent openInventory;
 
-    float vertical;
-    float horizontal;
+    MainCameraService mainCameraService;
+    ControlManager controlManager;
+    ActionManager actionManager;
     Vector3 direction;
 
-    private void Start()
-    {
-        camera = Links.instance.mainCamera.GetComponent<CameraFollowing>();
-    }
-    public void SetActionManager(ActionManager actionManager)
-    {
-        this.actionManager = actionManager;
-    }
-    public void SetControlManager(ControlManager controlManager)
-    {
-        this.controlManager = controlManager;
-    }
+    private void Start() => mainCameraService = Game.MainCameraService;
+    public void SetActionManager(ActionManager actionManager) => this.actionManager = actionManager;
+    public void SetControlManager(ControlManager controlManager) => this.controlManager = controlManager;
+
     void Update()
     {
         MovePlayer();
         ListenKeyboardButtons();
     }
+
     public void ListenKeyboardButtons()
     {
         if (Input.GetKeyDown(KeyCode.I))
@@ -58,17 +48,15 @@ public class Keyboard : MonoBehaviour
             actionManager.SecondaryWeaponReleased();
         }
     }
+
     public void MovePlayer()
     {
-        Quaternion fixQuaternion = Quaternion.Euler(0, camera.CameraYRotation, 0);
+        Quaternion fixQuaternion = Quaternion.Euler(0, mainCameraService.CameraYRotation, 0);
         direction = fixQuaternion * ModelUtils.CalculateWASDVector();
+
         if (direction.magnitude > 0)
-        {
             controlManager.SetControl(direction, MovingMode.Run);
-        }
         else
-        {
             controlManager.SetControl(direction, MovingMode.Stand);
-        }
     }
 }

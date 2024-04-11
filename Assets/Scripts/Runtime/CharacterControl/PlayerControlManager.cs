@@ -1,24 +1,28 @@
 using UnityEngine;
 
-public class GameSceneControlManager : MonoBehaviour
+public class PlayerControlManager : MonoBehaviour
 {
-    [SerializeField] GameObject keyboardControl;
+    [SerializeField] Keyboard keyboardControl;
     [SerializeField] GameObject MobileIngameInterface;
     [SerializeField] GlobalConfig globalConfig;
+
+    public Keyboard KeyboardControl => keyboardControl;    
+
     void Start()
     {
         SetControlType(globalConfig.CurrentControlType);
     }
+
     public void SetControlType(ControlType controlType)
     {
         if (controlType == ControlType.Mobile)
         {
-            keyboardControl.SetActive(false);
+            keyboardControl.gameObject.SetActive(false);
             MobileIngameInterface.SetActive(true);
         }
         if (controlType == ControlType.PC)
         {
-            keyboardControl.SetActive(true);
+            keyboardControl.gameObject.SetActive(true);
             MobileIngameInterface.SetActive(false);
         }
         if (controlType == ControlType.Gamepad)
