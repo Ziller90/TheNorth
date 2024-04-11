@@ -204,6 +204,8 @@ GameObject:
   - component: {fileID: 6825266256748935649}
   - component: {fileID: 7285154890313916723}
   - component: {fileID: 6052292297045020010}
+  - component: {fileID: 5825881079191773399}
+  - component: {fileID: -562103471318848938}
   m_Layer: 0
   m_Name: RoundShield
   m_TagString: Untagged
@@ -316,3 +318,30 @@ MonoBehaviour:
   - {fileID: 5577369634689574288}
   interactableObject: {fileID: 6825266256748935649}
   equipmentPosition: 1
+--- !u!114 &5825881079191773399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6331601498271844124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbebbd635f1104204a01ee2b3e1516ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabId: 9e7c7e18be8b5164eb314735299b9ca6
+  ignore: 0
+--- !u!114 &-562103471318848938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6331601498271844124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07634a3e286d4f418bbf77392f68517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueId: 

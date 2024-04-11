@@ -6,12 +6,6 @@ public class GlobalLists : MonoBehaviour
 {
     public List<Transform> unitsOnLocation = new();
     public List<InteractableObject> interactablesOnLocation = new();
-    public List<Item> itemsPrefabs = new();
-
-    public Item GetItemPrefabById(int id)
-    {
-        return itemsPrefabs.FirstOrDefault(i => i.Id == id);
-    }
 
     public void AddUnitOnLocation(Transform unit)
     {

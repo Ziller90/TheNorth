@@ -15,13 +15,14 @@ public class GameSceneInitializer : MonoBehaviour
     public void InitializeScene()
     {
         Links.instance.locationLoader.LoadLocation();
+        Links.instance.savingService = FindObjectOfType<SavingService>();
         CreatePlayerCharacter();
     }
 
     public void CreatePlayerCharacter()
     {
         GameObject playerCharacter;
-        playerCharacter = Instantiate(player, Links.instance.locationSettings.GetRandomSpawnPoint().position, Quaternion.identity);
+        playerCharacter = Instantiate(player, Links.instance.locationModel.GetRandomSpawnPoint().position, Quaternion.identity);
         SetMainCharacter(playerCharacter);
     }
 
@@ -38,5 +39,11 @@ public class GameSceneInitializer : MonoBehaviour
         Links.instance.mobileButtonsManager.SetActionManager(characterActionManager);
         Links.instance.playerCharacter = character;
         character.GetComponent<Health>().dieEvent += Links.instance.deathScreen.ActivateDeathScreen;
+    }
+
+    public void LeaveLocation()
+    {
+        Links.instance.savingService.SaveLocation();
+        SceneManager.LoadScene("GlobalMapScene");
     }
 }

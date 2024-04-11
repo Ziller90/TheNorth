@@ -21,6 +21,6 @@ public class LocationLoader : MonoBehaviour
             Debug.LogError("Error: No location to Load!");
             return;
         }
-        Links.instance.locationSettings = location.GetComponent<LocationManager>();
+        Links.instance.locationModel = location.GetComponent<LocationModel>();
     }
 }

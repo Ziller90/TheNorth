@@ -458,6 +458,8 @@ GameObject:
   - component: {fileID: -8793508508144218161}
   - component: {fileID: 2065891690038764213}
   - component: {fileID: -7405101690211859378}
+  - component: {fileID: 2463742820567311493}
+  - component: {fileID: 3902913167249745710}
   m_Layer: 0
   m_Name: HunterBow
   m_TagString: Untagged
@@ -586,6 +588,33 @@ MonoBehaviour:
   - {fileID: 198249334945004079}
   interactableObject: {fileID: -2066988369578927645}
   equipmentPosition: 1
+--- !u!114 &2463742820567311493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7087786812071082882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbebbd635f1104204a01ee2b3e1516ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabId: bd453718408b1a746b3db056d33e3e8c
+  ignore: 0
+--- !u!114 &3902913167249745710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7087786812071082882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07634a3e286d4f418bbf77392f68517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueId: 
 --- !u!1 &7721179338872754874
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using SiegeUp.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -86,13 +87,7 @@ public class HumanoidInventoryContainer : ContainerBase
 
     public bool TryPickUpItem(Item item)
     {
-        var itemPrefab = Links.instance.globalLists.GetItemPrefabById(item.Id);
-        if (itemPrefab == null)
-        {
-            Debug.LogError("No item with such ID");
-            return false;
-        }
-
+        var itemPrefab = Links.instance.prefabManager.GetPrefab(item.GetComponent<PrefabRef>()).GetComponent<Item>();
         ItemStack newItemStack = new ItemStack(itemPrefab, 1);
 
         if (TryPickUpToMainWeaponSlot(newItemStack) ||

@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 472288444273180106}
   - component: {fileID: 6890375309901345546}
   - component: {fileID: -600878083970322086}
+  - component: {fileID: 4512232744749014772}
+  - component: {fileID: -8778369836213808149}
   m_Layer: 0
   m_Name: TwoHandedAxe
   m_TagString: Untagged
@@ -144,6 +146,33 @@ MonoBehaviour:
   - {fileID: 756421313077230215}
   interactableObject: {fileID: 3376163150080205506}
   equipmentPosition: 0
+--- !u!114 &4512232744749014772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023232713239520684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbebbd635f1104204a01ee2b3e1516ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabId: a82057f1c8a5a09429c04e083b33d8c5
+  ignore: 0
+--- !u!114 &-8778369836213808149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023232713239520684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07634a3e286d4f418bbf77392f68517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueId: 
 --- !u!1 &2105301957469062122
 GameObject:
   m_ObjectHideFlags: 0
