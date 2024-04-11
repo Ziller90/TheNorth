@@ -11,7 +11,7 @@ public class OpenedContainerView : MonoBehaviour
 
     void Awake()
     {
-        playerInventory = Links.instance.playerCharacter.GetComponentInChildren<HumanoidInventoryContainer>();
+        playerInventory = Game.GameSceneInitializer.Player.GetComponentInChildren<HumanoidInventoryContainer>();
         playerInventoryGrid.SetSlotsGroup(playerInventory, playerInventory.BackpackSlots);
     }
 

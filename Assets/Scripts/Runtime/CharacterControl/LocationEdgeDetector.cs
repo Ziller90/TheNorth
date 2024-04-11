@@ -33,7 +33,7 @@ public class LocationEdgeDetector : MonoBehaviour
     {
         if (characterInFog && characterContoller.CharacterMovingState == MovingState.Idle)
         {
-            Links.instance.sceneInitializer.LeaveLocation();
+            Game.GameSceneInitializer.LeaveLocation();
         }
     }
 }

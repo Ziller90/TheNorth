@@ -14,13 +14,13 @@ public class InteractableObject : MonoBehaviour
     {
         if (isInteractable)
         {
-            this.isInteractableCached = true;
-            Links.instance.globalLists.AddInteractableOnLocation(this);
+            isInteractableCached = true;
+            Game.ActorsAccessModel.AddInteractableOnLocation(this);
         }
         else if (!isInteractable)
         {
-            this.isInteractableCached = false;
-            Links.instance.globalLists.RemoveInteractableOnLocation(this);
+            isInteractableCached = false;
+            Game.ActorsAccessModel.RemoveInteractableOnLocation(this);
         }
     }
     public void SetHighlighted(bool highlighted)

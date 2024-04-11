@@ -14,7 +14,7 @@ public class MobileButtonsView : MonoBehaviour
 
     private void Awake()
     {
-        playerInventory = Links.instance.playerCharacter.GetComponentInChildren<HumanoidInventoryContainer>();
+        playerInventory = Game.GameSceneInitializer.Player.GetComponentInChildren<HumanoidInventoryContainer>();
         SetUpQuickSlotsButtons();
     }
 

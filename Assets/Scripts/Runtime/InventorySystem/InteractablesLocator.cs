@@ -8,7 +8,6 @@ public class InteractablesLocator : MonoBehaviour
 
     ActionManager actionManager;
     HumanoidInventoryContainer inventory;
-    List<InteractableObject> interactablesOnLocation;
     InteractableObject nearestInteractable = null;
 
     public delegate void ContainerOpened(ContainerBody containerBody);
@@ -19,7 +18,6 @@ public class InteractablesLocator : MonoBehaviour
         inventory = GetComponent<HumanoidInventoryContainer>();  
         actionManager = GetComponent<ActionManager>();
         actionManager.onInteractPressed += Interact;
-        interactablesOnLocation = Links.instance.globalLists.interactablesOnLocation;
     }
 
     public void SetActionManager(ActionManager actionManager)
@@ -31,7 +29,7 @@ public class InteractablesLocator : MonoBehaviour
     {
         InteractableObject newNearestInteractable = null;
         float minDistance = 1000000;
-        foreach (var interactable in interactablesOnLocation)
+        foreach (var interactable in Game.ActorsAccessModel.InteractableObjects)
         {
             float distance = (Vector3.Distance(interactable.transform.position, gameObject.transform.position));
 

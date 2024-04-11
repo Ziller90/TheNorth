@@ -1,3 +1,4 @@
+using SiegeUp.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,13 +17,13 @@ public class Unit : MonoBehaviour
     {
         health = GetComponent<Health>();
         rigidbody = GetComponent<Rigidbody>();
-        Links.instance.globalLists.AddUnitOnLocation(gameObject.transform);
+        Service<ActorsAccessModel>.Instance.AddUnitOnLocation(gameObject.transform);
         health.dieEvent += Die;
     } 
 
     public void Die()
     {
-        Links.instance.globalLists.RemoveUnitOnLocation(gameObject.transform);
+        Game.ActorsAccessModel.RemoveUnitOnLocation(gameObject.transform);
         unitCollider.enabled = false;
         rigidbody.isKinematic = true;
         Destroy(healthBar);

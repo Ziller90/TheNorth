@@ -6,7 +6,7 @@ using System;
 
 public class ItemsManagerWindow : MonoBehaviour
 {
-    // used to contain all slotViews that are active on UI in moment
+    // used to contain all slotViews that are active on UI at the moment
     public class ActiveSlot
     {
         public SlotView slotView;

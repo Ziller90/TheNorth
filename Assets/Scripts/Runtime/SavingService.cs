@@ -27,7 +27,7 @@ public class SavingService : MonoBehaviour
 
     public void SaveLocation()
     {
-        var serializedLocation = SerializeLocation(Links.instance.locationModel);
+        var serializedLocation = SerializeLocation(Game.LocationLoader.LoadedLocationModel);
 
         for (int i = 0; i < locationSaves.Count; i++)
         {

@@ -22,7 +22,7 @@ public class HumanoidInventoryView : MonoBehaviour
     void Awake()
     {
         itemsViewManager = Links.instance.currentItemsViewManager;
-        inventory = Links.instance.playerCharacter.GetComponentInChildren<HumanoidInventoryContainer>();
+        inventory = Game.GameSceneInitializer.Player.GetComponentInChildren<HumanoidInventoryContainer>();
         containerGridView.SetSlotsGroup(inventory, inventory.BackpackSlots);
         moneyView.SetHumanoidInventory(inventory);
         SetEquipSlotsView();

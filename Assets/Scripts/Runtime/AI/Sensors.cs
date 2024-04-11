@@ -10,7 +10,6 @@ public class Sensors : MonoBehaviour
 
     List<Transform> noticedUnits = new();
     List<Transform> noticedEnemies = new();
-    List<Transform> unitsOnLocation;
     FactionMarker factionMarker;
 
     int terrainLayer = 7;
@@ -22,7 +21,6 @@ public class Sensors : MonoBehaviour
 
     void Start()
     {
-        unitsOnLocation = Links.instance.globalLists.unitsOnLocation;
         factionMarker = GetComponent<FactionMarker>();  
     }
 
@@ -45,8 +43,8 @@ public class Sensors : MonoBehaviour
         LayerMask defaultLayerMask = 1 << defaultLayer;
         LayerMask obstaclesMask = terrainLayerMask | evniromentLayerMask | defaultLayerMask;
 
-        var seenObjects = GetSeenObjectsInRange(unitsOnLocation, visionRange, obstaclesMask);
-        var heardObjects = GetObjectsInRange(unitsOnLocation, hearingRange);
+        var seenObjects = GetSeenObjectsInRange(Game.ActorsAccessModel.Units, visionRange, obstaclesMask);
+        var heardObjects = GetObjectsInRange(Game.ActorsAccessModel.Units, hearingRange);
 
         var noticedUnits = seenObjects.Union(heardObjects).ToList();
         return noticedUnits;
@@ -57,12 +55,12 @@ public class Sensors : MonoBehaviour
         return ModelUtils.GetNearest(transform, units);
     }
 
-    public List<Transform> GetObjectsInRange(List<Transform> objects, Range range)
+    public List<Transform> GetObjectsInRange(IReadOnlyList<Transform> objects, Range range)
     {
         return objects.Where(x => x != transform && range.IsPointInRange(x.position)).ToList();    
     }
 
-    public List<Transform> GetSeenObjectsInRange(List<Transform> objects, Range range, LayerMask obstaclesMask)
+    public List<Transform> GetSeenObjectsInRange(IReadOnlyList<Transform> objects, Range range, LayerMask obstaclesMask)
     {
         return GetObjectsInRange(objects, range).Where(x => !ModelUtils.HaveObstaclesOnRaycast(range.transform.position, x.position, obstaclesMask)).ToList();    
     }

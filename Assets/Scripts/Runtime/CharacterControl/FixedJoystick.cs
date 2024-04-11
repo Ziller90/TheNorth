@@ -8,7 +8,7 @@ public class FixedJoystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IPo
     [SerializeField] float horizontal;
     [SerializeField] float vertical;
     [SerializeField] ControlManager controlManager;
-    [SerializeField] CameraFollowing camera;
+    [SerializeField] MainCameraService mainCameraService;
     [SerializeField] float maxMagnitude;
     [SerializeField] float modificatorToWalk; // Minimal speed modificator value when character starts walking
     [SerializeField] float modificatorToRun; // Minimal speed modificator value when character starts runing
@@ -22,6 +22,7 @@ public class FixedJoystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IPo
     {
         handle = gameObject;
         handleBackground = handle.transform.parent.gameObject;
+        mainCameraService = Game.MainCameraService;
     }
     public void SetControlManager(ControlManager controlManager)
     {
@@ -30,7 +31,7 @@ public class FixedJoystick : MonoBehaviour, IPointerUpHandler, IDragHandler, IPo
 
     void Update()
     {
-        cameraAngleCorrector = camera.CameraYRotation;
+        cameraAngleCorrector = mainCameraService.CameraYRotation;
 
         vertical = handle.transform.localPosition.y / 100;
         horizontal = (handle.transform.localPosition.x / 100);
