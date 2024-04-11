@@ -168,6 +168,8 @@ GameObject:
   - component: {fileID: 8504188224219583549}
   - component: {fileID: -8514343810697105298}
   - component: {fileID: -3014180504881538726}
+  - component: {fileID: 8099181334612499041}
+  - component: {fileID: -8804543785193295952}
   m_Layer: 0
   m_Name: TwoHandedWarHammer
   m_TagString: Untagged
@@ -338,3 +340,30 @@ MonoBehaviour:
   - {fileID: 7068807894482653443}
   interactableObject: {fileID: 7357625434243092345}
   equipmentPosition: 0
+--- !u!114 &8099181334612499041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7087786812071082882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbebbd635f1104204a01ee2b3e1516ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabId: 7d49bf3d73b7ba04ab3d7011866ac908
+  ignore: 0
+--- !u!114 &-8804543785193295952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7087786812071082882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07634a3e286d4f418bbf77392f68517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueId: 

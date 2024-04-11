@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class LocationManager : MonoBehaviour
+public class LocationModel : MonoBehaviour
 {
     [SerializeField] List<Transform> spawnPoints;
     [SerializeField] string locationName;
     [SerializeField] string locationDescription;
+    [SerializeField] int locationID;
+    
 
     public string Name => locationName;
     public string Description => locationDescription;
+    public int LocationID => locationID;
+
     void Start()
     {
-        Links.instance.locationSettings = this;
+        Links.instance.locationModel = this;
     }
     public Transform GetRandomSpawnPoint()
     {

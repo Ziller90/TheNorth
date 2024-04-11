@@ -7,10 +7,12 @@ public class LocationEdgeDetector : MonoBehaviour
 {
     bool characterInFog = false;
     CharacterContoller characterContoller;
+
     private void Start()
     {
         characterContoller = GetComponent<CharacterContoller>();    
     }
+
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.transform.gameObject.GetComponent<LocationEdgeFog>() && !characterInFog)
@@ -18,6 +20,7 @@ public class LocationEdgeDetector : MonoBehaviour
             characterInFog = true;
         }
     }
+
     private void OnTriggerExit(Collider collider)
     {
         if (collider.transform.gameObject.GetComponent<LocationEdgeFog>() && characterInFog)
@@ -25,15 +28,12 @@ public class LocationEdgeDetector : MonoBehaviour
             characterInFog = false;
         }
     }
+
     private void Update()
     {
         if (characterInFog && characterContoller.CharacterMovingState == MovingState.Idle)
         {
-            LeaveLocation();
+            Links.instance.sceneInitializer.LeaveLocation();
         }
-    }
-    void LeaveLocation()
-    {
-        SceneManager.LoadScene("GlobalMapScene");
     }
 }

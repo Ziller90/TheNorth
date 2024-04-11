@@ -9,6 +9,7 @@ public class WeatherManager : MonoBehaviour
 
     void Update()
     {
-        rainParticles.SetActive(RainOn);
+        if (rainParticles)
+            rainParticles.SetActive(RainOn);
     }
 }
