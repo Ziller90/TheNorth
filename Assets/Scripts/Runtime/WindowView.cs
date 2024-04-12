@@ -8,11 +8,7 @@ public class WindowView : MonoBehaviour
 
     int id;
 
-    [SerializeField]
-    bool canBeSkipped = true;
-
-    public bool CanBeSkipped => canBeSkipped;
-    public int Id => id;
+    public bool HidesMobileInterface { get; set; }
 
     public void SetId(int id)
     {

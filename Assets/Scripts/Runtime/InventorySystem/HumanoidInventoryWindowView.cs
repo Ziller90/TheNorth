@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HumanoidInventoryView : MonoBehaviour
+public class HumanoidInventoryWindowView : WindowView
 {
     [SerializeField] SlotView mainWeaponSlotView;
     [SerializeField] SlotView secondaryWeaponSlotView;
@@ -19,13 +19,31 @@ public class HumanoidInventoryView : MonoBehaviour
     HumanoidInventoryContainer inventory;
     ItemsManagerWindow itemsViewManager;
 
-    void Awake()
+    public override void SetPresentation(MonoBehaviour presentation)
     {
-        itemsViewManager = Links.instance.currentItemsViewManager;
-        inventory = Game.GameSceneInitializer.Player.GetComponentInChildren<HumanoidInventoryContainer>();
+        inventory = (presentation as InventoryPresentation).PlayerInventory;
+        itemsViewManager = GetComponent<ItemsManagerWindow>();
+
+        ShowInventory();
+    }
+
+    void ShowInventory()
+    {
         containerGridView.SetSlotsGroup(inventory, inventory.BackpackSlots);
         moneyView.SetHumanoidInventory(inventory);
         SetEquipSlotsView();
+        DrawInventorySlots();
+        itemsViewManager.selectedSlotUpdated += UpdateInventoryButtonsView;
+    }
+
+    public override void HideWindow()
+    {
+        useButton.interactable = false;
+        dropButton.interactable = false;
+
+        itemsViewManager.selectedSlotUpdated -= UpdateInventoryButtonsView;
+        ClearInventory();
+        base.HideWindow();
     }
 
     void SetEquipSlotsView()
@@ -35,21 +53,6 @@ public class HumanoidInventoryView : MonoBehaviour
 
         for (int i = 0; i < quickSlotViews.Length; i++)
             quickSlotViews[i].SetSlot(inventory.QuickAccessSlots.Slots[i]);
-    }
-
-    private void OnEnable()
-    {
-        DrawInventorySlots();
-        itemsViewManager.selectedSlotUpdated += UpdateInventoryButtonsView;
-    }
-
-    private void OnDisable()
-    {
-        useButton.interactable = false;
-        dropButton.interactable = false;
-
-        itemsViewManager.selectedSlotUpdated -= UpdateInventoryButtonsView;
-        ClearInventory();
     }
 
     void UpdateInventoryButtonsView()
