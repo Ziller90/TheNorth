@@ -14,7 +14,6 @@ public class Links : MonoBehaviour
     public FixedJoystick fixedJoystick;
 
     public ItemsManagerWindow currentItemsViewManager;
-    public DeathScreen deathScreen;
     public Transform healthBarsContainer;
 
     public void Awake()
