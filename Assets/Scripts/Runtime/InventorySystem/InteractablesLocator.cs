@@ -4,7 +4,7 @@ using System;
 
 public class InteractablesLocator : MonoBehaviour
 {
-    [SerializeField] float interactionRange;
+    [SerializeField] Range interactionRange;
 
     ActionManager actionManager;
     HumanoidInventoryContainer inventory;
@@ -31,10 +31,9 @@ public class InteractablesLocator : MonoBehaviour
         float minDistance = 1000000;
         foreach (var interactable in Game.ActorsAccessModel.InteractableObjects)
         {
-            float distance = (Vector3.Distance(interactable.transform.position, gameObject.transform.position));
-
-            if (distance < interactionRange)
+            if (interactionRange.IsPointInRange(interactable.transform.position))
             {
+                float distance = (Vector3.Distance(interactable.transform.position, gameObject.transform.position));
                 if (distance < minDistance)
                 {
                     newNearestInteractable = interactable;

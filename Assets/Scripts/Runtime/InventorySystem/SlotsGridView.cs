@@ -20,9 +20,10 @@ public class SlotsGridView : MonoBehaviour
 
     public void ClearContainerGrid()
     {
-        foreach(var slot in slotViews)
+        var itemsManager = transform.FindInParents<ItemsManagerWindow>();
+        foreach (var slot in slotViews)
         {
-            Links.instance.currentItemsViewManager.RemoveActiveSlot(slot);
+            itemsManager.RemoveActiveSlot(slot);
             slot.Destroy();
         }
         slotViews.Clear();
@@ -30,12 +31,13 @@ public class SlotsGridView : MonoBehaviour
 
     public void DrawContainerSlots()
     {
+        var itemsManager = transform.FindInParents<ItemsManagerWindow>();
         for (int i = 0; i < slotGroup.Slots.Length; i++)
         {
             var slot = Instantiate(slotPrefab, slotsGrid.transform);
             slot.SetSlot(slotGroup.Slots[i]);
             slotViews.Add(slot);
-            Links.instance.currentItemsViewManager.AddActiveSlot(slotsOwnerContainer, slot);
+            itemsManager.AddActiveSlot(slotsOwnerContainer, slot);
         }
     }
 }

@@ -28,10 +28,12 @@ public class SlotView : MonoBehaviour
     Slot slot;
     ItemIcon itemIconInSlot;
     RectTransform slotTransform;
+    ItemsManagerWindow itemsManager;
 
     void Awake()
     {
         slotTransform = GetComponent<RectTransform>();
+        itemsManager = transform.FindInParents<ItemsManagerWindow>();
     }
 
     void OnEnable()
@@ -154,9 +156,8 @@ public class SlotView : MonoBehaviour
 
     void OnSlotRemovedItemStack(ItemStack removedItemStack)
     {
-        var itemsViewManager = Links.instance.currentItemsViewManager;
-        if (itemsViewManager && itemsViewManager.SelectedItemSlot == this)
-            itemsViewManager.RemoveSelection();
+        if (itemsManager && itemsManager.SelectedItemSlot == this)
+            itemsManager.RemoveSelection();
 
         PullOutAndDestroyItemIcon();
     }

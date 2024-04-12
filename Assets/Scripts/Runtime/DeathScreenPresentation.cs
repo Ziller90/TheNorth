@@ -9,28 +9,7 @@ public class DeathScreenPresentation : MonoBehaviour
 
     void Start()
     {
-        if (Game.GameSceneInitializer.Player != null)
-        {
-            Game.GameSceneInitializer.Player.GetComponent<Health>().dieEvent -= deathScreenOpener.ShowWindow;
-            Game.GameSceneInitializer.Player.GetComponent<Health>().dieEvent += deathScreenOpener.ShowWindow;
-        }
-    }
-
-    private void OnEnable()
-    {
-        if (Game.GameSceneInitializer.Player != null)
-        {
-            Game.GameSceneInitializer.Player.GetComponent<Health>().dieEvent -= deathScreenOpener.ShowWindow;
-            Game.GameSceneInitializer.Player.GetComponent<Health>().dieEvent += deathScreenOpener.ShowWindow;
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (Game.GameSceneInitializer.Player != null)
-        {
-            Game.GameSceneInitializer.Player.GetComponent<Health>().dieEvent -= deathScreenOpener.ShowWindow;
-        }
+        Game.GameSceneInitializer.Player.GetComponent<Health>().dieEvent += deathScreenOpener.ShowWindow;
     }
 
     public void RestartGame()

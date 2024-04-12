@@ -483,6 +483,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3380745121464893055}
     m_Modifications:
+    - target: {fileID: 4215239491552145362, guid: f494207f9e0d3d14d8fc82d6e6054c0b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2503978905110041796}
+    - target: {fileID: 4215239491552145362, guid: f494207f9e0d3d14d8fc82d6e6054c0b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HideWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 4215239491552145362, guid: f494207f9e0d3d14d8fc82d6e6054c0b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HumanoidInventoryWindowView, TheNorth
+      objectReference: {fileID: 0}
     - target: {fileID: 6183521011034764433, guid: f494207f9e0d3d14d8fc82d6e6054c0b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -17,7 +17,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     [SerializeField] bool isInteratable = true;
 
     ItemDescriptionPanel descriptionPanel;
-    ItemsManagerWindow itemsViewManager;
+    ItemsManagerWindow itemsManager;
     ItemStack itemStack;
 
     public ItemStack ItemStack => itemStack;
@@ -39,7 +39,7 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
     {
         this.itemStack = itemStack;
         icon.sprite = itemStack.Item.Icon;
-        itemsViewManager = Links.instance.currentItemsViewManager;
+        itemsManager = transform.FindInParents<ItemsManagerWindow>();
         itemStack.itemsNumberUpdatedEvent += OnItemsNumberUpdated;
         OnItemsNumberUpdated();
     }
@@ -49,9 +49,9 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
         if (!IsInteratable)
             return;
 
-        var thisIconSlot = itemsViewManager.GetActiveSlotByItemIcon(this).slotView;
-        itemsViewManager.SetSelectedSlotView(thisIconSlot);
-        transform.SetParent(itemsViewManager.CommonIconsContainer);
+        var thisIconSlot = itemsManager.GetActiveSlotByItemIcon(this).slotView;
+        itemsManager.SetSelectedSlotView(thisIconSlot);
+        transform.SetParent(itemsManager.CommonIconsContainer);
         isHold = true;
         StartCoroutine(WaitForDescription());
     }
@@ -61,8 +61,8 @@ public class ItemIcon : MonoBehaviour, IDragHandler,  IPointerDownHandler, IPoin
         if (!IsInteratable)
             return;
 
-        var newActiveSlot = itemsViewManager.GetActiveSlotByPosition(transform.position);
-        itemsViewManager.MoveItemToSlot(this, newActiveSlot);
+        var newActiveSlot = itemsManager.GetActiveSlotByPosition(transform.position);
+        itemsManager.MoveItemToSlot(this, newActiveSlot);
 
         isDragged = false;
         isHold = false;

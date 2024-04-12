@@ -13,7 +13,6 @@ public class Links : MonoBehaviour
     public MobileButtonsManager mobileButtonsManager;
     public FixedJoystick fixedJoystick;
 
-    public ItemsManagerWindow currentItemsViewManager;
     public Transform healthBarsContainer;
 
     public void Awake()

@@ -1,23 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class WindowManagerView : MonoBehaviour
 {
     [SerializeField] RectTransform windowsContainer;
+    [SerializeField] GameObject mobileInterface;
 
     Dictionary<int, WindowView> windowMap = new();
-    int lastWindowIndex = 1;
+    int lastWindowId = 1;
 
-    public GameObject ShowWindow(GameObject prefab, MonoBehaviour presentation)
+    public GameObject ShowWindow(GameObject prefab, MonoBehaviour presentation, bool hideMobileInterface)
     {
         var windowObject = Instantiate(prefab, windowsContainer.transform);
 
         var newWindowView = windowObject.GetComponent<WindowView>();
         newWindowView.windowHiddenEvent -= HideWindow;
         newWindowView.windowHiddenEvent += HideWindow;
-        int newWindowIndex = lastWindowIndex + 1;
-        newWindowView.SetId(newWindowIndex);
+        int newWindowId = lastWindowId + 1;
+
+        newWindowView.SetId(newWindowId);
+        newWindowView.HidesMobileInterface = hideMobileInterface;
+        mobileInterface.SetActive(!hideMobileInterface);
+
         try
         {
             newWindowView.SetPresentation(presentation);
@@ -27,23 +33,11 @@ public class WindowManagerView : MonoBehaviour
             Debug.LogException(e);
         }
 
-        windowMap.Add(newWindowIndex, newWindowView);
-        lastWindowIndex = newWindowIndex;
-        Debug.Log("Window " + newWindowIndex + " opened");
-        return windowObject;
-    }
+        windowMap.Add(newWindowId, newWindowView);
+        lastWindowId = newWindowId;
+        Debug.Log("Window " + newWindowId + " opened");
 
-    public void HideLastWindow()
-    {
-        if (windowMap.Count > 0)
-        {
-            int maxWindowId = 0;
-            foreach (var pair in windowMap)
-                if (pair.Key > maxWindowId)
-                    maxWindowId = pair.Key;
-            if (windowMap[maxWindowId].CanBeSkipped)
-                HideWindow(maxWindowId);
-        }
+        return windowObject;
     }
 
     public void HideWindow(int id)
@@ -52,6 +46,10 @@ public class WindowManagerView : MonoBehaviour
             return;
         Debug.Log("Window " + id + " closed");
         windowMap.Remove(id);
-        Destroy(windowView);
+
+        if (windowMap.Count == 0 || windowMap.All(i => i.Value.HidesMobileInterface == false))
+            mobileInterface.SetActive(true);
+
+        Destroy(windowView.gameObject);
     }
 }
