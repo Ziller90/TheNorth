@@ -38,7 +38,6 @@ public class GameSceneInitializer : MonoBehaviour
         Links.instance.keyboard.SetControlManager(characterControlManager);
         Links.instance.keyboard.SetActionManager(characterActionManager);
         Links.instance.mobileButtonsManager.SetActionManager(characterActionManager);
-        player.GetComponent<Health>().dieEvent += Links.instance.deathScreen.ActivateDeathScreen;
         this.player = player;
     }
 

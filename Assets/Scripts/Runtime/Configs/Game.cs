@@ -15,4 +15,5 @@ public static class Game
     public static SavingService SavingService => Service<SavingService>.Instance;
     public static PrefabManager PrefabManager => Service<PrefabManager>.Instance;   
     public static GlobalConfig GlobalConfig => Service<GlobalConfig>.Instance;   
+    public static WindowManagerView WindowManagerView => Service<WindowManagerView>.Instance;   
 }
