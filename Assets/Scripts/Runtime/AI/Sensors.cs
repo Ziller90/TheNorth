@@ -33,7 +33,7 @@ public class Sensors : MonoBehaviour
 
     public List<Transform> GetEnemies(List<Transform> units, FactionMarker factionMarker) 
     {
-        return units.Where(x => x.GetComponent<FactionMarker>() && x.GetComponent<FactionMarker>().faction != factionMarker.faction).ToList();
+        return units.Where(x => x.GetComponent<FactionMarker>() && x.GetComponent<FactionMarker>().Faction != factionMarker.Faction).ToList();
     }
 
     public List<Transform> GetNoticedUnits()
