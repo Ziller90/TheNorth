@@ -6,7 +6,7 @@ public class HUDPanel : MonoBehaviour
 {
     GameObject observedObject;
 
-    public Vector2 Position => Game.MainCameraService.WorldToScreenPoint(observedObject.transform.position);
+    public Vector2 Position => Game.CameraControlService.WorldToScreenPoint(observedObject.transform.position);
 
     public void SetObservedObject(GameObject observedObject, HUDPanelsView hudPanelsView)
     {

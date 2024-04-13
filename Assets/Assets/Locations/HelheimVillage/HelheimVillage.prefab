@@ -3706,6 +3706,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5566127167431171904, guid: 315fd52b56f79ea4ea5538583bc903ef, type: 3}
+      propertyPath: managedReferences[7391007627895635968]
+      value: TheNorth ItemStack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566127167431171904, guid: 315fd52b56f79ea4ea5538583bc903ef, type: 3}
+      propertyPath: slotGroup.slots.Array.data[0].itemStack
+      value: 7391007627895635968
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566127167431171904, guid: 315fd52b56f79ea4ea5538583bc903ef, type: 3}
+      propertyPath: managedReferences[7391007627895635968].itemPrefab
+      value: 
+      objectReference: {fileID: 7087786812071082880, guid: 7d49bf3d73b7ba04ab3d7011866ac908, type: 3}
+    - target: {fileID: 5566127167431171904, guid: 315fd52b56f79ea4ea5538583bc903ef, type: 3}
+      propertyPath: managedReferences[7391007627895635968].itemsNumber
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

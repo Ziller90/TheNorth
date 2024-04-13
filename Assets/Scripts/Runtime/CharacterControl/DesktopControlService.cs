@@ -2,18 +2,22 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-public class Keyboard : MonoBehaviour
+public class DesktopControlService : MonoBehaviour
 {
     public UnityEvent openInventory;
 
-    MainCameraService mainCameraService;
+    CameraControlService mainCameraService;
     ControlManager controlManager;
     ActionManager actionManager;
     Vector3 direction;
 
-    private void Start() => mainCameraService = Game.MainCameraService;
-    public void SetActionManager(ActionManager actionManager) => this.actionManager = actionManager;
-    public void SetControlManager(ControlManager controlManager) => this.controlManager = controlManager;
+    private void Start() => mainCameraService = Game.CameraControlService;
+
+    public void SetControl(ControlManager controlManager, ActionManager actionManager)
+    {
+        this.actionManager = actionManager;
+        this.controlManager = controlManager;
+    }
 
     void Update()
     {
