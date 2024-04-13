@@ -9,15 +9,18 @@ public class Unit : MonoBehaviour
     [SerializeField] Behaviour[] components;
     [SerializeField] GameObject healthBar;
     [SerializeField] AudioSource deathAudioSource;
+    [SerializeField] string unitName;
 
     Health health;
     Rigidbody rigidbody;
+
+    public string Name => unitName;
 
     void Start()
     {
         health = GetComponent<Health>();
         rigidbody = GetComponent<Rigidbody>();
-        Service<ActorsAccessModel>.Instance.AddUnitOnLocation(gameObject.transform);
+        Service<ActorsAccessModel>.Instance.RegisterUnit(gameObject.transform);
         health.dieEvent += Die;
     } 
 

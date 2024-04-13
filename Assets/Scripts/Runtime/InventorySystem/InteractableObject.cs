@@ -15,7 +15,7 @@ public class InteractableObject : MonoBehaviour
         if (isInteractable)
         {
             isInteractableCached = true;
-            Game.ActorsAccessModel.AddInteractableOnLocation(this);
+            Game.ActorsAccessModel.RegisterInteractableObject(this);
         }
         else if (!isInteractable)
         {

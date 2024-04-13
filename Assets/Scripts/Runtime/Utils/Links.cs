@@ -12,7 +12,6 @@ public class Links : MonoBehaviour
     public Keyboard keyboard;
     public MobileButtonsManager mobileButtonsManager;
     public FixedJoystick fixedJoystick;
-
     public Transform healthBarsContainer;
 
     public void Awake()

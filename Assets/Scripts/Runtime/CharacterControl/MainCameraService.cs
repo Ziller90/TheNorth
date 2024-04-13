@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MainCameraService : MonoBehaviour
 {
-    [SerializeField] GameObject mainCamera;
+    [SerializeField] Camera mainCamera;
     [SerializeField] float cameraYRotation;
     [SerializeField] Quaternion startRotation;
     [SerializeField] Vector3 startOffset;
@@ -13,7 +13,7 @@ public class MainCameraService : MonoBehaviour
     [SerializeField] bool follow;
 
     public float CameraYRotation => cameraYRotation;
-    public GameObject MainCamera => mainCamera;
+    public Camera MainCamera => mainCamera;
 
     void FixedUpdate()
     {
@@ -31,6 +31,11 @@ public class MainCameraService : MonoBehaviour
     public void SetObjectToFollow(GameObject objectToFollow)
     {
         this.objectToFollow = objectToFollow;
+    }
+
+    public Vector3 WorldToScreenPoint(Vector3 point)
+    {
+        return mainCamera.WorldToScreenPoint(point);
     }
 }
 

@@ -4488,6 +4488,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3514323865805361243}
     m_Modifications:
+    - target: {fileID: 804228621034356907, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: faction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5032271272029051930, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: managedReferences[-2]
       value: 
@@ -5313,7 +5317,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 716783470848166525, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: faction
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5658184504011615747, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: managedReferences[7391007537347166208]
@@ -5490,6 +5494,10 @@ PrefabInstance:
     - target: {fileID: 8467364967643463504, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: m_Name
       value: HumanoidUnit (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467364967643463512, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: unitName
+      value: Helheim's Warrior
       objectReference: {fileID: 0}
     - target: {fileID: 8467364967643463516, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: m_RootOrder
@@ -8679,7 +8687,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 804228621034356907, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: faction
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5032271272029051930, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: managedReferences[-2]
@@ -9435,6 +9443,10 @@ PrefabInstance:
     - target: {fileID: 8600090767715464586, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600090767715464590, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: unitName
+      value: Hagalar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13977,6 +13989,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3514323865805361243}
     m_Modifications:
+    - target: {fileID: 804228621034356907, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: faction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5032271272029051930, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: managedReferences[-2]
       value: 
@@ -15956,6 +15972,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3514323865805361243}
     m_Modifications:
+    - target: {fileID: 804228621034356907, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: faction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5032271272029051930, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: managedReferences[-2]
       value: 
@@ -17427,7 +17447,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 716783470848166525, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: faction
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5658184504011615747, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: managedReferences[7391007537347166209]
@@ -17612,6 +17632,10 @@ PrefabInstance:
     - target: {fileID: 8467364967643463504, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467364967643463512, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: unitName
+      value: Helheim's Warrior
       objectReference: {fileID: 0}
     - target: {fileID: 8467364967643463516, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: m_RootOrder
