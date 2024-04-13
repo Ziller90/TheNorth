@@ -2,11 +2,9 @@ using UnityEngine;
 
 public class PlayerControlManager : MonoBehaviour
 {
-    [SerializeField] Keyboard keyboardControl;
+    [SerializeField] DesktopControlService keyboardControl;
     [SerializeField] GameObject MobileIngameInterface;
     [SerializeField] GlobalConfig globalConfig;
-
-    public Keyboard KeyboardControl => keyboardControl;    
 
     void Start()
     {

@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 public class GameSceneInitializer : MonoBehaviour
 {
-    [SerializeField] GameObject player;
+    [SerializeField] GameObject playerPrefab;
+    GameObject player;
 
     public GameObject Player => player;
 
@@ -17,28 +15,20 @@ public class GameSceneInitializer : MonoBehaviour
     public void InitializeScene()
     {
         Game.LocationLoader.LoadLocation();
-        CreatePlayer();
+        InitializePlayer();
     }
 
-    public void CreatePlayer()
+    public void InitializePlayer()
     {
-        GameObject player;
-        player = Instantiate(this.player, Game.LocationLoader.LoadedLocationModel.GetRandomSpawnPoint().position, Quaternion.identity);
-        SetPlayer(player);
-    }
+        player = Instantiate(playerPrefab, Game.LocationLoader.LoadedLocationModel.GetRandomSpawnPoint().position, Quaternion.identity);
+        Game.CameraControlService.SetObjectToFollow(player);
 
-    public void SetPlayer(GameObject player)
-    {
-        Game.MainCameraService.SetObjectToFollow(player);
+        ActionManager playerActionManager = player.GetComponent<ActionManager>();
+        ControlManager playerControlManager = player.GetComponent<ControlManager>();
 
-        ActionManager characterActionManager = player.GetComponent<ActionManager>();
-        ControlManager characterControlManager = player.GetComponent<ControlManager>();
-
-        Links.instance.fixedJoystick.SetControlManager(characterControlManager);
-        Links.instance.keyboard.SetControlManager(characterControlManager);
-        Links.instance.keyboard.SetActionManager(characterActionManager);
-        Links.instance.mobileButtonsManager.SetActionManager(characterActionManager);
-        this.player = player;
+        Game.MobileControlService.SetControl(playerControlManager, playerActionManager);
+        Game.DesktopControlService.SetControl(playerControlManager, playerActionManager);
+        Game.CameraControlService.SetObjectToFollow(player);
     }
 
     public void LeaveLocation()
