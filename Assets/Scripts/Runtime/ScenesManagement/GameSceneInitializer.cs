@@ -29,6 +29,7 @@ public class GameSceneInitializer : MonoBehaviour
         Game.MobileControlService.SetControl(playerControlManager, playerActionManager);
         Game.DesktopControlService.SetControl(playerControlManager, playerActionManager);
         Game.CameraControlService.SetObjectToFollow(player);
+        Game.SavingService.RestoreLocation(Game.LocationLoader.LoadedLocationModel);
     }
 
     public void LeaveLocation()

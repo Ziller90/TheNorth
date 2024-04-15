@@ -85,7 +85,7 @@ public class SlotView : MonoBehaviour
 
     public void InstantiateItemIcon()
     {
-        if (slot.isEmpty || ItemIcon)
+        if (slot.IsEmpty || ItemIcon)
             return;
 
         var newIcon = Instantiate(itemIconPrefab, slotTransform);

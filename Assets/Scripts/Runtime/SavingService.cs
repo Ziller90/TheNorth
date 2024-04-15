@@ -40,6 +40,33 @@ public class SavingService : MonoBehaviour
         locationSaves.Add(serializedLocation);
     }
 
+    public void RestoreLocation(LocationModel location)
+    {
+        foreach(var locationSave in locationSaves)
+        {
+            if (locationSave.locationId == location.LocationID)
+            {
+                var restoreProcess = CreateRestoreProcess(location, locationSave);
+                AutoSerializeTool.RestoreScene(restoreProcess);
+            }
+        }
+    }
+
+    RestoreProcess CreateRestoreProcess(LocationModel location, SavedLocation savedLocation)
+    {
+        List<SerializedGameObjectBin> serializedGameObjectsBin;
+
+        int version = 1;
+        serializedGameObjectsBin = savedLocation.serializedGameObjectsBin;
+        var uniqueIds = FindObjectsOfType<UniqueId>();
+        var restoreProcess = new RestoreProcess(serializedGameObjectsBin, uniqueIds, location.transform, version)
+        {
+            spawn = Game.ActorsAccessModel.SpawnObject,
+            destroy = Game.ActorsAccessModel.DestroyObject
+        };
+        return restoreProcess;
+    }
+
     public SavedLocation SerializeLocation(LocationModel locationToSave)
     {
         var savedLocation = new SavedLocation();

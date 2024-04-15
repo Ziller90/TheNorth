@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using SiegeUp.Core;
 
 [Serializable]
 public class ItemStack
 {
-    [SerializeField] Item itemPrefab;
-    [SerializeField] int itemsNumber;
+    [AutoSerialize(1), SerializeField] PrefabRef itemPrefab;
+    [AutoSerialize(2), SerializeField] int itemsNumber;
 
-    public Item Item => itemPrefab;
+    public PrefabRef ItemPrefab => itemPrefab;
+    public Item Item => Game.PrefabManager.GetPrefab(itemPrefab).GetComponent<Item>();
     public Action itemsNumberUpdatedEvent;
 
     public int ItemsNumber
@@ -30,9 +32,9 @@ public class ItemStack
         }
     }
 
-    public ItemStack(Item prefab, int quantity)
+    public ItemStack(PrefabRef itemPrefab, int quantity)
     {
-        itemPrefab = prefab;
+        this.itemPrefab = itemPrefab;
         itemsNumber = quantity;
     }
 

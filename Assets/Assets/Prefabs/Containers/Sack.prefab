@@ -188,6 +188,8 @@ GameObject:
   - component: {fileID: 6597315074170894175}
   - component: {fileID: 4007669262056698384}
   - component: {fileID: 1472420637019272393}
+  - component: {fileID: 2422358653899029848}
+  - component: {fileID: 7708368975506967054}
   m_Layer: 0
   m_Name: Sack
   m_TagString: Untagged
@@ -344,3 +346,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2422358653899029848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5929606748866764101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07634a3e286d4f418bbf77392f68517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueId: f76c18ff-fef6-4fdd-bacd-7cb13e42ed98
+--- !u!114 &7708368975506967054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5929606748866764101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbebbd635f1104204a01ee2b3e1516ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabId: 4a6b3267735ccc745a8353076a4887a6
+  ignore: 0

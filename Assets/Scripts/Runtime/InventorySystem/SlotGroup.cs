@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using SiegeUp.Core;
 
 [Serializable]
 public class SlotGroup
 {
-    [SerializeField] List<AndItemTagList> suitableItemTags;
-    [SerializeField] Slot[] slots;
-    public Slot[] Slots => slots;
+    [AutoSerialize(1), SerializeField] List<AndItemTagList> suitableItemTags;
+    [AutoSerialize(2), SerializeField] List<Slot> slots;
+    public List<Slot> Slots => slots;
 
     public bool CanAdd(ItemStack itemStack)
     {
@@ -44,9 +45,9 @@ public class SlotGroup
 
     int GetFirstEmtySlotInGroupIndex()
     {
-        for (int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < slots.Count; i++)
         {
-            if (slots[i].isEmpty)
+            if (slots[i].IsEmpty)
                 return i;
         }
         return -1;

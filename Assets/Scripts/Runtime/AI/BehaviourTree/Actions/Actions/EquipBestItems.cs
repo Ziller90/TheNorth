@@ -19,7 +19,7 @@ public class EquipBestItems : ActionNode
 
     void EquipMostExpensiveItemSuitableForSlot(Slot slot)
     {
-        var suitableSlots = AIInventory.BackpackSlots.Slots.Where(i => !i.isEmpty && slot.IsSuitable(i.ItemStack));
+        var suitableSlots = AIInventory.BackpackSlots.Slots.Where(i => !i.IsEmpty && slot.IsSuitable(i.ItemStack));
         var mostExpensiveItemSlot = suitableSlots.OrderByDescending(i => i.ItemStack.Item.Cost).FirstOrDefault();
 
         if (mostExpensiveItemSlot != null)

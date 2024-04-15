@@ -32,7 +32,7 @@ public class SlotsGridView : MonoBehaviour
     public void DrawContainerSlots()
     {
         var itemsManager = transform.FindInParents<ItemsManagerWindow>();
-        for (int i = 0; i < slotGroup.Slots.Length; i++)
+        for (int i = 0; i < slotGroup.Slots.Count; i++)
         {
             var slot = Instantiate(slotPrefab, slotsGrid.transform);
             slot.SetSlot(slotGroup.Slots[i]);

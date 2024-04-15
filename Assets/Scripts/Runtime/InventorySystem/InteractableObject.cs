@@ -27,12 +27,19 @@ public class InteractableObject : MonoBehaviour
     {
         updateSelectionStateEvent?.Invoke(highlighted);
     }
+
     void OnEnable()
     {
         SetInteractable(isInteractableCached);
     }
+
     void OnDisable()
     {
         SetInteractable(isInteractableCached);
+    }
+
+    void OnDestroy()
+    {
+        Game.ActorsAccessModel.RemoveInteractableOnLocation(this);
     }
 }

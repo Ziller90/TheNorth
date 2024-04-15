@@ -35,7 +35,6 @@ public enum ItemTag
 
 public class Item : MonoBehaviour
 {
-    [SerializeField] int id;
     [SerializeField] string itemName;
     [SerializeField] string description;
     [SerializeField] int cost;
@@ -44,7 +43,6 @@ public class Item : MonoBehaviour
     [SerializeField] List<ItemTag> itemTags;
 
     public int MaxStackSize => maxStackSize;
-    public int Id => id;
     public string Name => itemName;
     public string Description => description;
     public int Cost => cost;

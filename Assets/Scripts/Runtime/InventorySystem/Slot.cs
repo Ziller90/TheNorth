@@ -1,3 +1,4 @@
+using SiegeUp.Core;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,18 +19,19 @@ public enum TransferResult
 [Serializable]
 public class AndItemTagList
 {
-    [SerializeField] List<ItemTag> and;
+    [AutoSerialize(1), SerializeField] List<ItemTag> and;
     public List<ItemTag> List => and;
 }
 
 [Serializable]
 public class Slot
 {
-    [SerializeField] List<AndItemTagList> suitableItemTags;
-    [SerializeReference, SubclassSelector] ItemStack itemStack = null;
+    [AutoSerialize(1), SerializeField] List<AndItemTagList> suitableItemTags;
+    [AutoSerialize(2), SerializeReference, SubclassSelector] ItemStack itemStack = null;
+
     public ItemStack ItemStack => itemStack;
     public Sprite BlockSprite => blockSprite;
-    public bool isEmpty => itemStack == null || !itemStack.Item;
+    public bool IsEmpty => itemStack == null;
     public bool IsBlocked { get; set; }
 
     public delegate void SlotRemovedAction(ItemStack itemStack);
@@ -41,6 +43,8 @@ public class Slot
     public event SlotRemovedAction removed;
 
     Sprite blockSprite;
+
+
 
     public void SubscribeItemsNumberUpdateEvent()
     {
@@ -88,7 +92,7 @@ public class Slot
             Merge(itemStack);
             return TransferResult.Merged;
         }
-        else if (isEmpty)
+        else if (IsEmpty)
         {
             SetItemStack(itemStack);
             return TransferResult.Added;
