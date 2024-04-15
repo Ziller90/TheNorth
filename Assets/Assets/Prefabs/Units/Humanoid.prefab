@@ -4839,6 +4839,7 @@ MonoBehaviour:
   - {fileID: 6115228454438917369}
   healthBar: {fileID: 0}
   deathAudioSource: {fileID: 6115228454685527418}
+  unitName: 
 --- !u!114 &6115228454438917894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4852,6 +4853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 200
+  currentHealth: 200
 --- !u!114 &2931067886913855964
 MonoBehaviour:
   m_ObjectHideFlags: 0

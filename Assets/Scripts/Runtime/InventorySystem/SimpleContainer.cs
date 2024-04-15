@@ -1,10 +1,9 @@
 using UnityEngine;
-using System.Linq;
-using System.Collections.Generic;
-using System;
+using SiegeUp.Core;
 
+[System.Serializable, ComponentId(1)]
 public class SimpleContainer : ContainerBase
 {
-    [SerializeField] SlotGroup slotGroup;
+    [AutoSerialize(1), SerializeField] SlotGroup slotGroup;
     public SlotGroup SlotGroup => slotGroup;
 }

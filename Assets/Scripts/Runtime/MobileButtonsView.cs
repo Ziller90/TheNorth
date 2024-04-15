@@ -20,7 +20,7 @@ public class MobileButtonsView : MonoBehaviour
 
     void SetUpQuickSlotsButtons()
     {
-        for (int i = 0; i < playerInventory.QuickAccessSlots.Slots.Length; i++)
+        for (int i = 0; i < playerInventory.QuickAccessSlots.Slots.Count; i++)
         {
             quickSlotViews[i].SetSlot(playerInventory.QuickAccessSlots.Slots[i]);
             quickSlotViews[i].IsInteratable = false;
@@ -29,12 +29,12 @@ public class MobileButtonsView : MonoBehaviour
 
     void Update()
     {
-        if (!playerInventory.MainWeaponSlot.isEmpty)
+        if (!playerInventory.MainWeaponSlot.IsEmpty)
             rightHandWeaponImage.sprite = playerInventory.MainWeaponSlot.ItemStack.Item.Icon;
         else
             rightHandWeaponImage.sprite = fistSprite;
 
-        if (!playerInventory.SecondaryWeaponSlot.isEmpty)
+        if (!playerInventory.SecondaryWeaponSlot.IsEmpty)
             leftHandWeaponImage.sprite = playerInventory.SecondaryWeaponSlot.ItemStack.Item.Icon;
         else
             leftHandWeaponImage.sprite = fistSprite;

@@ -4,16 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[System.Serializable, ComponentId(2)]
 public class HumanoidInventoryContainer : ContainerBase
 {
     [SerializeField] Transform dropPosition;
     [SerializeField] Transform rightHandEquipPosition;
     [SerializeField] Transform leftHandEquipPosition;
 
-    [SerializeField] Slot mainWeaponSlot;
-    [SerializeField] Slot secondaryWeaponSlot;
-    [SerializeField] SlotGroup quickSlots;
-    [SerializeField] SlotGroup backpackSlots;
+    [AutoSerialize(1), SerializeField] Slot mainWeaponSlot;
+    [AutoSerialize(2), SerializeField] Slot secondaryWeaponSlot;
+    [AutoSerialize(3), SerializeField] SlotGroup quickSlots;
+    [AutoSerialize(4), SerializeField] SlotGroup backpackSlots;
 
     [SerializeField] SimpleContainer dropSackPrefab;
 
@@ -87,8 +88,7 @@ public class HumanoidInventoryContainer : ContainerBase
 
     public bool TryPickUpItem(Item item)
     {
-        var itemPrefab = Game.PrefabManager.GetPrefab(item.GetComponent<PrefabRef>()).GetComponent<Item>();
-        ItemStack newItemStack = new ItemStack(itemPrefab, 1);
+        ItemStack newItemStack = new ItemStack(item.GetComponent<PrefabRef>(), 1);
 
         if (TryPickUpToMainWeaponSlot(newItemStack) ||
             secondaryWeaponSlot.TryAdd(newItemStack) ||
@@ -105,7 +105,7 @@ public class HumanoidInventoryContainer : ContainerBase
 
     bool TryPickUpToMainWeaponSlot(ItemStack itemStack)
     {
-        if (itemStack.Item.Tags.Contains(ItemTag.TwoHanded) && !secondaryWeaponSlot.isEmpty)
+        if (itemStack.Item.Tags.Contains(ItemTag.TwoHanded) && !secondaryWeaponSlot.IsEmpty)
             return false;
 
         return mainWeaponSlot.TryAdd(itemStack);
@@ -139,7 +139,7 @@ public class HumanoidInventoryContainer : ContainerBase
 
     void EquipTwoHandedWeapon()
     {
-        if (!secondaryWeaponSlot.isEmpty)
+        if (!secondaryWeaponSlot.IsEmpty)
         {
             ModelUtils.TryMoveFromSlotToSlotGroup(this, secondaryWeaponSlot, this, BackpackSlots);
         }
@@ -286,10 +286,10 @@ public class HumanoidInventoryContainer : ContainerBase
     bool CanEquipTwoHandedWeapon(ItemStack itemStack, Slot slot) 
     {
         if (slot == mainWeaponSlot &&
-            !mainWeaponSlot.isEmpty &&
-            !secondaryWeaponSlot.isEmpty &&
+            !mainWeaponSlot.IsEmpty &&
+            !secondaryWeaponSlot.IsEmpty &&
             itemStack.Item.Tags.Contains(ItemTag.TwoHanded) &&
-            backpackSlots.Slots.All(i => !i.isEmpty))
+            backpackSlots.Slots.All(i => !i.IsEmpty))
         {
             return false;
         }
@@ -301,7 +301,7 @@ public class HumanoidInventoryContainer : ContainerBase
         var itemStackToDivide = slot.ItemStack;
         int newItemStackItemsNumber = Mathf.FloorToInt(itemStackToDivide.ItemsNumber / 2);
         itemStackToDivide.ItemsNumber -= newItemStackItemsNumber;
-        var newItemStack = new ItemStack(itemStackToDivide.Item, newItemStackItemsNumber);
+        var newItemStack = new ItemStack(itemStackToDivide.ItemPrefab, newItemStackItemsNumber);
 
         if (BackpackSlots.isSlotInSlotGroup(slot) && BackpackSlots.CanAdd(newItemStack))
         {

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &205959897931729622
+--- !u!1001 &8759816250383301135
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,53 +8,61 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6980871327643536280, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: blackboardOverrides.Array.size
+    - target: {fileID: 5658184504011615747, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: managedReferences[7391007632075784194]
+      value: TheNorth ItemStack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658184504011615747, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: managedReferences[7391007632075784195]
+      value: TheNorth ItemStack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658184504011615747, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: backpackSlots.slots.Array.data[0].itemStack
+      value: 7391007632075784194
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658184504011615747, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: backpackSlots.slots.Array.data[1].itemStack
+      value: 7391007632075784195
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658184504011615747, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: managedReferences[7391007632075784194].itemPrefab
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658184504011615747, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: managedReferences[7391007632075784195].itemPrefab
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658184504011615747, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: managedReferences[7391007632075784194].itemsNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658184504011615747, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: managedReferences[7391007632075784195].itemsNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305062578420371887, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: prefabId
+      value: 4cc76f23dd46028448b019dc00a86b5b
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377141425537852766, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6980871327643536280, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314728265547791]
-      value: TheNorth UnitBlackboardTypes/RangeKey
+    - target: {fileID: 7377141425537907222, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6980871327643536280, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314728265547792]
-      value: TheNorth UnitBlackboardTypes/RangeKey
+    - target: {fileID: 8467364967643462823, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: maxHealth
+      value: 300
       objectReference: {fileID: 0}
-    - target: {fileID: 6980871327643536280, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: blackboardOverrides.Array.data[0].value
-      value: 6376314728265547792
-      objectReference: {fileID: 0}
-    - target: {fileID: 6980871327643536280, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314728265547791].name
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6980871327643536280, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314728265547792].name
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6980871327643536280, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314728265547791].value
-      value: 
-      objectReference: {fileID: 3646252368021214176}
-    - target: {fileID: 6980871327643536280, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314728265547792].value
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6980871327643536280, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314728265547791].typeName
-      value: Range, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      objectReference: {fileID: 0}
-    - target: {fileID: 6980871327643536280, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: managedReferences[6376314728265547792].typeName
-      value: Range, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - target: {fileID: 8467364967643462823, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: currentHealth
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 8467364967643463504, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: m_Name
-      value: Bandit1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8467364967643463512, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: unitName
-      value: Bandit (lvl 1)
+      value: VillagerWarrior
       objectReference: {fileID: 0}
     - target: {fileID: 8467364967643463516, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: m_RootOrder
@@ -105,14 +113,3 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
---- !u!114 &3646252368021214176 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3477236697314793782, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-  m_PrefabInstance: {fileID: 205959897931729622}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1f772b992dc4a54a912a68ae5cc713a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
