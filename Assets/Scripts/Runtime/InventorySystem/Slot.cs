@@ -13,7 +13,8 @@ public enum TransferResult
     NoFreeSpace = 5,
     CantSwap = 6,
     CurrentAndTargetAreSame = 7,
-    Undefined = 7,
+    ItemIsNull = 8,
+    Undefined = 9,
 }
 
 [Serializable]

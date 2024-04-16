@@ -68,6 +68,15 @@ public class HumanoidInventoryContainer : ContainerBase
         InitAllSlots();
     }
 
+    private void Start()
+    {
+        if (!mainWeaponSlot.IsEmpty)
+            EquipMainWeapon();
+
+        if (!secondaryWeaponSlot.IsEmpty)
+            EquipSecondaryWeapon();
+    }
+
     void OnEnable()
     {
         mainWeaponSlot.inserted += EquipMainWeapon;
@@ -82,8 +91,8 @@ public class HumanoidInventoryContainer : ContainerBase
         mainWeaponSlot.inserted -= EquipMainWeapon;
         secondaryWeaponSlot.inserted -= EquipSecondaryWeapon;
 
-        mainWeaponSlot.removed += UnEquipMainWeapon;
-        secondaryWeaponSlot.removed += UnEquipSecondaryWeapon;
+        mainWeaponSlot.removed -= UnEquipMainWeapon;
+        secondaryWeaponSlot.removed -= UnEquipSecondaryWeapon;
     }
 
     public bool TryPickUpItem(Item item)
@@ -260,6 +269,8 @@ public class HumanoidInventoryContainer : ContainerBase
         var item = Instantiate(itemsStack.Item, eqpuipmentPosition);
         item.transform.rotation = eqpuipmentPosition.rotation;
         item.GetComponent<Equipment>().SetItemEquiped(true);
+        Destroy(item.GetComponent<PrefabRef>());
+        Destroy(item.GetComponent<UniqueId>());
 
         var meleeWeapon = item.GetComponentInChildren<MeleeWeapon>();
         if (meleeWeapon)
@@ -351,5 +362,13 @@ public class HumanoidInventoryContainer : ContainerBase
         {
             slot.SubscribeItemsNumberUpdateEvent();
         }
+    }
+
+    public override bool IsEmpty()
+    {
+        return mainWeaponSlot.IsEmpty &&
+               secondaryWeaponSlot.IsEmpty &&
+               quickSlots.IsEmpty && 
+               BackpackSlots.IsEmpty;
     }
 }

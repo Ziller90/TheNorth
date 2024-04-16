@@ -13,8 +13,8 @@ enum HighlightState
 }
 public class InteractableObjectView : MonoBehaviour
 {
-    [SerializeField] List<MeshRenderer> meshRenderers;
-    [SerializeField] List<SkinnedMeshRenderer> skinnedMeshRenderers;
+    [SerializeField] List<MeshRenderer> meshRenderers = new();
+    [SerializeField] List<SkinnedMeshRenderer> skinnedMeshRenderers = new();
     [SerializeField] InteractableObject interactableObject;
 
     AnimationCurve highlightCurve; 
@@ -40,14 +40,22 @@ public class InteractableObjectView : MonoBehaviour
         defaultEmissionColor = new Color32(0, 0, 0, 0);
     }
 
+    public void SetInteractableObject(InteractableObject interactableObject)
+    {
+        this.interactableObject = interactableObject;
+        this.interactableObject.updateSelectionStateEvent += SetHighlighted;
+    }
+
     void OnEnable()
     {
-        interactableObject.updateSelectionStateEvent += SetHighlighted;
+        if (interactableObject)
+            interactableObject.updateSelectionStateEvent += SetHighlighted;
     }
 
     void OnDisable()
     {
-        interactableObject.updateSelectionStateEvent -= SetHighlighted;
+        if (interactableObject)
+            interactableObject.updateSelectionStateEvent -= SetHighlighted;
     }
 
     [ContextMenu("Find Object's MeshRenderers")]

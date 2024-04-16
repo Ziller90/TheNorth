@@ -11,9 +11,16 @@ public class Unit : MonoBehaviour
     [SerializeField] AudioSource deathAudioSource;
     [SerializeField] string unitName;
 
+    [SerializeField] GameObject unitBodyView;
+    [SerializeField] HumanoidInventoryContainer inventoryContainer;
+
     Health health;
     Rigidbody rigidbody;
+    SimpleContainer deadBodyContainer;
 
+    public SimpleContainer DeadBodyContainer => deadBodyContainer;
+    public bool IsDead { get; private set; }
+    
     public string Name => unitName;
 
     void Start()
@@ -31,9 +38,42 @@ public class Unit : MonoBehaviour
         rigidbody.isKinematic = true;
         Destroy(healthBar);
         deathAudioSource.Play();
+        CreateDeadBodyContainer();
         foreach (Behaviour component in components)
         {
-            component.enabled = false;
+            Destroy(component);
         }
+        IsDead = true;
+    }
+
+    public void CreateDeadBodyContainer()
+    {
+        if (Game.GameSceneInitializer.Player == gameObject)
+            return; 
+
+        deadBodyContainer = unitBodyView.AddComponent<SimpleContainer>();
+        deadBodyContainer.InitializeSlotGroup(30);
+
+        var interactableObject = unitBodyView.AddComponent<InteractableObject>();
+        var interactableObjectView = unitBodyView.AddComponent<InteractableObjectView>();
+        interactableObjectView.FindObjectMeshRenderers();
+        interactableObjectView.SetInteractableObject(interactableObject);
+
+        var containerBody = unitBodyView.AddComponent<ContainerBody>();
+        containerBody.SetIsDisposable(true);    
+        containerBody.SetContainer(deadBodyContainer);
+        containerBody.SetDestroyOnDispose(false);
+        containerBody.SetComponentsToDeleteOnDispose(containerBody, interactableObject, interactableObjectView);
+
+        foreach (var slot in inventoryContainer.BackpackSlots.Slots)
+            ModelUtils.TryMoveFromSlotToSlotGroup(inventoryContainer, slot, deadBodyContainer, deadBodyContainer.SlotGroup);
+
+        foreach (var slot in inventoryContainer.QuickAccessSlots.Slots)
+            ModelUtils.TryMoveFromSlotToSlotGroup(inventoryContainer, slot, deadBodyContainer, deadBodyContainer.SlotGroup);
+
+        ModelUtils.TryMoveFromSlotToSlotGroup(inventoryContainer, inventoryContainer.MainWeaponSlot, deadBodyContainer, deadBodyContainer.SlotGroup);
+        ModelUtils.TryMoveFromSlotToSlotGroup(inventoryContainer, inventoryContainer.SecondaryWeaponSlot, deadBodyContainer, deadBodyContainer.SlotGroup);
+
+        Destroy(inventoryContainer);
     }
 }

@@ -3,13 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using SiegeUp.Core;
+using System.Linq;
 
 [Serializable]
 public class SlotGroup
 {
-    [AutoSerialize(1), SerializeField] List<AndItemTagList> suitableItemTags;
-    [AutoSerialize(2), SerializeField] List<Slot> slots;
+    [AutoSerialize(1), SerializeField] List<AndItemTagList> suitableItemTags = new();
+    [AutoSerialize(2), SerializeField] List<Slot> slots = new();
+
     public List<Slot> Slots => slots;
+    public bool IsEmpty => slots.All(i => i.IsEmpty);
+
+    public void InitializeSlotsGroup(int slotsNumber)
+    {
+        slots = new List<Slot>();
+        for (int i = 0; i < slotsNumber; i++)
+            slots.Add(new Slot());
+    }
 
     public bool CanAdd(ItemStack itemStack)
     {
@@ -29,6 +39,9 @@ public class SlotGroup
 
     public TransferResult TryAddOrMergeAndReturnResult(ItemStack itemStack)
     {
+        if (itemStack == null)
+            return TransferResult.ItemIsNull;
+
         if (!IsSuitableItemStackForGroup(itemStack))
             return TransferResult.NotSuitableItemStack;
 

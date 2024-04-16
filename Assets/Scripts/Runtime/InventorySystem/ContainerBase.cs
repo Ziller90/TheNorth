@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContainerBase : MonoBehaviour
+public abstract class ContainerBase : MonoBehaviour
 {
     public virtual bool CanAddItemStackInSlot(ItemStack itemStack, Slot slot)
     {
@@ -18,4 +18,6 @@ public class ContainerBase : MonoBehaviour
     {
         return true;
     }
+
+    public abstract bool IsEmpty();
 }
