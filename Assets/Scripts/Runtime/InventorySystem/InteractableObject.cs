@@ -15,12 +15,14 @@ public class InteractableObject : MonoBehaviour
         if (isInteractable)
         {
             isInteractableCached = true;
-            Game.ActorsAccessModel.RegisterInteractableObject(this);
+            if (Game.ActorsAccessModel)
+                Game.ActorsAccessModel.RegisterInteractableObject(this);
         }
         else if (!isInteractable)
         {
             isInteractableCached = false;
-            Game.ActorsAccessModel.RemoveInteractableOnLocation(this);
+            if (Game.ActorsAccessModel)
+                Game.ActorsAccessModel.RemoveInteractableOnLocation(this);
         }
     }
     public void SetHighlighted(bool highlighted)
@@ -40,6 +42,7 @@ public class InteractableObject : MonoBehaviour
 
     void OnDestroy()
     {
-        Game.ActorsAccessModel.RemoveInteractableOnLocation(this);
+        if (Game.ActorsAccessModel)
+            Game.ActorsAccessModel.RemoveInteractableOnLocation(this);
     }
 }

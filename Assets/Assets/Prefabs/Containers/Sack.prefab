@@ -306,6 +306,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 296723b48e16c2e4790a38a893bc9320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDisposableContainer: 1
+  destroyOnDispose: 1
+  container: {fileID: 390682515965362878}
+  interactableObject: {fileID: 4007669262056698384}
 --- !u!114 &4007669262056698384
 MonoBehaviour:
   m_ObjectHideFlags: 0

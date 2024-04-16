@@ -15,11 +15,16 @@ public class Health : MonoBehaviour
 
     public event Action dieEvent;
 
+    bool isDead = false;
+
     public void GetDamage(float damage)
     {
         currentHealth -= damage;
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !isDead)
+        {
             dieEvent();
+            isDead = true;
+        }
     }
     public void Heal(float hp)
     {

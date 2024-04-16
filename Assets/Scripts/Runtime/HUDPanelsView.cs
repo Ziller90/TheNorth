@@ -32,16 +32,22 @@ public class HUDPanelsView : MonoBehaviour
 
     void OnEnable()
     {
-        Game.ActorsAccessModel.unitRegisterd -= OnUnitRegistered;
-        Game.ActorsAccessModel.unitRegisterd += OnUnitRegistered;
-        Game.ActorsAccessModel.unitUnregisterd -= OnUnitUnregistered;
-        Game.ActorsAccessModel.unitUnregisterd += OnUnitUnregistered;
+        if (Game.ActorsAccessModel)
+        {
+            Game.ActorsAccessModel.unitRegisterd -= OnUnitRegistered;
+            Game.ActorsAccessModel.unitRegisterd += OnUnitRegistered;
+            Game.ActorsAccessModel.unitUnregisterd -= OnUnitUnregistered;
+            Game.ActorsAccessModel.unitUnregisterd += OnUnitUnregistered;
+        }
     }
 
     void OnDisable()
     {
-        Game.ActorsAccessModel.unitRegisterd -= OnUnitRegistered;
-        Game.ActorsAccessModel.unitRegisterd -= OnUnitUnregistered;
+        if (Game.ActorsAccessModel)
+        {
+            Game.ActorsAccessModel.unitRegisterd -= OnUnitRegistered;
+            Game.ActorsAccessModel.unitRegisterd -= OnUnitUnregistered;
+        }
     }
 
     Vector2 CalculateCanvasPosition(HUDPanel hudPanel)

@@ -28,28 +28,31 @@ public class MeleeWeapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (isCuttingAnimation)
+        if (!isCuttingAnimation) 
+            return;
+
+        ShieldBlock shieldBlock = other.gameObject.GetComponent<ShieldBlock>();
+        if (shieldBlock != null)
         {
-            if (other.gameObject.GetComponent<ShieldBlock>())
+            if (shieldBlock.IsBlocking)
             {
-                if (other.gameObject.GetComponent<ShieldBlock>().IsBlocking == true)
-                {
-                    isCuttingAnimation = false;
-                    meleeWeaponSounds.PlayHitObjectSound();
-                }
-            }
-            else if (other.gameObject.GetComponent<HitBox>())
-            {
-                if (other.gameObject.GetComponent<HitBox>().Unit != hostUnit)
-                {
-                    meleeWeaponSounds.PlayHitCharacterSound();
-                    other.gameObject.GetComponent<HitBox>().HitBoxGetDamage(baseDamage, hostUnit.position);
-                }
-            }
-            else
-            {
+                isCuttingAnimation = false;
                 meleeWeaponSounds.PlayHitObjectSound();
             }
+            return;
         }
+
+        HitBox hitBox = other.gameObject.GetComponent<HitBox>();
+        if (hitBox != null)
+        {
+            if (hitBox.Unit && hitBox.Unit != hostUnit)
+            {
+                meleeWeaponSounds.PlayHitCharacterSound();
+                hitBox.HitBoxGetDamage(baseDamage, hostUnit.position);
+            }
+            return;
+        }
+
+        meleeWeaponSounds.PlayHitObjectSound();
     }
 }

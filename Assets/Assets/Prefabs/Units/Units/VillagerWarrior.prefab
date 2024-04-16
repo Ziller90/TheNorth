@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: VillagerWarrior
       objectReference: {fileID: 0}
+    - target: {fileID: 8467364967643463512, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: unitBodyView
+      value: 
+      objectReference: {fileID: 2301833630177755161}
     - target: {fileID: 8467364967643463516, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -113,3 +117,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+--- !u!1 &2301833630177755161 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7377141425537907222, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+  m_PrefabInstance: {fileID: 8759816250383301135}
+  m_PrefabAsset: {fileID: 0}

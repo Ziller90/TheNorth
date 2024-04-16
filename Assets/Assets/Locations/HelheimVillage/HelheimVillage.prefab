@@ -5676,6 +5676,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5566127167431171904, guid: 315fd52b56f79ea4ea5538583bc903ef, type: 3}
+      propertyPath: managedReferences[7391007673639763997]
+      value: TheNorth ItemStack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566127167431171904, guid: 315fd52b56f79ea4ea5538583bc903ef, type: 3}
+      propertyPath: slotGroup.slots.Array.data[0].itemStack
+      value: 7391007673639763997
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566127167431171904, guid: 315fd52b56f79ea4ea5538583bc903ef, type: 3}
+      propertyPath: managedReferences[7391007673639763997].itemPrefab
+      value: 
+      objectReference: {fileID: 8099181334612499041, guid: 7d49bf3d73b7ba04ab3d7011866ac908, type: 3}
+    - target: {fileID: 5566127167431171904, guid: 315fd52b56f79ea4ea5538583bc903ef, type: 3}
+      propertyPath: managedReferences[7391007673639763997].itemsNumber
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8973,8 +8989,20 @@ PrefabInstance:
       value: TheNorth ItemStack
       objectReference: {fileID: 0}
     - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639764002]
+      value: TheNorth ItemStack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639764006]
+      value: TheNorth ItemStack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: backpackSlots.slots.Array.data[0].itemStack
-      value: -2
+      value: 7391007673639764002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: backpackSlots.slots.Array.data[1].itemStack
+      value: 7391007673639764006
       objectReference: {fileID: 0}
     - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: managedReferences[7391007534671724650].itemPrefab
@@ -8985,12 +9013,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639764002].itemPrefab
+      value: 
+      objectReference: {fileID: 1351122430625889217, guid: 4ad4417217fdfef44b8f79d97b36d3eb, type: 3}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639764006].itemPrefab
+      value: 
+      objectReference: {fileID: 1005532749259639257, guid: 94c54401a5b2d45458a02283fecd6e32, type: 3}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: managedReferences[7391007534671724650].itemsNumber
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: managedReferences[7391007632075784236].itemsNumber
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639764002].itemsNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639764006].itemsNumber
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7024146721678535939, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -11202,8 +11246,20 @@ PrefabInstance:
       value: TheNorth ItemStack
       objectReference: {fileID: 0}
     - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639763999]
+      value: TheNorth ItemStack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639764003]
+      value: TheNorth ItemStack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: backpackSlots.slots.Array.data[0].itemStack
-      value: -2
+      value: 7391007673639763999
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: backpackSlots.slots.Array.data[1].itemStack
+      value: 7391007673639764003
       objectReference: {fileID: 0}
     - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: managedReferences[7391007534671724651].itemPrefab
@@ -11214,12 +11270,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639763999].itemPrefab
+      value: 
+      objectReference: {fileID: 1351122430625889217, guid: 4ad4417217fdfef44b8f79d97b36d3eb, type: 3}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639764003].itemPrefab
+      value: 
+      objectReference: {fileID: 1005532749259639257, guid: 94c54401a5b2d45458a02283fecd6e32, type: 3}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: managedReferences[7391007534671724651].itemsNumber
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: managedReferences[7391007632075784238].itemsNumber
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639763999].itemsNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639764003].itemsNumber
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7024146721678535939, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -14024,8 +14096,20 @@ PrefabInstance:
       value: TheNorth ItemStack
       objectReference: {fileID: 0}
     - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639764001]
+      value: TheNorth ItemStack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639764005]
+      value: TheNorth ItemStack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: backpackSlots.slots.Array.data[0].itemStack
-      value: -2
+      value: 7391007673639764001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: backpackSlots.slots.Array.data[1].itemStack
+      value: 7391007673639764005
       objectReference: {fileID: 0}
     - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: managedReferences[7391007534671724651].itemPrefab
@@ -14036,12 +14120,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639764001].itemPrefab
+      value: 
+      objectReference: {fileID: 1351122430625889217, guid: 4ad4417217fdfef44b8f79d97b36d3eb, type: 3}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639764005].itemPrefab
+      value: 
+      objectReference: {fileID: 1005532749259639257, guid: 94c54401a5b2d45458a02283fecd6e32, type: 3}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: managedReferences[7391007534671724651].itemsNumber
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: managedReferences[7391007632075784238].itemsNumber
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639764001].itemsNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639764005].itemsNumber
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7024146721678535939, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -16311,8 +16411,20 @@ PrefabInstance:
       value: TheNorth ItemStack
       objectReference: {fileID: 0}
     - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639764000]
+      value: TheNorth ItemStack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639764004]
+      value: TheNorth ItemStack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: backpackSlots.slots.Array.data[0].itemStack
-      value: -2
+      value: 7391007673639764000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: backpackSlots.slots.Array.data[1].itemStack
+      value: 7391007673639764004
       objectReference: {fileID: 0}
     - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: managedReferences[7391007534671724650].itemPrefab
@@ -16323,12 +16435,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639764000].itemPrefab
+      value: 
+      objectReference: {fileID: 1351122430625889217, guid: 4ad4417217fdfef44b8f79d97b36d3eb, type: 3}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639764004].itemPrefab
+      value: 
+      objectReference: {fileID: 1005532749259639257, guid: 94c54401a5b2d45458a02283fecd6e32, type: 3}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: managedReferences[7391007534671724650].itemsNumber
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: managedReferences[7391007632075784236].itemsNumber
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639764000].itemsNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[7391007673639764004].itemsNumber
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7024146721678535939, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: m_ConnectedAnchor.x

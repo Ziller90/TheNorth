@@ -189,7 +189,7 @@ public class ModelUtils : MonoBehaviour
 
     public static bool IsSuitableItemStack(ItemStack itemStack, List<AndItemTagList> suitableItemTags)
     {
-        if (suitableItemTags.Count != 0)
+        if (suitableItemTags != null && suitableItemTags.Count != 0)
         {
             foreach (var andtagList in suitableItemTags)
             {

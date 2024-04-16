@@ -20,6 +20,15 @@ public class InteractablesLocator : MonoBehaviour
         actionManager.onInteractPressed += Interact;
     }
 
+    void OnDisable()
+    {
+        if (nearestInteractable)
+        {
+            nearestInteractable.SetHighlighted(false);
+            nearestInteractable = null;
+        }
+    }
+
     public void SetActionManager(ActionManager actionManager)
     {
         this.actionManager = actionManager;
@@ -51,6 +60,7 @@ public class InteractablesLocator : MonoBehaviour
             nearestInteractable = newNearestInteractable;
         }
     }
+
     public void Interact()
     {
         if (nearestInteractable)
