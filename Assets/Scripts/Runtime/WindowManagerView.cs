@@ -11,7 +11,7 @@ public class WindowManagerView : MonoBehaviour
     Dictionary<int, WindowView> windowMap = new();
     int lastWindowId = 1;
 
-    public GameObject ShowWindow(GameObject prefab, MonoBehaviour presentation, bool hideMobileInterface)
+    public GameObject ShowWindow(GameObject prefab, MonoBehaviour presentation, bool hideMobileInterface, bool hidePreviousWindow)
     {
         var windowObject = Instantiate(prefab, windowsContainer.transform);
 
@@ -22,7 +22,7 @@ public class WindowManagerView : MonoBehaviour
 
         newWindowView.SetId(newWindowId);
         newWindowView.HidesMobileInterface = hideMobileInterface;
-        mobileInterface.SetActive(!hideMobileInterface);
+        newWindowView.HidePreviouseWindow = hidePreviousWindow;
 
         try
         {
@@ -35,19 +35,30 @@ public class WindowManagerView : MonoBehaviour
 
         windowMap.Add(newWindowId, newWindowView);
         lastWindowId = newWindowId;
-        Debug.Log("Window " + newWindowId + " opened");
+
+        if (windowMap.ContainsKey(lastWindowId - 1))
+            windowMap[lastWindowId - 1].gameObject.SetActive(!hidePreviousWindow);
+
+        mobileInterface.SetActive(!hideMobileInterface);
 
         return windowObject;
     }
 
     public void HideWindow(int id)
     {
-        if (!windowMap.TryGetValue(id, out WindowView windowView))
-            return;
-        Debug.Log("Window " + id + " closed");
-        windowMap.Remove(id);
+        windowMap.TryGetValue(id, out WindowView windowView);
 
-        if (windowMap.Count == 0 || windowMap.All(i => i.Value.HidesMobileInterface == false))
+        if (!windowView)
+            return;
+
+        if (windowView.HidePreviouseWindow && windowMap.ContainsKey(id - 1))
+            windowMap[id - 1].gameObject.SetActive(true);
+
+        windowMap.Remove(id);
+        if (id == lastWindowId)
+            lastWindowId = id - 1;
+
+        if (windowMap.Count == 0 || windowMap.All(i => i.Value.HidesMobileInterface == false)) 
             mobileInterface.SetActive(true);
 
         Destroy(windowView.gameObject);

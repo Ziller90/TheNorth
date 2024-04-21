@@ -402,6 +402,7 @@ MonoBehaviour:
   windowPrefab: {fileID: 773028818943157956, guid: fe0176d8afa60864caf321290be288dd, type: 3}
   presentation: {fileID: 185453667}
   hideMobileInterface: 1
+  hidePreviousWindow: 0
 --- !u!114 &185453667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -841,6 +842,7 @@ MonoBehaviour:
   windowPrefab: {fileID: 3380745121464893052, guid: 337c4eb377c4dad4488e5260b0e59fb8, type: 3}
   presentation: {fileID: 814717073}
   hideMobileInterface: 1
+  hidePreviousWindow: 0
 --- !u!1 &853403238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,6 +1076,7 @@ MonoBehaviour:
   windowPrefab: {fileID: 3859453319378071563, guid: 669eaaa74cb21384f99bc37498494c03, type: 3}
   presentation: {fileID: 978402765}
   hideMobileInterface: 1
+  hidePreviousWindow: 0
 --- !u!1 &1082305739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,6 +1125,49 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1920056295}
   m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1285027190
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1285027192}
+  - component: {fileID: 1285027191}
+  m_Layer: 0
+  m_Name: Occlusion Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!192 &1285027191
+OcclusionArea:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285027190}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+  m_IsViewVolume: 0
+--- !u!4 &1285027192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285027190}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1285848805
 GameObject:
@@ -1517,6 +1563,7 @@ MonoBehaviour:
   windowPrefab: {fileID: 3380745121464893052, guid: fb1b29caa10198e41ad12be7fc205008, type: 3}
   presentation: {fileID: 1750539630}
   hideMobileInterface: 1
+  hidePreviousWindow: 0
 --- !u!114 &1750539630
 MonoBehaviour:
   m_ObjectHideFlags: 0
