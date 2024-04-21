@@ -15,4 +15,8 @@ public class PauseMenuWindowView : WindowView
         presentation.ClosePauseMenuButton();
         base.HideWindow();
     }
+
+    public void MainMenuButton() => presentation.GoToMainMenu();
+    public void SaveGameButton() => presentation.OpenSaveGameMenu();
+    public void LoadGameButton() => presentation.OpenLoadGameMenu();
 }

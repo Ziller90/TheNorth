@@ -9,6 +9,7 @@ public class WindowView : MonoBehaviour
     int id;
 
     public bool HidesMobileInterface { get; set; }
+    public bool HidePreviouseWindow { get; set; }
 
     public void SetId(int id)
     {
