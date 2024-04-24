@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d285eb63c2cdd74180de7cfceaa96ad, type: 3}
   m_Name: HagalarShedule
   m_EditorClassIdentifier: 
+  id: e33baf2bd79d89c46a0f049a72c8e3e1
   rootNode:
     rid: 6376314728265548052
   nodes:
@@ -39,12 +40,12 @@ MonoBehaviour:
   treeState: 0
   blackboard:
     keys:
-    - rid: 6376314728265548054
-    - rid: 7391007517018685443
-    - rid: 7391007517018685444
     - rid: 7391007534671724576
-  viewPosition: {x: -606.4, y: -4, z: 0}
-  viewScale: {x: 0.49717674, y: 0.49717674, z: 1}
+    - rid: 7391007832509513761
+    - rid: 7391007832509513762
+    - rid: 7391007832509513763
+  viewPosition: {x: 290.4, y: -9.6, z: 0}
+  viewScale: {x: 0.375937, y: 0.375937, z: 1}
   references:
     version: 2
     RefIds:
@@ -61,24 +62,6 @@ MonoBehaviour:
         drawGizmos: 0
         child:
           rid: 7391007534671724580
-    - rid: 6376314728265548054
-      type: {class: UnitBlackboardTypes/RouteKey, ns: , asm: TheNorth}
-      data:
-        name: RouteToBonfire
-        typeName: Route, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        value: {fileID: 0}
-    - rid: 7391007517018685443
-      type: {class: UnitBlackboardTypes/RouteKey, ns: , asm: TheNorth}
-      data:
-        name: RouteToTree
-        typeName: Route, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        value: {fileID: 0}
-    - rid: 7391007517018685444
-      type: {class: UnitBlackboardTypes/RouteKey, ns: , asm: TheNorth}
-      data:
-        name: RouteToHome
-        typeName: Route, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        value: {fileID: 0}
     - rid: 7391007517018685446
       type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -106,7 +89,7 @@ MonoBehaviour:
         drawGizmos: 0
         route:
           reference:
-            rid: 6376314728265548054
+            rid: 7391007832509513761
           defaultValue: {fileID: 0}
         movingMode: 1
     - rid: 7391007534671724576
@@ -247,7 +230,7 @@ MonoBehaviour:
         drawGizmos: 0
         route:
           reference:
-            rid: 7391007517018685443
+            rid: 7391007832509513762
           defaultValue: {fileID: 0}
         movingMode: 1
     - rid: 7391007534671724612
@@ -373,7 +356,7 @@ MonoBehaviour:
         drawGizmos: 0
         route:
           reference:
-            rid: 7391007517018685444
+            rid: 7391007832509513763
           defaultValue: {fileID: 0}
         movingMode: 1
     - rid: 7391007534671724627
@@ -409,3 +392,21 @@ MonoBehaviour:
           keys: []
         description: 
         drawGizmos: 0
+    - rid: 7391007832509513761
+      type: {class: UnitRouteKey, ns: , asm: TheNorth}
+      data:
+        name: RouteToBonfire1
+        typeName: Route, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        value: {fileID: 0}
+    - rid: 7391007832509513762
+      type: {class: UnitRouteKey, ns: , asm: TheNorth}
+      data:
+        name: RouteToTree1
+        typeName: Route, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        value: {fileID: 0}
+    - rid: 7391007832509513763
+      type: {class: UnitRouteKey, ns: , asm: TheNorth}
+      data:
+        name: RouteToHome1
+        typeName: Route, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        value: {fileID: 0}
