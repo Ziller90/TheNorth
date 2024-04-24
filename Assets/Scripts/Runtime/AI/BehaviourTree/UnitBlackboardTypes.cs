@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TheKiwiCoder;
+using SiegeUp.Core;
 
-public class UnitBlackboardTypes : MonoBehaviour
+[System.Serializable]
+public class UnitRangeKey : BlackboardKey<Range>
 {
-    [System.Serializable]
-    public class RangeKey : BlackboardKey<Range> { }
+    [AutoSerialize(3)] public Range serializedValue;
+}
 
-    [System.Serializable]
-    public class RouteKey : BlackboardKey<Route> { }
+[System.Serializable]
+public class UnitRouteKey : BlackboardKey<Route>
+{
+    [AutoSerialize(3)] public Route serializedValue;
 }

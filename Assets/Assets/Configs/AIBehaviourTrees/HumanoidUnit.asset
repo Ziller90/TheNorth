@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d285eb63c2cdd74180de7cfceaa96ad, type: 3}
   m_Name: HumanoidUnit
   m_EditorClassIdentifier: 
+  id: 0ec28883671e7614c9d36646a9504847
   rootNode:
     rid: 6376314615936319498
   nodes:
@@ -54,12 +55,11 @@ MonoBehaviour:
     keys:
     - rid: 6376314715069743104
     - rid: 6376314724963844103
-    - rid: 6376314724963844127
-    - rid: 6376314724963844136
-    - rid: 6376314724963844154
+    - rid: 7391007832509513759
     - rid: 6376314728265548056
-  viewPosition: {x: -1076, y: -455.2, z: 0}
-  viewScale: {x: 1, y: 1, z: 1}
+    - rid: 7391007832509513760
+  viewPosition: {x: 734.4, y: 80.8, z: 0}
+  viewScale: {x: 0.375937, y: 0.375937, z: 1}
   references:
     version: 2
     RefIds:
@@ -356,16 +356,10 @@ MonoBehaviour:
           defaultValue: {x: 0, y: 0, z: 0}
         routeToSave:
           reference:
-            rid: 6376314724963844127
+            rid: 7391007832509513759
           defaultValue: {fileID: 0}
         routeRadius: 12
         cornersNumber: 12
-    - rid: 6376314724963844127
-      type: {class: UnitBlackboardTypes/RouteKey, ns: , asm: TheNorth}
-      data:
-        name: SearchingRoute
-        typeName: Route, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        value: {fileID: 0}
     - rid: 6376314724963844130
       type: {class: PatrolRoute, ns: , asm: TheNorth}
       data:
@@ -379,7 +373,7 @@ MonoBehaviour:
         drawGizmos: 0
         route:
           reference:
-            rid: 6376314724963844127
+            rid: 7391007832509513759
           defaultValue: {fileID: 0}
         movingMode: 1
     - rid: 6376314724963844134
@@ -513,14 +507,8 @@ MonoBehaviour:
           defaultValue: {fileID: 0}
         range:
           reference:
-            rid: 6376314724963844154
+            rid: 7391007832509513760
           defaultValue: {fileID: 0}
-    - rid: 6376314724963844154
-      type: {class: UnitBlackboardTypes/RangeKey, ns: , asm: TheNorth}
-      data:
-        name: MeleeAttackRange
-        typeName: Range, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        value: {fileID: 0}
     - rid: 6376314724963844156
       type: {class: UseItemInHand, ns: , asm: TheNorth}
       data:
@@ -571,7 +559,7 @@ MonoBehaviour:
         chasingMovingMode: 0
         rangeToStop:
           reference:
-            rid: 6376314724963844154
+            rid: 7391007832509513760
           defaultValue: {fileID: 0}
         radiusToStop:
           reference:
@@ -599,7 +587,7 @@ MonoBehaviour:
         movingMode: 0
         rangeToStop:
           reference:
-            rid: -2
+            rid: 7391007832509513760
           defaultValue: {fileID: 0}
         radiusToStop:
           reference:
@@ -663,3 +651,15 @@ MonoBehaviour:
         typeName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null
         value: {x: 0, y: 0, z: 0}
+    - rid: 7391007832509513759
+      type: {class: UnitRouteKey, ns: , asm: TheNorth}
+      data:
+        name: SearchingRoute1
+        typeName: Route, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        value: {fileID: 0}
+    - rid: 7391007832509513760
+      type: {class: UnitRangeKey, ns: , asm: TheNorth}
+      data:
+        name: MeleeAttackRange1
+        typeName: Range, TheNorth, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        value: {fileID: 0}

@@ -4,7 +4,6 @@ using UnityEngine;
 using System.Diagnostics;
 using SiegeUp.Core;
 
-[DebuggerStepThrough]
 public static class Game
 {
     public static ActorsAccessModel ActorsAccessModel => Service<ActorsAccessModel>.Instance;
@@ -14,6 +13,7 @@ public static class Game
     public static GameSceneInitializer GameSceneInitializer => Service<GameSceneInitializer>.Instance;
     public static SavingService SavingService => Service<SavingService>.Instance;
     public static PrefabManager PrefabManager => Service<PrefabManager>.Instance;   
+    public static ScriptableObjectManager ScriptableObjectManager => Service<ScriptableObjectManager>.Instance;   
     public static GlobalConfig GlobalConfig => Service<GlobalConfig>.Instance;   
     public static WindowManagerView WindowManagerView => Service<WindowManagerView>.Instance;   
     public static FactionsConfig FactionsConfig => Service<FactionsConfig>.Instance;   
