@@ -538,7 +538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d89129e72bd53f4f929a5f517c0b310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testLocationToLoad: {fileID: 6101001397983312940, guid: 39801f3c188ad52409ec940b1ec5ddb4, type: 3}
+  testLocationToLoad: {fileID: 1060212454949874463, guid: ffddd479ccd7b9b4fb8db2e6e4c719db, type: 3}
 --- !u!4 &554902164
 Transform:
   m_ObjectHideFlags: 0
@@ -1104,11 +1104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3519179facf59894d84ea7ca004aaa0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sun: {fileID: 576723545}
-  Moon: {fileID: 1285848807}
-  Preset: {fileID: 11400000, guid: b78242a6fd3c337429400614c5dfb88b, type: 2}
+  sun: {fileID: 576723545}
+  moon: {fileID: 1285848807}
+  preset: {fileID: 11400000, guid: b78242a6fd3c337429400614c5dfb88b, type: 2}
   gameTime: {fileID: 1923090738}
-  isPlayerIndoors: 0
 --- !u!4 &1082305741
 Transform:
   m_ObjectHideFlags: 0

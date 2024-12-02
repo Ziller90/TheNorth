@@ -3,55 +3,48 @@ using UnityEngine;
 [ExecuteAlways]
 public class LightingManager : MonoBehaviour
 {
-    [SerializeField] Light Sun;
-    [SerializeField] Light Moon;
-    [SerializeField] LightingPreset Preset;
+    [SerializeField] Light sun;
+    [SerializeField] Light moon;
+    [SerializeField] LightingPreset preset;
     [SerializeField] GameTime gameTime;
 
     void Update()
     {
-        if (Preset == null)
-            return;
-
-        if (Application.isPlaying)
-            UpdateLighting(gameTime.TimeOfDay / 24f);
-        else
+        if (preset)
             UpdateLighting(gameTime.TimeOfDay / 24f);
     }
 
-    public void SetPlayerInDoors(bool indoors)
+    public void SetLightingPreset(LightingPreset newPreset)
     {
-        Sun.gameObject.SetActive(!indoors);
-        Moon.gameObject.SetActive(!indoors);
+        preset = newPreset; 
     }
-
 
     private void UpdateLighting(float timePercent)
     {
-        RenderSettings.ambientLight = Preset.AmbientColor.Evaluate(timePercent);
-        RenderSettings.fogColor = Preset.FogColor.Evaluate(timePercent);
+        RenderSettings.ambientLight = preset.AmbientColor.Evaluate(timePercent);
+        RenderSettings.fogColor = preset.FogColor.Evaluate(timePercent);
 
-        if (Sun != null)
+        if (sun != null)
         {
-            Sun.color = Preset.SunLightColor.Evaluate(timePercent);
-            Moon.color = Preset.MoonLightColor.Evaluate(timePercent);
+            sun.color = preset.SunLightColor.Evaluate(timePercent);
+            moon.color = preset.MoonLightColor.Evaluate(timePercent);
 
-            Sun.intensity = Preset.SunLightIntensityCurve.Evaluate(timePercent);
-            Moon.intensity = Preset.MoonLightIntensityCurve.Evaluate(timePercent);
+            sun.intensity = preset.SunLightIntensityCurve.Evaluate(timePercent);
+            moon.intensity = preset.MoonLightIntensityCurve.Evaluate(timePercent);
 
-            Sun.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 170f, 0));
-            Moon.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) + 91f, 170f, 0));
+            sun.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 170f, 0));
+            moon.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) + 91f, 170f, 0));
         }
     }
 
     private void OnValidate()
     {
-        if (Sun != null)
+        if (sun != null)
             return;
 
         if (RenderSettings.sun != null)
         {
-            Sun = RenderSettings.sun;
+            sun = RenderSettings.sun;
         }
         else
         {
@@ -60,7 +53,7 @@ public class LightingManager : MonoBehaviour
             {
                 if (light.type == LightType.Directional)
                 {
-                    Sun = light;
+                    sun = light;
                     return;
                 }
             }

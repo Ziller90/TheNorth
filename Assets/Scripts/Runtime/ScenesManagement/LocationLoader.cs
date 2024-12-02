@@ -31,7 +31,7 @@ public class LocationLoader : MonoBehaviour
     public LocationModel LoadLocation(GameObject locationPrefab)
     {
         var loadedLocation = Instantiate(locationPrefab, gameObject.transform).GetComponent<LocationModel>();
-        Game.LightingManager.SetPlayerInDoors(loadedLocation.IsIndoorsSpawnPoint);
+        Game.LightingManager.SetLightingPreset(loadedLocation.LightingPreset);
         return loadedLocation;  
     }
 }
