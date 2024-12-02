@@ -14,11 +14,11 @@ public class LocationLoader : MonoBehaviour
         LocationModel location;
         if (GameSceneLauncher.LocationToLoad != null)
         {
-            location = Instantiate(GameSceneLauncher.LocationToLoad, gameObject.transform).GetComponent<LocationModel>();
+            location = LoadLocation(GameSceneLauncher.LocationToLoad);
         }
         else if (testLocationToLoad != null)
         {
-            location = Instantiate(testLocationToLoad, gameObject.transform).GetComponent<LocationModel>();
+            location = LoadLocation(testLocationToLoad);
         }
         else
         {
@@ -26,5 +26,12 @@ public class LocationLoader : MonoBehaviour
             return;
         }
         loadedLocationModel = location;
+    }
+
+    public LocationModel LoadLocation(GameObject locationPrefab)
+    {
+        var loadedLocation = Instantiate(locationPrefab, gameObject.transform).GetComponent<LocationModel>();
+        Game.LightingManager.SetPlayerInDoors(loadedLocation.IsIndoorsSpawnPoint);
+        return loadedLocation;  
     }
 }

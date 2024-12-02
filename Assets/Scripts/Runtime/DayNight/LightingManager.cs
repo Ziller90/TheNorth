@@ -7,7 +7,6 @@ public class LightingManager : MonoBehaviour
     [SerializeField] Light Moon;
     [SerializeField] LightingPreset Preset;
     [SerializeField] GameTime gameTime;
-    [SerializeField] bool isPlayerIndoors;
 
     void Update()
     {
