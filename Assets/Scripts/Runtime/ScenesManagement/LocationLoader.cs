@@ -32,6 +32,10 @@ public class LocationLoader : MonoBehaviour
     {
         var loadedLocation = Instantiate(locationPrefab, gameObject.transform).GetComponent<LocationModel>();
         Game.LightingManager.SetLightingPreset(loadedLocation.LightingPreset);
+
+        if (loadedLocation.LocationDefaultTheme)
+            Game.MusicService.SetMusicTrack(loadedLocation.LocationDefaultTheme);
+
         return loadedLocation;  
     }
 }

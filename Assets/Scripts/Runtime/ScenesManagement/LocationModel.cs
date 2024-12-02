@@ -10,11 +10,13 @@ public class LocationModel : MonoBehaviour
     [SerializeField] string locationDescription;
     [SerializeField] int locationID;
     [SerializeField] LightingPreset lightingPreset;
+    [SerializeField] AudioClip locationDefaultTheme;
 
     public string Name => locationName;
     public string Description => locationDescription;
     public int LocationID => locationID;
     public LightingPreset LightingPreset => lightingPreset;
+    public AudioClip LocationDefaultTheme => locationDefaultTheme;
 
     public Transform GetRandomSpawnPoint()
     {

@@ -19,4 +19,5 @@ public static class Game
     public static FactionsConfig FactionsConfig => Service<FactionsConfig>.Instance;   
     public static DesktopControlService DesktopControlService => Service<DesktopControlService>.Instance;   
     public static MobileControlService MobileControlService => Service<MobileControlService>.Instance;   
+    public static MusicService MusicService => Service<MusicService>.Instance;   
 }

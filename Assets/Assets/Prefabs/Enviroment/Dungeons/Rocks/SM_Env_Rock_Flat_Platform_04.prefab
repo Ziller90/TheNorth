@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 403130}
   - component: {fileID: 3373744}
   - component: {fileID: 2304152}
-  - component: {fileID: -6792650641949434583}
+  - component: {fileID: 211025834825782051}
   m_Layer: 0
   m_Name: SM_Env_Rock_Flat_Platform_04
   m_TagString: Untagged
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &-6792650641949434583
-BoxCollider:
+--- !u!64 &211025834825782051
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,6 +102,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3.3103697, y: 6.0680156, z: 3.2769165}
-  m_Center: {x: 0.00000011920929, y: -2.6735747, z: 0}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 57c7a47ad25c516468d8484e15401aed, type: 3}
