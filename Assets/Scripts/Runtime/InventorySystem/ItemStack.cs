@@ -12,7 +12,7 @@ public class ItemStack
     [AutoSerialize(2), SerializeField] int itemsNumber;
 
     public PrefabRef ItemPrefab => itemPrefab;
-    public Item Item => Game.PrefabManager.GetPrefab(itemPrefab).GetComponent<Item>();
+    public Item Item => Game.PrefabManager.GetPrefab(itemPrefab).NullCheck()?.GetComponent<Item>();
     public Action itemsNumberUpdatedEvent;
 
     public int ItemsNumber

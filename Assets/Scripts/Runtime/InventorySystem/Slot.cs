@@ -32,7 +32,7 @@ public class Slot
 
     public ItemStack ItemStack => itemStack;
     public Sprite BlockSprite => blockSprite;
-    public bool IsEmpty => itemStack == null;
+    public bool IsEmpty => itemStack == null || itemStack.Item == null;
     public bool IsBlocked { get; set; }
 
     public delegate void SlotRemovedAction(ItemStack itemStack);

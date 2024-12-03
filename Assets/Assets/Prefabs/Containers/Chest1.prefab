@@ -31,6 +31,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444778129343031448}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -38,7 +39,6 @@ Transform:
   m_Children:
   - {fileID: 3691355276949330131}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &9217072118732097393
 Rigidbody:
@@ -121,6 +121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 296723b48e16c2e4790a38a893bc9320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDisposableContainer: 0
+  destroyOnDispose: 0
+  container: {fileID: 0}
+  componentsToDeleteOnDispose: []
 --- !u!114 &2803205373063058329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,7 +317,7 @@ GameObject:
   - component: {fileID: 3691355276950149259}
   - component: {fileID: 3691355276951632423}
   m_Layer: 0
-  m_Name: SM_Prop_Chest_04_Lid
+  m_Name: LidView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -326,13 +330,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3691355276949164155}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.3326118e-10, y: 0.3776827, z: -0.22792235}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3691355276949330131}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3691355276950149259
 MeshFilter:
@@ -398,7 +402,7 @@ GameObject:
   - component: {fileID: 5095150704466981743}
   - component: {fileID: 5803916188546506409}
   m_Layer: 0
-  m_Name: SM_Prop_Chest_04
+  m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -411,6 +415,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3691355276949189335}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
@@ -418,7 +423,6 @@ Transform:
   m_Children:
   - {fileID: 3691355276949453539}
   m_Father: {fileID: 6569447858279101971}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3691355276950223865
 MeshFilter:

@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d285eb63c2cdd74180de7cfceaa96ad, type: 3}
   m_Name: HumanoidUnit
   m_EditorClassIdentifier: 
-  id: 0ec28883671e7614c9d36646a9504847
   rootNode:
     rid: 6376314615936319498
   nodes:
@@ -58,8 +57,8 @@ MonoBehaviour:
     - rid: 7391007832509513759
     - rid: 6376314728265548056
     - rid: 7391007832509513760
-  viewPosition: {x: 47.2, y: -16.8, z: 0}
-  viewScale: {x: 0.49717674, y: 0.49717674, z: 1}
+  viewPosition: {x: 1284, y: -328, z: 0}
+  viewScale: {x: 0.7561437, y: 0.7561437, z: 1}
   references:
     version: 2
     RefIds:
@@ -177,7 +176,6 @@ MonoBehaviour:
         typeName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         value: {fileID: 0}
-        serializedValue: {fileID: 0}
     - rid: 6376314715069743128
       type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -307,7 +305,6 @@ MonoBehaviour:
         typeName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null
         value: {x: 0, y: 0, z: 0}
-        serializedValue: {x: 0, y: 0, z: 0}
     - rid: 6376314724963844108
       type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -412,7 +409,6 @@ MonoBehaviour:
         name: SearchTimer
         typeName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
         value: 0
-        serializedValue: 0
     - rid: 6376314724963844138
       type: {class: SetProperty, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -478,7 +474,6 @@ MonoBehaviour:
         name: 
         typeName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
         value: 0
-        serializedValue: 0
     - rid: 6376314724963844151
       type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -532,7 +527,6 @@ MonoBehaviour:
         typeName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         value: {fileID: 0}
-        serializedValue: {fileID: 0}
     - rid: 6376314728265547805
       type: {class: GameObjectKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -540,14 +534,12 @@ MonoBehaviour:
         typeName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         value: {fileID: 0}
-        serializedValue: {fileID: 0}
     - rid: 6376314728265547807
       type: {class: FloatKey, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
         name: 
         typeName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
         value: 30
-        serializedValue: 0
     - rid: 6376314728265548047
       type: {class: ChaseObject, ns: , asm: TheNorth}
       data:
@@ -635,7 +627,6 @@ MonoBehaviour:
         typeName: TheKiwiCoder.BehaviourTree, thekiwicoder.behaviourtreeeditor, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         value: {fileID: 0}
-        serializedValue: {fileID: 0}
     - rid: 7391007534671724601
       type: {class: SetProperty, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -659,7 +650,6 @@ MonoBehaviour:
         typeName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null
         value: {x: 0, y: 0, z: 0}
-        serializedValue: {x: 0, y: 0, z: 0}
     - rid: 7391007832509513759
       type: {class: UnitRouteKey, ns: , asm: TheNorth}
       data:

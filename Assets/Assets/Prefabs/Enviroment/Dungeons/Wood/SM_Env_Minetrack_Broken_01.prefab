@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 473918}
   - component: {fileID: 3328912}
   - component: {fileID: 2317694}
-  - component: {fileID: 5121358021629752128}
+  - component: {fileID: 6934036172712029713}
   m_Layer: 0
   m_Name: SM_Env_Minetrack_Broken_01
   m_TagString: Untagged
@@ -31,7 +31,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8083238408340837299}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3328912
@@ -84,8 +85,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5121358021629752128
-MeshCollider:
+--- !u!65 &6934036172712029713
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,7 +103,59 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 691fd385ff8985a4d825bc2be45381c2, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 2.1791086, y: 0.34958768, z: 4.969433}
+  m_Center: {x: -2.4856906, y: 0.15223572, z: 2.4847164}
+--- !u!1 &8883299171068250340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8083238408340837299}
+  - component: {fileID: 3349900371692150048}
+  m_Layer: 0
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8083238408340837299
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8883299171068250340}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.124583855, z: -0, w: 0.9922091}
+  m_LocalPosition: {x: -1.6, y: 0.09, z: 4.54}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 473918}
+  m_LocalEulerAnglesHint: {x: 0, y: 14.313, z: 0}
+--- !u!65 &3349900371692150048
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8883299171068250340}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.2, y: 0.14683062, z: 0.36843324}
+  m_Center: {x: 0, y: 0, z: 0}
