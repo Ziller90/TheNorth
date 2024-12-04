@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7377141425551460768, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300022, guid: a177b0e6ff26a894180468c168e802cc, type: 3}
+    - target: {fileID: 7377141425551460768, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 839690d6b6bc966419607805a17f31c7, type: 2}
     - target: {fileID: 8467364967643462823, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: maxHealth
       value: 300
@@ -64,10 +72,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: VillagerWarrior
       objectReference: {fileID: 0}
-    - target: {fileID: 8467364967643463512, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-      propertyPath: unitBodyView
-      value: 
-      objectReference: {fileID: 2301833630177755161}
     - target: {fileID: 8467364967643463516, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -117,8 +121,3 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
---- !u!1 &2301833630177755161 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7377141425537907222, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
-  m_PrefabInstance: {fileID: 8759816250383301135}
-  m_PrefabAsset: {fileID: 0}

@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: faction
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5133935866310861313, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300028, guid: a177b0e6ff26a894180468c168e802cc, type: 3}
+    - target: {fileID: 5133935866310861313, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 839690d6b6bc966419607805a17f31c7, type: 2}
     - target: {fileID: 6115228454438917361, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
       propertyPath: m_Name
       value: HumanoidPlayer
