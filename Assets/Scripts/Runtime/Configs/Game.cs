@@ -20,4 +20,6 @@ public static class Game
     public static DesktopControlService DesktopControlService => Service<DesktopControlService>.Instance;   
     public static MobileControlService MobileControlService => Service<MobileControlService>.Instance;   
     public static MusicService MusicService => Service<MusicService>.Instance;   
+    public static ButtonsSoundManager ButtonsSoundManager => Service<ButtonsSoundManager>.Instance;   
+    public static SoundService SoundService => Service<SoundService>.Instance;   
 }
