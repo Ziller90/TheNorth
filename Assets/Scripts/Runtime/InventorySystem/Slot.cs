@@ -27,6 +27,12 @@ public class AndItemTagList
 [Serializable]
 public class Slot
 {
+    public enum SlotType
+    {
+        MainWeaponSlot,
+        SecondaryWeaponSlot,
+    }
+
     [AutoSerialize(1), SerializeField] List<AndItemTagList> suitableItemTags;
     [AutoSerialize(2), SerializeReference, SubclassSelector] ItemStack itemStack = null;
 

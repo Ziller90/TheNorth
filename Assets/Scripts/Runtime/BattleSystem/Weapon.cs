@@ -6,11 +6,12 @@ using UnityEngine;
 public enum WeaponType
 {
     None = 0,
-    OneHanded = 1,
-    TwoHanded = 2,
-    Shield = 3,
-    Bow = 4,
-    ThrowingWeapon = 5
+    OneHanded = 10,
+    TwoHanded = 20,
+    Pickaxe = 21,
+    Shield = 30,
+    Bow = 40,
+    ThrowingWeapon = 50
 }
 
 public class Weapon : MonoBehaviour

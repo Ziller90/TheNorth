@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7305062578420371887, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: prefabId
-      value: 7959dfd448eaddc48994d4b49f10c19b
+      value: 80a39ff3e6ec19b4eb0d5dfca4f3f522
       objectReference: {fileID: 0}
     - target: {fileID: 7377141425537811310, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: m_IsActive
@@ -91,14 +91,22 @@ PrefabInstance:
     - target: {fileID: 7377141425551460768, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300066, guid: b69174d668ba02d44b14a084b217670a, type: 3}
+      objectReference: {fileID: 4300052, guid: b69174d668ba02d44b14a084b217670a, type: 3}
     - target: {fileID: 7377141425551460768, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7ac7f7ed4e4639c41b96b549364e3a9d, type: 2}
+    - target: {fileID: 8467364967643462823, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: maxHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467364967643462823, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
+      propertyPath: currentHealth
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 8467364967643463504, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: m_Name
-      value: Orc
+      value: Orc2
       objectReference: {fileID: 0}
     - target: {fileID: 8467364967643463512, guid: 274c7f9f7341a7941b984c7f845d4cdd, type: 3}
       propertyPath: unitName

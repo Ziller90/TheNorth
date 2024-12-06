@@ -5,6 +5,7 @@ using UnityEngine;
 
 public enum ItemTag
 {
+    Weapon,
     OneHanded,
     TwoHanded,
     HeadArmor,
@@ -30,7 +31,8 @@ public enum ItemTag
     Bow,
     Staff,
     Poison,
-    Book
+    Book,
+    MiningTool
 }
 
 public class Item : MonoBehaviour

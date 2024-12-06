@@ -189,6 +189,22 @@ public class HumanoidBattleSystem : MonoBehaviour
                     isPlayingAttackAnimation = true;
                 }
             }
+            else if (mainWeapon && mainWeapon.Type == WeaponType.Pickaxe)
+            {
+                var random = Random.Range(0, 2);
+                if (random == 0)
+                {
+                    humanAnimator.CrossFadeInFixedTime("Pickaxe_1", 0.20f, 0);
+                    randomAttackIndex = 1;
+                    isPlayingAttackAnimation = true;
+                }
+                else if (random == 1)
+                {
+                    humanAnimator.CrossFadeInFixedTime("Pickaxe_2", 0.20f, 0);
+                    randomAttackIndex = 0;
+                    isPlayingAttackAnimation = true;
+                }
+            }
         }
     }
 

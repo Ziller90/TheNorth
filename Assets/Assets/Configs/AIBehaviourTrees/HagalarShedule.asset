@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d285eb63c2cdd74180de7cfceaa96ad, type: 3}
   m_Name: HagalarShedule
   m_EditorClassIdentifier: 
-  id: e33baf2bd79d89c46a0f049a72c8e3e1
   rootNode:
     rid: 6376314728265548052
   nodes:
@@ -44,11 +43,13 @@ MonoBehaviour:
     - rid: 7391007832509513761
     - rid: 7391007832509513762
     - rid: 7391007832509513763
-  viewPosition: {x: 219.2, y: 140.8, z: 0}
-  viewScale: {x: 0.49717674, y: 0.49717674, z: 1}
+  viewPosition: {x: 150, y: 30, z: 0}
+  viewScale: {x: 0.57175326, y: 0.57175326, z: 1}
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 6376314728265548052
       type: {class: RootNode, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -98,7 +99,6 @@ MonoBehaviour:
         name: switchIndex
         typeName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
         value: 0
-        serializedValue: 0
     - rid: 7391007534671724580
       type: {class: Switch, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -171,7 +171,6 @@ MonoBehaviour:
         name: 
         typeName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
         value: 1
-        serializedValue: 0
     - rid: 7391007534671724606
       type: {class: SetProperty, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -194,7 +193,6 @@ MonoBehaviour:
         name: 
         typeName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
         value: 2
-        serializedValue: 0
     - rid: 7391007534671724609
       type: {class: Idle, ns: , asm: TheNorth}
       data:
@@ -258,7 +256,6 @@ MonoBehaviour:
         name: 
         typeName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
         value: 3
-        serializedValue: 0
     - rid: 7391007534671724617
       type: {class: UseItemInHand, ns: , asm: TheNorth}
       data:
@@ -333,7 +330,6 @@ MonoBehaviour:
         name: 
         typeName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
         value: 4
-        serializedValue: 0
     - rid: 7391007534671724625
       type: {class: Sequencer, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -386,7 +382,6 @@ MonoBehaviour:
         name: 
         typeName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
         value: 0
-        serializedValue: 0
     - rid: 7391007534671724630
       type: {class: EquipBestItems, ns: , asm: TheNorth}
       data:
@@ -398,6 +393,14 @@ MonoBehaviour:
           keys: []
         description: 
         drawGizmos: 0
+        slotType:
+          reference:
+            rid: -2
+          defaultValue: 0
+        itemTag:
+          reference:
+            rid: -2
+          defaultValue: 0
     - rid: 7391007832509513761
       type: {class: UnitRouteKey, ns: , asm: TheNorth}
       data:
