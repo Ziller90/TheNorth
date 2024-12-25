@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &303278779471358926
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2235153756736154210}
+  - component: {fileID: 3005192143456041515}
+  - component: {fileID: 8559331771658180547}
+  - component: {fileID: 3885309539809102451}
+  m_Layer: 0
+  m_Name: MeleeWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2235153756736154210
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303278779471358926}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.133, z: -0.046}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3005192143456041515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303278779471358926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e6ff9d4159baa0458d8c2d291f8e72b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDamage: 5
+--- !u!65 &8559331771658180547
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303278779471358926}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.17598604, y: 0.54435015, z: 0.3593568}
+  m_Center: {x: -0.00020629913, y: 0.2252634, z: 0.23332126}
+--- !u!114 &3885309539809102451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303278779471358926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 941a701214f052942ad9c7617266992e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MeleeWeaponAirCuttingSounds:
+  - {fileID: 8300000, guid: 1c6025581f2843549b6c75a6a65a6ee7, type: 3}
+  - {fileID: 8300000, guid: 61538c5d5ef102940b57122064ddd1b1, type: 3}
+  MeleeWeaponHitObjectSounds:
+  - {fileID: 8300000, guid: c9df44090f20a2b4eaf8f2ecad59e80d, type: 3}
+  MeleeWeaponHitCharacterSounds:
+  - {fileID: 8300000, guid: bd2d596586d793647bea96148ab73a9a, type: 3}
+  audioMixerGroup: {fileID: -2329389193341246770, guid: a431f168cd844c743b0eda0c47833284, type: 2}
+  meleeWeapon: {fileID: 3005192143456041515}

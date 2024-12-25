@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum EquipmentPosition
@@ -18,7 +19,7 @@ public enum EquipmentPosition
 public class Equipment : MonoBehaviour
 {
     [SerializeField] bool equipedCached;
-    [SerializeField] Collider[] itemColliders;
+    [SerializeField] List<Collider> itemColliders;
     [SerializeField] InteractableObject interactableObject;
     [SerializeField] EquipmentPosition equipmentPosition;
 
@@ -29,7 +30,7 @@ public class Equipment : MonoBehaviour
     [ContextMenu("FindColliders")]
     public void FindItemColliders()
     {
-        itemColliders = GetComponentsInChildren<Collider>();
+        itemColliders = GetComponentsInChildren<Collider>().ToList();
     }
 
     void OnEnable()

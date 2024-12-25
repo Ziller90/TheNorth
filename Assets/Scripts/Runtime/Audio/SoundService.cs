@@ -67,10 +67,10 @@ public class SoundService : MonoBehaviour
         //gameSettings.settingsChangedEvent -= OnSettingsChanged;
     }
 
-    public void PlaySound(IReadOnlyList<AudioClip> clips, Vector3 position)
+    public void PlaySound(IReadOnlyList<AudioClip> clips, Vector3 position, AudioMixerGroup customMixerGroup = null)
     {
         if (clips.Any())
-            PlaySound(clips[Random.Range(0, clips.Count)], position);
+            PlaySound(clips[Random.Range(0, clips.Count)], position, customMixerGroup);
     }
 
     void Awake()

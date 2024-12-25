@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using SiegeUp.Core;
 
 public class MeleeWeapon : MonoBehaviour
 {
@@ -10,6 +12,11 @@ public class MeleeWeapon : MonoBehaviour
     Health thisUnitHealth;
     Transform hostUnit;
     bool isCuttingAnimation;
+    bool hittedSomething;
+
+    public Action hittedObject;
+    public Action hittedUnit;
+    public Action airCutted;
 
     public void SetWeaponHolder(Unit weaponHolder)
     {
@@ -24,6 +31,12 @@ public class MeleeWeapon : MonoBehaviour
     public void SetCuttingAnimation(bool isCutting)
     {
         isCuttingAnimation = isCutting;
+
+        if (isCutting == true)
+            hittedSomething = false;
+
+        if (isCutting == false && hittedSomething == false) 
+            airCutted?.InvokeSafe();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,13 +44,15 @@ public class MeleeWeapon : MonoBehaviour
         if (!isCuttingAnimation) 
             return;
 
+        hittedSomething = true;
+             
         ShieldBlock shieldBlock = other.gameObject.GetComponent<ShieldBlock>();
         if (shieldBlock != null)
         {
             if (shieldBlock.IsBlocking)
             {
                 isCuttingAnimation = false;
-                meleeWeaponSounds.PlayHitObjectSound();
+                hittedObject?.InvokeSafe();
             }
             return;
         }
@@ -47,12 +62,12 @@ public class MeleeWeapon : MonoBehaviour
         {
             if (hitBox.Unit && hitBox.Unit != hostUnit)
             {
-                meleeWeaponSounds.PlayHitCharacterSound();
+                hittedUnit?.InvokeSafe();
                 hitBox.HitBoxGetDamage(baseDamage, hostUnit.position);
             }
             return;
         }
 
-        meleeWeaponSounds.PlayHitObjectSound();
+        hittedObject?.InvokeSafe();
     }
 }

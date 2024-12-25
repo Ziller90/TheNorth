@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 352316989698748997}
+  serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -0, y: 0.6767552, z: 0.013442874}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2096863180044110036}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6430414913424142600
 MeshFilter:
@@ -108,13 +108,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1233800491811429723}
+  serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2096863180044110036}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5806682471806297391
 MeshFilter:
@@ -191,6 +191,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1608450680728605294}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.048, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
@@ -200,7 +201,6 @@ Transform:
   - {fileID: 5091742710727603470}
   - {fileID: 6844345695540972299}
   m_Father: {fileID: 7087786812071082886}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5135857249223655838
 MonoBehaviour:
@@ -266,13 +266,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2894159897699967295}
+  serializedVersion: 2
   m_LocalRotation: {x: 0.8176494, y: 0.25071794, z: 0.29215223, w: -0.42806196}
   m_LocalPosition: {x: -0, y: 0.51229846, z: -0.37021098}
   m_LocalScale: {x: 44.17363, y: 44.17363, z: 111.93554}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2096863180044110036}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5830852126999779194
 MeshFilter:
@@ -353,6 +353,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7087786812071082882}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -360,7 +361,6 @@ Transform:
   m_Children:
   - {fileID: 2096863180044110036}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &7087786812071082881
 Rigidbody:
@@ -401,13 +401,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 166e53ce682bbd84fa1e7c79bffbd01e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 2
   itemName: Fly Agaric Potion
   description: '-'
   cost: 50
   icon: {fileID: 21300000, guid: 9119a7df01d855144acee2cc5135c218, type: 3}
   maxStackSize: 20
-  itemTags: 090000000c000000
+  itemTags: 090000000c0000000a000000
 --- !u!114 &782214957255573695
 MonoBehaviour:
   m_ObjectHideFlags: 0

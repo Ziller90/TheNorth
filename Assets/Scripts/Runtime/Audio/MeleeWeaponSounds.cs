@@ -1,48 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class MeleeWeaponSounds : MonoBehaviour
 {
-    [SerializeField] AudioClip[] MeleeWeaponAirCuttingSounds;
-    [SerializeField] AudioClip[] MeleeWeaponHitObjectSounds;
-    [SerializeField] AudioClip[] MeleeWeaponHitCharacterSounds;
-    [SerializeField] AudioSource audioSource;
-    [SerializeField] float timeBetweenHitSounds;
+    [SerializeField] List<AudioClip> MeleeWeaponAirCuttingSounds;
+    [SerializeField] List<AudioClip> MeleeWeaponHitObjectSounds;
+    [SerializeField] List<AudioClip> MeleeWeaponHitCharacterSounds;
 
-    bool alreadyPlayedHitSound;
-    
+    [SerializeField] AudioMixerGroup audioMixerGroup;
+
+    [SerializeField] MeleeWeapon meleeWeapon;
+
+    private void OnEnable()
+    {
+        if (meleeWeapon != null)
+        {
+            meleeWeapon.airCutted += PlayAirCuttingSound;
+            meleeWeapon.hittedObject += PlayHitObjectSound;
+            meleeWeapon.hittedUnit += PlayHitCharacterSound;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (meleeWeapon != null)
+        {
+            meleeWeapon.airCutted -= PlayAirCuttingSound;
+            meleeWeapon.hittedObject -= PlayHitObjectSound;
+            meleeWeapon.hittedUnit -= PlayHitCharacterSound;
+        }
+    }
+
     public void PlayAirCuttingSound()
     {
-        int randomNumber = Random.Range(0, MeleeWeaponAirCuttingSounds.Length);
-        audioSource.clip = MeleeWeaponAirCuttingSounds[randomNumber];
-        audioSource.Play();
+        Game.SoundService.PlaySound(MeleeWeaponAirCuttingSounds, transform.position, audioMixerGroup);
     }
+
     public void PlayHitObjectSound()
     {
-        if (alreadyPlayedHitSound == false)
-        {
-            int randomNumber = Random.Range(0, MeleeWeaponHitObjectSounds.Length);
-            audioSource.clip = MeleeWeaponHitObjectSounds[randomNumber];
-            audioSource.Play();
-            alreadyPlayedHitSound = true;
-            StartCoroutine("WaitTillNextSound");
-        }
+        Game.SoundService.PlaySound(MeleeWeaponHitObjectSounds, transform.position, audioMixerGroup);
     }
+
     public void PlayHitCharacterSound()
     {
-        if (alreadyPlayedHitSound == false)
-        {
-            int randomNumber = Random.Range(0, MeleeWeaponHitCharacterSounds.Length);
-            audioSource.clip = MeleeWeaponHitCharacterSounds[randomNumber];
-            audioSource.Play();
-            alreadyPlayedHitSound = true;
-            StartCoroutine("WaitTillNextSound");
-        }
-    }
-    public IEnumerator WaitTillNextSound()
-    {
-        yield return new WaitForSeconds(timeBetweenHitSounds);
-        alreadyPlayedHitSound = false;
+        Game.SoundService.PlaySound(MeleeWeaponHitCharacterSounds, transform.position, audioMixerGroup);
     }
 }

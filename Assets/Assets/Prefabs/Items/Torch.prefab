@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6ff9d4159baa0458d8c2d291f8e72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 3
+  baseDamage: 5
 --- !u!65 &4829776661185548555
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -173,8 +173,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 1, z: 0.3}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.42706335, y: 1, z: 0.3876108}
+  m_Center: {x: -0.0031291544, y: 0, z: 0.0037817657}
 --- !u!1 &7087786812071082882
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05d8294fbe2f40b419ea1f9f7f8adf5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponType: 1
+  weaponType: 10
 --- !u!114 &4542163223248830636
 MonoBehaviour:
   m_ObjectHideFlags: 0

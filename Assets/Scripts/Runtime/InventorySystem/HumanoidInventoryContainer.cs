@@ -97,7 +97,8 @@ public class HumanoidInventoryContainer : ContainerBase
 
     public bool TryPickUpItem(Item item)
     {
-        ItemStack newItemStack = new ItemStack(item.GetComponent<PrefabRef>(), 1);
+        var itemPrefab = Game.PrefabManager.GetPrefabRef(item.GetComponent<PrefabRef>().GetGuid());
+        ItemStack newItemStack = new ItemStack(itemPrefab, 1);
 
         if (TryPickUpToMainWeaponSlot(newItemStack) ||
             secondaryWeaponSlot.TryAdd(newItemStack) ||
