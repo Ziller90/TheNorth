@@ -6,7 +6,7 @@ public class HitBox : MonoBehaviour
 {
     [SerializeField] Health health;
     [SerializeField] float hitBoxDamageModificator;
-    [SerializeField] HumanoidBattleSystem battleSystem;
+    [SerializeField] FightManager battleSystem;
     [SerializeField] GameObject DebugPoint;
     [SerializeField] Transform unit;
 

@@ -12,10 +12,12 @@ public class Unit : MonoBehaviour
     [SerializeField] string unitName;
 
     [SerializeField] GameObject unitBodyView;
-    [SerializeField] HumanoidInventoryContainer inventoryContainer;
+    [SerializeField] ContainerBase unitContainer;
+    [SerializeField] Animator deathAnimator;
 
     Health health;
     Rigidbody rigidbody;
+    
     SimpleContainer deadBodyContainer;
 
     public SimpleContainer DeadBodyContainer => deadBodyContainer;
@@ -28,8 +30,24 @@ public class Unit : MonoBehaviour
         health = GetComponent<Health>();
         rigidbody = GetComponent<Rigidbody>();
         Service<ActorsAccessModel>.Instance.RegisterUnit(gameObject.transform);
+
         health.dieEvent += Die;
-    } 
+    }
+
+    void OnEnable()
+    {
+        if (health)
+        {
+            health.dieEvent -= Die;
+            health.dieEvent += Die;
+        }
+    }
+
+    void OnDisable()
+    {
+        if (health)
+            health.dieEvent -= Die;
+    }
 
     public void Die()
     {
@@ -43,6 +61,10 @@ public class Unit : MonoBehaviour
         {
             Destroy(component);
         }
+
+        if (deathAnimator)
+            deathAnimator.CrossFadeInFixedTime("Death", 0.20f, 0);
+
         IsDead = true;
     }
 
@@ -65,15 +87,26 @@ public class Unit : MonoBehaviour
         containerBody.SetDestroyOnDispose(false);
         containerBody.SetComponentsToDeleteOnDispose(containerBody, interactableObject, interactableObjectView);
 
-        foreach (var slot in inventoryContainer.BackpackSlots.Slots)
-            ModelUtils.TryMoveFromSlotToSlotGroup(inventoryContainer, slot, deadBodyContainer, deadBodyContainer.SlotGroup);
+        var humanoidInventroyContainer = unitContainer as HumanoidInventoryContainer;
+        var simpleContainer = unitContainer as SimpleContainer;
 
-        foreach (var slot in inventoryContainer.QuickAccessSlots.Slots)
-            ModelUtils.TryMoveFromSlotToSlotGroup(inventoryContainer, slot, deadBodyContainer, deadBodyContainer.SlotGroup);
+        if (humanoidInventroyContainer != null)
+        {
+            foreach (var slot in humanoidInventroyContainer.BackpackSlots.Slots)
+                ModelUtils.TryMoveFromSlotToSlotGroup(humanoidInventroyContainer, slot, deadBodyContainer, deadBodyContainer.SlotGroup);
 
-        ModelUtils.TryMoveFromSlotToSlotGroup(inventoryContainer, inventoryContainer.MainWeaponSlot, deadBodyContainer, deadBodyContainer.SlotGroup);
-        ModelUtils.TryMoveFromSlotToSlotGroup(inventoryContainer, inventoryContainer.SecondaryWeaponSlot, deadBodyContainer, deadBodyContainer.SlotGroup);
+            foreach (var slot in humanoidInventroyContainer.QuickAccessSlots.Slots)
+                ModelUtils.TryMoveFromSlotToSlotGroup(humanoidInventroyContainer, slot, deadBodyContainer, deadBodyContainer.SlotGroup);
 
-        Destroy(inventoryContainer);
+            ModelUtils.TryMoveFromSlotToSlotGroup(humanoidInventroyContainer, humanoidInventroyContainer.MainWeaponSlot, deadBodyContainer, deadBodyContainer.SlotGroup);
+            ModelUtils.TryMoveFromSlotToSlotGroup(humanoidInventroyContainer, humanoidInventroyContainer.SecondaryWeaponSlot, deadBodyContainer, deadBodyContainer.SlotGroup);
+        }
+        else if (simpleContainer != null)
+        {
+            foreach (var slot in simpleContainer.SlotGroup.Slots)
+                ModelUtils.TryMoveFromSlotToSlotGroup(simpleContainer, slot, deadBodyContainer, deadBodyContainer.SlotGroup);
+        }
+
+        Destroy(unitContainer);
     }
 }

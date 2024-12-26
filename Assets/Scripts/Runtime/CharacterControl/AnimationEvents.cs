@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimationEvents : MonoBehaviour
 {
-    [SerializeField] HumanoidBattleSystem battleSystem;
+    [SerializeField] FightManager battleSystem;
     [SerializeField] MeleeWeapon characterMeleeWeapon;
     [SerializeField] StepSounds stepSounds;
     [SerializeField] MeleeWeaponSounds meleeWeaponSounds;

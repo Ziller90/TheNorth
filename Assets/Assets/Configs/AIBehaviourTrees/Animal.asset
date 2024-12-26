@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d285eb63c2cdd74180de7cfceaa96ad, type: 3}
-  m_Name: HumanoidUnit
+  m_Name: Animal
   m_EditorClassIdentifier: 
   rootNode:
     rid: 6376314615936319498
@@ -47,7 +47,6 @@ MonoBehaviour:
   - rid: 4662891436188631041
   - rid: 4662891436188631042
   - rid: 4662891436188631043
-  - rid: 4662891436188631044
   - rid: 7391007534671724601
   treeState: 0
   blackboard:
@@ -57,8 +56,8 @@ MonoBehaviour:
     - rid: 7391007832509513759
     - rid: 6376314728265548056
     - rid: 7391007832509513760
-  viewPosition: {x: 893, y: -282, z: 0}
-  viewScale: {x: 0.6575162, y: 0.6575162, z: 1}
+  viewPosition: {x: 829, y: -193, z: 0}
+  viewScale: {x: 0.57175326, y: 0.57175326, z: 1}
   references:
     version: 2
     RefIds:
@@ -109,25 +108,6 @@ MonoBehaviour:
         drawGizmos: 0
         child:
           rid: 4662891436188631041
-    - rid: 4662891436188631044
-      type: {class: EquipBestItems, ns: , asm: TheNorth}
-      data:
-        state: 0
-        started: 0
-        guid: a412e1ba53400e9428a26dea025d2019
-        position: {x: -1305, y: 810}
-        blackboard:
-          keys: []
-        description: 
-        drawGizmos: 0
-        slotType:
-          reference:
-            rid: -2
-          defaultValue: 0
-        itemTag:
-          reference:
-            rid: -2
-          defaultValue: 0
     - rid: 6376314615936319498
       type: {class: RootNode, ns: TheKiwiCoder, asm: thekiwicoder.behaviourtreeeditor}
       data:
@@ -503,7 +483,6 @@ MonoBehaviour:
         drawGizmos: 0
         children:
         - rid: 6376314724963844153
-        - rid: 4662891436188631044
         - rid: 6376314724963844156
     - rid: 6376314724963844153
       type: {class: CheckIfObjectInRange, ns: , asm: TheNorth}
@@ -530,7 +509,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 7375c2e8a46c6484b9280b6fe076797c
-        position: {x: -1095, y: 810}
+        position: {x: -1275, y: 810}
         blackboard:
           keys: []
         description: 

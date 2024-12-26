@@ -4386,7 +4386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6115228454438917894}
   hitBoxDamageModificator: 1
-  battleSystem: {fileID: 6115228454438917371}
+  battleSystem: {fileID: 0}
   DebugPoint: {fileID: 0}
   unit: {fileID: 6115228454438917373}
 --- !u!1 &6115228454231450102
@@ -4457,7 +4457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6115228454438917894}
   hitBoxDamageModificator: 3
-  battleSystem: {fileID: 6115228454438917371}
+  battleSystem: {fileID: 0}
   DebugPoint: {fileID: 0}
   unit: {fileID: 6115228454438917373}
 --- !u!1 &6115228454287601862
@@ -4528,7 +4528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6115228454438917894}
   hitBoxDamageModificator: 1
-  battleSystem: {fileID: 6115228454438917371}
+  battleSystem: {fileID: 0}
   DebugPoint: {fileID: 0}
   unit: {fileID: 6115228454438917373}
 --- !u!1 &6115228454313205722
@@ -4574,7 +4574,6 @@ GameObject:
   - component: {fileID: 6115228454438917374}
   - component: {fileID: 6115228454438917372}
   - component: {fileID: 6115228454438917370}
-  - component: {fileID: 6115228454438917371}
   - component: {fileID: 6115228454438917375}
   - component: {fileID: 6115228454438917369}
   - component: {fileID: 6115228454438917894}
@@ -4586,6 +4585,7 @@ GameObject:
   - component: {fileID: 1525224019825811632}
   - component: {fileID: 6070088289655340988}
   - component: {fileID: 3659746340058744949}
+  - component: {fileID: 2565501742702311717}
   m_Layer: 6
   m_Name: Humanoid
   m_TagString: Untagged
@@ -4679,20 +4679,6 @@ MonoBehaviour:
   runSpeed: 12
   walkSpeed: 7
   rotationSpeed: 7
---- !u!114 &6115228454438917371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6115228454438917361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7cb8f9106917584fbf7bab46dc49a62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shieldProtectionAngle: 120
-  maxDistanceForAutoAim: 10
 --- !u!114 &6115228454438917375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4720,7 +4706,7 @@ MonoBehaviour:
   unitCollider: {fileID: 6115228454438917374}
   components:
   - {fileID: 6115228454438917370}
-  - {fileID: 6115228454438917371}
+  - {fileID: 0}
   - {fileID: 6115228454438917375}
   - {fileID: 6115228454438917894}
   - {fileID: 6070088289655340988}
@@ -4927,7 +4913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2740db3077800c478aed7a8aeb3b618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleSystem: {fileID: 6115228454438917371}
+  battleSystem: {fileID: 2565501742702311717}
   characterMeleeWeapon: {fileID: 0}
   stepSounds: {fileID: 6115228455221165692}
   meleeWeaponSounds: {fileID: 0}
@@ -5008,6 +4994,21 @@ MonoBehaviour:
   clickTimeForFastAttack: 0.3
   mainWeaponUsing: 0
   secondaryWeaponUsing: 0
+--- !u!114 &2565501742702311717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6115228454438917361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa5895a7c60576e4085cd28a8aee99c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldProtectionAngle: 180
+  maxDistanceForAutoAim: 1
+  animator: {fileID: 1525224019825811632}
 --- !u!1 &6115228454590202541
 GameObject:
   m_ObjectHideFlags: 0
@@ -5076,7 +5077,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6115228454438917894}
   hitBoxDamageModificator: 2
-  battleSystem: {fileID: 6115228454438917371}
+  battleSystem: {fileID: 0}
   DebugPoint: {fileID: 0}
   unit: {fileID: 6115228454438917373}
 --- !u!1 &6115228454685527420
@@ -5275,7 +5276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6115228454438917894}
   hitBoxDamageModificator: 1
-  battleSystem: {fileID: 6115228454438917371}
+  battleSystem: {fileID: 0}
   DebugPoint: {fileID: 0}
   unit: {fileID: 6115228454438917373}
 --- !u!1 &6115228454829537490
@@ -5346,7 +5347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6115228454438917894}
   hitBoxDamageModificator: 1
-  battleSystem: {fileID: 6115228454438917371}
+  battleSystem: {fileID: 0}
   DebugPoint: {fileID: 0}
   unit: {fileID: 6115228454438917373}
 --- !u!1 &6115228454832011817
@@ -5417,7 +5418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6115228454438917894}
   hitBoxDamageModificator: 1
-  battleSystem: {fileID: 6115228454438917371}
+  battleSystem: {fileID: 0}
   DebugPoint: {fileID: 0}
   unit: {fileID: 6115228454438917373}
 --- !u!1 &6115228455221165681
@@ -5666,7 +5667,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6115228454438917894}
   hitBoxDamageModificator: 1
-  battleSystem: {fileID: 6115228454438917371}
+  battleSystem: {fileID: 0}
   DebugPoint: {fileID: 0}
   unit: {fileID: 6115228454438917373}
 --- !u!1 &6115228455719113998
@@ -5737,7 +5738,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6115228454438917894}
   hitBoxDamageModificator: 1
-  battleSystem: {fileID: 6115228454438917371}
+  battleSystem: {fileID: 0}
   DebugPoint: {fileID: 0}
   unit: {fileID: 6115228454438917373}
 --- !u!1 &6115228455757127356
@@ -5808,7 +5809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6115228454438917894}
   hitBoxDamageModificator: 1
-  battleSystem: {fileID: 6115228454438917371}
+  battleSystem: {fileID: 0}
   DebugPoint: {fileID: 0}
   unit: {fileID: 6115228454438917373}
 --- !u!1 &6641851253073922212

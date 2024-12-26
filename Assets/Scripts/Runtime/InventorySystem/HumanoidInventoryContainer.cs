@@ -38,7 +38,7 @@ public class HumanoidInventoryContainer : ContainerBase
     public Action moneyAmountUpdated;
 
     AnimationEvents animationEvents;
-    HumanoidBattleSystem battleSystem;
+    FightManager battleSystem;
     int moneyAmount;
     Unit unit;
 
@@ -57,7 +57,7 @@ public class HumanoidInventoryContainer : ContainerBase
     void Awake()
     {
         animationEvents = GetComponent<AnimationEvents>();
-        battleSystem = GetComponent<HumanoidBattleSystem>();
+        battleSystem = GetComponent<FightManager>();
         unit = GetComponent<Unit>();
 
         if (rightHandItem == null)
