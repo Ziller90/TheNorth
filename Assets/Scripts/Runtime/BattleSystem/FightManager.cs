@@ -110,6 +110,7 @@ public class FightManager : MonoBehaviour
         actionManager.secondaryWeaponContinuousAttackStart -= SecondaryWeaponContinousAttackStop;
     }
 
+
     public void MainWeaponFastAttack()
     {
         if (!isPlayingAttackAnimation)

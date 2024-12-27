@@ -83,6 +83,12 @@ public class InteractablesLocator : MonoBehaviour
                 var containerBody = nearestInteractable.GetComponent<DoorTeleporter>();
                 containerBody.OpenDoor(gameObject);
             }
+
+            if (nearestInteractable.GetComponent<BloodyFountain>())
+            {
+                var bloodyFountain = nearestInteractable.GetComponent<BloodyFountain>();
+                bloodyFountain.Drink(gameObject);
+            }
         }
     }
 }
