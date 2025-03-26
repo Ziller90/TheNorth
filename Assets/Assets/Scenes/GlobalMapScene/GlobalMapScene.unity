@@ -1287,6 +1287,14 @@ PrefabInstance:
       propertyPath: presentedLocationPrefab
       value: 
       objectReference: {fileID: 6101001397983312940, guid: ddc6d9d79bcc3a449a483b4fb8d4e14c, type: 3}
+    - target: {fileID: 8572615872876842826, guid: 6e4a512f7dd3bf149a3c9cbf534ddbbf, type: 3}
+      propertyPath: lobbySceneName
+      value: ArenaScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 8572615872876842826, guid: 6e4a512f7dd3bf149a3c9cbf534ddbbf, type: 3}
+      propertyPath: presentedLocationPrefab
+      value: 
+      objectReference: {fileID: 6101001397983312940, guid: ddc6d9d79bcc3a449a483b4fb8d4e14c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

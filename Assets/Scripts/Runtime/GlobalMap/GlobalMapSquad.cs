@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class GlobalMapSquad : MonoBehaviour
 {
@@ -15,18 +16,20 @@ public class GlobalMapSquad : MonoBehaviour
     Vector3[] pathCorners;
     Vector3 nextCorner;
     Vector3 target = Vector3.zero;
-    GameObject targetLocation;
+    Location targetLocation;
 
     public void MoveToPosition(Vector3 target)
     {
         this.target = target;
         targetLocation = null; 
     }
-    public void MoveToLocation(GameObject location)
+
+    public void MoveToLocation(Location location)
     {
         MoveToPosition(location.transform.position);
         targetLocation = location;
     }
+
     void FixedUpdate()
     {
         if (target != Vector3.zero)
@@ -48,7 +51,15 @@ public class GlobalMapSquad : MonoBehaviour
                     var locationRadius = targetLocation.GetComponent<CapsuleCollider>().radius;
                     if (distanceToLocation - locationRadius < maxDistanceToLocation)
                     {
-                        GlobalMapLinks.instance.gameSceneLauncher.LoadGameSceneWithLocation(targetLocation.GetComponent<Location>().PresentedLocation);
+                        if (targetLocation is MultiplayerLocation)
+                        {
+                            SceneManager.LoadScene((targetLocation as MultiplayerLocation).LobbySceneName);
+                        }
+                        else
+                        {
+                            GlobalMapLinks.instance.gameSceneLauncher.LoadGameSceneWithLocation(targetLocation.GetComponent<Location>().PresentedLocation);
+                        }
+
                         targetLocation = null;
                         target = Vector3.zero;
                     }
@@ -58,6 +69,7 @@ public class GlobalMapSquad : MonoBehaviour
         }
         SquadAnimator.SetInteger("StateIndex", 0);
     }
+
     public void Move(Vector3 direction)
     {
         transform.position += transform.forward * movingSpeed;
@@ -65,7 +77,8 @@ public class GlobalMapSquad : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, rotationSpeed);
         SquadAnimator.SetInteger("StateIndex", 1);
     }
-    private void OnDrawGizmos()
+
+    void OnDrawGizmos()
     {
         if (pathCorners != null)
         {

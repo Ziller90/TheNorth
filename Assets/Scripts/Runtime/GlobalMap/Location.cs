@@ -6,24 +6,27 @@ public class Location : MonoBehaviour
 {
     ClickableObject clickableObject;
     [SerializeField] GameObject presentedLocationPrefab;
+
     public string Name => presentedLocationPrefab.GetComponent<LocationModel>().Name;
-    public string Description => presentedLocationPrefab.GetComponent<LocationModel>().Description;
     public GameObject PresentedLocation => presentedLocationPrefab;
 
-    private void Awake()
+    void Awake()
     {
         clickableObject = GetComponent<ClickableObject>();
     }
-    private void OnEnable()
+
+    void OnEnable()
     {
         clickableObject.clickEvent += MoveToLocation;
     }
-    private void OnDisable()
+
+    void OnDisable()
     {
         clickableObject.clickEvent -= MoveToLocation;
     }
+
     void MoveToLocation()
     {
-        GlobalMapLinks.instance.playerSquad.MoveToLocation(gameObject);
+        GlobalMapLinks.instance.playerSquad.MoveToLocation(this);
     }
 }
