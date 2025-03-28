@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Location : MonoBehaviour
 {
-    ClickableObject clickableObject;
     [SerializeField] GameObject presentedLocationPrefab;
+    [SerializeField] bool isMultiplayer;
+
+    ClickableObject clickableObject;
 
     public string Name => presentedLocationPrefab.GetComponent<LocationModel>().Name;
     public GameObject PresentedLocation => presentedLocationPrefab;
+    public bool IsMultiplayer => isMultiplayer;
 
     void Awake()
     {

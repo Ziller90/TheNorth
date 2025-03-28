@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using SiegeUp.Core;
+using Photon.Pun;
 
 [System.Serializable, ComponentId(3)]
-public class Health : MonoBehaviour
+public class Health : MonoBehaviourPun, IPunObservable
 {
     [SerializeField] float maxHealth;
     [SerializeField, AutoSerialize(1)] float currentHealth;
@@ -17,19 +18,32 @@ public class Health : MonoBehaviour
 
     bool isDead = false;
 
+    [PunRPC]
     public void GetDamage(float damage)
     {
         currentHealth -= damage;
-        if (currentHealth <= 0 && !isDead)
+        if (currentHealth <= 0)
         {
             dieEvent();
-            isDead = true;
         }
     }
+
     public void Heal(float hp)
     {
         currentHealth += hp;
         if (currentHealth > maxHealth)
             currentHealth = maxHealth;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(currentHealth);
+        }
+        else
+        {
+            currentHealth = (float)stream.ReceiveNext();
+        }
     }
 }

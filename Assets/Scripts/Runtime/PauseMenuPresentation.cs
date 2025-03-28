@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
-public class PauseMenuPresentation : MonoBehaviour
+public class PauseMenuPresentation : MonoBehaviourPunCallbacks
 {
     [SerializeField] WindowOpener pauseMenu;
 
@@ -20,6 +21,8 @@ public class PauseMenuPresentation : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        Time.timeScale = 1.0f;
+        PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene("MainMenuScene");
     }
 

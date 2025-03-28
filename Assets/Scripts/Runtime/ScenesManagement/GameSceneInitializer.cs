@@ -1,9 +1,15 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class GameSceneInitializer : MonoBehaviour
+using Photon.Pun;
+using Photon.Realtime;
+using System.Collections.Generic;
+using SiegeUp.Core;
+
+public class GameSceneInitializer : MonoBehaviourPunCallbacks
 {
     [SerializeField] GameObject playerPrefab;
+    [SerializeField] List<GameObject> multiplayerPlayerPrefabs;
     [SerializeField] SimpleContainer remainsPrefab;
     GameObject player;
 
@@ -22,16 +28,36 @@ public class GameSceneInitializer : MonoBehaviour
 
     public void InitializePlayer()
     {
-        player = Instantiate(playerPrefab, Game.LocationLoader.LoadedLocationModel.GetRandomSpawnPoint().position, Quaternion.identity);
-        Game.CameraControlService.SetObjectToFollow(player);
+        if (ScenesLauncher.isMultiplayer)
+        {
+            Debug.Log("Your ID in room is" + PhotonNetwork.LocalPlayer.ActorNumber);
 
-        ActionManager playerActionManager = player.GetComponent<ActionManager>();
-        ControlManager playerControlManager = player.GetComponent<ControlManager>();
+            var spawnPoint = Game.LocationLoader.LoadedLocationModel.GetRandomSpawnPoint();
+            var randomCharacter = multiplayerPlayerPrefabs[Random.Range(0, multiplayerPlayerPrefabs.Count - 1)];
+            player = PhotonNetwork.Instantiate(randomCharacter.name, spawnPoint.position, spawnPoint.rotation);
+            if (player.GetComponent<PhotonView>().IsMine)
+            {
+                SetMainCharacter(player);
+            }
+        }
+        else
+        {
+            player = Instantiate(playerPrefab, Game.LocationLoader.GetSpawnPoint(), Quaternion.identity);
+            SetMainCharacter(player);
+            Game.SavingService.RestoreLocation(Game.LocationLoader.LoadedLocationModel);
+        }
+    }
+
+    public void SetMainCharacter(GameObject playerCharacter)
+    {
+        Game.CameraControlService.SetObjectToFollow(playerCharacter);
+
+        ActionManager playerActionManager = playerCharacter.GetComponent<ActionManager>();
+        ControlManager playerControlManager = playerCharacter.GetComponent<ControlManager>();
 
         Game.MobileControlService.SetControl(playerControlManager, playerActionManager);
         Game.DesktopControlService.SetControl(playerControlManager, playerActionManager);
-        Game.CameraControlService.SetObjectToFollow(player);
-        Game.SavingService.RestoreLocation(Game.LocationLoader.LoadedLocationModel);
+        Game.CameraControlService.SetObjectToFollow(playerCharacter);
     }
 
     public void LeaveLocation()
@@ -54,5 +80,18 @@ public class GameSceneInitializer : MonoBehaviour
             }
             Destroy(deadBody);
         }
+    }
+
+    public override void OnPlayerEnteredRoom(Player other)
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            Debug.Log(other.NickName + " entered the room " + PhotonNetwork.CurrentRoom);
+        }
+    }
+
+    public override void OnPlayerLeftRoom(Player other)
+    {
+        Debug.Log(other.NickName + " left the room " + PhotonNetwork.CurrentRoom);
     }
 }

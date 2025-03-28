@@ -15,9 +15,14 @@ public class DeathScreenWindowView : WindowView
         StartCoroutine(nameof(FadeInAnimation));
     }
 
-    public void RestartGameButton()
+    public void MainMenuButton()
     {
-        presentation.RestartGame();
+        presentation.GoToMainMenu();
+    }
+
+    public void RespawnButton()
+    {
+        presentation.Respawn();
     }
 
     IEnumerator FadeInAnimation()

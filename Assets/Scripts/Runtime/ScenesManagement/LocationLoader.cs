@@ -12,9 +12,9 @@ public class LocationLoader : MonoBehaviour
     public void LoadLocation()
     {
         LocationModel location;
-        if (GameSceneLauncher.LocationToLoad != null)
+        if (ScenesLauncher.LocationToLoad != null)
         {
-            location = LoadLocation(GameSceneLauncher.LocationToLoad);
+            location = LoadLocation(ScenesLauncher.LocationToLoad);
         }
         else if (testLocationToLoad != null)
         {
@@ -37,5 +37,12 @@ public class LocationLoader : MonoBehaviour
             Game.MusicService.SetMusicTrack(loadedLocation.LocationDefaultTheme);
 
         return loadedLocation;  
+    }
+
+    public Vector3 GetSpawnPoint()
+    {
+        var spawnPoint = ScenesLauncher.spawnPoint != -1 ? loadedLocationModel.GetSpawnPointByIndex(ScenesLauncher.spawnPoint).position : loadedLocationModel.GetRandomSpawnPoint().position;
+        ScenesLauncher.spawnPoint = -1;
+        return spawnPoint;
     }
 }

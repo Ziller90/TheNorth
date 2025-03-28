@@ -1,13 +1,13 @@
+using Photon.Pun;
 using SiegeUp.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : MonoBehaviour
+public class Unit : MonoBehaviourPunCallbacks
 {
     [SerializeField] Collider unitCollider;
     [SerializeField] Behaviour[] components;
-    [SerializeField] GameObject healthBar;
     [SerializeField] AudioSource deathAudioSource;
     [SerializeField] string unitName;
 
@@ -54,18 +54,36 @@ public class Unit : MonoBehaviour
         Game.ActorsAccessModel.RemoveUnitOnLocation(gameObject.transform);
         unitCollider.enabled = false;
         rigidbody.isKinematic = true;
-        Destroy(healthBar);
         deathAudioSource.Play();
-        CreateDeadBodyContainer();
+
+        if (!ScenesLauncher.isMultiplayer)
+            CreateDeadBodyContainer();
+
         foreach (Behaviour component in components)
         {
-            Destroy(component);
+            if (component is not Health && component is not PhotonView && component is not PhotonTransformView)
+                Destroy(component);
         }
 
         if (deathAnimator)
-            deathAnimator.CrossFadeInFixedTime("Death", 0.20f, 0);
+        {
+            if (ScenesLauncher.isMultiplayer && GetComponent<PhotonView>().IsMine)
+            {
+                photonView.RPC("RPC_PlayDeathAnimation", RpcTarget.All, "Death", 0.20f, 0);
+            }
+            else if (!ScenesLauncher.isMultiplayer)
+            {
+                deathAnimator.CrossFadeInFixedTime("Death", 0.20f, 0);
+            }
+        }
 
         IsDead = true;
+    }
+
+    [PunRPC]
+    private void RPC_PlayDeathAnimation(string animationName, float transitionDuration, int layer)
+    {
+        deathAnimator.CrossFadeInFixedTime(animationName, transitionDuration, layer);
     }
 
     public void CreateDeadBodyContainer()
@@ -93,20 +111,34 @@ public class Unit : MonoBehaviour
         if (humanoidInventroyContainer != null)
         {
             foreach (var slot in humanoidInventroyContainer.BackpackSlots.Slots)
-                ModelUtils.TryMoveFromSlotToSlotGroup(humanoidInventroyContainer, slot, deadBodyContainer, deadBodyContainer.SlotGroup);
+                TryMoveFromSlotToSlotGroupSync(humanoidInventroyContainer, slot, deadBodyContainer, deadBodyContainer.SlotGroup);
 
             foreach (var slot in humanoidInventroyContainer.QuickAccessSlots.Slots)
-                ModelUtils.TryMoveFromSlotToSlotGroup(humanoidInventroyContainer, slot, deadBodyContainer, deadBodyContainer.SlotGroup);
+                TryMoveFromSlotToSlotGroupSync(humanoidInventroyContainer, slot, deadBodyContainer, deadBodyContainer.SlotGroup);
 
-            ModelUtils.TryMoveFromSlotToSlotGroup(humanoidInventroyContainer, humanoidInventroyContainer.MainWeaponSlot, deadBodyContainer, deadBodyContainer.SlotGroup);
-            ModelUtils.TryMoveFromSlotToSlotGroup(humanoidInventroyContainer, humanoidInventroyContainer.SecondaryWeaponSlot, deadBodyContainer, deadBodyContainer.SlotGroup);
+            TryMoveFromSlotToSlotGroupSync(humanoidInventroyContainer, humanoidInventroyContainer.MainWeaponSlot, deadBodyContainer, deadBodyContainer.SlotGroup);
+            TryMoveFromSlotToSlotGroupSync(humanoidInventroyContainer, humanoidInventroyContainer.SecondaryWeaponSlot, deadBodyContainer, deadBodyContainer.SlotGroup);
         }
         else if (simpleContainer != null)
         {
             foreach (var slot in simpleContainer.SlotGroup.Slots)
-                ModelUtils.TryMoveFromSlotToSlotGroup(simpleContainer, slot, deadBodyContainer, deadBodyContainer.SlotGroup);
+                TryMoveFromSlotToSlotGroupSync(simpleContainer, slot, deadBodyContainer, deadBodyContainer.SlotGroup);
         }
 
         Destroy(unitContainer);
+    }
+
+    public void TryMoveFromSlotToSlotGroupSync(ContainerBase container1, Slot slot1, ContainerBase container2, SlotGroup slotGroup)
+    {
+        if (ScenesLauncher.isMultiplayer)
+            photonView.RPC("RPC_TryMoveFromSlotToSlotGroup", RpcTarget.All, container1, slot1, container2, slotGroup);
+        else
+            ModelUtils.TryMoveFromSlotToSlotGroup(container1, slot1, container2, slotGroup);
+    }
+
+    [PunRPC]
+    public void RPC_TryMoveFromSlotToSlotGroup(ContainerBase container1, Slot slot1, ContainerBase container2, SlotGroup slotGroup)
+    {
+        ModelUtils.TryMoveFromSlotToSlotGroup(container1, slot1, container2, slotGroup);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public enum MovingState
 {
@@ -9,12 +10,12 @@ public enum MovingState
     Run
 }
 
-public class CharacterContoller : MonoBehaviour
+public class CharacterContoller : MonoBehaviourPun
 {
     [SerializeField] float runSpeed; // km per hour
     [SerializeField] float walkSpeed; // km per hour
     [SerializeField] float rotationSpeed;
-    
+
     public bool AllowMoving { get; set; } = true;
     public bool AllowRunning { get; set; } = true;
     public bool AllowRotation { get; set; } = true;
@@ -37,7 +38,7 @@ public class CharacterContoller : MonoBehaviour
         {
             Walk();
         }
-        else if (controlManager.MovingMode== MovingMode.Run)
+        else if (controlManager.MovingMode == MovingMode.Run)
         {
             if (AllowRunning)
             {
@@ -53,16 +54,19 @@ public class CharacterContoller : MonoBehaviour
             Idle();
         }
     }
-    public void Walk() 
+
+    public void Walk()
     {
         transform.position += transform.forward * ModelUtils.SpeedConverter(walkSpeed);
         movingState = MovingState.Walk;
     }
+
     public void Run()
     {
         transform.position += transform.forward * ModelUtils.SpeedConverter(runSpeed);
         movingState = MovingState.Run;
     }
+
     public void Idle()
     {
         movingState = MovingState.Idle;
@@ -85,32 +89,52 @@ public class CharacterContoller : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
-        if (AllowMoving == true)
+        if (!ScenesLauncher.isMultiplayer|| (ScenesLauncher.isMultiplayer && GetComponent<PhotonView>().IsMine))
         {
-            MoveForward();
+            transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+
+            if (AllowMoving)
+            {
+                MoveForward();
+            }
+            else
+            {
+                Idle();
+            }
+
+            if (AllowRotation)
+            {
+                Rotate();
+            }
+
+            int moveIndex = 1; // Idle
+            if (movingState == MovingState.Walk)
+            {
+                moveIndex = 2;
+            }
+            else if (movingState == MovingState.Run)
+            {
+                moveIndex = 3;
+            }
+            SyncOrSetMoveIndex(moveIndex);
+        }
+    }
+
+    private void SyncOrSetMoveIndex(int index)
+    {
+        if (ScenesLauncher.isMultiplayer)
+        {
+            photonView.RPC("RPC_SetMoveIndex", RpcTarget.All, index);
         }
         else
         {
-            Idle();
+            animator.SetInteger("MoveIndex", index);
         }
+    }
 
-        if (AllowRotation == true)
-        {
-            Rotate();
-        }
-
-        if (movingState == MovingState.Idle)
-        {
-            animator.SetInteger("MoveIndex", 1);
-        }
-        if (movingState == MovingState.Walk)
-        {
-            animator.SetInteger("MoveIndex", 2);
-        }
-        if (movingState == MovingState.Run)
-        {
-            animator.SetInteger("MoveIndex", 3);
-        }
+    [PunRPC]
+    private void RPC_SetMoveIndex(int index)
+    {
+        animator.SetInteger("MoveIndex", index);
     }
 }

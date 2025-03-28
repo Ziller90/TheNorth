@@ -39,6 +39,19 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
+  - RPC_PlayAnimation
+  - RPC_SetAnimatorBool
+  - RPC_LookAtPoint
+  - RPC_Move
+  - RPC_SetMoveIndex
+  - RPC_SetRotation
+  - GetDamage
+  - RPC_PlayDeathAnimation
+  - CreateDeadBodyContainer
+  - RPC_TryMoveFromSlotToSlotGroup
+  - RPC_TryMoveFromSlotToSlot
+  - EquipMainWeapon
+  - EquipSecondaryWeapon
   DisableAutoOpenWizard: 1
-  ShowSettings: 0
-  DevRegionSetOnce: 0
+  ShowSettings: 1
+  DevRegionSetOnce: 1

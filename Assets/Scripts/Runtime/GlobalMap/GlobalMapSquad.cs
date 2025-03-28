@@ -51,13 +51,13 @@ public class GlobalMapSquad : MonoBehaviour
                     var locationRadius = targetLocation.GetComponent<CapsuleCollider>().radius;
                     if (distanceToLocation - locationRadius < maxDistanceToLocation)
                     {
-                        if (targetLocation is MultiplayerLocation)
+                        if (targetLocation.IsMultiplayer)
                         {
-                            SceneManager.LoadScene((targetLocation as MultiplayerLocation).LobbySceneName);
+                            ScenesLauncher.LoadLobbySceneWithLocation(targetLocation.GetComponent<Location>().PresentedLocation);
                         }
                         else
                         {
-                            GlobalMapLinks.instance.gameSceneLauncher.LoadGameSceneWithLocation(targetLocation.GetComponent<Location>().PresentedLocation);
+                            ScenesLauncher.LoadGameSceneWithLocation(targetLocation.GetComponent<Location>().PresentedLocation);
                         }
 
                         targetLocation = null;

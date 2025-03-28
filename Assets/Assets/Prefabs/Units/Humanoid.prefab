@@ -183,7 +183,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &698333021683177748
 Transform:
   m_ObjectHideFlags: 0
@@ -192,12 +192,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1357086374381727919}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.027126802, y: 0.18442903, z: 0.056865852, w: 0.98082435}
-  m_LocalPosition: {x: -15.230004, y: 95.33272, z: 0.7269267}
+  m_LocalRotation: {x: -0.38522398, y: 0.41129965, z: -0.62710303, w: -0.5377517}
+  m_LocalPosition: {x: 2.5923543, y: -2.2560549, z: -15.230009}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5133935866322667781}
+  m_Father: {fileID: 5133935866322676981}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6089431737872141584
 MeshFilter:
@@ -1070,7 +1070,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -39.93092, y: 0.0000014305115, z: -0.000002861023}
+  m_ConnectedAnchor: {x: -39.930923, y: 0.0000009536743, z: -0.000005722046}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -2657,12 +2657,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5133935866322636301}
-  - {fileID: 7228607881395701177}
-  - {fileID: 6340300305719183336}
-  - {fileID: 564076441128395873}
-  - {fileID: 698333021683177748}
-  - {fileID: 1877657221943280881}
-  - {fileID: 4641998428097555162}
   m_Father: {fileID: 6115228454438917373}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5133935866322419125
@@ -2871,14 +2865,20 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5133935866322459973}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.9950197, y: -0.09967895, z: 1.3224718e-15, w: 7.094358e-17}
+  m_LocalRotation: {x: 0.9975239, y: -0.07032909, z: -0.000000014901159, w: -0.000000029802319}
   m_LocalPosition: {x: -10.393265, y: 1.3322676e-15, z: 4.6155367e-15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5133935866322688859}
+  - {fileID: 4641998428097555162}
+  - {fileID: 564076441128395873}
+  - {fileID: 6340300305719183336}
+  - {fileID: 7228607881395701177}
+  - {fileID: 698333021683177748}
+  - {fileID: 1877657221943280881}
   m_Father: {fileID: 5133935866322636301}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -180, y: 0, z: 8.065994}
 --- !u!54 &4827514823541853293
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4386,7 +4386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6115228454438917894}
   hitBoxDamageModificator: 1
-  battleSystem: {fileID: 0}
+  battleSystem: {fileID: 2565501742702311717}
   DebugPoint: {fileID: 0}
   unit: {fileID: 6115228454438917373}
 --- !u!1 &6115228454231450102
@@ -4457,7 +4457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6115228454438917894}
   hitBoxDamageModificator: 3
-  battleSystem: {fileID: 0}
+  battleSystem: {fileID: 2565501742702311717}
   DebugPoint: {fileID: 0}
   unit: {fileID: 6115228454438917373}
 --- !u!1 &6115228454287601862
@@ -4528,7 +4528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6115228454438917894}
   hitBoxDamageModificator: 1
-  battleSystem: {fileID: 0}
+  battleSystem: {fileID: 2565501742702311717}
   DebugPoint: {fileID: 0}
   unit: {fileID: 6115228454438917373}
 --- !u!1 &6115228454313205722
@@ -4715,8 +4715,9 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   deathAudioSource: {fileID: 6115228454685527418}
   unitName: 
-  unitBodyView: {fileID: 0}
-  inventoryContainer: {fileID: 8059843138504852898}
+  unitBodyView: {fileID: 5133935866322569339}
+  unitContainer: {fileID: 8059843138504852898}
+  deathAnimator: {fileID: 1525224019825811632}
 --- !u!114 &6115228454438917894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5008,7 +5009,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shieldProtectionAngle: 180
   maxDistanceForAutoAim: 1
-  animator: {fileID: 1525224019825811632}
 --- !u!1 &6115228454590202541
 GameObject:
   m_ObjectHideFlags: 0
@@ -5077,7 +5077,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6115228454438917894}
   hitBoxDamageModificator: 2
-  battleSystem: {fileID: 0}
+  battleSystem: {fileID: 2565501742702311717}
   DebugPoint: {fileID: 0}
   unit: {fileID: 6115228454438917373}
 --- !u!1 &6115228454685527420
@@ -5276,7 +5276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6115228454438917894}
   hitBoxDamageModificator: 1
-  battleSystem: {fileID: 0}
+  battleSystem: {fileID: 2565501742702311717}
   DebugPoint: {fileID: 0}
   unit: {fileID: 6115228454438917373}
 --- !u!1 &6115228454829537490
@@ -5347,7 +5347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6115228454438917894}
   hitBoxDamageModificator: 1
-  battleSystem: {fileID: 0}
+  battleSystem: {fileID: 2565501742702311717}
   DebugPoint: {fileID: 0}
   unit: {fileID: 6115228454438917373}
 --- !u!1 &6115228454832011817
@@ -5418,7 +5418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6115228454438917894}
   hitBoxDamageModificator: 1
-  battleSystem: {fileID: 0}
+  battleSystem: {fileID: 2565501742702311717}
   DebugPoint: {fileID: 0}
   unit: {fileID: 6115228454438917373}
 --- !u!1 &6115228455221165681
@@ -5667,7 +5667,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6115228454438917894}
   hitBoxDamageModificator: 1
-  battleSystem: {fileID: 0}
+  battleSystem: {fileID: 2565501742702311717}
   DebugPoint: {fileID: 0}
   unit: {fileID: 6115228454438917373}
 --- !u!1 &6115228455719113998
@@ -5738,7 +5738,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6115228454438917894}
   hitBoxDamageModificator: 1
-  battleSystem: {fileID: 0}
+  battleSystem: {fileID: 2565501742702311717}
   DebugPoint: {fileID: 0}
   unit: {fileID: 6115228454438917373}
 --- !u!1 &6115228455757127356
@@ -5809,7 +5809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6115228454438917894}
   hitBoxDamageModificator: 1
-  battleSystem: {fileID: 0}
+  battleSystem: {fileID: 2565501742702311717}
   DebugPoint: {fileID: 0}
   unit: {fileID: 6115228454438917373}
 --- !u!1 &6641851253073922212
@@ -5838,12 +5838,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6641851253073922212}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.751474, y: 96.75185, z: 0}
+  m_LocalRotation: {x: -0.48741782, y: 0.51227325, z: -0.4874178, w: -0.5122733}
+  m_LocalPosition: {x: 1.0737686, y: -1.6082253, z: 18.75148}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5133935866322667781}
+  m_Father: {fileID: 5133935866322676981}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7192177396753296009
 MeshFilter:
@@ -5921,12 +5921,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7630708966205355693}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.13048908, y: 0.68033856, z: 0.10556927, w: 0.7134195}
-  m_LocalPosition: {x: 17.624851, y: 94.096054, z: -1.1132902}
+  m_LocalRotation: {x: 0.10480214, y: 0.13200553, z: -0.6665767, w: -0.7261312}
+  m_LocalPosition: {x: 3.7815893, y: -0.6282925, z: 17.62486}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5133935866322667781}
+  m_Father: {fileID: 5133935866322676981}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2181895434034249901
 MeshFilter:
@@ -5995,7 +5995,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7228607881395701177
 Transform:
   m_ObjectHideFlags: 0
@@ -6004,12 +6004,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7646246546040354553}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.622902, y: 95.06001, z: 0}
+  m_LocalRotation: {x: -0.48741782, y: 0.51227325, z: -0.4874178, w: -0.5122733}
+  m_LocalPosition: {x: 2.763512, y: -1.6923007, z: 20.622904}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5133935866322667781}
+  m_Father: {fileID: 5133935866322676981}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3664320174295155284
 MeshFilter:
@@ -6087,12 +6087,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7732256330003553566}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.923769, y: 93.87763, z: 0}
+  m_LocalRotation: {x: -0.5022945, y: 0.49769494, z: -0.50229454, w: -0.497695}
+  m_LocalPosition: {x: 4.0406837, y: -1.5157733, z: -18.923777}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5133935866322667781}
+  m_Father: {fileID: 5133935866322676981}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1425323900333286274
 MeshFilter:
@@ -6358,7 +6358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6340300305719183336
 Transform:
   m_ObjectHideFlags: 0
@@ -6367,12 +6367,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9095495151793874583}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.620008, y: 97.84518, z: -0.58317214}
+  m_LocalRotation: {x: -0.48741782, y: 0.51227325, z: -0.4874178, w: -0.5122733}
+  m_LocalPosition: {x: 0.010754898, y: -0.97144234, z: 20.620016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5133935866322667781}
+  m_Father: {fileID: 5133935866322676981}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1206542181306151334
 MeshFilter:

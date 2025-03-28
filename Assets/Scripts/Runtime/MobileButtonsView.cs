@@ -9,13 +9,23 @@ public class MobileButtonsView : MonoBehaviour
     [SerializeField] Sprite fistSprite;
     [SerializeField] Sprite noneSprite;
     [SerializeField] SlotView[] quickSlotViews;
+    [SerializeField] GameObject quickSlots;
+    [SerializeField] GameObject inventory;
+    [SerializeField] GameObject takeButton;
 
     HumanoidInventoryContainer playerInventory;
 
-    private void Awake()
+    void Awake()
     {
         playerInventory = Game.GameSceneInitializer.Player.GetComponentInChildren<HumanoidInventoryContainer>();
         SetUpQuickSlotsButtons();
+    }
+
+    void Start()
+    {
+        quickSlots.SetActive(!ScenesLauncher.isMultiplayer);
+        inventory.SetActive(!ScenesLauncher.isMultiplayer);
+        takeButton.SetActive(!ScenesLauncher.isMultiplayer);
     }
 
     void SetUpQuickSlotsButtons()

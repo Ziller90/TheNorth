@@ -22,4 +22,9 @@ public class LocationModel : MonoBehaviour
     {
         return spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Count)];
     }
+
+    public Transform GetSpawnPointByIndex(int index)
+    {
+        return spawnPoints[index];
+    }
 }
