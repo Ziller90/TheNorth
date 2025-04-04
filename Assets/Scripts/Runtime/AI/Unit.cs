@@ -1,10 +1,9 @@
-using Photon.Pun;
 using SiegeUp.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : MonoBehaviourPunCallbacks
+public class Unit : MonoBehaviour
 {
     [SerializeField] Collider unitCollider;
     [SerializeField] Behaviour[] components;
@@ -61,26 +60,18 @@ public class Unit : MonoBehaviourPunCallbacks
 
         foreach (Behaviour component in components)
         {
-            if (component is not Health && component is not PhotonView && component is not PhotonTransformView)
-                Destroy(component);
+            Destroy(component);
         }
 
         if (deathAnimator)
         {
-            if (ScenesLauncher.isMultiplayer && GetComponent<PhotonView>().IsMine)
-            {
-                photonView.RPC("RPC_PlayDeathAnimation", RpcTarget.All, "Death", 0.20f, 0);
-            }
-            else if (!ScenesLauncher.isMultiplayer)
-            {
-                deathAnimator.CrossFadeInFixedTime("Death", 0.20f, 0);
-            }
+            deathAnimator.CrossFadeInFixedTime("Death", 0.20f, 0);
+
         }
 
         IsDead = true;
     }
 
-    [PunRPC]
     private void RPC_PlayDeathAnimation(string animationName, float transitionDuration, int layer)
     {
         deathAnimator.CrossFadeInFixedTime(animationName, transitionDuration, layer);
@@ -130,13 +121,9 @@ public class Unit : MonoBehaviourPunCallbacks
 
     public void TryMoveFromSlotToSlotGroupSync(ContainerBase container1, Slot slot1, ContainerBase container2, SlotGroup slotGroup)
     {
-        if (ScenesLauncher.isMultiplayer)
-            photonView.RPC("RPC_TryMoveFromSlotToSlotGroup", RpcTarget.All, container1, slot1, container2, slotGroup);
-        else
-            ModelUtils.TryMoveFromSlotToSlotGroup(container1, slot1, container2, slotGroup);
+        ModelUtils.TryMoveFromSlotToSlotGroup(container1, slot1, container2, slotGroup);
     }
 
-    [PunRPC]
     public void RPC_TryMoveFromSlotToSlotGroup(ContainerBase container1, Slot slot1, ContainerBase container2, SlotGroup slotGroup)
     {
         ModelUtils.TryMoveFromSlotToSlotGroup(container1, slot1, container2, slotGroup);

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Photon.Pun;
 
 public class DeathScreenPresentation : MonoBehaviour
 {
@@ -17,17 +16,11 @@ public class DeathScreenPresentation : MonoBehaviour
 
     public void Respawn()
     {
-        if (ScenesLauncher.isMultiplayer)
-            PhotonNetwork.LeaveRoom();
-
         ScenesLauncher.LoadGameSceneWithLocation(locationToRespawnPrefab, spawnPoint);
     }
 
     public void GoToMainMenu()
     {
-        if (ScenesLauncher.isMultiplayer)
-            PhotonNetwork.LeaveRoom();
-
         SceneManager.LoadScene(0);
     }
 }

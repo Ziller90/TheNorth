@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
 public enum MovingState
 {
@@ -10,7 +9,7 @@ public enum MovingState
     Run
 }
 
-public class CharacterContoller : MonoBehaviourPun
+public class CharacterContoller : MonoBehaviour
 {
     [SerializeField] float runSpeed; // km per hour
     [SerializeField] float walkSpeed; // km per hour
@@ -89,52 +88,31 @@ public class CharacterContoller : MonoBehaviourPun
 
     void FixedUpdate()
     {
-        if (!ScenesLauncher.isMultiplayer|| (ScenesLauncher.isMultiplayer && GetComponent<PhotonView>().IsMine))
+        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+
+        if (AllowMoving)
         {
-            transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
-
-            if (AllowMoving)
-            {
-                MoveForward();
-            }
-            else
-            {
-                Idle();
-            }
-
-            if (AllowRotation)
-            {
-                Rotate();
-            }
-
-            int moveIndex = 1; // Idle
-            if (movingState == MovingState.Walk)
-            {
-                moveIndex = 2;
-            }
-            else if (movingState == MovingState.Run)
-            {
-                moveIndex = 3;
-            }
-            SyncOrSetMoveIndex(moveIndex);
-        }
-    }
-
-    private void SyncOrSetMoveIndex(int index)
-    {
-        if (ScenesLauncher.isMultiplayer)
-        {
-            photonView.RPC("RPC_SetMoveIndex", RpcTarget.All, index);
+            MoveForward();
         }
         else
         {
-            animator.SetInteger("MoveIndex", index);
+            Idle();
         }
-    }
 
-    [PunRPC]
-    private void RPC_SetMoveIndex(int index)
-    {
-        animator.SetInteger("MoveIndex", index);
+        if (AllowRotation)
+        {
+            Rotate();
+        }
+
+        int moveIndex = 1; // Idle
+        if (movingState == MovingState.Walk)
+        {
+            moveIndex = 2;
+        }
+        else if (movingState == MovingState.Run)
+        {
+            moveIndex = 3;
+        }
+        animator.SetInteger("MoveIndex", moveIndex);
     }
 }

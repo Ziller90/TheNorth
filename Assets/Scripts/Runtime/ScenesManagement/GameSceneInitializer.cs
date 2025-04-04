@@ -1,12 +1,10 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Photon.Pun;
-using Photon.Realtime;
 using System.Collections.Generic;
 using SiegeUp.Core;
 
-public class GameSceneInitializer : MonoBehaviourPunCallbacks
+public class GameSceneInitializer : MonoBehaviour
 {
     [SerializeField] GameObject playerPrefab;
     [SerializeField] List<GameObject> multiplayerPlayerPrefabs;
@@ -28,24 +26,9 @@ public class GameSceneInitializer : MonoBehaviourPunCallbacks
 
     public void InitializePlayer()
     {
-        if (ScenesLauncher.isMultiplayer)
-        {
-            Debug.Log("Your ID in room is" + PhotonNetwork.LocalPlayer.ActorNumber);
-
-            var spawnPoint = Game.LocationLoader.LoadedLocationModel.GetRandomSpawnPoint();
-            var randomCharacter = multiplayerPlayerPrefabs[Random.Range(0, multiplayerPlayerPrefabs.Count - 1)];
-            player = PhotonNetwork.Instantiate(randomCharacter.name, spawnPoint.position, spawnPoint.rotation);
-            if (player.GetComponent<PhotonView>().IsMine)
-            {
-                SetMainCharacter(player);
-            }
-        }
-        else
-        {
-            player = Instantiate(playerPrefab, Game.LocationLoader.GetSpawnPoint(), Quaternion.identity);
-            SetMainCharacter(player);
-            Game.SavingService.RestoreLocation(Game.LocationLoader.LoadedLocationModel);
-        }
+        player = Instantiate(playerPrefab, Game.LocationLoader.GetSpawnPoint(), Quaternion.identity);
+        SetMainCharacter(player);
+        Game.SavingService.RestoreLocation(Game.LocationLoader.LoadedLocationModel);
     }
 
     public void SetMainCharacter(GameObject playerCharacter)
@@ -80,18 +63,5 @@ public class GameSceneInitializer : MonoBehaviourPunCallbacks
             }
             Destroy(deadBody);
         }
-    }
-
-    public override void OnPlayerEnteredRoom(Player other)
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            Debug.Log(other.NickName + " entered the room " + PhotonNetwork.CurrentRoom);
-        }
-    }
-
-    public override void OnPlayerLeftRoom(Player other)
-    {
-        Debug.Log(other.NickName + " left the room " + PhotonNetwork.CurrentRoom);
     }
 }

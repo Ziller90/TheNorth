@@ -24,6 +24,12 @@ public class MeleeWeapon : MonoBehaviour
         meleeWeaponSounds = weaponHolder.GetComponentInChildren<MeleeWeaponSounds>();
         hostUnit = weaponHolder.transform;
 
+        var hostColliders = hostUnit.GetComponentsInChildren<Collider>();
+        var meleeWeaponCollider = GetComponent<Collider>();
+
+        foreach (var hostCollider in hostColliders)
+            Physics.IgnoreCollision(meleeWeaponCollider, hostCollider);
+
         if (thisUnitHealth != null)
             thisUnitHealth.dieEvent += () => SetCuttingAnimation(false);
     }

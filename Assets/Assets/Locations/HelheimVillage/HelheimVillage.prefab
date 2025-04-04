@@ -385,8 +385,9 @@ Terrain:
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 80
   m_DetailObjectDensity: 1
-  m_HeightmapPixelError: 150.5
+  m_HeightmapPixelError: 200
   m_SplatMapDistance: 0
+  m_HeightmapMinimumLODSimplification: 0
   m_HeightmapMaximumLOD: 0
   m_ShadowCastingMode: 0
   m_DrawHeightmap: 1
@@ -970,7 +971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   corners:
-  - {x: 28.415932, y: 16.037285, z: 58.225033}
+  - {x: 28.415932, y: 15.4240885, z: 58.225033}
   - {x: 27.434992, y: 15.864797, z: 55.160675}
   - {x: 28.324888, y: 15.042375, z: 52.34336}
   - {x: 34.00031, y: 14.550038, z: 53.036713}
@@ -1039,7 +1040,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 31b3d4dbbfd6f15419897d7e53b783d0, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: bd00dedfc28a09043b85fdec9fac62bc, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &7298800995932011859
 GameObject:
@@ -14665,6 +14666,14 @@ PrefabInstance:
       value: 7391007534671724547
       objectReference: {fileID: 0}
     - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: mainWeaponSlot.itemStack
+      value: 4585715171201384448
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[4585715171201384448]
+      value: TheNorth ItemStack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: managedReferences[7391007534671724631]
       value: TheNorth ItemStack
       objectReference: {fileID: 0}
@@ -14673,9 +14682,17 @@ PrefabInstance:
       value: 7391007534671724631
       objectReference: {fileID: 0}
     - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[4585715171201384448].itemPrefab
+      value: 
+      objectReference: {fileID: 4512232744749014772, guid: a82057f1c8a5a09429c04e083b33d8c5, type: 3}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: managedReferences[7391007534671724631].itemPrefab
       value: 
       objectReference: {fileID: 4512232744749014772, guid: a82057f1c8a5a09429c04e083b33d8c5, type: 3}
+    - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
+      propertyPath: managedReferences[4585715171201384448].itemsNumber
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: managedReferences[7391007534671724631].itemsNumber
       value: 1
