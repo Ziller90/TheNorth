@@ -1,17 +1,16 @@
 using UnityEngine;
 
-[ExecuteAlways]
 public class LightingManager : MonoBehaviour
 {
     [SerializeField] Light sun;
     [SerializeField] Light moon;
+    [SerializeField] Light contrast;
     [SerializeField] LightingPreset preset;
-    [SerializeField] GameTime gameTime;
 
     void Update()
     {
         if (preset)
-            UpdateLighting(gameTime.TimeOfDay / 24f);
+            UpdateLighting(Game.TimeService.TimeOfDay / 24f);
     }
 
     public void SetLightingPreset(LightingPreset newPreset)
@@ -28,15 +27,20 @@ public class LightingManager : MonoBehaviour
         {
             sun.color = preset.SunLightColor.Evaluate(timePercent);
             moon.color = preset.MoonLightColor.Evaluate(timePercent);
+            contrast.color = preset.ContrastLightColor.Evaluate(timePercent);
 
             sun.intensity = preset.SunLightIntensityCurve.Evaluate(timePercent);
             moon.intensity = preset.MoonLightIntensityCurve.Evaluate(timePercent);
+            contrast.intensity = preset.ContrastLightIntensityCurve.Evaluate(timePercent);
 
             sun.gameObject.SetActive(sun.intensity > 0.01f);
             moon.gameObject.SetActive(moon.intensity > 0.01f);
+            contrast.gameObject.SetActive(contrast.intensity > 0.01f);
 
             sun.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 170f, 0));
             moon.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) + 91f, 170f, 0));
+            contrast.transform.localRotation = Quaternion.Euler(preset.ContrastLightRotation);
+            contrast.shadows = preset.ContrastLightShadows ? LightShadows.Soft : LightShadows.None;
         }
     }
 

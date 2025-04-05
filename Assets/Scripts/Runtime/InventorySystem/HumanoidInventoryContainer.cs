@@ -11,14 +11,13 @@ public class HumanoidInventoryContainer : ContainerBase
     [SerializeField] Transform rightHandEquipPosition;
     [SerializeField] Transform leftHandEquipPosition;
 
+    [SerializeField] SimpleContainer dropSackPrefab;
+    [SerializeField] Item unarmedHandItem;
+
     [AutoSerialize(1), SerializeField] Slot mainWeaponSlot;
     [AutoSerialize(2), SerializeField] Slot secondaryWeaponSlot;
     [AutoSerialize(3), SerializeField] SlotGroup quickSlots;
     [AutoSerialize(4), SerializeField] SlotGroup backpackSlots;
-
-    [SerializeField] SimpleContainer dropSackPrefab;
-
-    [SerializeField] Item unarmedHandItem;
 
     Item rightHandItem;
     Item leftHandItem;
@@ -76,6 +75,9 @@ public class HumanoidInventoryContainer : ContainerBase
 
     private void Start()
     {
+        UnSubsribeWeaponSlotsEvents();
+        SubsribeWeaponSlotsEvents();
+
         if (!mainWeaponSlot.IsEmpty)
             EquipMainWeapon();
 
@@ -85,6 +87,17 @@ public class HumanoidInventoryContainer : ContainerBase
 
     void OnEnable()
     {
+        UnSubsribeWeaponSlotsEvents();
+        SubsribeWeaponSlotsEvents();
+    }
+
+    void OnDisable()
+    {
+        UnSubsribeWeaponSlotsEvents();
+    }
+
+    void SubsribeWeaponSlotsEvents()
+    {
         mainWeaponSlot.inserted += EquipMainWeapon;
         secondaryWeaponSlot.inserted += EquipSecondaryWeapon;
 
@@ -92,7 +105,7 @@ public class HumanoidInventoryContainer : ContainerBase
         secondaryWeaponSlot.removed += UnEquipSecondaryWeapon;
     }
 
-    void OnDisable()
+    void UnSubsribeWeaponSlotsEvents()
     {
         mainWeaponSlot.inserted -= EquipMainWeapon;
         secondaryWeaponSlot.inserted -= EquipSecondaryWeapon;

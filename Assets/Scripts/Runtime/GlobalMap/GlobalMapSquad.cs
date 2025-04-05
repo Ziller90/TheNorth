@@ -51,7 +51,7 @@ public class GlobalMapSquad : MonoBehaviour
                     var locationRadius = targetLocation.GetComponent<CapsuleCollider>().radius;
                     if (distanceToLocation - locationRadius < maxDistanceToLocation)
                     {
-                        ScenesLauncher.LoadGameSceneWithLocation(targetLocation.GetComponent<Location>().PresentedLocation);
+                        Game.SceneLauncherService.LoadGameSceneWithLocation(targetLocation.GetComponent<Location>().PresentedLocation);
 
                         targetLocation = null;
                         target = Vector3.zero;

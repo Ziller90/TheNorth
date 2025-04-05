@@ -20,9 +20,10 @@ public class Health : MonoBehaviour
     public void GetDamage(float damage)
     {
         currentHealth -= damage;
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !isDead)
         {
             dieEvent();
+            isDead = true;
         }
     }
 

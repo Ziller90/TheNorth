@@ -16,7 +16,7 @@ public class DeathScreenPresentation : MonoBehaviour
 
     public void Respawn()
     {
-        ScenesLauncher.LoadGameSceneWithLocation(locationToRespawnPrefab, spawnPoint);
+        Game.SceneLauncherService.LoadGameSceneWithLocation(locationToRespawnPrefab, spawnPoint);
     }
 
     public void GoToMainMenu()

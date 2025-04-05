@@ -12,9 +12,9 @@ public class LocationLoader : MonoBehaviour
     public void LoadLocation()
     {
         LocationModel location;
-        if (ScenesLauncher.LocationToLoad != null)
+        if (Game.SceneLauncherService.LocationToLoad != null)
         {
-            location = LoadLocation(ScenesLauncher.LocationToLoad);
+            location = LoadLocation(Game.SceneLauncherService.LocationToLoad);
         }
         else if (testLocationToLoad != null)
         {
@@ -41,8 +41,8 @@ public class LocationLoader : MonoBehaviour
 
     public Transform GetSpawnPoint()
     {
-        var spawnPoint = ScenesLauncher.spawnPoint != -1 ? loadedLocationModel.GetSpawnPointByIndex(ScenesLauncher.spawnPoint) : loadedLocationModel.GetRandomSpawnPoint();
-        ScenesLauncher.spawnPoint = -1;
+        var spawnPoint = Game.SceneLauncherService.SpawnPoint != -1 ? loadedLocationModel.GetSpawnPointByIndex(Game.SceneLauncherService.SpawnPoint) : loadedLocationModel.GetRandomSpawnPoint();
+        Game.SceneLauncherService.SetSpawnPoint(-1);
         return spawnPoint;
     }
 }

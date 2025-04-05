@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using UnityEngine;
 
-public class GameTime : MonoBehaviour
+public class TimeService : MonoBehaviour
 {
     [SerializeField, Range(0, 24)] float timeOfDay;
     [SerializeField] float dayLengthInSeconds;
     [SerializeField] bool dinamicGameTime;
+
     public float TimeOfDay => timeOfDay;
 
     void Update()

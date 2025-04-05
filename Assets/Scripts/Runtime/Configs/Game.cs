@@ -22,4 +22,6 @@ public static class Game
     public static MusicService MusicService => Service<MusicService>.Instance;   
     public static ButtonsSoundManager ButtonsSoundManager => Service<ButtonsSoundManager>.Instance;   
     public static SoundService SoundService => Service<SoundService>.Instance;   
+    public static SceneLauncherService SceneLauncherService => Service<SceneLauncherService>.Instance;   
+    public static TimeService TimeService => Service<TimeService>.Instance;   
 }

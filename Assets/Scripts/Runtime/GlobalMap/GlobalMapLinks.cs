@@ -8,7 +8,7 @@ public class GlobalMapLinks : MonoBehaviour
     public GlobalMapSquad playerSquad;
     public GameObject locationsInfoViewContainer;
     public Camera globalMapCamera;
-    public ScenesLauncher gameSceneLauncher;
+    public SceneLauncherService gameSceneLauncher;
     private void Awake()
     {
         instance = this;

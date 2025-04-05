@@ -80,9 +80,9 @@ public class InteractablesLocator : MonoBehaviour
                 containerOpenedEvent?.Invoke(containerBody);
             }
 
-            if (nearestInteractable.GetComponent<DoorTeleporter>())
+            if (nearestInteractable.GetComponent<DoorLocationLoader>())
             {
-                var containerBody = nearestInteractable.GetComponent<DoorTeleporter>();
+                var containerBody = nearestInteractable.GetComponent<DoorLocationLoader>();
                 containerBody.OpenDoor(gameObject);
             }
 
