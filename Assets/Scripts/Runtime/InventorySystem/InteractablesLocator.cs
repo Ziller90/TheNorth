@@ -24,7 +24,9 @@ public class InteractablesLocator : MonoBehaviour
     {
         if (nearestInteractable)
         {
-            nearestInteractable.SetHighlighted(false);
+            if (Game.GameSceneInitializer.Player == gameObject)
+                nearestInteractable.SetHighlighted(false);
+
             nearestInteractable = null;
         }
     }

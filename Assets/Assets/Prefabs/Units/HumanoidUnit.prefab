@@ -242,30 +242,6 @@ PrefabInstance:
       propertyPath: creatureFraction
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6115228454438917369, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
-      propertyPath: components.Array.size
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 6115228454438917369, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
-      propertyPath: components.Array.data[6]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6115228454438917369, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
-      propertyPath: components.Array.data[8]
-      value: 
-      objectReference: {fileID: 1929616585124593929}
-    - target: {fileID: 6115228454438917369, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
-      propertyPath: components.Array.data[9]
-      value: 
-      objectReference: {fileID: 7437434635719383873}
-    - target: {fileID: 6115228454438917369, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
-      propertyPath: components.Array.data[11]
-      value: 
-      objectReference: {fileID: 7305062578420371887}
-    - target: {fileID: 6115228454438917369, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
-      propertyPath: components.Array.data[12]
-      value: 
-      objectReference: {fileID: 3031224661755823060}
     - target: {fileID: 6115228454438917370, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
       propertyPath: runSpeed
       value: 10
@@ -406,13 +382,16 @@ PrefabInstance:
       propertyPath: managedReferences[7391007673639763971].itemsNumber
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8109353431615446550, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
+      propertyPath: prefabId
+      value: 274c7f9f7341a7941b984c7f845d4cdd
+      objectReference: {fileID: 0}
     - target: {fileID: 8198931401825511611, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 6115228454438917368, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
-    - {fileID: 6510605634573919806, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6115228454438917373, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
@@ -431,12 +410,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6115228454438917361, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7437434635719383873}
-    - targetCorrespondingSourceObject: {fileID: 6115228454438917361, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7305062578420371887}
-    - targetCorrespondingSourceObject: {fileID: 6115228454438917361, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3031224661755823060}
     - targetCorrespondingSourceObject: {fileID: 6115228454438917361, guid: 025d58fbdaf0215439ca9c1f9307c590, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5105453114873059835}
@@ -489,33 +462,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlManager: {fileID: 8458588383854384157}
---- !u!114 &7305062578420371887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8467364967643463504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbebbd635f1104204a01ee2b3e1516ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabId: 274c7f9f7341a7941b984c7f845d4cdd
-  ignore: 0
---- !u!114 &3031224661755823060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8467364967643463504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b07634a3e286d4f418bbf77392f68517, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uniqueId: 42a63007-6486-4ce5-a2fb-c0cd9ad75cf5
 --- !u!114 &5105453114873059835
 MonoBehaviour:
   m_ObjectHideFlags: 0

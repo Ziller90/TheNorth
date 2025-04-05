@@ -14688,14 +14688,14 @@ PrefabInstance:
     - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: managedReferences[7391007534671724631].itemPrefab
       value: 
-      objectReference: {fileID: 4512232744749014772, guid: a82057f1c8a5a09429c04e083b33d8c5, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: managedReferences[4585715171201384448].itemsNumber
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5502941057379804373, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: managedReferences[7391007534671724631].itemsNumber
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7024146721678535939, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -14892,14 +14892,6 @@ PrefabInstance:
     - target: {fileID: 8600090767715464586, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8600090767715464590, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
-      propertyPath: unitName
-      value: Hagalar
-      objectReference: {fileID: 0}
-    - target: {fileID: 8600090767715464590, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
-      propertyPath: components.Array.data[10]
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8600090767715464817, guid: a33b4b6ab9106074784c71b797bab472, type: 3}
       propertyPath: maxHealth

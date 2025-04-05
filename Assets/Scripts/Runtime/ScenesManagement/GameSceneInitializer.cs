@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using SiegeUp.Core;
+using System.Collections;
 
 public class GameSceneInitializer : MonoBehaviour
 {
@@ -21,14 +22,23 @@ public class GameSceneInitializer : MonoBehaviour
     public void InitializeScene()
     {
         Game.LocationLoader.LoadLocation();
+        Game.SavingService.RestoreLocation(Game.LocationLoader.LoadedLocationModel);
         InitializePlayer();
     }
 
     public void InitializePlayer()
     {
-        player = Instantiate(playerPrefab, Game.LocationLoader.GetSpawnPoint(), Quaternion.identity);
+        var spawnPoint = Game.LocationLoader.GetSpawnPoint();
+
+        if (Game.SavingService.SavedPlayer != null)
+        {
+            player = Game.SavingService.RestorePlayer();
+            player.transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
+        }
+        else
+            player = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
+
         SetMainCharacter(player);
-        Game.SavingService.RestoreLocation(Game.LocationLoader.LoadedLocationModel);
     }
 
     public void SetMainCharacter(GameObject playerCharacter)
@@ -45,8 +55,20 @@ public class GameSceneInitializer : MonoBehaviour
 
     public void LeaveLocation()
     {
+        StartCoroutine(LeaveLocationCoroutine());
+    }
+
+    public IEnumerator LeaveLocationCoroutine()
+    {
         ClearDeadBodies();
+
+        Game.SavingService.SavePlayer();
+        Game.ActorsAccessModel.DestroyObject(Player);
+
+        yield return null;
+
         Game.SavingService.SaveLocation();
+
         SceneManager.LoadScene("GlobalMapScene");
     }
 

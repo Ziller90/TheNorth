@@ -21,13 +21,6 @@ public class MobileButtonsView : MonoBehaviour
         SetUpQuickSlotsButtons();
     }
 
-    void Start()
-    {
-        quickSlots.SetActive(!ScenesLauncher.isMultiplayer);
-        inventory.SetActive(!ScenesLauncher.isMultiplayer);
-        takeButton.SetActive(!ScenesLauncher.isMultiplayer);
-    }
-
     void SetUpQuickSlotsButtons()
     {
         for (int i = 0; i < playerInventory.QuickAccessSlots.Slots.Count; i++)

@@ -33,6 +33,12 @@ public class Unit : MonoBehaviour
         health.dieEvent += Die;
     }
 
+    [ContextMenu("FindAllComponents")]
+    public void FindAllComponents()
+    {
+        components = GetComponents<Behaviour>();
+    }
+
     void OnEnable()
     {
         if (health)
@@ -55,8 +61,7 @@ public class Unit : MonoBehaviour
         rigidbody.isKinematic = true;
         deathAudioSource.Play();
 
-        if (!ScenesLauncher.isMultiplayer)
-            CreateDeadBodyContainer();
+        CreateDeadBodyContainer();
 
         foreach (Behaviour component in components)
         {

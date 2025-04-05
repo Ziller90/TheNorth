@@ -39,7 +39,7 @@ public class SlotGroup
 
     public TransferResult TryAddOrMergeAndReturnResult(ItemStack itemStack)
     {
-        if (itemStack == null)
+        if (itemStack == null || itemStack.Item == null)
             return TransferResult.ItemIsNull;
 
         if (!IsSuitableItemStackForGroup(itemStack))

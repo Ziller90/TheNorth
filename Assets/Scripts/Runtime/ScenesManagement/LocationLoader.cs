@@ -39,9 +39,9 @@ public class LocationLoader : MonoBehaviour
         return loadedLocation;  
     }
 
-    public Vector3 GetSpawnPoint()
+    public Transform GetSpawnPoint()
     {
-        var spawnPoint = ScenesLauncher.spawnPoint != -1 ? loadedLocationModel.GetSpawnPointByIndex(ScenesLauncher.spawnPoint).position : loadedLocationModel.GetRandomSpawnPoint().position;
+        var spawnPoint = ScenesLauncher.spawnPoint != -1 ? loadedLocationModel.GetSpawnPointByIndex(ScenesLauncher.spawnPoint) : loadedLocationModel.GetRandomSpawnPoint();
         ScenesLauncher.spawnPoint = -1;
         return spawnPoint;
     }

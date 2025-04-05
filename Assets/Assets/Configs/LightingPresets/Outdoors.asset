@@ -15,8 +15,8 @@ MonoBehaviour:
   ambientColor:
     serializedVersion: 2
     key0: {r: 0.30566037, g: 0.47135216, b: 1, a: 1}
-    key1: {r: 0.990566, g: 0.942081, b: 0.8260947, a: 1}
-    key2: {r: 1, g: 0.9215241, b: 0.71132076, a: 0}
+    key1: {r: 0.8349056, g: 0.8552402, b: 1, a: 1}
+    key2: {r: 1, g: 0.8865375, b: 0.5801887, a: 0}
     key3: {r: 0.9716981, g: 0.5969562, b: 0.43451402, a: 0}
     key4: {r: 0.30588236, g: 0.47058827, b: 1, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
@@ -24,7 +24,7 @@ MonoBehaviour:
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 8537
     ctime1: 18140
-    ctime2: 43996
+    ctime2: 42212
     ctime3: 48265
     ctime4: 53190
     ctime5: 0
@@ -75,18 +75,18 @@ MonoBehaviour:
   sunLightColor:
     serializedVersion: 2
     key0: {r: 0, g: 0, b: 0, a: 1}
-    key1: {r: 0.92549026, g: 0.7411765, b: 0.50980395, a: 1}
-    key2: {r: 1, g: 1, b: 1, a: 0}
-    key3: {r: 1, g: 1, b: 1, a: 0}
-    key4: {r: 1, g: 0.90856314, b: 0.7962264, a: 0}
+    key1: {r: 0.7688679, g: 0.8884297, b: 1, a: 1}
+    key2: {r: 1, g: 0.8285559, b: 0.6179246, a: 0}
+    key3: {r: 1, g: 0.8118914, b: 0.4575472, a: 0}
+    key4: {r: 1, g: 0.632057, b: 0.36320752, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 4597
     ctime1: 18222
-    ctime2: 26020
-    ctime3: 42519
-    ctime4: 47034
+    ctime2: 26214
+    ctime3: 38165
+    ctime4: 46838
     ctime5: 51548
     ctime6: 0
     ctime7: 0
@@ -154,14 +154,32 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.21781866
     - serializedVersion: 3
-      time: 0.50022876
-      value: 1.0003347
-      inSlope: 0
-      outSlope: 0
+      time: 0.3589724
+      value: 1.0865499
+      inSlope: 0.35148427
+      outSlope: 0.35148427
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.50116
+      value: 1.1094065
+      inSlope: -0.0015241487
+      outSlope: -0.0015241487
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.64821744
+      value: 1.0853912
+      inSlope: -0.20358683
+      outSlope: -0.20358683
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.98649323
+      outWeight: 1
     - serializedVersion: 3
       time: 0.8199442
       value: -0.0021189312

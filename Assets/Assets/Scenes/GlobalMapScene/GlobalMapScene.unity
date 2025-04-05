@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45120788, g: 0.5009446, b: 0.5736628, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4395,9 +4394,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleSystem: {fileID: 0}
-  characterMeleeWeapon: {fileID: 0}
+  inventory: {fileID: 0}
   stepSounds: {fileID: 0}
-  meleeWeaponSounds: {fileID: 0}
   bow: {fileID: 0}
 --- !u!4 &7947338970674575178
 Transform:
@@ -4933,6 +4931,7 @@ SceneRoots:
   - {fileID: 1141213383}
   - {fileID: 82142831}
   - {fileID: 273428854}
+  - {fileID: 1839436397}
   - {fileID: 2040870834}
   - {fileID: 504593146}
   - {fileID: 2015492135}
@@ -4943,4 +4942,3 @@ SceneRoots:
   - {fileID: 654847289}
   - {fileID: 932180962}
   - {fileID: 137559991}
-  - {fileID: 1839436397}

@@ -5,7 +5,11 @@ using SiegeUp.Core;
 
 public class SavingService : MonoBehaviour
 {
+    [AutoSerialize(0)] SerializedGameObjectBin savedPlayer;
+
     List<SavedLocation> locationSaves = new();
+
+    public SerializedGameObjectBin SavedPlayer => savedPlayer;
 
     void Awake()
     {
@@ -15,14 +19,9 @@ public class SavingService : MonoBehaviour
     [System.Serializable]
     public class SavedLocation
     {
-        [AutoSerialize(0)]
-        public string locationName;
-
-        [AutoSerialize(1)]
-        public int locationId;
-
-        [AutoSerialize(2)]
-        public List<SerializedGameObjectBin> serializedGameObjectsBin;
+        [AutoSerialize(0)] public string locationName;
+        [AutoSerialize(1)] public int locationId;
+        [AutoSerialize(2)] public List<SerializedGameObjectBin> serializedGameObjectsBin;
     }
 
     public void SaveLocation()
@@ -76,5 +75,23 @@ public class SavingService : MonoBehaviour
         var uniqueIds = FindObjectsOfType<UniqueId>();
         savedLocation.serializedGameObjectsBin = AutoSerializeTool.SerializeGameObjects(uniqueIds);
         return savedLocation;
+    }
+
+    public void SavePlayer()
+    {
+        var player = Game.GameSceneInitializer.Player;
+        savedPlayer = AutoSerializeTool.SerializeBin(player);
+    }
+
+    public GameObject RestorePlayer()
+    {
+        var uniqueIds = FindObjectsOfType<UniqueId>();
+        var restoreProcess = new RestoreProcess(new List<SerializedGameObjectBin> {savedPlayer}, uniqueIds)
+        {
+            spawn = Game.ActorsAccessModel.SpawnObject,
+            destroy = Game.ActorsAccessModel.DestroyObject
+        };
+
+        return AutoSerializeTool.RestoreObjects(restoreProcess)[0];
     }
 }
