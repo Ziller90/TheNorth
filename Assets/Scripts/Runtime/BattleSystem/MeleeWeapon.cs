@@ -47,6 +47,7 @@ public class MeleeWeapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(gameObject.name + " collided with " + other.name + " timestep is " + Time.frameCount);
         if (!isCuttingAnimation) 
             return;
 

@@ -43,11 +43,16 @@ public class Equipment : MonoBehaviour
     public void SetItemEquiped(bool isEquiped)
     {
         equipedCached = isEquiped;
-        rgbody.isKinematic = equipedCached;
+
         foreach (var collider in itemColliders)
         {
             collider.isTrigger = isEquiped;
         }
-        interactableObject.SetInteractable(!isEquiped);
+
+        if (rgbody)
+            rgbody.isKinematic = equipedCached;
+
+        if (interactableObject)
+            interactableObject.SetInteractable(!isEquiped);
     }
 }

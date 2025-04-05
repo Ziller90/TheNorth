@@ -5,15 +5,11 @@ using UnityEngine;
 public class AnimationEvents : MonoBehaviour
 {
     [SerializeField] FightManager battleSystem;
-    [SerializeField] MeleeWeapon characterMeleeWeapon;
+    [SerializeField] HumanoidInventoryContainer inventory;
     [SerializeField] StepSounds stepSounds;
-    [SerializeField] MeleeWeaponSounds meleeWeaponSounds;
     [SerializeField] Bow bow;
 
-    public void SetMeleeWeapon(MeleeWeapon characterMeleeWeapon) => this.characterMeleeWeapon = characterMeleeWeapon;
     public void SetBow(Bow bow) => this.bow = bow;
-    // public void SetThrowingWeaponInHand() => battleSystem.SetThrowingWeaponInHand();
-    //public void MeleeWeaponAirCuttingSound() => meleeWeaponSounds.PlayAirCuttingSound();
     public void SetBlock() => battleSystem.SetShieldRaised(true);
     public void RemoveBlock() => battleSystem.SetShieldRaised(false);
     public void AutoAim() => battleSystem.Aim();
@@ -34,18 +30,21 @@ public class AnimationEvents : MonoBehaviour
         stepSounds.isRunning = false;
         stepSounds.PlaySound();
     }
+
     public void WalkingStep2()
     {
         stepSounds.SetStepSound2();
         stepSounds.isRunning = false;
         stepSounds.PlaySound();
     }
+
     public void RunStep1()
     {
         stepSounds.SetStepSound1();
         stepSounds.isRunning = true;
         stepSounds.PlaySound();
     }
+
     public void RunStep2()
     {
         stepSounds.SetStepSound2();
@@ -53,14 +52,27 @@ public class AnimationEvents : MonoBehaviour
         stepSounds.PlaySound();
     }
 
-    public void SetCuttingAnimationTrue()
+    public void SetMainWeaponCuttingTrue()
     {
-        if (characterMeleeWeapon)
-            characterMeleeWeapon.SetCuttingAnimation(true);
+        if (inventory.MainWeaponItem && inventory.MainWeaponItem.MeleeWeapon)
+            inventory.MainWeaponItem.MeleeWeapon.SetCuttingAnimation(true);
     }
-    public void SetCuttingAnimationFalse()
+
+    public void SetMainWeaponCuttingFalse()
     {
-        if (characterMeleeWeapon)
-            characterMeleeWeapon.SetCuttingAnimation(false);
+        if (inventory.MainWeaponItem && inventory.MainWeaponItem.MeleeWeapon)
+            inventory.MainWeaponItem.MeleeWeapon.SetCuttingAnimation(false);
+    }
+
+    public void SetSecondaryWeaponCuttingTrue()
+    {
+        if (inventory.SecondaryWeaponItem && inventory.SecondaryWeaponItem.MeleeWeapon)
+            inventory.SecondaryWeaponItem.MeleeWeapon.SetCuttingAnimation(true);
+    }
+
+    public void SetSecondaryWeaponCuttingFalse()
+    {
+        if (inventory.SecondaryWeaponItem && inventory.SecondaryWeaponItem.MeleeWeapon)
+            inventory.SecondaryWeaponItem.MeleeWeapon.SetCuttingAnimation(false);
     }
 }

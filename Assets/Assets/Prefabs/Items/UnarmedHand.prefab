@@ -78,6 +78,8 @@ GameObject:
   - component: {fileID: 7087786812071082886}
   - component: {fileID: 7087786812071082881}
   - component: {fileID: -5585521636719186022}
+  - component: {fileID: 6747184944963202299}
+  - component: {fileID: 6693032903709062210}
   m_Layer: 0
   m_Name: UnarmedHand
   m_TagString: Untagged
@@ -141,3 +143,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 10
+--- !u!114 &6747184944963202299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7087786812071082882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 166e53ce682bbd84fa1e7c79bffbd01e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Unarmed hand
+  description: '-'
+  cost: 0
+  icon: {fileID: 21300000, guid: 61f8ddcc0ea720644a36856739ca82f5, type: 3}
+  maxStackSize: 1
+  itemTags: 
+--- !u!114 &6693032903709062210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7087786812071082882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0f0dbdfd523dac43b1475da257e34f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipedCached: 0
+  itemColliders: []
+  interactableObject: {fileID: 0}
+  equipmentPosition: 0

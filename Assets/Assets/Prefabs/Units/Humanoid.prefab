@@ -4895,7 +4895,7 @@ MonoBehaviour:
       itemStack:
         rid: -2
   dropSackPrefab: {fileID: 390682515965362878, guid: 4a6b3267735ccc745a8353076a4887a6, type: 3}
-  unarmedHandItem: {fileID: 7087786812071082882, guid: 55cff2e9f4292eb4296ffbf90aafc577, type: 3}
+  unarmedHandItem: {fileID: 6747184944963202299, guid: 55cff2e9f4292eb4296ffbf90aafc577, type: 3}
   references:
     version: 2
     RefIds:
@@ -4914,9 +4914,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleSystem: {fileID: 2565501742702311717}
-  characterMeleeWeapon: {fileID: 0}
+  inventory: {fileID: 8059843138504852898}
   stepSounds: {fileID: 6115228455221165692}
-  meleeWeaponSounds: {fileID: 0}
   bow: {fileID: 0}
 --- !u!114 &8879553102830726590
 MonoBehaviour:

@@ -50,4 +50,6 @@ public class Item : MonoBehaviour
     public int Cost => cost;
     public Sprite Icon => icon;
     public List<ItemTag> Tags  => itemTags;
+
+    public MeleeWeapon MeleeWeapon => GetComponentInChildren<MeleeWeapon>();
 }
