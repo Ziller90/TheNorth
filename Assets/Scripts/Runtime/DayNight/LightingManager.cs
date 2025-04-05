@@ -32,6 +32,9 @@ public class LightingManager : MonoBehaviour
             sun.intensity = preset.SunLightIntensityCurve.Evaluate(timePercent);
             moon.intensity = preset.MoonLightIntensityCurve.Evaluate(timePercent);
 
+            sun.gameObject.SetActive(sun.intensity > 0.01f);
+            moon.gameObject.SetActive(moon.intensity > 0.01f);
+
             sun.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 170f, 0));
             moon.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) + 91f, 170f, 0));
         }

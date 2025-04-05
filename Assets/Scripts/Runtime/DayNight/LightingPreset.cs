@@ -10,7 +10,6 @@ public class LightingPreset : ScriptableObject
     [SerializeField] Gradient fogColor;
     [SerializeField] AnimationCurve sunLightIntensityCurve;
     [SerializeField] AnimationCurve moonLightIntensityCurve;
-    [SerializeField] float ignorLightIntensity;
 
     public Gradient AmbientColor => ambientColor;
     public Gradient SunLightColor => sunLightColor;
@@ -18,5 +17,4 @@ public class LightingPreset : ScriptableObject
     public Gradient FogColor => fogColor;
     public AnimationCurve SunLightIntensityCurve => sunLightIntensityCurve;
     public AnimationCurve MoonLightIntensityCurve => moonLightIntensityCurve;
-    public float IngorLightIntensity => ignorLightIntensity;
 }
